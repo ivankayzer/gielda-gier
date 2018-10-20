@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <!-- Intro Banner
 ================================================== -->
     <!-- add class "disable-gradient" to enable consistent background overlay -->
