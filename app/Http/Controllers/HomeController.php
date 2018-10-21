@@ -29,4 +29,19 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    public function offers()
+    {
+        return view('offers.index');
+    }
+
+    public function transactions()
+    {
+        return view('transactions.index');
+    }
+
+    public function reviews()
+    {
+        return view('reviews.index');
+    }
 }

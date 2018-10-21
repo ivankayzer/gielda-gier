@@ -4,7 +4,7 @@
     <!-- Intro Banner
 ================================================== -->
     <!-- add class "disable-gradient" to enable consistent background overlay -->
-    <div class="intro-banner" data-background-image="images/home-background.jpg">
+    <div class="intro-banner" data-background-image="images/home-background.png">
         <div class="container">
 
             <!-- Intro Headline -->
@@ -29,7 +29,7 @@
                         <div class="intro-search-field with-autocomplete">
                             <label for="autocomplete-input" class="field-title ripple-effect">Where?</label>
                             <div class="input-with-icon">
-                                <input id="autocomplete-input" type="text" placeholder="Online Job">
+                                <input id="autocomplete-input" type="text" placeholder="Online Game">
                                 <i class="icon-material-outline-location-on"></i>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                         <!-- Search Field -->
                         <div class="intro-search-field">
                             <label for ="intro-keywords" class="field-title ripple-effect">What job you want?</label>
-                            <input id="intro-keywords" type="text" placeholder="Job Title or Keywords">
+                            <input id="intro-keywords" type="text" placeholder="Game Title or Keywords">
                         </div>
 
                         <!-- Button -->
@@ -54,7 +54,7 @@
                     <ul class="intro-stats margin-top-45 hide-under-992px">
                         <li>
                             <strong class="counter">1,586</strong>
-                            <span>Jobs Posted</span>
+                            <span>Games Posted</span>
                         </li>
                         <li>
                             <strong class="counter">3,543</strong>
@@ -141,7 +141,7 @@
                 <!-- Section Headline -->
                 <div class="col-xl-12">
                     <div class="section-headline margin-top-0 margin-bottom-45">
-                        <h3>Featured Cities</h3>
+                        <h3>Featured Platforms</h3>
                     </div>
                 </div>
 
@@ -149,8 +149,8 @@
                     <!-- Photo Box -->
                     <a href="jobs-list-layout-1.html" class="photo-box" data-background-image="images/featured-city-01.jpg">
                         <div class="photo-box-content">
-                            <h3>San Francisco</h3>
-                            <span>376 Jobs</span>
+                            <h3>Playstation 4</h3>
+                            <span>376 Games</span>
                         </div>
                     </a>
                 </div>
@@ -159,8 +159,8 @@
                     <!-- Photo Box -->
                     <a href="jobs-list-layout-full-page-map.html" class="photo-box" data-background-image="images/featured-city-02.jpg">
                         <div class="photo-box-content">
-                            <h3>New York</h3>
-                            <span>645 Jobs</span>
+                            <h3>Xbox One</h3>
+                            <span>645 Games</span>
                         </div>
                     </a>
                 </div>
@@ -169,8 +169,8 @@
                     <!-- Photo Box -->
                     <a href="jobs-grid-layout-full-page.html" class="photo-box" data-background-image="images/featured-city-03.jpg">
                         <div class="photo-box-content">
-                            <h3>Los Angeles</h3>
-                            <span>832 Jobs</span>
+                            <h3>Nintendo Switch</h3>
+                            <span>832 Games</span>
                         </div>
                     </a>
                 </div>
@@ -179,8 +179,8 @@
                     <!-- Photo Box -->
                     <a href="jobs-list-layout-2.html" class="photo-box" data-background-image="images/featured-city-04.jpg">
                         <div class="photo-box-content">
-                            <h3>Miami</h3>
-                            <span>513 Jobs</span>
+                            <h3>PC</h3>
+                            <span>513 Games</span>
                         </div>
                     </a>
                 </div>
@@ -190,7 +190,7 @@
     </div>
     <!-- Features Cities / End -->
 
-    <!-- Features Jobs -->
+    <!-- Features Games -->
     <div class="section gray padding-top-65 padding-bottom-75">
         <div class="container">
             <div class="row">
@@ -198,17 +198,17 @@
 
                     <!-- Section Headline -->
                     <div class="section-headline margin-top-0 margin-bottom-35">
-                        <h3>Featured Jobs</h3>
-                        <a href="jobs-list-layout-full-page-map.html" class="headline-link">Browse All Jobs</a>
+                        <h3>Featured Games</h3>
+                        <a href="jobs-list-layout-full-page-map.html" class="headline-link">Browse All Games</a>
                     </div>
 
-                    <!-- Jobs Container -->
+                    <!-- Games Container -->
                     <div class="listings-container compact-list-layout margin-top-35">
 
-                        <!-- Job Listing -->
+                        <!-- Game Listing -->
                         <a href="single-job-page.html" class="job-listing with-apply-button">
 
-                            <!-- Job Listing Details -->
+                            <!-- Game Listing Details -->
                             <div class="job-listing-details">
 
                                 <!-- Logo -->
@@ -220,7 +220,7 @@
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title">Bilingual Event Support Specialist</h3>
 
-                                    <!-- Job Listing Footer -->
+                                    <!-- Game Listing Footer -->
                                     <div class="job-listing-footer">
                                         <ul>
                                             <li><i class="icon-material-outline-business"></i> Hexagon <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
@@ -237,10 +237,10 @@
                         </a>
 
 
-                        <!-- Job Listing -->
+                        <!-- Game Listing -->
                         <a href="single-job-page.html" class="job-listing with-apply-button">
 
-                            <!-- Job Listing Details -->
+                            <!-- Game Listing Details -->
                             <div class="job-listing-details">
 
                                 <!-- Logo -->
@@ -252,7 +252,7 @@
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title">Competition Law Officer</h3>
 
-                                    <!-- Job Listing Footer -->
+                                    <!-- Game Listing Footer -->
                                     <div class="job-listing-footer">
                                         <ul>
                                             <li><i class="icon-material-outline-business"></i> Laxo</li>
@@ -267,10 +267,10 @@
                                 <span class="list-apply-button ripple-effect">Apply Now</span>
                             </div>
                         </a>
-                        <!-- Job Listing -->
+                        <!-- Game Listing -->
                         <a href="single-job-page.html" class="job-listing with-apply-button">
 
-                            <!-- Job Listing Details -->
+                            <!-- Game Listing Details -->
                             <div class="job-listing-details">
 
                                 <!-- Logo -->
@@ -282,7 +282,7 @@
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title">Barista and Cashier</h3>
 
-                                    <!-- Job Listing Footer -->
+                                    <!-- Game Listing Footer -->
                                     <div class="job-listing-footer">
                                         <ul>
                                             <li><i class="icon-material-outline-business"></i> Coffee</li>
@@ -299,10 +299,10 @@
                         </a>
 
 
-                        <!-- Job Listing -->
+                        <!-- Game Listing -->
                         <a href="single-job-page.html" class="job-listing with-apply-button">
 
-                            <!-- Job Listing Details -->
+                            <!-- Game Listing Details -->
                             <div class="job-listing-details">
 
                                 <!-- Logo -->
@@ -314,7 +314,7 @@
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title">Restaurant General Manager</h3>
 
-                                    <!-- Job Listing Footer -->
+                                    <!-- Game Listing Footer -->
                                     <div class="job-listing-footer">
                                         <ul>
                                             <li><i class="icon-material-outline-business"></i> King <div class="verified-badge" title="Verified Employer" data-tippy-placement="top"></div></li>
@@ -330,10 +330,10 @@
                             </div>
                         </a>
 
-                        <!-- Job Listing -->
+                        <!-- Game Listing -->
                         <a href="single-job-page.html" class="job-listing with-apply-button">
 
-                            <!-- Job Listing Details -->
+                            <!-- Game Listing Details -->
                             <div class="job-listing-details">
 
                                 <!-- Logo -->
@@ -345,7 +345,7 @@
                                 <div class="job-listing-description">
                                     <h3 class="job-listing-title">International Marketing Coordinator</h3>
 
-                                    <!-- Job Listing Footer -->
+                                    <!-- Game Listing Footer -->
                                     <div class="job-listing-footer">
                                         <ul>
                                             <li><i class="icon-material-outline-business"></i> Skyist</li>
@@ -362,11 +362,11 @@
                         </a>
 
                     </div>
-                    <!-- Jobs Container / End -->
+                    <!-- Games Container / End -->
 
                 </div>
             </div>
         </div>
     </div>
-    <!-- Featured Jobs / End -->
+    <!-- Featured Games / End -->
 @endsection

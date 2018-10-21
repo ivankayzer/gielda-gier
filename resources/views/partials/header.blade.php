@@ -20,6 +20,9 @@
 
                         <li><a href="/" class="current">Home</a></li>
                         <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/offers">Offers</a></li>
+                        <li><a href="/transactions">Transactions</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
                     </ul>
                 </nav>
                 <div class="clearfix"></div>
