@@ -11,7 +11,7 @@
 
                 <!-- Logo -->
                 <div id="logo">
-                    <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    <a href="/"><img src="images/logo.png" alt=""></a>
                 </div>
 
                 <!-- Main Navigation -->
@@ -19,6 +19,7 @@
                     <ul id="responsive">
 
                         <li><a href="/" class="current">Home</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
                     </ul>
                 </nav>
                 <div class="clearfix"></div>
@@ -32,7 +33,6 @@
             <div class="right-side">
                 <nav id="navigation">
                     <ul id="responsive">
-
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register</a></li>
                     </ul>

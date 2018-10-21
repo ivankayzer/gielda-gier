@@ -39,6 +39,12 @@
 
                     <!-- Form -->
                     <form method="post" action="{{ route('register') }}" id="register-account-form">
+                        @csrf
+                        <div class="input-with-icon-left">
+                            <i class="icon-material-outline-account-circle"></i>
+                            <input type="text" class="input-text with-border" name="name" id="name" placeholder="Username" required/>
+                        </div>
+
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
                             <input type="text" class="input-text with-border" name="email" id="email" placeholder="Email Address" required/>
