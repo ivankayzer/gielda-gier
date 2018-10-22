@@ -49,4 +49,9 @@ class HomeController extends Controller
     {
         return view('chat.index');
     }
+
+    public function settings()
+    {
+        return view('settings.index');
+    }
 }
