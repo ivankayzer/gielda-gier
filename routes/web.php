@@ -24,3 +24,4 @@ Route::get('/transactions', 'HomeController@transactions')->name('transactions.i
 Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
 Route::get('/chat', 'HomeController@chat')->name('chat.index');
 Route::get('/settings', 'HomeController@settings')->name('settings.index');
+Route::get('/users', 'HomeController@users')->name('users.index');

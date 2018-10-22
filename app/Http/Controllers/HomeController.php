@@ -54,4 +54,9 @@ class HomeController extends Controller
     {
         return view('settings.index');
     }
+
+    public function users()
+    {
+        return view('users.index');
+    }
 }
