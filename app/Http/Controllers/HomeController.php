@@ -44,4 +44,9 @@ class HomeController extends Controller
     {
         return view('reviews.index');
     }
+
+    public function chat()
+    {
+        return view('chat.index');
+    }
 }

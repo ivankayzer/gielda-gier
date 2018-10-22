@@ -23,6 +23,7 @@
                         <li><a href="/offers">Offers</a></li>
                         <li><a href="/transactions">Transactions</a></li>
                         <li><a href="/reviews">Reviews</a></li>
+                        <li><a href="/chat">Chat</a></li>
                     </ul>
                 </nav>
                 <div class="clearfix"></div>
