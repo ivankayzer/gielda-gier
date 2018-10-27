@@ -20,8 +20,8 @@ class CreateReviewsTable extends Migration
 
             $table->text('comment')->nullable();
 
-            $table->integer('reviewee_id')->unsigned();
-            $table->integer('reviewer_id')->unsigned();
+            $table->integer('reviewee_id')->nullable()->unsigned();
+            $table->integer('reviewer_id')->nullable()->unsigned();
 
             $table->timestamps();
 

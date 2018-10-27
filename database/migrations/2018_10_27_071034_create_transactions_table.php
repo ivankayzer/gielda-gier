@@ -15,14 +15,14 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('seller_id')->unsigned();
-            $table->integer('buyer_id')->unsigned();
+            $table->integer('seller_id')->nullable()->unsigned();
+            $table->integer('buyer_id')->nullable()->unsigned();
             $table->integer('status_id');
 
             $table->enum('type', ['transaction', 'offer']);
 
             $table->json('seller_value');
-            $table->json('buyer_id');
+            $table->json('buyer_value');
 
             $table->text('seller_comment');
             $table->text('buyer_comment');
