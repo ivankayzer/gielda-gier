@@ -16,6 +16,8 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('transaction_id')->unsigned();
+
             $table->enum('type', ['positive', 'negative', 'neutral']);
 
             $table->text('comment')->nullable();

@@ -43,19 +43,19 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function offered()
-    {
-        return $this->hasMany(Offer::class);
-    }
-
     public function offers()
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(Offer::class, 'seller_id');
     }
 
-    public function transactions()
+    public function transactionsSeller()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'seller_id');
+    }
+
+    public function transactionsBuyer()
+    {
+        return $this->hasMany(Transaction::class, 'buyer_id');
     }
 
     public function games()
