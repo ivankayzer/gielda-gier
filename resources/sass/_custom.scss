@@ -8,3 +8,22 @@
 .dashboard-content-inner {
   padding: 50px 0 !important;
 }
+
+#logo {
+  border-right: none !important;
+
+  img{
+    height: 55px !important;
+  }
+}
+
+.intro-banner .background-image-container {
+  width: 85% !important;
+}
+
+#navigation {
+  height: 100%;
+  display: flex !important;
+  align-items: center;
+  margin-top: 0 !important;
+}

@@ -15,9 +15,9 @@
                 </div>
 
                 <!-- Main Navigation -->
+                @auth
                 <nav id="navigation">
                     <ul id="responsive">
-
                         <li><a href="/" class="current">Home</a></li>
                         <li><a href="/dashboard">Dashboard</a></li>
                         <li><a href="/offers">Offers</a></li>
@@ -28,6 +28,7 @@
                         <li><a href="/users">Users</a></li>
                     </ul>
                 </nav>
+                @endauth
                 <div class="clearfix"></div>
                 <!-- Main Navigation / End -->
 
@@ -39,8 +40,8 @@
             <div class="right-side">
                 <nav id="navigation">
                     <ul id="responsive">
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register</a></li>
+                        <li><a href="{{ route('login') }}">@lang('auth.login')</a></li>
+                        <li><a href="{{ route('register') }}">@lang('auth.register')</a></li>
                     </ul>
                 </nav>
 
