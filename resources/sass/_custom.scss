@@ -12,7 +12,7 @@
 #logo {
   border-right: none !important;
 
-  img{
+  img {
     height: 55px !important;
   }
 }
@@ -26,4 +26,20 @@
   display: flex !important;
   align-items: center;
   margin-top: 0 !important;
+}
+
+.photo-box {
+  background-position: 50% !important;
+}
+
+@media (max-width: 1099px) {
+  #logo img {
+    height: auto !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .intro-banner .background-image-container {
+    background: none !important;
+  }
 }

@@ -21,7 +21,8 @@
 
                         <!-- Search Field -->
                         <div class="intro-search-field with-autocomplete">
-                            <label for="autocomplete-input" class="field-title ripple-effect">@lang('welcome.where')</label>
+                            <label for="autocomplete-input"
+                                   class="field-title ripple-effect">@lang('welcome.where')</label>
                             <div class="input-with-icon">
                                 <input id="autocomplete-input" type="text" placeholder="@lang('welcome.pick_city')">
                                 <i class="icon-material-outline-location-on"></i>
@@ -30,8 +31,10 @@
 
                         <!-- Search Field -->
                         <div class="intro-search-field">
-                            <label for="intro-keywords" class="field-title ripple-effect">@lang('welcome.game_title')</label>
-                            <input id="intro-keywords" type="text" placeholder="@lang('welcome.game_title_placeholder')">
+                            <label for="intro-keywords"
+                                   class="field-title ripple-effect">@lang('welcome.game_title')</label>
+                            <input id="intro-keywords" type="text"
+                                   placeholder="@lang('welcome.game_title_placeholder')">
                         </div>
 
                         <!-- Button -->
@@ -64,7 +67,7 @@
     </div>
 
     <!-- Icon Boxes -->
-    <div class="section padding-top-65 padding-bottom-65">
+    <div class="section padding-top-65 padding-bottom-45">
         <div class="container">
             <div class="row">
 
@@ -139,7 +142,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
-                    <a href="jobs-list-layout-1.html" class="photo-box"
+                    <a href="#" class="photo-box"
                        data-background-image="images/featured-city-01.jpg">
                         <div class="photo-box-content">
                             <h3>Playstation 4</h3>
@@ -150,7 +153,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
-                    <a href="jobs-list-layout-full-page-map.html" class="photo-box"
+                    <a href="#" class="photo-box"
                        data-background-image="images/featured-city-02.jpg">
                         <div class="photo-box-content">
                             <h3>Xbox One</h3>
@@ -161,7 +164,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
-                    <a href="jobs-grid-layout-full-page.html" class="photo-box"
+                    <a href="#" class="photo-box"
                        data-background-image="images/featured-city-03.jpg">
                         <div class="photo-box-content">
                             <h3>Nintendo Switch</h3>
@@ -172,7 +175,7 @@
 
                 <div class="col-xl-3 col-md-6">
                     <!-- Photo Box -->
-                    <a href="jobs-list-layout-2.html" class="photo-box"
+                    <a href="#" class="photo-box"
                        data-background-image="images/featured-city-04.jpg">
                         <div class="photo-box-content">
                             <h3>PC</h3>
@@ -195,174 +198,41 @@
                     <!-- Section Headline -->
                     <div class="section-headline margin-top-0 margin-bottom-35">
                         <h3>@lang('welcome.featured_offers')</h3>
-                        <a href="jobs-list-layout-full-page-map.html" class="headline-link">Browse All Games</a>
+                        <a href="#" class="headline-link">@lang('welcome.all_offers')</a>
                     </div>
 
                     <!-- Games Container -->
                     <div class="listings-container compact-list-layout margin-top-35">
-
-                        <!-- Game Listing -->
-                        <a href="single-job-page.html" class="job-listing with-apply-button">
-
-                            <!-- Game Listing Details -->
-                            <div class="job-listing-details">
-
-                                <!-- Logo -->
-                                <div class="job-listing-company-logo">
-                                    <img src="images/company-logo-01.png" alt="">
-                                </div>
-
-                                <!-- Details -->
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title">Bilingual Event Support Specialist</h3>
-
-                                    <!-- Game Listing Footer -->
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <li><i class="icon-material-outline-business"></i> Hexagon
-                                                <div class="verified-badge" title="Verified Employer"
-                                                     data-tippy-placement="top"></div>
-                                            </li>
-                                            <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-                                            <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                            <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                                        </ul>
+                        @foreach($offers as $offer)
+                            <a href="#" class="job-listing with-apply-button">
+                                <div class="job-listing-details">
+                                    <div class="job-listing-company-logo">
+                                        <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
                                     </div>
-                                </div>
+                                    <div class="job-listing-description">
+                                        <h3 class="job-listing-title">{{ $offer->game->title }}</h3>
 
-                                <!-- Apply Button -->
-                                <span class="list-apply-button ripple-effect">Apply Now</span>
-                            </div>
-                        </a>
-
-
-                        <!-- Game Listing -->
-                        <a href="single-job-page.html" class="job-listing with-apply-button">
-
-                            <!-- Game Listing Details -->
-                            <div class="job-listing-details">
-
-                                <!-- Logo -->
-                                <div class="job-listing-company-logo">
-                                    <img src="images/company-logo-05.png" alt="">
-                                </div>
-
-                                <!-- Details -->
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title">Competition Law Officer</h3>
-
-                                    <!-- Game Listing Footer -->
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <li><i class="icon-material-outline-business"></i> Laxo</li>
-                                            <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-                                            <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                            <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                                        </ul>
+                                        <!-- Game Listing Footer -->
+                                        <div class="job-listing-footer">
+                                            <ul>
+                                                <li>
+                                                    <i class="icon-material-outline-business"></i> {{ $offer->oferrorProfile->getFullName() }}
+                                                </li>
+                                                <li>
+                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->oferrorProfile->city }}
+                                                </li>
+                                                <li>
+                                                    <i class="icon-material-outline-access-time"></i> {{ $offer->humanCreatedAt() }}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+
+                                    <!-- Apply Button -->
+                                    <span class="list-apply-button ripple-effect">@lang('welcome.check')</span>
                                 </div>
-
-                                <!-- Apply Button -->
-                                <span class="list-apply-button ripple-effect">Apply Now</span>
-                            </div>
-                        </a>
-                        <!-- Game Listing -->
-                        <a href="single-job-page.html" class="job-listing with-apply-button">
-
-                            <!-- Game Listing Details -->
-                            <div class="job-listing-details">
-
-                                <!-- Logo -->
-                                <div class="job-listing-company-logo">
-                                    <img src="images/company-logo-02.png" alt="">
-                                </div>
-
-                                <!-- Details -->
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title">Barista and Cashier</h3>
-
-                                    <!-- Game Listing Footer -->
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <li><i class="icon-material-outline-business"></i> Coffee</li>
-                                            <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-                                            <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                            <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Apply Button -->
-                                <span class="list-apply-button ripple-effect">Apply Now</span>
-                            </div>
-                        </a>
-
-
-                        <!-- Game Listing -->
-                        <a href="single-job-page.html" class="job-listing with-apply-button">
-
-                            <!-- Game Listing Details -->
-                            <div class="job-listing-details">
-
-                                <!-- Logo -->
-                                <div class="job-listing-company-logo">
-                                    <img src="images/company-logo-03.png" alt="">
-                                </div>
-
-                                <!-- Details -->
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title">Restaurant General Manager</h3>
-
-                                    <!-- Game Listing Footer -->
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <li><i class="icon-material-outline-business"></i> King
-                                                <div class="verified-badge" title="Verified Employer"
-                                                     data-tippy-placement="top"></div>
-                                            </li>
-                                            <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-                                            <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                            <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Apply Button -->
-                                <span class="list-apply-button ripple-effect">Apply Now</span>
-                            </div>
-                        </a>
-
-                        <!-- Game Listing -->
-                        <a href="single-job-page.html" class="job-listing with-apply-button">
-
-                            <!-- Game Listing Details -->
-                            <div class="job-listing-details">
-
-                                <!-- Logo -->
-                                <div class="job-listing-company-logo">
-                                    <img src="images/company-logo-05.png" alt="">
-                                </div>
-
-                                <!-- Details -->
-                                <div class="job-listing-description">
-                                    <h3 class="job-listing-title">International Marketing Coordinator</h3>
-
-                                    <!-- Game Listing Footer -->
-                                    <div class="job-listing-footer">
-                                        <ul>
-                                            <li><i class="icon-material-outline-business"></i> Skyist</li>
-                                            <li><i class="icon-material-outline-location-on"></i> San Francissco</li>
-                                            <li><i class="icon-material-outline-business-center"></i> Full Time</li>
-                                            <li><i class="icon-material-outline-access-time"></i> 2 days ago</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Apply Button -->
-                                <span class="list-apply-button ripple-effect">Apply Now</span>
-                            </div>
-                        </a>
-
+                            </a>
+                        @endforeach
                     </div>
                     <!-- Games Container / End -->
 

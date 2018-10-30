@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Giełda gier') }}</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -51,26 +51,6 @@
             backgroundColor: '#383838'
         });
     });
-</script>
-
-
-<script>
-    function initAutocomplete() {
-        var options = {
-            types: ['(cities)'],
-            // componentRestrictions: {country: "us"}
-        };
-
-        var input = document.getElementById('autocomplete-input');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-    }
-
-    if ($('.intro-banner-search-form')[0]) {
-        setTimeout(function(){
-            $(".pac-container").prependTo(".intro-search-field.with-autocomplete");
-        }, 300);
-    }
-
 </script>
 
 <!-- Google API -->

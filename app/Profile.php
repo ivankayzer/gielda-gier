@@ -10,4 +10,9 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFullName()
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }
