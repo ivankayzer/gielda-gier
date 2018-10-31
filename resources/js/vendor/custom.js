@@ -276,12 +276,7 @@ $(document).ready(function(){
 	/*--------------------------------------------------*/
 
 	// Wrapper Height (window height - header height)
-	function wrapperHeight() {
-		var headerHeight = $("#header-container").outerHeight();
-		var windowHeight = $(window).outerHeight() - headerHeight;
-		$('.full-page-content-container, .dashboard-content-container, .dashboard-sidebar-inner, .dashboard-container, .full-page-container').css({ height: windowHeight });
-		$('.dashboard-content-inner').css({ 'min-height': windowHeight });
-	}
+	function wrapperHeight() {}
 
 	// Enabling Scrollbar
 	function fullPageScrollbar() {

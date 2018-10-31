@@ -1,5 +1,6 @@
 <?php
 
+use App\City;
 use Faker\Generator as Faker;
 
 $factory->define(App\Profile::class, function (Faker $faker) {
@@ -9,7 +10,7 @@ $factory->define(App\Profile::class, function (Faker $faker) {
         'surname' => $faker->lastName,
         'address' => $faker->address,
         'zip' => $faker->postcode,
-        'city' => $faker->city,
+        'city' => City::inRandomOrder()->first()->slug,
         'phone' => $faker->phoneNumber,
         'bank_nr' => $faker->bankAccountNumber,
         'company_name' => $faker->company,

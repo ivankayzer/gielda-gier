@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -53,9 +54,15 @@ class HomeController extends Controller
         return view('chat.index');
     }
 
-    public function settings()
+    public function settings(Request $request)
     {
-        return view('settings.index');
+        $cities = City::all()->pluck('name', 'slug');
+
+        return view('settings', [
+            'profile' => $request->user()->profile,
+            'user' => $request->user(),
+            'cities' => $cities,
+        ]);
     }
 
     public function users()

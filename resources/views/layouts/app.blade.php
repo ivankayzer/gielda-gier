@@ -48,7 +48,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form method="post" id="login-form">
+                    <form method="post" action="{{ route('login') }}" id="login-form">
+                        @csrf
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
                             <input type="text" class="input-text with-border" name="email" id="email" placeholder="@lang('common.email')" required/>
@@ -82,13 +83,14 @@
                     </div>
 
                     <!-- Form -->
-                    <form method="post" id="register-account-form">
+                    <form method="post" action="{{ route('register') }}">
+                        @csrf
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
                             <input type="text" class="input-text with-border" name="email"  placeholder="@lang('common.email')" required/>
                         </div>
 
-                        <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+                        <div class="input-with-icon-left">
                             <i class="icon-material-outline-lock"></i>
                             <input type="password" class="input-text with-border" name="password" placeholder="@lang('common.password')" required/>
                         </div>
@@ -119,7 +121,7 @@
 <script src="{{ asset('js/vendor/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('js/vendor/jquery-migrate-3.0.0.min.js') }}"></script>
 <script src="{{ asset('js/vendor/mmenu.min.js') }}"></script>
-<script src="{{ asset('js/vendor/counterup.min.js') }}"></script>
+{{--<script src="{{ asset('js/vendor/counterup.min.js') }}"></script>--}}
 <script src="{{ asset('js/vendor/tippy.all.min.js') }}"></script>
 <script src="{{ asset('js/vendor/simplebar.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap-slider.min.js') }}"></script>
@@ -143,9 +145,6 @@
         });
     });
 </script>
-
-<!-- Google API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g&libraries=places&callback=initAutocomplete"></script>
 
 </body>
 </html>

@@ -15,6 +15,11 @@ Route::get('/', 'HomeController@index')->name('welcome');
 
 Auth::routes();
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/settings', 'HomeController@settings')->name('settings.index');
+});
+
+
 Route::middleware(['disable_production'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
@@ -22,7 +27,6 @@ Route::middleware(['disable_production'])->group(function () {
     Route::get('/transactions', 'HomeController@transactions')->name('transactions.index');
     Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
     Route::get('/chat', 'HomeController@chat')->name('chat.index');
-    Route::get('/settings', 'HomeController@settings')->name('settings.index');
     Route::get('/users', 'HomeController@users')->name('users.index');
 });
 

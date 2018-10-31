@@ -18,7 +18,7 @@
                             <li><a href="/transactions">Transactions</a></li>
                             <li><a href="/reviews">Reviews</a></li>
                             <li><a href="/chat">Chat</a></li>
-                            <li><a href="/settings">Settings</a></li>
+                            <li><a href="/settings">@lang('settings.settings')</a></li>
                             <li><a href="/users">Users</a></li>
                         </ul>
                     </nav>

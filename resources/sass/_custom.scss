@@ -47,3 +47,15 @@
 .header-widget {
   border-left: none !important;
 }
+
+.left-side {
+  display: flex !important;
+}
+
+input[disabled] {
+  background: #f2f2f2 !important;
+}
+
+.dropdown-menu.open:not(.show) {
+  display: none !important;
+}
