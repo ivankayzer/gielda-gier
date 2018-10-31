@@ -59,3 +59,13 @@ input[disabled] {
 .dropdown-menu.open:not(.show) {
   display: none !important;
 }
+
+.user-avatar {
+  &:after {
+    content: none !important;
+  }
+}
+
+.user-name {
+  padding: 0 !important;
+}

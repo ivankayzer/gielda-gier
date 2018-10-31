@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/settings', 'ProfileController@update')->name('settings.update');
 });
 
+Route::get('exit', 'Auth\LoginController@logout')->name('exit');
+
 
 Route::middleware(['disable_production'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');

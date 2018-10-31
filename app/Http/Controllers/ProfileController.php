@@ -52,6 +52,10 @@ class ProfileController extends Controller
             'company_name',
         ]))->save();
 
+        session()->flash('message', [
+            'text' => __('common.write_success'),
+        ]);
+
         return back();
     }
 }

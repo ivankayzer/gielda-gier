@@ -9,6 +9,9 @@
             <div class="container">
                 <div class="dashboard-content-inner">
                     <!-- Dashboard Headline -->
+                    @if(session()->has('message'))
+                        @include('partials.message', ['message' => session()->get('message')])
+                    @endif
                     <div class="dashboard-headline">
                         <h3>@lang('settings.settings')</h3>
                     </div>

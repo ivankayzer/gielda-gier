@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Profile extends Model
 {
@@ -12,6 +11,11 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getCity()
+    {
+        return City::where('slug', $this->city)->first()->name;
     }
 
     public function getFullName()

@@ -51,18 +51,6 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-
-                            <!-- Language Switcher -->
-                            <div class="footer-row">
-                                <div class="footer-row-inner">
-                                    <select class="selectpicker language-switcher" data-selected-text-format="count" data-size="5">
-                                        <option selected>English</option>
-                                        <option>Français</option>
-                                        <option>Español</option>
-                                        <option>Deutsch</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

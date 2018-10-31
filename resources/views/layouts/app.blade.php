@@ -44,7 +44,8 @@
                     <!-- Welcome Text -->
                     <div class="welcome-text">
                         <h3>@lang('common.glad_to_see_you_again')</h3>
-                        <span>@lang('common.no_account') <a href="#" class="register-tab">@lang('common.do_register')!</a></span>
+                        <span>@lang('common.no_account') <a href="#" class="register-tab">@lang('common.do_register')
+                                !</a></span>
                     </div>
 
                     <!-- Form -->
@@ -52,24 +53,30 @@
                         @csrf
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
-                            <input type="text" class="input-text with-border" name="email" id="email" placeholder="@lang('common.email')" required/>
+                            <input type="text" class="input-text with-border" name="email" id="email"
+                                   placeholder="@lang('common.email')" required/>
                         </div>
 
                         <div class="input-with-icon-left">
                             <i class="icon-material-outline-lock"></i>
-                            <input type="password" class="input-text with-border" name="password" id="password" placeholder="@lang('common.password')" required/>
+                            <input type="password" class="input-text with-border" name="password" id="password"
+                                   placeholder="@lang('common.password')" required/>
                         </div>
                         <a href="#" class="forgot-password">@lang('common.forget_pass')</a>
                     </form>
 
                     <!-- Button -->
-                    <button class="button full-width button-sliding-icon ripple-effect" type="submit" form="login-form">@lang('common.do_login') <i class="icon-material-outline-arrow-right-alt"></i></button>
+                    <button class="button full-width button-sliding-icon ripple-effect" type="submit"
+                            form="login-form">@lang('common.do_login') <i
+                                class="icon-material-outline-arrow-right-alt"></i></button>
 
                     <!-- Social Login -->
                     <div class="social-login-separator"><span>or</span></div>
                     <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
-                        <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
+                        <button class="facebook-login ripple-effect"><i
+                                    class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
+                        <button class="google-login ripple-effect"><i
+                                    class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
                     </div>
 
                 </div>
@@ -87,28 +94,35 @@
                         @csrf
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
-                            <input type="text" class="input-text with-border" name="email"  placeholder="@lang('common.email')" required/>
+                            <input type="text" class="input-text with-border" name="email"
+                                   placeholder="@lang('common.email')" required/>
                         </div>
 
                         <div class="input-with-icon-left">
                             <i class="icon-material-outline-lock"></i>
-                            <input type="password" class="input-text with-border" name="password" placeholder="@lang('common.password')" required/>
+                            <input type="password" class="input-text with-border" name="password"
+                                   placeholder="@lang('common.password')" required/>
                         </div>
 
                         <div class="input-with-icon-left">
                             <i class="icon-material-outline-lock"></i>
-                            <input type="password" class="input-text with-border" name="password_confirmation" placeholder="@lang('common.password_confirm')" required/>
+                            <input type="password" class="input-text with-border" name="password_confirmation"
+                                   placeholder="@lang('common.password_confirm')" required/>
                         </div>
                     </form>
 
                     <!-- Button -->
-                    <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" type="submit" form="register-account-form">@lang('common.send') <i class="icon-material-outline-arrow-right-alt"></i></button>
+                    <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" type="submit"
+                            form="register-account-form">@lang('common.send') <i
+                                class="icon-material-outline-arrow-right-alt"></i></button>
 
                     <!-- Social Login -->
                     <div class="social-login-separator"><span>or</span></div>
                     <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
-                        <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
+                        <button class="facebook-login ripple-effect"><i
+                                    class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
+                        <button class="google-login ripple-effect"><i
+                                    class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
                     </div>
 
                 </div>
@@ -133,7 +147,7 @@
 <script src="{{ asset('js/vendor/custom.js') }}"></script>
 
 <script>
-    $('#snackbar-user-status label').click(function() {
+    $('#snackbar-user-status label').click(function () {
         Snackbar.show({
             text: 'Your status has been changed!',
             pos: 'bottom-center',

@@ -12,5 +12,8 @@ return [
     'forget_pass' => 'Nie pamiętasz hasła?',
     'fb' => 'Zaloguj się z Facebook',
     'g+' => 'Zaloguj się z Google+',
-    'send' => 'Wyślij'
+    'send' => 'Wyślij',
+    'dashboard' => "Aktualności",
+    'logout' => 'Wyloguj się',
+    'write_success' => 'Zmiany zostały zapisane'
 ];
