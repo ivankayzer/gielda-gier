@@ -13,10 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('welcome');
 
+Auth::routes();
 
 Route::middleware(['disable_production'])->group(function () {
-    Auth::routes();
-
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::get('/offers', 'HomeController@offers')->name('offers.index');
