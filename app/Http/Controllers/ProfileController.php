@@ -34,8 +34,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $request->user()->profile->fill($request->only([
-            'avatar',
+        $profile = $request->user()->profile;
+
+        if ($request->has('avatar')) {
+            $profile->avatar = $request->avatar->store('avatars', 'public');
+        }
+
+        $profile->fill($request->only([
             'name',
             'surname',
             'phone',

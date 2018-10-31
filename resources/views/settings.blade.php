@@ -31,7 +31,7 @@
                                             <div class="col-auto">
                                                 <div class="avatar-wrapper" data-tippy-placement="bottom"
                                                      title="@lang('settings.change_avatar')">
-                                                    <img class="profile-pic" src="images/user-avatar-placeholder.png"
+                                                    <img class="profile-pic" src="{{ $profile->getAvatar() }}"
                                                          alt=""/>
                                                     <div class="upload-button"></div>
                                                     <input class="file-upload" name="avatar" type="file" accept="image/*"/>
