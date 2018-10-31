@@ -23,6 +23,7 @@ class CreateProfilesTable extends Migration
             $table->string('zip')->nullable();
             $table->string('city')->nullable();
             $table->string('phone')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('bank_nr')->nullable();
             $table->string('company_name')->nullable();
             $table->timestamps();

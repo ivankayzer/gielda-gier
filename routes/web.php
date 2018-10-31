@@ -16,7 +16,8 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/settings', 'HomeController@settings')->name('settings.index');
+    Route::get('/settings', 'ProfileController@index')->name('settings.index');
+    Route::patch('/settings', 'ProfileController@update')->name('settings.update');
 });
 
 

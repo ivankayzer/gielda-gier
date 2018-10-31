@@ -54,17 +54,6 @@ class HomeController extends Controller
         return view('chat.index');
     }
 
-    public function settings(Request $request)
-    {
-        $cities = City::all()->pluck('name', 'slug');
-
-        return view('settings', [
-            'profile' => $request->user()->profile,
-            'user' => $request->user(),
-            'cities' => $cities,
-        ]);
-    }
-
     public function users()
     {
         return view('users.index');
