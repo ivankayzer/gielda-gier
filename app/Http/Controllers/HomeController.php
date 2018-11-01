@@ -36,7 +36,11 @@ class HomeController extends Controller
 
     public function offers()
     {
-        return view('offers.index');
+        $offers = Offer::paginate(10);
+
+        return view('offers.index', [
+            'offers' => $offers
+        ]);
     }
 
     public function transactions()
@@ -51,7 +55,7 @@ class HomeController extends Controller
 
     public function chat()
     {
-        return view('chat.index');
+        return view('chat');
     }
 
     public function users()

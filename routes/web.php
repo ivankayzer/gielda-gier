@@ -22,15 +22,17 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/offers', 'HomeController@offers')->name('offers.index');
+Route::get('/transactions', 'HomeController@transactions')->name('transactions.index');
+Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
+Route::get('/chat', 'HomeController@chat')->name('chat.index');
+Route::get('/users', 'HomeController@users')->name('users.index');
+
 
 Route::middleware(['disable_production'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-    Route::get('/offers', 'HomeController@offers')->name('offers.index');
-    Route::get('/transactions', 'HomeController@transactions')->name('transactions.index');
-    Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
-    Route::get('/chat', 'HomeController@chat')->name('chat.index');
-    Route::get('/users', 'HomeController@users')->name('users.index');
+
 });
 
 

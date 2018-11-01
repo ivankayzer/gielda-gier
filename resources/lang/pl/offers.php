@@ -1,0 +1,5 @@
+<?php
+
+return [
+    'offers' => 'Ogłoszenia'
+];
