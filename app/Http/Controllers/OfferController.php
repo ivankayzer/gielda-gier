@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Components\Language;
+use App\Components\Platform;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -32,7 +34,13 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('offers.create');
+        $platforms = Platform::availablePlatforms();
+        $languages = Language::availableLanguages();
+
+        return view('offers.create', [
+            'platforms' => $platforms,
+            'languages' => $languages,
+        ]);
     }
 
     /**
@@ -43,7 +51,7 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

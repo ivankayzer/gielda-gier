@@ -60,18 +60,23 @@
                             <!-- Range Slider -->
                             <input class="range-slider" type="text" name="price" data-slider-currency="zł "
                                    data-slider-min="10"
-                                   data-slider-max="250" data-slider-step="5" data-slider-value="[{{ request()->get('price', '10,250') }}]"/>
+                                   data-slider-max="250" data-slider-step="5"
+                                   data-slider-value="[{{ request()->get('price', '10,250') }}]"/>
                         </div>
 
                         <div class="sidebar-widget">
                             <h3>@lang('common.type')</h3>
                             <div class="checkbox">
-                                <input type="checkbox" name="sellable" value="1" id="sellable" @if(request()->get('sellable')) checked="checked" @endif>
-                                <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')</label>
+                                <input type="checkbox" name="sellable" value="1" id="sellable"
+                                       @if(request()->get('sellable')) checked="checked" @endif>
+                                <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')
+                                </label>
                             </div>
                             <div class="checkbox">
-                                <input type="checkbox" name="tradeable" value="1" id="tradeable" @if(request()->get('tradeable')) checked="checked" @endif>
-                                <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')</label>
+                                <input type="checkbox" name="tradeable" value="1" id="tradeable"
+                                       @if(request()->get('tradeable')) checked="checked" @endif>
+                                <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')
+                                </label>
                             </div>
                         </div>
 
@@ -88,10 +93,14 @@
                         <div class="sort-by">
                             <span>@lang('common.sort_by'):</span>
                             <select name="sort" class="selectpicker hide-tick submit-on-select">
-                                <option @if(request()->get('sort') === 'date_desc') selected @endif value="date_desc">@lang('common.sort_date_desc')</option>
-                                <option @if(request()->get('sort') === 'date_asc') selected @endif value="date_asc">@lang('common.sort_date_asc')</option>
-                                <option @if(request()->get('sort') === 'price_desc') selected @endif value="price_desc">@lang('common.sort_price_desc')</option>
-                                <option @if(request()->get('sort') === 'price_asc') selected @endif value="price_asc">@lang('common.sort_price_asc')</option>
+                                <option @if(request()->get('sort') === 'date_desc') selected
+                                        @endif value="date_desc">@lang('common.sort_date_desc')</option>
+                                <option @if(request()->get('sort') === 'date_asc') selected
+                                        @endif value="date_asc">@lang('common.sort_date_asc')</option>
+                                <option @if(request()->get('sort') === 'price_desc') selected
+                                        @endif value="price_desc">@lang('common.sort_price_desc')</option>
+                                <option @if(request()->get('sort') === 'price_asc') selected
+                                        @endif value="price_asc">@lang('common.sort_price_asc')</option>
                             </select>
                         </div>
                     </div>

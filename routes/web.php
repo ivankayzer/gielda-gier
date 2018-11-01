@@ -18,6 +18,10 @@ Auth::routes();
 Route::get('/offers', 'OfferController@index')->name('offers.index');
 Route::get('/offers', 'OfferController@index')->name('offers.index');
 Route::get('/offers/create', 'OfferController@create')->name('offers.create');
+Route::post('/offers/create', 'OfferController@store')->name('offers.store');
+
+Route::post('/query/game', 'AjaxController@game')->name('ajax.game');
+Route::post('/query/platforms', 'AjaxController@platforms')->name('ajax.platforms');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/settings', 'ProfileController@index')->name('settings.index');

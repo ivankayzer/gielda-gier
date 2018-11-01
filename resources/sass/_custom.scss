@@ -52,12 +52,8 @@
   display: flex !important;
 }
 
-input[disabled] {
+input[disabled], .disabled .dropdown-toggle {
   background: #f2f2f2 !important;
-}
-
-.dropdown-menu.open:not(.show) {
-  display: none !important;
 }
 
 .user-avatar {
@@ -177,6 +173,15 @@ input[disabled] {
   margin: 0 !important;
 }
 
-.seller-info {
+#navigation #responsive {
+  display: flex;
+  align-items: center;
+}
 
+.dropdown-menu .status {
+  padding-left: 10px !important;
+}
+
+.flag {
+  max-height: 15px !important;
 }

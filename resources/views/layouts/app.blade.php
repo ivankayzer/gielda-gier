@@ -139,6 +139,7 @@
 <script src="{{ asset('js/vendor/simplebar.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap-slider.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap-select.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ajax-bootstrap-select/1.4.4/js/ajax-bootstrap-select.min.js"></script>
 <script src="{{ asset('js/vendor/snackbar.js') }}"></script>
 <script src="{{ asset('js/vendor/clipboard.min.js') }}"></script>
 <script src="{{ asset('js/vendor/magnific-popup.min.js') }}"></script>

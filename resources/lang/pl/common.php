@@ -33,5 +33,16 @@ return [
     'filter' => 'Filtruj',
     'type' => 'Typ',
     'for_sale' => 'Tylko na sprzedaż',
-    'for_trade' => 'Tylko na wymianę'
+    'for_trade' => 'Tylko na wymianę',
+    'select_currently_selected' => 'Obecnie wybrane',
+    'select_empty_title' => 'Zacznij pisać',
+    'select_error_text' => 'Nie można pobrać wyników',
+    'select_search_placeholder' => 'Szukaj...',
+    'select_initialized' => 'Zacznij pisać',
+    'select_status_no_results' => 'Brak wyników',
+    'select_status_searching' => 'Szukam...',
+    'select_status_too_short' => 'Wprowadź więcej znaków',
+    'english' => 'Angielski',
+    'polish' => 'Polski',
+    'zl' => 'zł',
 ];
