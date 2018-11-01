@@ -50,6 +50,19 @@ class Offer extends Model
             }
 
             $query->orderBy($field, $direction);
+        } else {
+            $query->orderBy('publish_at', 'desc');
+        }
+
+
+        if (!$filters->get('tradeable') || !$filters->get('sellable')) {
+            if ($filters->get('tradeable')) {
+                $query->where('tradeable', true);
+            }
+
+            if ($filters->get('sellable')) {
+                $query->where('sellable', true);
+            }
         }
 
         return $query;

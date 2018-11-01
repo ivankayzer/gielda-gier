@@ -30,5 +30,8 @@ return [
     'sort_date_asc' => 'od najstarszych',
     'sort_price_desc' => 'od najdroższych',
     'sort_price_asc' => 'od najtańszych',
-    'filter' => 'Filtruj'
+    'filter' => 'Filtruj',
+    'type' => 'Typ',
+    'for_sale' => 'Tylko na sprzedaż',
+    'for_trade' => 'Tylko na wymianę'
 ];

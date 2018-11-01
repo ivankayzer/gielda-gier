@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Auth::routes();
 
 Route::get('/offers', 'OfferController@index')->name('offers.index');
+Route::get('/offers', 'OfferController@index')->name('offers.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/settings', 'ProfileController@index')->name('settings.index');
