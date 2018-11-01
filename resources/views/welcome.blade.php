@@ -216,10 +216,10 @@
                                         <div class="job-listing-footer">
                                             <ul>
                                                 <li>
-                                                    <i class="icon-material-outline-business"></i> {{ $offer->oferrorProfile->getFullName() }}
+                                                    <i class="icon-material-outline-business"></i> {{ $offer->sellerProfile->getFullName() }}
                                                 </li>
                                                 <li>
-                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->oferrorProfile->city }}
+                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->sellerProfile->city }}
                                                 </li>
                                                 <li>
                                                     <i class="icon-material-outline-access-time"></i> {{ $offer->humanCreatedAt() }}

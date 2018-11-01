@@ -35,12 +35,12 @@ class User extends Authenticatable
 
     public function reviewed()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'reviewer_id', 'id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'reviewee_id', 'id');
     }
 
     public function offers()
@@ -61,5 +61,15 @@ class User extends Authenticatable
     public function games()
     {
         return $this->belongsToMany(Game::class);
+    }
+
+    public function positiveReviewsCount()
+    {
+        return $this->reviews()->positive()->count();
+    }
+
+    public function negativeReviewsCount()
+    {
+        return $this->reviews()->negative()->count();
     }
 }

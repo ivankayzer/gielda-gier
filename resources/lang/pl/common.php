@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'home' => 'Strona główna',
+    'offers' => 'Ogłoszenia',
     'search' => 'Szukaj',
     'do_login' => 'Zaloguj się',
     'do_register' => 'Załóż konto',
@@ -15,5 +17,17 @@ return [
     'send' => 'Wyślij',
     'dashboard' => "Aktualności",
     'logout' => 'Wyloguj się',
-    'write_success' => 'Zmiany zostały zapisane'
+    'write_success' => 'Zmiany zostały zapisane',
+    'city' => 'Miasto',
+    'platform' => 'Platforma',
+    'all_platforms' => 'Wszystkie platformy',
+    'game' => 'Nazwa gry',
+    'city_placeholder' => 'np. Warszawa',
+    'game_placeholder' => 'np. Uncharted',
+    'price' => 'Cena',
+    'sort_by' => 'Sortuj',
+    'sort_date_desc' => 'od najstarszych',
+    'sort_date_asc' => 'od najnowszych',
+    'sort_price_desc' => 'od najtańszych',
+    'sort_price_asc' => 'od nadroższych',
 ];

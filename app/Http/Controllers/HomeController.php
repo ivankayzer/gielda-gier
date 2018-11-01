@@ -36,7 +36,7 @@ class HomeController extends Controller
 
     public function offers()
     {
-        $offers = Offer::paginate(10);
+        $offers = Offer::active()->paginate(10);
 
         return view('offers.index', [
             'offers' => $offers

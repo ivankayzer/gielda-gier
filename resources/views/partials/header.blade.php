@@ -12,14 +12,9 @@
                 @auth
                     <nav id="navigation">
                         <ul id="responsive">
-                            <li><a href="/" class="current">Home</a></li>
-                            <li><a href="/dashboard">Dashboard</a></li>
-                            <li><a href="{{ route('offers.index') }}">@lang('offers.offers')</a></li>
-                            <li><a href="/transactions">Transactions</a></li>
-                            <li><a href="/reviews">Reviews</a></li>
-                            <li><a href="/chat">Chat</a></li>
-                            <li><a href="/settings">@lang('settings.settings')</a></li>
-                            <li><a href="/users">Users</a></li>
+                            <li><a href="{{ route('welcome') }}" @if(request()->is('/')) class="current" @endif>@lang('common.home')</a></li>
+                            {{--<li><a href="/dashboard">Dashboard</a></li>--}}
+                            <li><a href="{{ route('offers.index') }}" @if(request()->is('offers') || request()->is('offers/*')) class="current" @endif>@lang('offers.offers')</a></li>
                         </ul>
                     </nav>
                 @endauth

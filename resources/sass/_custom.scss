@@ -69,3 +69,70 @@ input[disabled] {
 .user-name {
   padding: 0 !important;
 }
+
+.freelancer-overview .freelancer-avatar img {
+  border-radius: 5px !important;
+}
+
+.positive-review {
+  color: #008a00 !important;
+  font-size: 16px;
+}
+
+.negative-review {
+  color: crimson !important;
+  font-size: 16px;
+}
+
+.freelancers-list-layout .freelancer-overview-inner {
+  align-items: flex-start !important;
+}
+
+.freelancer-details {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .offer-details {
+    .offer-price {
+      strong {
+        font-size: 25px;
+        color: black;
+      }
+    }
+  }
+}
+
+.freelancer-overview-inner {
+  position: relative;
+}
+
+.offer-location {
+  position: absolute;
+  margin: 0 !important;
+  bottom: 0;
+}
+
+.freelancer-rating {
+  position: absolute;
+  bottom: 44px;
+  margin: 0 !important;
+}
+
+.freelancers-list-layout .freelancer-details {
+  flex: 0 0 300px !important;
+}
+
+.seller-details {
+  padding: 45px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative !important;
+  min-width: 120px;
+}
+
+.seller-name {
+  font-size: 13px;
+}
