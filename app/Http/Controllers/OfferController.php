@@ -32,7 +32,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('offers.create');
     }
 
     /**

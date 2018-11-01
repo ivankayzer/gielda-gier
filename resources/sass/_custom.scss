@@ -158,10 +158,7 @@ input[disabled] {
 
   &:hover {
     background: #2a41e8;
-    color: white;
-    width: 18px;
-    height: 18px;
-    font-size: 16px;
+    color: white !important;
   }
 }
 

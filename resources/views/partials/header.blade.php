@@ -7,7 +7,7 @@
         <div class="container">
             <div class="left-side">
                 <div id="logo">
-                    <a href="/"><img src="images/logo.png" alt=""></a>
+                    <a href="/"><img src="{{ asset('images/logo.png') }}" alt=""></a>
                 </div>
                 @auth
                     <nav id="navigation">
@@ -20,9 +20,9 @@
                                    @if(request()->is('offers') || request()->is('offers/*')) class="current" @endif>
                                     @lang('offers.offers')
                                 </a>
-                                <span class="add-offers">
-                                        <i class="icon-feather-plus"></i>
-                                    </span>
+                                <a href="{{ route('offers.create') }}" class="add-offers" style="padding: 0 !important;">
+                                    <i class="icon-feather-plus" style="position: absolute;"></i>
+                                </a>
                             </li>
                         </ul>
                     </nav>
@@ -141,7 +141,7 @@
                                             <li class="notifications-not-read">
                                                 <a href="#">
                                                     <span class="notification-avatar status-online"><img
-                                                                src="images/user-avatar-small-03.jpg" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-03.jpg') }}" alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>David Peterson</strong>
                                                         <p class="notification-msg-text">Thanks for reaching out. I'm
@@ -155,7 +155,7 @@
                                             <li class="notifications-not-read">
                                                 <a href="#">
                                                     <span class="notification-avatar status-offline"><img
-                                                                src="images/user-avatar-small-02.jpg" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}" alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>Sindy Forest</strong>
                                                         <p class="notification-msg-text">Hi Tom! Hate to break it to
@@ -169,7 +169,7 @@
                                             <li class="notifications-not-read">
                                                 <a href="dashboard-messages.html">
                                                     <span class="notification-avatar status-offline"><img
-                                                                src="images/user-avatar-small-02.jpg" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}" alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>Sindy Forest</strong>
                                                         <p class="notification-msg-text">Hi Tom! Hate to break it to

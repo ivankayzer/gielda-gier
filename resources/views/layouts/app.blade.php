@@ -133,7 +133,6 @@
 @endguest
 
 <script src="{{ asset('js/vendor/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('js/vendor/jquery-migrate-3.0.0.min.js') }}"></script>
 <script src="{{ asset('js/vendor/mmenu.min.js') }}"></script>
 {{--<script src="{{ asset('js/vendor/counterup.min.js') }}"></script>--}}
 <script src="{{ asset('js/vendor/tippy.all.min.js') }}"></script>

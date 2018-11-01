@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::get('/offers', 'OfferController@index')->name('offers.index');
 Route::get('/offers', 'OfferController@index')->name('offers.index');
+Route::get('/offers/create', 'OfferController@create')->name('offers.create');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/settings', 'ProfileController@index')->name('settings.index');

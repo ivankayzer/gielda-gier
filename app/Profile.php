@@ -25,6 +25,6 @@ class Profile extends Model
 
     public function getAvatar()
     {
-        return $this->avatar ? asset('storage/' . $this->avatar) : 'images/user-avatar-placeholder.png';
+        return $this->avatar ? asset('storage/' . $this->avatar) : asset('images/user-avatar-placeholder.png');
     }
 }
