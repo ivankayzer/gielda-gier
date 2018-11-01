@@ -159,6 +159,6 @@
         });
     });
 </script>
-
+@yield('post-scripts')
 </body>
 </html>

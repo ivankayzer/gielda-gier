@@ -26,8 +26,9 @@ return [
     'game_placeholder' => 'np. Uncharted',
     'price' => 'Cena',
     'sort_by' => 'Sortuj',
-    'sort_date_desc' => 'od najstarszych',
-    'sort_date_asc' => 'od najnowszych',
-    'sort_price_desc' => 'od najtańszych',
-    'sort_price_asc' => 'od nadroższych',
+    'sort_date_desc' => 'od najnowszych',
+    'sort_date_asc' => 'od najstarszych',
+    'sort_price_desc' => 'od najdroższych',
+    'sort_price_asc' => 'od najtańszych',
+    'filter' => 'Filtruj'
 ];

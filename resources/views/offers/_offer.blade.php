@@ -14,9 +14,8 @@
 
             <!-- Name -->
             <div class="freelancer-name">
-                <h4><a href="#">{{ $offer->game->title }}</a></h4>
+                <h4><a href="#">{{ $offer->game->title }} {!! $offer->flag() !!}</a></h4>
                 <span>{{ $offer->platform() }}</span>
-                <!-- Rating -->
 
                 <div class="offer-location">
                     <strong><i class="icon-material-outline-location-on"></i>
@@ -44,12 +43,14 @@
     <!-- Details -->
     <div class="freelancer-details">
         @if($offer->sellable)
-        <div class="offer-details">
-            <div class="offer-price">
-                <strong>{{ $offer->price() }}</strong>
+            <div class="offer-details">
+                <div class="offer-price">
+                    <strong>{{ $offer->price() }}</strong>
+                </div>
             </div>
-        </div>
         @endif
+        <p class="margin-top-5"><i class="icon-material-outline-access-time"></i>
+            {{ $offer->publish_at->diffForHumans() }}</p>
         <a href="#small-dialog"
            class="popup-with-zoom-anim button button-sliding-icon ripple-effect">{{ $offer->buyText() }}
             <i class="icon-material-outline-arrow-right-alt"></i></a>

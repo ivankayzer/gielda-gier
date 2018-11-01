@@ -22,6 +22,9 @@ class CreateOffersTable extends Migration
             $table->integer('price')->nullable();
             $table->text('comment');
 
+            $table->boolean('is_published')->default(true);
+            $table->dateTime('publish_at')->nullable();
+
             $table->boolean('sellable')->default(true);
             $table->boolean('tradeable')->default(true);
 

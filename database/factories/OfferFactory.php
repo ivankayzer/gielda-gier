@@ -22,5 +22,7 @@ $factory->define(App\Offer::class, function (Faker $faker) {
         'payment_cash' => $faker->randomElement([true, false]),
         'delivery_post' => $faker->randomElement([true, false]),
         'delivery_in_person' => $faker->randomElement([true, false]),
+        'is_published' => $faker->randomElement([true, false]),
+        'publish_at' => $faker->dateTime
     ];
 });

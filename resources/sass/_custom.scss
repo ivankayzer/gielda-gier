@@ -121,7 +121,7 @@ input[disabled] {
 }
 
 .freelancers-list-layout .freelancer-details {
-  flex: 0 0 300px !important;
+  flex: 1 0 250px !important;
 }
 
 .seller-details {
@@ -135,4 +135,50 @@ input[disabled] {
 
 .seller-name {
   font-size: 13px;
+}
+
+#navigation ul li a:after {
+  content: none !important;
+}
+
+.add-offers {
+  transition: 0.2s;
+  opacity: 1;
+  line-height: 17px;
+  background-color: #f0f0f0;
+  color: #2a41e8;
+  border-radius: 3px;
+  margin-left: 7px;
+  text-indent: 0;
+  top: 1px;
+  position: absolute;
+  right: -15px;
+  width: 15px;
+  height: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background: #2a41e8;
+    color: white;
+    width: 18px;
+    height: 18px;
+    font-size: 16px;
+  }
+}
+
+.filters-action {
+  transition: opacity .3s !important;
+  color: white !important;
+  opacity: 1;
+  width: 120px !important;
+}
+
+.hidden {
+  opacity: 0 !important;
+  display: none !important;
 }

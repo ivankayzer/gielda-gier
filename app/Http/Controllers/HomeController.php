@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
 use App\Offer;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -32,15 +30,6 @@ class HomeController extends Controller
     public function dashboard()
     {
         return view('dashboard');
-    }
-
-    public function offers()
-    {
-        $offers = Offer::active()->paginate(10);
-
-        return view('offers.index', [
-            'offers' => $offers
-        ]);
     }
 
     public function transactions()

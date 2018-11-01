@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,16 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $offers = Offer::filter($request->all())->active()->paginate(10);
+
+        $cities = City::all()->pluck('name', 'slug');
+
+        return view('offers.index', [
+            'offers' => $offers,
+            'cities' => $cities
+        ]);
     }
 
     /**
