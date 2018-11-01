@@ -27,5 +27,6 @@ return [
     'delivery_in_person' => 'Odbior osobisty',
     'basic' => 'Podstawowe informacje',
     'additional' => 'Dodatkowe informacje',
-    'photos' => 'Dodaj zdjęcia'
+    'photos' => 'Dodaj zdjęcia',
+    'write_success' => 'Ogłoszenie zostało dodane'
 ];

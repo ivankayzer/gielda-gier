@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
@@ -20,6 +21,8 @@ class Offer extends Model
         'en' => 'gb',
         'pl' => 'pl'
     ];
+
+    protected $guarded = [];
 
     public function scopeFilter($query, $filters)
     {
@@ -135,5 +138,18 @@ class Offer extends Model
         if ($this->language && isset($this->flags[$this->language])) {
             return '<img class="flag" src="images/flags/' . $this->flags[$this->language] . '.svg">';
         }
+    }
+
+    public function setIsPublishedAttribute($value)
+    {
+        $this->attributes['is_published'] = $value;
+        if ($value) {
+            $this->attributes['publish_at'] = Carbon::now();
+        }
+    }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = $value * 100;
     }
 }

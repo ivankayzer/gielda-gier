@@ -18,21 +18,21 @@ class CreateOffersTable extends Migration
             $table->integer('seller_id')->unsigned();
             $table->integer('game_id')->unsigned();
             $table->string('platform');
-            $table->string('language');
+            $table->string('language')->nullable();
             $table->integer('price')->nullable();
-            $table->text('comment');
+            $table->text('comment')->nullable();
 
-            $table->boolean('is_published')->default(true);
+            $table->boolean('is_published')->default(false);
             $table->dateTime('publish_at')->nullable();
 
-            $table->boolean('sellable')->default(true);
-            $table->boolean('tradeable')->default(true);
+            $table->boolean('sellable')->default(false);
+            $table->boolean('tradeable')->default(false);
 
-            $table->boolean('payment_bank_transfer')->default(true);
-            $table->boolean('payment_cash')->default(true);
+            $table->boolean('payment_bank_transfer')->default(false);
+            $table->boolean('payment_cash')->default(false);
 
-            $table->boolean('delivery_post')->default(true);
-            $table->boolean('delivery_in_person')->default(true);
+            $table->boolean('delivery_post')->default(false);
+            $table->boolean('delivery_in_person')->default(false);
 
             $table->timestamps();
 

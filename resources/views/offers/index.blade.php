@@ -9,6 +9,9 @@
     <!-- Page Content
     ================================================== -->
     <div class="container gray">
+        @if(session()->has('message'))
+            @include('partials.message', ['message' => session()->get('message')])
+        @endif
         <form method="get">
 
             <div class="row">

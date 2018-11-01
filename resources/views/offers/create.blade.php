@@ -56,6 +56,7 @@
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.language')</h5>
                                                     <select class="selectpicker with-border" data-size="7"
+                                                            name="language"
                                                             title="@lang('offers.select_language')">
                                                         @foreach ($languages as $language)
                                                             <option value="{{ $language['value'] }}"
@@ -70,6 +71,7 @@
                                                     <h5>@lang('offers.price')</h5>
                                                     <div class="input-with-icon">
                                                         <input class="with-border" type="text"
+                                                               name="price"
                                                                placeholder="@lang('offers.price')">
                                                         <i class="currency">@lang('common.zl')</i>
                                                     </div>
@@ -154,7 +156,7 @@
                                             <div class="col-xl-12">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.comment')</h5>
-                                                    <textarea cols="30" rows="5" class="with-border"></textarea>
+                                                    <textarea cols="30" rows="5" class="with-border" name="comment"></textarea>
                                                     <div class="uploadButton margin-top-30">
                                                         <input class="uploadButton-input" type="file"
                                                                accept="image/*, application/pdf" id="upload" multiple/>

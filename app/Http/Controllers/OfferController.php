@@ -51,7 +51,13 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->user()->offers()->create($request->all());
+
+        session()->flash('message', [
+            'text' => __('offers.write_success'),
+        ]);
+
+        return redirect()->route('offers.index');
     }
 
     /**
