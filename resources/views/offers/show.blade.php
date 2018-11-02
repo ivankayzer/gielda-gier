@@ -142,22 +142,3 @@
         </div>
     </div>
 @endsection
-
-@section('post-scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#vertical').lightSlider({
-                gallery: true,
-                item: 1,
-                vertical: true,
-                verticalHeight: 295,
-                vThumbWidth: 50,
-                thumbItem: 8,
-                thumbMargin: 4,
-                slideMargin: 0
-            });
-        });
-    </script>
-@endsection

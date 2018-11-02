@@ -16,7 +16,6 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/colors/blue.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css">
 </head>
 <body>
 
