@@ -13,7 +13,7 @@
                     <div class="dashboard-headline">
                         <h3>@lang('offers.add_offer')</h3>
                     </div>
-                    <form action="{{ route('offers.store') }}" method="post">
+                    <form action="{{ route('offers.store') }}" method="post" enctype="multipart/form-data">
                         <div class="row">
                         @csrf
                         <!-- Dashboard Box -->
@@ -159,9 +159,11 @@
                                                     <textarea cols="30" rows="5" class="with-border" name="comment"></textarea>
                                                     <div class="uploadButton margin-top-30">
                                                         <input class="uploadButton-input" type="file"
+                                                               name="images[]"
                                                                accept="image/*, application/pdf" id="upload" multiple/>
                                                         <label class="uploadButton-button ripple-effect"
                                                                for="upload">@lang('offers.photos')</label>
+                                                        <span class="uploadButton-file-name"></span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -16,6 +16,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/colors/blue.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css">
 </head>
 <body>
 
@@ -133,6 +134,7 @@
 @endguest
 
 <script src="{{ asset('js/vendor/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ asset('js/vendor/jquery-migrate-3.0.0.min.js') }}"></script>
 <script src="{{ asset('js/vendor/mmenu.min.js') }}"></script>
 {{--<script src="{{ asset('js/vendor/counterup.min.js') }}"></script>--}}
 <script src="{{ asset('js/vendor/tippy.all.min.js') }}"></script>
@@ -145,10 +147,9 @@
 <script src="{{ asset('js/vendor/magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
 <script src="{{ asset('js/vendor/custom.js') }}"></script>
-
 <script>
-    $('#snackbar-user-status label').click(function () {
-        Snackbar.show({
+$('#snackbar-user-status label').click(function () {
+Snackbar.show({
             text: 'Your status has been changed!',
             pos: 'bottom-center',
             showAction: false,

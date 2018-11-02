@@ -136,7 +136,8 @@ class Offer extends Model
     public function flag()
     {
         if ($this->language && isset($this->flags[$this->language])) {
-            return '<img class="flag" src="images/flags/' . $this->flags[$this->language] . '.svg">';
+            $flag = asset('images/flags/' . $this->flags[$this->language] . '.svg');
+            return '<img class="flag" src="'. $flag .'">';
         }
     }
 
@@ -151,5 +152,15 @@ class Offer extends Model
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = $value * 100;
+    }
+
+    public function getSimilar($limit)
+    {
+        return (new self)
+            ->where('game_id', $this->game_id)
+            ->where('platform', $this->platform)
+            ->where('id', '!=', $this->id)
+            ->limit($limit)
+            ->get();
     }
 }

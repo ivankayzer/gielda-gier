@@ -19,6 +19,7 @@ Route::get('/offers', 'OfferController@index')->name('offers.index');
 Route::get('/offers', 'OfferController@index')->name('offers.index');
 Route::get('/offers/create', 'OfferController@create')->name('offers.create');
 Route::post('/offers/create', 'OfferController@store')->name('offers.store');
+Route::get('/offers/show/{offer},{slug}', 'OfferController@show')->name('offers.show');
 
 Route::post('/query/game', 'AjaxController@game')->name('ajax.game');
 Route::post('/query/platforms', 'AjaxController@platforms')->name('ajax.platforms');

@@ -46,12 +46,32 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->user()->offers()->create($request->all());
+        $offer = $request->user()->offers()->create($request->only([
+            'game_id',
+            'platform',
+            'language',
+            'price',
+            'payment_bank_transfer',
+            'payment_cash',
+            'delivery_post',
+            'delivery_in_person',
+            'comment',
+            'sellable',
+            'tradeable',
+            'is_published',
+            'publish_at'
+        ]));
+
+        foreach ($request->file('images') as $file) {
+            if ($file->isValid()) {
+                $offer->image()->create(['url' => $file->store('offers', 'public')])->save();
+            }
+        }
 
         session()->flash('message', [
             'text' => __('offers.write_success'),
@@ -63,18 +83,23 @@ class OfferController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Offer  $offer
+     * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show(Offer $offer, $slug)
     {
-        //
+        $similar = $offer->getSimilar(3);
+
+        return view('offers.show', [
+            'offer' => $offer,
+            'similar' => $similar
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Offer  $offer
+     * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
     public function edit(Offer $offer)
@@ -85,8 +110,8 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Offer  $offer
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Offer $offer)
@@ -97,7 +122,7 @@ class OfferController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Offer  $offer
+     * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Offer $offer)

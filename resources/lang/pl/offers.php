@@ -28,5 +28,11 @@ return [
     'basic' => 'Podstawowe informacje',
     'additional' => 'Dodatkowe informacje',
     'photos' => 'Dodaj zdjęcia',
-    'write_success' => 'Ogłoszenie zostało dodane'
+    'write_success' => 'Ogłoszenie zostało dodane',
+    'seller' => 'Sprzedawca',
+    'location' => 'Lokalizacja',
+    'comments_positive' => 'Opinie pozytywne',
+    'comments_negative' => 'Opinie negatywne',
+    'share' => 'Udostępnij',
+    'similar' => 'Podobne oferty',
 ];
