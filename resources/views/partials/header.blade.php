@@ -15,7 +15,7 @@
                             <li><a href="{{ route('welcome') }}"
                                    @if(request()->is('/')) class="current" @endif>@lang('common.home')</a></li>
                             {{--<li><a href="/dashboard">Dashboard</a></li>--}}
-                            <li>
+                            <li class="margin-right-15">
                                 <a href="{{ route('offers.index') }}"
                                    @if(request()->is('offers') || request()->is('offers/*')) class="current" @endif>
                                     @lang('offers.offers')
@@ -24,6 +24,8 @@
                                     <i class="icon-feather-plus" style="position: absolute;"></i>
                                 </a>
                             </li>
+                            <li><a href="{{ route('transactions.index') }}"
+                                   @if(request()->is('/transactions') || request()->is('/transactions/*')) class="current" @endif>@lang('common.transactions')</a></li>
                         </ul>
                     </nav>
                 @endauth

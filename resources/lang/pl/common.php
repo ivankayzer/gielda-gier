@@ -3,6 +3,7 @@
 return [
     'home' => 'Strona główna',
     'offers' => 'Ogłoszenia',
+    'transactions' => 'Transakcje',
     'search' => 'Szukaj',
     'do_login' => 'Zaloguj się',
     'do_register' => 'Załóż konto',
