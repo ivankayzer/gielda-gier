@@ -14,3 +14,5 @@ require('./bootstrap');
  */
 
 require('./components/Example');
+
+window.gallery = require('gallery');

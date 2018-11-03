@@ -189,3 +189,84 @@ input[disabled], .disabled .dropdown-toggle {
 .freelancer-overview .freelancer-avatar img {
   min-height: 115px;
 }
+
+.gallery {
+  padding: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    margin-right: 5px;
+  }
+}
+
+.single-page-header .header-image {
+  height: 200px !important;
+  flex: 0 0 200px !important;
+  margin-right: 35px;
+  background: transparent !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+  display: flex;
+  padding: 0 20px;
+
+  img {
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    border-radius: 5px;
+  }
+}
+
+#vertical {
+  width: calc(100% - 80px) !important;
+}
+
+.salary-amount strong {
+  font-weight: bold;
+  font-size: 35px;
+}
+
+mark.color {
+  &.ps4 {
+    background-color: #003791;
+  }
+  &.xboxone {
+    background-color: #107c10;
+  }
+  &.pc {
+    background-color: black;
+  }
+}
+
+.features {
+  list-style-type: none;
+  .yes {
+    &:before {
+      color: #00b01a;
+      font-family: "Material-Icons";
+      content: "\e927";
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      top: -2px;
+      float: left;
+      margin-left: -28px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+ .no {
+  &:before {
+    color: crimson;
+    font-family: "Material-Icons";
+    content: "\e94f";
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    top: -2px;
+    float: left;
+    margin-left: -28px;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+}

@@ -26,5 +26,14 @@ $factory->define(App\Game::class, function (Faker $faker) {
             'pc',
         ],
         'release_date' => (new DateTime())->format('Y-m-d'),
+        'background' => $faker->randomElement([
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ybliaszwqkwui7djaou4.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tp3tsdlzfkdp1hhofmb1.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ukzjmwiud0hdn8jk5fkb.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/xtwej9t60lrwfbazurcy.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/c3wpjcbt3octz1ruzdrn.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tvzsd22vjayreghdylpv.jpg',
+            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/z43tnr86e1bpwrilnlqx.jpg'
+        ])
     ];
 });

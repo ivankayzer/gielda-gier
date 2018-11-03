@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="single-page-header" data-background-image="images/single-job.jpg">
+    <div class="single-page-header" data-background-image="{{ $offer->game->background }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -11,7 +11,9 @@
                                                            alt="{{ $offer->game->title }}"></div>
                             <div class="header-details">
                                 <h3>{{ $offer->game->title }}</h3>
-                                <h5>{{ $offer->platform() }}</h5>
+                                <h6>
+                                    <mark class="color {{ $offer->platform }}">{{ $offer->platform() }}</mark>
+                                </h6>
                                 <ul class="margin-top-25">
                                     <li><strong>
                                             <i class="icon-material-outline-location-on"></i>
@@ -21,9 +23,11 @@
                             </div>
                         </div>
                         <div class="right-side">
-                            <div class="salary-box">
-                                <div class="salary-amount"><strong>{{ $offer->price() }}</strong></div>
-                            </div>
+                            @if($offer->sellable)
+                                <div class="salary-box">
+                                    <div class="salary-amount"><strong>{{ $offer->price() }}</strong></div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -36,28 +40,37 @@
             <!-- Content -->
             <div class="col-xl-8 col-lg-8 content-right-offset">
 
-                <ul id="vertical">
-                    @foreach ($offer->image as $image)
-                        <li data-thumb="{{ asset('storage/' . $image->url) }}">
-                            <img src="{{ asset('storage/' . $image->url) }}"/>
-                        </li>
-                    @endforeach
-                </ul>
-
                 <div class="single-page-section">
                     <p>{{ $offer->comment }}</p>
                 </div>
 
-                <div class="single-page-section">
-                    <h3 class="margin-bottom-25">@lang('offers.similar')</h3>
+                <ul id="vertical" class="gallery padding-bottom-20">
+                    @foreach ($offer->image as $image)
+                        <img data-gallery-src="{{ asset('storage/' . $image->url) }}"
+                             class="gallery__item"
+                             src="{{ asset('storage/' . $image->url) }}"
+                             onerror="this.src='{{ asset('images/no-image.png') }}'"
+                        />
+                        <img data-gallery-src="{{ asset('storage/' . $image->url) }}"
+                             class="gallery__item"
+                             src="{{ asset('storage/' . $image->url) }}"
+                             onerror="this.src='{{ asset('images/no-image.png') }}'"
+                        />
+                    @endforeach
+                </ul>
 
-                    <div class="freelancers-container freelancers-list-layout compact-list">
-                        @foreach($similar as $offer)
-                            @include('offers._offer', ['offer' => $offer])
-                        @endforeach
+                @if(count($similar))
+                    <div class="single-page-section">
+                        <h3 class="margin-bottom-25">@lang('offers.similar')</h3>
+
+                        <div class="freelancers-container freelancers-list-layout compact-list">
+                            @foreach($similar as $offer)
+                                @include('offers._offer', ['offer' => $offer])
+                            @endforeach
+                        </div>
+
                     </div>
-
-                </div>
+                @endif
             </div>
 
 
@@ -67,6 +80,15 @@
 
                     <a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
                                 class="icon-material-outline-arrow-right-alt"></i></a>
+
+                    <ul class="features margin-bottom-35">
+                        <li><strong>@lang('offers.payment')</strong></li>
+                        <li class="{{ $offer->payment_bank_transfer ? 'yes' : 'no' }}">@lang('offers.payment_bank_transfer')</li>
+                        <li class="{{ $offer->payment_cash ? 'yes' : 'no' }}">@lang('offers.payment_cash')</li>
+                        <li class="margin-top-10"><strong>@lang('offers.delivery')</strong></li>
+                        <li class="{{ $offer->delivery_post ? 'yes' : 'no' }}">@lang('offers.delivery_post')</li>
+                        <li class="{{ $offer->delivery_in_person ? 'yes' : 'no' }}">@lang('offers.delivery_in_person')</li>
+                    </ul>
 
                     <!-- Sidebar Widget -->
                     <div class="sidebar-widget">
@@ -141,4 +163,14 @@
 
         </div>
     </div>
+@endsection
+
+@section('post-scripts')
+    <script>
+        $('.gallery').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        });
+    </script>
 @endsection

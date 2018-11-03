@@ -16,6 +16,10 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/colors/blue.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 </head>
 <body>
 
@@ -141,6 +145,9 @@
 <script src="{{ asset('js/vendor/bootstrap-slider.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap-select.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ajax-bootstrap-select/1.4.4/js/ajax-bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="{{ asset('js/vendor/snackbar.js') }}"></script>
 <script src="{{ asset('js/vendor/clipboard.min.js') }}"></script>
 <script src="{{ asset('js/vendor/magnific-popup.min.js') }}"></script>

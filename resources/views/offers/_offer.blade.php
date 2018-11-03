@@ -9,13 +9,13 @@
 
             <!-- Avatar -->
             <div class="freelancer-avatar">
-                <a href="#small-dialog"><img src="{{ $offer->game->cover }}" alt=""></a>
+                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"><img src="{{ $offer->game->cover }}" alt=""></a>
             </div>
 
             <!-- Name -->
             <div class="freelancer-name">
-                <h4><a href="#">{{ $offer->game->title }} {!! $offer->flag() !!}</a></h4>
-                <span>{{ $offer->platform() }}</span>
+                <h4><a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}">{{ $offer->game->title }} {!! $offer->flag() !!}</a></h4>
+                <h6><mark class="color {{ $offer->platform }}">{{ $offer->platform() }}</mark></h6>
 
                 <div class="d-flex align-items-center margin-top-5">
                     <div class="seller-name margin-right-15">
