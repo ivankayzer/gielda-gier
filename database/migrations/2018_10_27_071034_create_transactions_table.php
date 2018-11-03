@@ -19,8 +19,6 @@ class CreateTransactionsTable extends Migration
             $table->integer('buyer_id')->nullable()->unsigned();
             $table->integer('status_id');
 
-            $table->enum('type', ['transaction', 'offer']);
-
             $table->json('seller_value');
             $table->json('buyer_value');
 

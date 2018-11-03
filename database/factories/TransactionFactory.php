@@ -5,7 +5,6 @@ use Faker\Generator as Faker;
 $factory->define(App\Transaction::class, function (Faker $faker) {
     return [
         'status_id' => $faker->randomElement([0, 1, 2]),
-        'type' => $faker->randomElement(['transaction', 'offer']),
         'seller_value' => [
             [
                 'type' => 'money',
