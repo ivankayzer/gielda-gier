@@ -198,13 +198,13 @@
                     <!-- Section Headline -->
                     <div class="section-headline margin-top-0 margin-bottom-35">
                         <h3>@lang('welcome.featured_offers')</h3>
-                        <a href="#" class="headline-link">@lang('welcome.all_offers')</a>
+                        <a href="{{ route('offers.index') }}" class="headline-link">@lang('welcome.all_offers')</a>
                     </div>
 
                     <!-- Games Container -->
                     <div class="listings-container compact-list-layout margin-top-35">
                         @foreach($offers as $offer)
-                            <a href="#" class="job-listing with-apply-button">
+                            <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}" class="job-listing with-apply-button">
                                 <div class="job-listing-details">
                                     <div class="job-listing-company-logo">
                                         <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
