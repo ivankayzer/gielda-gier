@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Factories\TransactionFactory;
+use App\Offer;
 use App\Transaction;
 use Illuminate\Http\Request;
 
@@ -27,9 +29,11 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $offer = Offer::where('id', $request->get('offer_id'))->firstOrFail();
+        $transaction = TransactionFactory::fromOffer($offer, $request);
+
     }
 
     /**
