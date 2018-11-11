@@ -46,4 +46,5 @@ return [
     'english' => 'Angielski',
     'polish' => 'Polski',
     'zl' => 'zł',
+    'all_notifications' => 'Wszystkie powiadomenia'
 ];

@@ -34,6 +34,13 @@ class TransactionController extends Controller
         $offer = Offer::where('id', $request->get('offer_id'))->firstOrFail();
         $transaction = TransactionFactory::fromOffer($offer, $request);
 
+        if($transaction->save() && !$transaction->isTrade()) {
+            $offer->update([
+                'sold' => true
+            ]);
+        }
+
+        return redirect()->route('transactions.index');
     }
 
     /**

@@ -11,201 +11,25 @@
 
                     <!-- Dashboard Headline -->
                     <div class="dashboard-headline">
-                        <h3>Howdy, Tom!</h3>
-                        <span>We are glad to see you again!</span>
-
-                        <!-- Breadcrumbs -->
-                        <nav id="breadcrumbs" class="dark">
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li>Dashboard</li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <!-- Fun Facts Container -->
-                    <div class="fun-facts-container">
-                        <div class="fun-fact" data-fun-fact-color="#36bd78">
-                            <div class="fun-fact-text">
-                                <span>Task Bids Won</span>
-                                <h4>22</h4>
-                            </div>
-                            <div class="fun-fact-icon"><i class="icon-material-outline-gavel"></i></div>
-                        </div>
-                        <div class="fun-fact" data-fun-fact-color="#b81b7f">
-                            <div class="fun-fact-text">
-                                <span>Jobs Applied</span>
-                                <h4>4</h4>
-                            </div>
-                            <div class="fun-fact-icon"><i class="icon-material-outline-business-center"></i></div>
-                        </div>
-                        <div class="fun-fact" data-fun-fact-color="#efa80f">
-                            <div class="fun-fact-text">
-                                <span>Reviews</span>
-                                <h4>28</h4>
-                            </div>
-                            <div class="fun-fact-icon"><i class="icon-material-outline-rate-review"></i></div>
-                        </div>
-
-                        <!-- Last one has to be hidden below 1600px, sorry :( -->
-                        <div class="fun-fact" data-fun-fact-color="#2a41e6">
-                            <div class="fun-fact-text">
-                                <span>This Month Views</span>
-                                <h4>987</h4>
-                            </div>
-                            <div class="fun-fact-icon"><i class="icon-feather-trending-up"></i></div>
-                        </div>
+                        <h3>@lang('common.all_notifications')</h3>
                     </div>
 
                     <!-- Row -->
                     <div class="row">
 
                         <!-- Dashboard Box -->
-                        <div class="col-xl-6">
-                            <div class="dashboard-box">
-                                <div class="headline">
-                                    <h3><i class="icon-material-baseline-notifications-none"></i> Notifications</h3>
-                                    <button class="mark-as-read ripple-effect-dark" data-tippy-placement="left"
-                                            title="Mark all as read">
-                                        <i class="icon-feather-check-square"></i>
-                                    </button>
-                                </div>
+                        <div class="col-xl-12">
+                            <div class="dashboard-box mt-0">
                                 <div class="content">
                                     <ul class="dashboard-box-list">
-                                        <li>
-                                        <span class="notification-icon"><i
-                                                    class="icon-material-outline-group"></i></span>
-                                            <span class="notification-text">
-										<strong>Michael Shannah</strong> applied for a job <a href="#">Full Stack Software Engineer</a>
-									</span>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="#" class="button ripple-effect ico" title="Mark as read"
-                                                   data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                        <span class="notification-icon"><i
-                                                    class=" icon-material-outline-gavel"></i></span>
-                                            <span class="notification-text">
-										<strong>Gilber Allanis</strong> placed a bid on your <a href="#">iOS App Development</a> project
-									</span>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="#" class="button ripple-effect ico" title="Mark as read"
-                                                   data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="notification-icon"><i
-                                                        class="icon-material-outline-autorenew"></i></span>
-                                            <span class="notification-text">
-										Your job listing <a href="#">Full Stack Software Engineer</a> is expiring
-									</span>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="#" class="button ripple-effect ico" title="Mark as read"
-                                                   data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                        <span class="notification-icon"><i
-                                                    class="icon-material-outline-group"></i></span>
-                                            <span class="notification-text">
-										<strong>Sindy Forrest</strong> applied for a job <a href="#">Full Stack Software Engineer</a>
-									</span>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="#" class="button ripple-effect ico" title="Mark as read"
-                                                   data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="notification-icon"><i
-                                                        class="icon-material-outline-rate-review"></i></span>
-                                            <span class="notification-text">
-										<strong>David Peterson</strong> left you a <span class="star-rating no-stars"
-                                                                                         data-rating="5.0"></span> rating after finishing <a
-                                                        href="#">Logo Design</a> task
-									</span>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="#" class="button ripple-effect ico" title="Mark as read"
-                                                   data-tippy-placement="left"><i class="icon-feather-check-square"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dashboard Box -->
-                        <div class="col-xl-6">
-                            <div class="dashboard-box">
-                                <div class="headline">
-                                    <h3><i class="icon-material-outline-assignment"></i> Orders</h3>
-                                </div>
-                                <div class="content">
-                                    <ul class="dashboard-box-list">
-                                        <li>
-                                            <div class="invoice-list-item">
-                                                <strong>Professional Plan</strong>
-                                                <ul>
-                                                    <li><span class="unpaid">Unpaid</span></li>
-                                                    <li>Order: #326</li>
-                                                    <li>Date: 12/08/2018</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="pages-checkout-page.html" class="button">Finish Payment</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="invoice-list-item">
-                                                <strong>Professional Plan</strong>
-                                                <ul>
-                                                    <li><span class="paid">Paid</span></li>
-                                                    <li>Order: #264</li>
-                                                    <li>Date: 10/07/2018</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="pages-invoice-template.html" class="button gray">View
-                                                    Invoice</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="invoice-list-item">
-                                                <strong>Professional Plan</strong>
-                                                <ul>
-                                                    <li><span class="paid">Paid</span></li>
-                                                    <li>Order: #211</li>
-                                                    <li>Date: 12/06/2018</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="pages-invoice-template.html" class="button gray">View
-                                                    Invoice</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="invoice-list-item">
-                                                <strong>Professional Plan</strong>
-                                                <ul>
-                                                    <li><span class="paid">Paid</span></li>
-                                                    <li>Order: #179</li>
-                                                    <li>Date: 06/05/2018</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Buttons -->
-                                            <div class="buttons-to-right">
-                                                <a href="pages-invoice-template.html" class="button gray">View
-                                                    Invoice</a>
-                                            </div>
-                                        </li>
+                                        @foreach(range(1, 10) as $notification)
+                                            <li>
+                                                <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                                                <span class="notification-text">
+                                                    <strong>Michael Shannah</strong> applied for a job <a href="#">Full Stack Software Engineer</a>
+                                                </span>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

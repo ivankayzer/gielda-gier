@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('status_id');
 
             $table->json('seller_value');
-            $table->json('buyer_value');
+            $table->json('buyer_value')->nullable();
 
             $table->integer('price')->nullable()->default(0);
 

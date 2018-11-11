@@ -56,10 +56,6 @@
 
                                 <div class="header-notifications-headline">
                                     <h4>Notifications</h4>
-                                    <button class="mark-as-read ripple-effect-dark" title="Mark all as read"
-                                            data-tippy-placement="left">
-                                        <i class="icon-feather-check-square"></i>
-                                    </button>
                                 </div>
 
                                 <div class="header-notifications-content">
@@ -114,7 +110,9 @@
                                         </ul>
                                     </div>
                                 </div>
-
+                                <a href="dashboard-messages.html"
+                                   class="header-notifications-button ripple-effect button-sliding-icon">View All
+                                    Messages<i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
 
                         </div>
@@ -130,10 +128,6 @@
 
                                 <div class="header-notifications-headline">
                                     <h4>Messages</h4>
-                                    <button class="mark-as-read ripple-effect-dark" title="Mark all as read"
-                                            data-tippy-placement="left">
-                                        <i class="icon-feather-check-square"></i>
-                                    </button>
                                 </div>
 
                                 <div class="header-notifications-content">
@@ -221,9 +215,6 @@
                                 </div>
 
                                 <ul class="user-menu-small-nav">
-                                    <li><a href="{{ route('dashboard') }}"><i
-                                                    class="icon-material-outline-dashboard"></i> @lang('common.dashboard')
-                                        </a></li>
                                     <li><a href="{{ route('settings.index') }}"><i
                                                     class="icon-material-outline-settings"></i> @lang('settings.settings')
                                         </a></li>

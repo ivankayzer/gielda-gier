@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ValueObjects\TransactionStatus;
 use Illuminate\Database\Eloquent\Model;
 use Krossroad\UnionPaginator\UnionPaginatorTrait;
 
@@ -22,5 +23,13 @@ class Transaction extends Model
     public function buyer()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function isTrade()
+    {
+        return in_array($this->status_id, [
+           TransactionStatus::PENDING,
+           TransactionStatus::DECLINED
+        ]);
     }
 }

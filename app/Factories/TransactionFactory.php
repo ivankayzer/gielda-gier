@@ -14,12 +14,14 @@ class TransactionFactory
     {
         $transaction = new Transaction;
 
+        $type = $request->get('type');
+
         $transaction->seller_id = $offer->seller_id;
         $transaction->buyer_id = $request->user()->id;
 
         $transaction->status_id = TransactionStatus::IN_PROGRESS;
 
-        if ($request->get('type') === TransactionType::TRADE) {
+        if ($type === TransactionType::TRADE) {
             $transaction->status_id = TransactionStatus::PENDING;
         }
 
@@ -30,9 +32,9 @@ class TransactionFactory
             ]
         ];
 
-        $transaction->price = TransactionType::PURCHASE ? $offer->price : $request->get('money');
+        $transaction->price = $type === TransactionType::PURCHASE ? $offer->price : $request->get('money') * 100;
 
-        if (TransactionType::PURCHASE) {
+        if ($type === TransactionType::PURCHASE) {
             return $transaction;
         }
 

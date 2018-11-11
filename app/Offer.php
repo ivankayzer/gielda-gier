@@ -73,7 +73,7 @@ class Offer extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('is_published', true)->where(function ($query) {
+        return $query->where('is_published', true)->where('sold', false)->where(function ($query) {
             return $query->where('sellable', true)->orWhere('tradeable', true);
         });
     }

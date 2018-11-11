@@ -56,6 +56,7 @@
                             <select class="selectpicker-live with-border" data-size="7"
                                     data-live-search="true"
                                     name="game_id"
+                                    required
                                     title="@lang('offers.select_game')">
                             </select>
                         </div>
@@ -64,6 +65,7 @@
                             <select class="selectpicker with-border"
                                     data-size="{{ count($platforms) }}"
                                     name="platform"
+                                    required
                                     title="@lang('offers.select_platform')">
                                 @foreach($platforms as $key => $platform)
                                     <option value="{{ $key }}">{{ $platform }}</option>
@@ -74,7 +76,7 @@
                         <div class="input-with-icon-left">
                             <i class="icon-material-outline-money"></i>
                             <input type="number" class="input-text with-border" name="money"
-                                   placeholder="@lang('offers.money_add')" required/>
+                                   placeholder="@lang('offers.money_add')"/>
                         </div>
 
                         <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" type="submit">
