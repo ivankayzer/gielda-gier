@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "695635e022d59e4a64ad153eabe5b24a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -451,6 +451,40 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "krossroad/laravel-union-paginator",
+            "version": "v5.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krossroad/laravel-unionpaginator.git",
+                "reference": "34c7f9883e02506ca0fe449971949ea5545d1cc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krossroad/laravel-unionpaginator/zipball/34c7f9883e02506ca0fe449971949ea5545d1cc5",
+                "reference": "34c7f9883e02506ca0fe449971949ea5545d1cc5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.5",
+                "illuminate/pagination": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Krossroad\\UnionPaginator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Rikesh",
+                    "email": "rikesh.shrestha.npl@gmail.com"
+                }
+            ],
+            "description": "Package to support pagination in union queries in  Laravel Eloquent.",
+            "time": "2017-09-23T18:05:16+00:00"
         },
         {
             "name": "laravel/framework",

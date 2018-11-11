@@ -33,7 +33,8 @@ Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-Route::get('/transactions', 'HomeController@transactions')->name('transactions.index');
+Route::get('/transactions', 'TransactionController@index')->name('transactions.index');
+Route::post('/transactions', 'TransactionController@create')->name('transactions.create');
 Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
 Route::get('/chat', 'HomeController@chat')->name('chat.index');
 Route::get('/users', 'HomeController@users')->name('users.index');

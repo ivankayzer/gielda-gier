@@ -64,8 +64,8 @@
                         <h3 class="margin-bottom-25">@lang('offers.similar')</h3>
 
                         <div class="freelancers-container freelancers-list-layout compact-list">
-                            @foreach($similar as $offer)
-                                @include('offers._offer', ['offer' => $offer])
+                            @foreach($similar as $similarOffer)
+                                @include('offers._offer', ['offer' => $similarOffer])
                             @endforeach
                         </div>
 
@@ -78,7 +78,7 @@
             <div class="col-xl-4 col-lg-4">
                 <div class="sidebar-container">
 
-                    <a href="#small-dialog" class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
+                    <a href=".buy-dialog" class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
                                 class="icon-material-outline-arrow-right-alt"></i></a>
 
                     <ul class="features margin-bottom-35">
@@ -165,6 +165,10 @@
     </div>
 @endsection
 
+@section('modals')
+    @include('offers._buy_modal', ['offer' => $offer])
+@endsection
+
 @section('post-scripts')
     <script>
         $('.gallery').slick({
@@ -172,5 +176,35 @@
             slidesToShow: 3,
             slidesToScroll: 1
         });
+    </script>
+
+    <script>
+        $('.selectpicker-live')
+            .selectpicker({
+                liveSearch: true
+            })
+            .ajaxSelectPicker({
+                ajax: {
+                    url: '{{ route(('ajax.game')) }}',
+                    data: function () {
+                        var csrf_token = $('meta[name="csrf-token"]').attr('content');
+                        return {
+                            q: $(this)[0].plugin.query,
+                            _token: csrf_token
+                        };
+                    }
+                },
+                locale: {
+                    currentlySelected: '@lang('common.select_currently_selected')',
+                    emptyTitle: '@lang('common.select_empty_title')',
+                    errorText: '@lang('common.select_error_text')',
+                    searchPlaceholder: '@lang('common.select_search_placeholder')',
+                    statusInitialized: '@lang('common.select_initialized')',
+                    statusNoResults: '@lang('common.select_status_no_results')',
+                    statusSearching: '@lang('common.select_status_searching')',
+                    statusTooShort: '@lang('common.select_status_too_short')',
+                },
+                preserveSelected: false
+            });
     </script>
 @endsection

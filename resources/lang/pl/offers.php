@@ -35,4 +35,9 @@ return [
     'comments_negative' => 'Opinie negatywne',
     'share' => 'Udostępnij',
     'similar' => 'Podobne oferty',
+    'you_are_buying' => 'Kupujesz',
+    'for' => 'za',
+    'on' => 'na',
+    'trade_game' => 'Wymień',
+    'money_add' => 'Dopłata'
 ];

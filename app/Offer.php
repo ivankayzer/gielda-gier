@@ -160,6 +160,7 @@ class Offer extends Model
             ->where('game_id', $this->game_id)
             ->where('platform', $this->platform)
             ->where('id', '!=', $this->id)
+            ->active()
             ->limit($limit)
             ->get();
     }

@@ -29,6 +29,8 @@
     @include('partials.footer')
 </div>
 
+@yield('modals')
+
 @guest
     <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
@@ -73,16 +75,6 @@
                     <button class="button full-width button-sliding-icon ripple-effect" type="submit"
                             form="login-form">@lang('common.do_login') <i
                                 class="icon-material-outline-arrow-right-alt"></i></button>
-
-                    <!-- Social Login -->
-                    <div class="social-login-separator"><span>or</span></div>
-                    <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i
-                                    class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
-                        <button class="google-login ripple-effect"><i
-                                    class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
-                    </div>
-
                 </div>
 
                 <!-- Register -->
@@ -119,16 +111,6 @@
                     <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" type="submit"
                             form="register-account-form">@lang('common.send') <i
                                 class="icon-material-outline-arrow-right-alt"></i></button>
-
-                    <!-- Social Login -->
-                    <div class="social-login-separator"><span>or</span></div>
-                    <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i
-                                    class="icon-brand-facebook-f"></i> @lang('common.fb')</button>
-                        <button class="google-login ripple-effect"><i
-                                    class="icon-brand-google-plus-g"></i> @lang('common.g+')</button>
-                    </div>
-
                 </div>
 
             </div>

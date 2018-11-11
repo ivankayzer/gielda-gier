@@ -219,7 +219,7 @@
                                                     <i class="icon-material-outline-business"></i> {{ $offer->sellerProfile->getFullName() }}
                                                 </li>
                                                 <li>
-                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->sellerProfile->city }}
+                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->city() }}
                                                 </li>
                                                 <li>
                                                     <i class="icon-material-outline-access-time"></i> {{ $offer->humanCreatedAt() }}

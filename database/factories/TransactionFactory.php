@@ -17,7 +17,6 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
                 'value' => 12345
             ]
         ],
-        'seller_comment' => $faker->sentence,
-        'buyer_comment' => $faker->sentence,
+        'price' => $faker->numberBetween(1000, 25000)
     ];
 });

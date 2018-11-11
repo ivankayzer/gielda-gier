@@ -17,13 +17,20 @@ class OfferController extends Controller
      */
     public function index(Request $request)
     {
-        $offers = Offer::filter($request->all())->active()->paginate(10);
+        $query = Offer::filter($request->all())->active();
+
+        $offers = $query->paginate(10);
 
         $cities = City::all()->pluck('name', 'slug');
 
+        $minPrice = $query->where('price', '>', 0)->min('price') / 100;
+        $maxPrice = $query->where('price', '>', 0)->max('price') / 100;
+
         return view('offers.index', [
             'offers' => $offers,
-            'cities' => $cities
+            'cities' => $cities,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice
         ]);
     }
 
@@ -89,10 +96,12 @@ class OfferController extends Controller
     public function show(Offer $offer, $slug)
     {
         $similar = $offer->getSimilar(3);
+        $platforms = Platform::availablePlatforms();
 
         return view('offers.show', [
             'offer' => $offer,
-            'similar' => $similar
+            'similar' => $similar,
+            'platforms' => $platforms
         ]);
     }
 

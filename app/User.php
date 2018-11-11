@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Krossroad\UnionPaginator\UnionPaginatorTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UnionPaginatorTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +46,14 @@ class User extends Authenticatable
     public function offers()
     {
         return $this->hasMany(Offer::class, 'seller_id');
+    }
+
+    public function transactions()
+    {
+        $seller = $this->transactionsSeller();
+        $buyer = $this->transactionsBuyer();
+
+        return $seller->union($buyer);
     }
 
     public function transactionsSeller()

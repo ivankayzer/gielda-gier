@@ -62,9 +62,9 @@
 
                             <!-- Range Slider -->
                             <input class="range-slider" type="text" name="price" data-slider-currency="zł "
-                                   data-slider-min="10"
-                                   data-slider-max="250" data-slider-step="5"
-                                   data-slider-value="[{{ request()->get('price', '10,250') }}]"/>
+                                   data-slider-min="{{ request()->get}}"
+                                   data-slider-max="{{ $maxPrice }}" data-slider-step="5"
+                                   data-slider-value="[{{ request()->get('price', $minPrice . ',' . $maxPrice) }}]"/>
                         </div>
 
                         <div class="sidebar-widget">
