@@ -55,7 +55,7 @@
                             <div class="header-notifications-dropdown">
 
                                 <div class="header-notifications-headline">
-                                    <h4>Notifications</h4>
+                                    <h4>@lang('common.notifications')</h4>
                                 </div>
 
                                 <div class="header-notifications-content">
@@ -110,9 +110,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="dashboard-messages.html"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">View All
-                                    Messages<i class="icon-material-outline-arrow-right-alt"></i></a>
+                                <a href="{{ route('dashboard') }}"
+                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_notifications')<i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
 
                         </div>
@@ -127,7 +126,7 @@
                             <div class="header-notifications-dropdown">
 
                                 <div class="header-notifications-headline">
-                                    <h4>Messages</h4>
+                                    <h4>@lang('common.messages')</h4>
                                 </div>
 
                                 <div class="header-notifications-content">
@@ -178,9 +177,8 @@
                                     </div>
                                 </div>
 
-                                <a href="dashboard-messages.html"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">View All
-                                    Messages<i class="icon-material-outline-arrow-right-alt"></i></a>
+                                <a href="{{ route('chat.index') }}"
+                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_messages')<i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
                         </div>
 

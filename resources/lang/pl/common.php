@@ -46,5 +46,8 @@ return [
     'english' => 'Angielski',
     'polish' => 'Polski',
     'zl' => 'zł',
-    'all_notifications' => 'Wszystkie powiadomenia'
+    'all_notifications' => 'Wszystkie powiadomenia',
+    'notifications' => 'Powiadomenia',
+    'messages' => 'Wiadomości',
+    'all_messages' => 'Wszystkie wiadomości',
 ];
