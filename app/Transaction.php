@@ -15,6 +15,15 @@ class Transaction extends Model
         'buyer_value' => 'array'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderBy('created_at', 'desc');
+        });
+    }
+
     public function seller()
     {
         return $this->belongsTo(User::class);

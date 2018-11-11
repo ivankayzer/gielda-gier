@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -57,5 +58,12 @@ class ProfileController extends Controller
         ]);
 
         return back();
+    }
+
+    public function show(User $user)
+    {
+        return view('users.profile', [
+            'user' => $user
+        ]);
     }
 }

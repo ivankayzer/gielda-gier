@@ -15,8 +15,7 @@
                     <ul>
                         <li>
                             <i class="icon-material-outline-access-time"></i>
-                            23
-                            hours left
+                            {{ $transaction->created_at->diffForHumans() }}
                         </li>
                     </ul>
                 </div>
@@ -26,9 +25,7 @@
 
     <!-- Task Details -->
     <ul class="dashboard-task-info">
-        <li><strong>3</strong><span>Bids</span></li>
-        <li><strong>$22</strong><span>Avg. Bid</span></li>
-        <li><strong>$15 - $30</strong><span>Hourly Rate</span></li>
+
     </ul>
 
     <!-- Buttons -->

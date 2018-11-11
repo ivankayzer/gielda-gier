@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->reviews()->negative()->count();
     }
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

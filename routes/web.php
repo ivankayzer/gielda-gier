@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/settings', 'ProfileController@update')->name('settings.update');
 });
 
+Route::get('/user/{user}', 'ProfileController@show')->name('profile.show');
+
 Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 
 Route::get('/home', 'HomeController@index')->name('home');
