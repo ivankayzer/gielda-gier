@@ -2,5 +2,11 @@
 
 return [
     'in_progress' => 'W trakcie',
-    'completed' => 'Zakończone'
+    'completed' => 'Zakończona',
+    'completed_transactions' => 'Zakończone',
+    'pending' => 'Oczekująca',
+    'pending_transactions' => 'Oczekujące',
+    'declined' => 'Odrzucona',
+    'canceled' => 'Anulowana',
+    'number' => 'Transakcja #'
 ];

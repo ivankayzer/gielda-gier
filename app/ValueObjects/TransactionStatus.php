@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ivankayzer
- * Date: 11/11/2018
- * Time: 12:02
- */
 
 namespace App\ValueObjects;
-
 
 class TransactionStatus
 {
@@ -20,4 +13,46 @@ class TransactionStatus
     const COMPLETED = 4;
 
     const CANCELED = 5;
+
+    protected $status;
+
+    public function __construct($status)
+    {
+        $this->status = $status;
+    }
+
+    private function getColors()
+    {
+        return [
+            self::PENDING => 'yellow',
+            self::DECLINED => 'red',
+            self::IN_PROGRESS => 'yellow',
+            self::COMPLETED => 'green',
+            self::CANCELED => 'red'
+        ];
+    }
+
+    private function getTexts()
+    {
+        return [
+            self::PENDING => __('transactions.pending'),
+            self::DECLINED => __('transactions.declined'),
+            self::IN_PROGRESS => __('transactions.in_progress'),
+            self::COMPLETED => __('transactions.completed'),
+            self::CANCELED => __('transactions.canceled')
+        ];
+    }
+
+    public function isPending()
+    {
+        return $this->status === self::PENDING;
+    }
+
+    public function getLabel()
+    {
+        $color = array_get($this->getColors(), $this->status);
+        $text = array_get($this->getTexts(), $this->status);
+
+        return "<span class='dashboard-status-button {$color}'>{$text}</span>";
+    }
 }

@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Transaction::class, function (Faker $faker) {
     return [
-        'status_id' => $faker->randomElement([0, 1, 2]),
+        'status_id' => $faker->randomElement([1, 2, 3, 4, 5]),
         'seller_value' => [
             [
                 'type' => 'money',

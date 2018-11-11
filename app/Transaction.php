@@ -25,11 +25,31 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status_id', TransactionStatus::IN_PROGRESS);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('status_id', TransactionStatus::PENDING);
+    }
+
+    public function scopeCompleted($query)
+    {
+        return $query->whereIn('status_id', [TransactionStatus::CANCELED, TransactionStatus::COMPLETED, TransactionStatus::DECLINED]);
+    }
+
+    public function status()
+    {
+        return new TransactionStatus($this->status_id);
+    }
+
     public function isTrade()
     {
         return in_array($this->status_id, [
-           TransactionStatus::PENDING,
-           TransactionStatus::DECLINED
+            TransactionStatus::PENDING,
+            TransactionStatus::DECLINED
         ]);
     }
 }
