@@ -13,6 +13,7 @@
 
                     <div class="row">
                         <div class="col-xl-12">
+                            @if(count($pending))
                             <div class="dashboard-box margin-top-0">
 
                                 <div class="headline">
@@ -24,13 +25,14 @@
                                 <div class="content">
                                     <ul class="dashboard-box-list">
                                         @foreach($pending as $pendingTransaction)
-                                            @include('transactions._transaction', ['transaction' => $pendingTransaction])
+                                            @include('transactions._transaction_pending', ['transaction' => $pendingTransaction])
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
+                            @endif
 
-                            <div class="dashboard-box margin-top-50">
+                            <div class="dashboard-box margin-top-{{ count($pending) ? '50' : '0' }}">
 
                                 <div class="headline">
                                     <h3>

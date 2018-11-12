@@ -63,7 +63,8 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         return view('users.profile', [
-            'user' => $user
+            'user' => $user,
+            'offers' => $user->offers()->active()->get()
         ]);
     }
 }

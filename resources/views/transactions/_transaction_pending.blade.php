@@ -34,13 +34,17 @@
         <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city() }}</strong></li>
     </ul>
 
-@if($transaction->status()->isInProgress())
     <!-- Buttons -->
-        <div class="buttons-to-right always-visible">
-            <a href="#"
-               class="button ripple-effect"><i
-                        class="icon-material-outline-supervisor-account"></i>
-                @lang('transactions.info')</a>
-        </div>
-    @endif
+    <div class="buttons-to-right always-visible">
+        <a href="{{ route('transactions.accept', [$transaction->id]) }}"
+           class="button ripple-effect green"><i
+                    class="icon-material-outline-thumb-up"></i>
+            @lang('transactions.accept')
+        </a>
+        <a href="{{ route('transactions.decline', [$transaction->id]) }}"
+           class="button ripple-effect red"><i
+                    class="icon-material-outline-thumb-down"></i>
+            @lang('transactions.decline')
+        </a>
+    </div>
 </li>

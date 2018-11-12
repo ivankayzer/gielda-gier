@@ -173,7 +173,7 @@
                     </div>
                     <div class="freelancers-container freelancers-list-layout compact-list">
 
-                        @foreach($user->offers as $offer)
+                        @foreach($offers as $offer)
                             @include('offers._offer', ['offer' => $offer])
                         @endforeach
                     </div>

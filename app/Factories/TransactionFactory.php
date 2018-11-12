@@ -16,6 +16,8 @@ class TransactionFactory
 
         $type = $request->get('type');
 
+        $transaction->offer_id = $offer->id;
+
         $transaction->seller_id = $offer->seller_id;
         $transaction->buyer_id = $request->user()->id;
 

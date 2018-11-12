@@ -10,6 +10,8 @@ class Transaction extends Model
 {
     use UnionPaginatorTrait;
 
+    protected $fillable = ['status_id'];
+
     protected $casts = [
         'seller_value' => 'array',
         'buyer_value' => 'array'
@@ -20,7 +22,7 @@ class Transaction extends Model
         parent::boot();
 
         static::addGlobalScope('order', function ($builder) {
-            $builder->orderBy('created_at', 'desc');
+            $builder->orderBy('updated_at', 'desc');
         });
     }
 
@@ -32,6 +34,11 @@ class Transaction extends Model
     public function buyer()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
     }
 
     public function scopeActive($query)
@@ -52,6 +59,24 @@ class Transaction extends Model
     public function status()
     {
         return new TransactionStatus($this->status_id);
+    }
+
+    public function otherPerson()
+    {
+        if ($this->seller->id === auth()->user()->id) {
+            return $this->buyer();
+        }
+
+        return $this->seller();
+    }
+
+    public function otherPersonType()
+    {
+        if ($this->seller->id === auth()->user()->id) {
+            return __('transactions.buyer');
+        }
+
+        return __('transactions.seller');
     }
 
     public function isTrade()

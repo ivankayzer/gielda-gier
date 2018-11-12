@@ -48,6 +48,11 @@ class TransactionStatus
         return $this->status === self::PENDING;
     }
 
+    public function isInProgress()
+    {
+        return $this->status === self::IN_PROGRESS;
+    }
+
     public function getLabel()
     {
         $color = array_get($this->getColors(), $this->status);

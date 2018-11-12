@@ -119,44 +119,7 @@
         </form>
 
     </div>
-
-    <div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
-        <!--Tabs -->
-        <div class="sign-in-form">
-
-            <ul class="popup-tabs-nav">
-            </ul>
-
-            <div class="popup-tabs-container">
-
-                <!-- Tab -->
-                <div class="popup-tab-content" id="tab">
-                    <button class="button full-width button-sliding-icon ripple-effect margin-top-0" type="submit"
-                            form="send-pm">
-                        kup Call of Duty: Black Ops IIII za 93,90 zł <i
-                                class="icon-material-outline-arrow-right-alt"></i>
-                    </button>
-
-                    <!-- Welcome Text -->
-                    <div class="welcome-text margin-top-20">
-                        <h3>lub</h3>
-                    </div>
-
-                    <!-- Form -->
-                    <form method="post" id="send-pm">
-                        <textarea name="textarea" cols="5" rows="3" placeholder="Wiadomość" class="with-border"
-                                  required></textarea>
-                    </form>
-
-                    <!-- Button -->
-                    <button class="button button-sliding-icon ripple-effect" type="submit" form="send-pm">wymień się <i
-                                class="icon-material-outline-arrow-right-alt"></i></button>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
+    
     <div class="dashboard-footer-spacer"></div>
 @endsection
 

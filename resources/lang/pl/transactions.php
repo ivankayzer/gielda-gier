@@ -8,5 +8,10 @@ return [
     'pending_transactions' => 'Oczekujące',
     'declined' => 'Odrzucona',
     'canceled' => 'Anulowana',
-    'number' => 'Transakcja #'
+    'number' => 'Transakcja #',
+    'accept' => 'Akceptuję',
+    'decline' => 'Odrzucam',
+    'info' => 'Dane użytkownika',
+    'seller' => 'Sprzedawca',
+    'buyer' => 'Kupiec'
 ];
