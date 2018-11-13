@@ -50,4 +50,5 @@ return [
     'notifications' => 'Powiadomenia',
     'messages' => 'Wiadomości',
     'all_messages' => 'Wszystkie wiadomości',
+    'address' => 'Adres',
 ];

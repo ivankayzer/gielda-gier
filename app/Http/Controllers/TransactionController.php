@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Factories\TransactionFactory;
 use App\Offer;
+use App\Services\SentenceComposer;
 use App\Transaction;
 use App\ValueObjects\TransactionStatus;
 use Illuminate\Http\Request;
@@ -67,5 +68,12 @@ class TransactionController extends Controller
         ]);
 
         return back();
+    }
+
+    public function showInfo(Transaction $transaction)
+    {
+        $user = $transaction->otherPerson;
+
+        return SentenceComposer::userInfo($user);
     }
 }

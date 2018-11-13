@@ -27,7 +27,7 @@ class AddOfferIdColumnToTransactions extends Migration
     public function down()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->dropForeign('offer_id');
+            $table->dropForeign(['offer_id']);
             $table->dropColumn('offer_id');
         });
     }

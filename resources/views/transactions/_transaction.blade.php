@@ -35,10 +35,9 @@
     </ul>
 
 @if($transaction->status()->isInProgress())
-    <!-- Buttons -->
         <div class="buttons-to-right always-visible">
-            <a href="#"
-               class="button ripple-effect"><i
+            <a href="#small-dialog" data-id="{{ $transaction->id }}"
+               class="button ripple-effect popup-with-zoom-anim open-transaction-data"><i
                         class="icon-material-outline-supervisor-account"></i>
                 @lang('transactions.info')</a>
         </div>

@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/user/{user}', 'ProfileController@show')->name('profile.show');
+Route::get('/transaction/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
 Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 

@@ -75,3 +75,19 @@
         </div>
     </div>
 @endsection
+
+@section('modals')
+    @include('transactions._user_info_modal', ['transaction' => null])
+@endsection
+
+@section('post-scripts')
+    <script>
+        $('.open-transaction-data').click(function () {
+            $('.user-info-dialog .welcome-text').html('');
+            var url = '{{ route('transactions.info', ['user' => '#user#']) }}'.replace('#user#', $(this).data('id'));
+            $.get(url).then(function (response) {
+                $('.user-info-dialog .welcome-text').html(response);
+            });
+        });
+    </script>
+@endsection
