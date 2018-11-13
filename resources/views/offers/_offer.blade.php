@@ -18,9 +18,9 @@
                 <h6><mark class="color {{ $offer->platform }}">{{ $offer->platform() }}</mark></h6>
 
                 <div class="d-flex align-items-center margin-top-5">
-                    <div class="seller-name margin-right-15">
+                    <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}" class="seller-name margin-right-15">
                         {{ $offer->seller->name }}
-                    </div>
+                    </a>
                     <div class="freelancer-rating">
                         <i class="icon-material-outline-thumb-up positive-review"></i> <span
                                 class="positive-review">{{ $offer->seller->positiveReviewsCount() }}</span>
