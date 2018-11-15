@@ -38,6 +38,29 @@ class SentenceComposer
         return "<p><strong>{$firstText}</strong><i style='margin: 0 10px;' class='icon-material-outline-compare-arrows'></i><strong>{$lastText}</strong></p>";
     }
 
+    public static function revieweeTransactionText(Transaction $transaction)
+    {
+        $sellerValue = collect($transaction->seller_value);
+        $buyerValue = collect($transaction->buyer_value);
+
+        $sellerText = '';
+        $buyerText = '';
+
+        if (array_get($sellerValue->first(), 'type') === 'game') {
+            $sellerText = Game::where('igdb_id', array_get($sellerValue->first(), 'value'))->first()->title ?? '';
+        } elseif (array_get($sellerValue->first(), 'type') === 'money') {
+            $sellerText = array_get($sellerValue->first(), 'value') . ' ' . __('common.zl');
+        }
+
+        if (array_get($buyerValue->first(), 'type') === 'game') {
+            $buyerText = Game::where('igdb_id', array_get($buyerValue->first(), 'value'))->first()->title . ' ' . __('offers.for') . ' ' ?? '';
+        } else {
+            $buyerText = __('common.bought') . ' ';
+        }
+
+        return $buyerText . $sellerText;
+    }
+
     public static function userInfo(User $user)
     {
         $profile = $user->profile;
@@ -47,10 +70,10 @@ class SentenceComposer
         $result .= "<h3>{$profile->getFullName()}</h3>";
         $result .= "<h3>{$profile->email}</h3>";
         $result .= "<h3>{$profile->phone}</h3>";
-        $result .= "<br><span>". __('settings.company_name') . "</span>";
+        $result .= "<br><span>" . __('settings.company_name') . "</span>";
         $result .= "<h3>{$profile->company_name}</h3>";
 
-        $result .= "<br><br><span>". __('common.address') . "</span>";
+        $result .= "<br><br><span>" . __('common.address') . "</span>";
         $result .= "<h3>{$profile->address}, {$profile->getCity()}, {$profile->zip}</h3>";
 
         $result .= "<br><br><span>" . __('settings.bank_nr') . "</span>";

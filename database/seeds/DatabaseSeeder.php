@@ -2,6 +2,7 @@
 
 use App\Game;
 use App\Profile;
+use App\Transaction;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -32,12 +33,22 @@ class DatabaseSeeder extends Seeder
                     $offer->image()->save(factory(\App\OfferImage::class)->make());
                 }
 
-                $user->transactionsSeller()->save(factory(\App\Transaction::class)->make([
+                $user->transactionsSeller()->save(factory(Transaction::class)->make([
                     'buyer_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
                 ]));
 
-                $user->transactionsBuyer()->save(factory(\App\Transaction::class)->make([
+                $user->transactionsBuyer()->save(factory(Transaction::class)->make([
                     'seller_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
+                ]));
+
+                $user->reviews()->save(factory(\App\Review::class)->make([
+                    'transaction_id' => Transaction::inRandomOrder()->first()->id,
+                    'reviewer_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
+                ]));
+
+                $user->reviewed()->save(factory(\App\Review::class)->make([
+                    'transaction_id' => Transaction::inRandomOrder()->first()->id,
+                    'reviewee_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
                 ]));
             }
         });

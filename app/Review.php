@@ -25,4 +25,9 @@ class Review extends Model
     {
         return $query->where('type', 'negative');
     }
+
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

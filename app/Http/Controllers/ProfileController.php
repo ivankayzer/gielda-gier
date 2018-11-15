@@ -65,6 +65,7 @@ class ProfileController extends Controller
     {
         return view('users.profile', [
             'user' => $user,
+            'reviews' => $user->reviews()->paginate(5),
             'offers' => $user->offers()->active()->get()
         ]);
     }
