@@ -10,7 +10,7 @@ class Transaction extends Model
 {
     use UnionPaginatorTrait;
 
-    protected $fillable = ['status_id'];
+    protected $guarded = [];
 
     protected $casts = [
         'seller_value' => 'array',
@@ -56,6 +56,13 @@ class Transaction extends Model
         return $query->whereIn('status_id', [TransactionStatus::CANCELED, TransactionStatus::COMPLETED, TransactionStatus::DECLINED]);
     }
 
+    public function scopeToRate($query, $type)
+    {
+        $column = "{$type}_comment";
+
+        return $query->whereIn('status_id', [TransactionStatus::COMPLETED])->where($column, false);
+    }
+
     public function status()
     {
         return new TransactionStatus($this->status_id);
@@ -77,6 +84,16 @@ class Transaction extends Model
         }
 
         return __('transactions.seller');
+    }
+
+    public function isSeller()
+    {
+        return $this->seller->id === auth()->user()->id;
+    }
+
+    public function isBuyer()
+    {
+        return !$this->isSeller();
     }
 
     public function isTrade()

@@ -40,6 +40,7 @@ Route::get('/transactions', 'TransactionController@index')->name('transactions.i
 Route::post('/transactions', 'TransactionController@create')->name('transactions.create');
 Route::get('/transactions/{transaction}/accept', 'TransactionController@accept')->name('transactions.accept');
 Route::get('/transactions/{transaction}/decline', 'TransactionController@decline')->name('transactions.decline');
+Route::post('/transactions/rate', 'TransactionController@rate')->name('transactions.rate');
 Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
 Route::get('/chat', 'HomeController@chat')->name('chat.index');
 Route::get('/users', 'HomeController@users')->name('users.index');

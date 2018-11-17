@@ -22,6 +22,9 @@ class CreateTransactionsTable extends Migration
             $table->json('seller_value');
             $table->json('buyer_value')->nullable();
 
+            $table->boolean('buyer_comment')->default(false);
+            $table->boolean('seller_comment')->default(false);
+
             $table->integer('price')->nullable()->default(0);
 
             $table->timestamps();

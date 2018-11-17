@@ -34,16 +34,12 @@
         <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city() }}</strong></li>
     </ul>
 
-@if($transaction->status()->isInProgress())
-        <div class="buttons-to-right always-visible">
-            <a href=".user-info-dialog" data-id="{{ $transaction->id }}"
-               class="button ripple-effect popup-with-zoom-anim open-transaction-data"><i
-                        class="icon-material-outline-supervisor-account"></i>
-                @lang('transactions.info')</a>
-            <a href=".finish-transaction" data-id="{{ $transaction->id }}"
-               class="button gray ripple-effect popup-with-zoom-anim open-transaction-data"><i
-                        class="icon-material-outline-outlined-flag"></i>
-                @lang('transactions.finish')</a>
-        </div>
-    @endif
+    <!-- Buttons -->
+    <div class="buttons-to-right always-visible">
+        <a href=".finish-transaction" data-id="{{ $transaction->id }}"
+           class="button ripple-effect popup-with-zoom-anim open-transaction-data"><i
+                    class="icon-material-outline-star"></i>
+            @lang('transactions.rate_transaction')
+        </a>
+    </div>
 </li>

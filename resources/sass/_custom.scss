@@ -278,3 +278,12 @@ mark.color {
 .review-negative {
   background-color: #ff000012 !important;
 }
+
+.account-type input.account-type-radio:checked ~ label.red {
+  background-color: #dc3139;
+}
+
+.account-type input.account-type-radio ~ label.red:hover {
+  color: #9c2828;
+  background-color: #f6e4e4;
+}

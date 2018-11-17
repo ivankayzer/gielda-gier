@@ -13,5 +13,11 @@ return [
     'decline' => 'Odrzucam',
     'info' => 'Dane użytkownika',
     'seller' => 'Sprzedawca',
-    'buyer' => 'Kupiec'
+    'buyer' => 'Kupiec',
+    'finish' => 'Zakończ',
+    'positive' => 'Pozytywna',
+    'negative' => 'Negatywna',
+    'comment' => 'Komentarz',
+    'rate_transaction' => 'Oceń transakcję',
+    'to_rate' => 'Do oceny'
 ];

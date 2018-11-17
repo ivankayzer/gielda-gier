@@ -51,5 +51,6 @@ return [
     'messages' => 'Wiadomości',
     'all_messages' => 'Wszystkie wiadomości',
     'address' => 'Adres',
-    'bought' => 'Kupił'
+    'bought' => 'Kupił',
+    'save' => 'Zapisz'
 ];

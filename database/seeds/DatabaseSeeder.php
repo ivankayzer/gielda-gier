@@ -43,12 +43,6 @@ class DatabaseSeeder extends Seeder
 
                 $user->reviews()->save(factory(\App\Review::class)->make([
                     'transaction_id' => Transaction::inRandomOrder()->first()->id,
-                    'reviewer_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
-                ]));
-
-                $user->reviewed()->save(factory(\App\Review::class)->make([
-                    'transaction_id' => Transaction::inRandomOrder()->first()->id,
-                    'reviewee_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
                 ]));
             }
         });

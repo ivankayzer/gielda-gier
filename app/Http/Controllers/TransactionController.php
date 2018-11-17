@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Factories\TransactionFactory;
 use App\Offer;
+use App\Review;
 use App\Services\SentenceComposer;
 use App\Transaction;
 use App\ValueObjects\TransactionStatus;
@@ -26,10 +27,13 @@ class TransactionController extends Controller
         $active = $user->transactionsBuyer()->active()->union($user->transactionsSeller()->active())->get();
         $pending = $user->transactionsSeller()->pending()->get();
 
+        $toRate = $user->transactionsBuyer()->toRate('buyer')->union($user->transactionsSeller()->toRate('seller'))->get();
+
         return view('transactions.index', [
             'active' => $active,
             'pending' => $pending,
-            'completed' => $completed
+            'completed' => $completed,
+            'toRate' => $toRate
         ]);
     }
 
@@ -75,5 +79,29 @@ class TransactionController extends Controller
         $user = $transaction->otherPerson;
 
         return SentenceComposer::userInfo($user);
+    }
+
+    public function rate(Request $request)
+    {
+        /** @var Transaction $transaction */
+        $transaction = Transaction::where('id', $request->get('transaction_id'))->firstOrFail();
+
+        $comment = new Review([
+            'user_id' => $request->user()->id,
+            'transaction_id' => $transaction->id,
+            'type' => $request->get('type'),
+            'comment' => $request->get('message')
+        ]);
+
+        $comment->save();
+
+        $attributes = [
+            'status_id' => TransactionStatus::COMPLETED,
+            ($transaction->isBuyer() ? 'buyer_comment' : 'seller_comment') => true
+        ];
+
+        $transaction->update($attributes);
+
+        return back();
     }
 }

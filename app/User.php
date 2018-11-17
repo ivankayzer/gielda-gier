@@ -33,14 +33,9 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function reviewed()
-    {
-        return $this->hasMany(Review::class, 'reviewer_id', 'id');
-    }
-
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'reviewee_id', 'id');
+        return $this->hasMany(Review::class);
     }
 
     public function offers()

@@ -18,17 +18,13 @@ class CreateReviewsTable extends Migration
 
             $table->integer('transaction_id')->unsigned();
 
-            $table->enum('type', ['positive', 'negative', 'neutral']);
+            $table->enum('type', ['positive', 'negative']);
 
             $table->text('comment')->nullable();
 
-            $table->integer('reviewee_id')->nullable()->unsigned();
-            $table->integer('reviewer_id')->nullable()->unsigned();
+            $table->integer('user_id')->unsigned();
 
             $table->timestamps();
-
-            $table->foreign('reviewee_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('reviewer_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
