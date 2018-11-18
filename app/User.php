@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return 'name';
     }
+
+    public function chatRooms()
+    {
+        return $this->belongsToMany(ChatRoom::class);
+    }
 }

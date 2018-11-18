@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/user/{user}', 'ProfileController@show')->name('profile.show');
 Route::get('/transaction/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
+Route::get('/chat', 'ChatController@index')->name('chat.index');
+
 Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -42,7 +44,6 @@ Route::get('/transactions/{transaction}/accept', 'TransactionController@accept')
 Route::get('/transactions/{transaction}/decline', 'TransactionController@decline')->name('transactions.decline');
 Route::post('/transactions/rate', 'TransactionController@rate')->name('transactions.rate');
 Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
-Route::get('/chat', 'HomeController@chat')->name('chat.index');
 Route::get('/users', 'HomeController@users')->name('users.index');
 
 
