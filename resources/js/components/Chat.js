@@ -157,7 +157,7 @@ export default class Chat extends Component {
     listenForBroadcast(id) {
         console.log('listening for broadcast ' + 'room.' + id);
 
-        Echo.private('room.' + id).listen('ChatMessageSent', (e) => { console.log(123) });
+        Echo.join('room.' + id).listen('ChatMessageSent', (e) => { console.log(e) });
     }
 }
 

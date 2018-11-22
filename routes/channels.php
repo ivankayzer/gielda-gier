@@ -16,5 +16,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('room.{id}', function ($user, $id) {
+    return [
+        'id' => $user->id,
+        'name' => $user->name
+    ];
     return in_array($user->id, \App\ChatRoom::find($id)->user->pluck('id'));
 });

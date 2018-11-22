@@ -17430,7 +17430,6 @@ window.gallery = __webpack_require__(94);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
-
 window._ = __webpack_require__(37);
 window.Popper = __webpack_require__(11).default;
 
@@ -17471,14 +17470,13 @@ if (token) {
 }
 
 
+
 window.io = __webpack_require__(60);
-// Have this in case you stop running your laravel echo server
-if (typeof io !== 'undefined') {
-    window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':6001'
-    });
-}
+
+window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+});
 
 /***/ }),
 /* 37 */
@@ -45853,8 +45851,8 @@ var Chat = function (_Component) {
         value: function listenForBroadcast(id) {
             console.log('listening for broadcast ' + 'room.' + id);
 
-            Echo.private('room.' + id).listen('ChatMessageSent', function (e) {
-                console.log(123);
+            Echo.join('room.' + id).listen('ChatMessageSent', function (e) {
+                console.log(e);
             });
         }
     }]);

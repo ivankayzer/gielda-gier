@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
@@ -12,7 +11,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -39,11 +39,10 @@ if (token) {
 }
 
 import Echo from "laravel-echo"
+
 window.io = require('socket.io-client');
-// Have this in case you stop running your laravel echo server
-if (typeof io !== 'undefined') {
-    window.Echo = new Echo({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':6001',
-    });
-}
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001',
+});
