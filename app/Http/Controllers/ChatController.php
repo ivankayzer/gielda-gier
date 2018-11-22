@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\ChatRoom;
+use App\Events\ChatMessageSent;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -19,5 +21,12 @@ class ChatController extends Controller
     public function show(Request $request)
     {
 
+    }
+
+    public function message(Request $request)
+    {
+        $room = ChatRoom::find($request->get('room'));
+
+        event(new ChatMessageSent($room, $request->get('message')));
     }
 }

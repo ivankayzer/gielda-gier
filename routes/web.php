@@ -33,6 +33,7 @@ Route::get('/user/{user}', 'ProfileController@show')->name('profile.show');
 Route::get('/transaction/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
 Route::get('/chat', 'ChatController@index')->name('chat.index');
+Route::post('/chat', 'ChatController@message')->name('chat.message');
 
 Route::get('exit', 'Auth\LoginController@logout')->name('exit');
 
