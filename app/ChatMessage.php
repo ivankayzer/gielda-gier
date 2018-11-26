@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatMessage extends Model
 {
+    protected $guarded = [];
+
     public function sender()
     {
         return $this->belongsTo(User::class);

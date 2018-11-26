@@ -6,7 +6,7 @@ const RoomContainer = (props) => {
         <a href="#" onClick={() => props.selectRoom(props.room.id)}>
             <div className="message-by">
                 <div className="message-by-headline">
-                    <h5>Chat room #{props.room.id}</h5>
+                    <h5>Chat z {props.room.otherUser.name}</h5>
                 </div>
                 <p>...</p>
             </div>
@@ -28,7 +28,7 @@ const RoomContents = (props) => {
         <div className="message-content">
 
             <div className="messages-headline">
-                <h4>Chat room #{props.roomId}</h4>
+                <h4>Chat z {props.room.otherUser.name}</h4>
             </div>
 
             <div className="message-content-inner">
@@ -59,6 +59,7 @@ export default class Chat extends Component {
         this.sendMessage = this.sendMessage.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.revertMessage = this.revertMessage.bind(this);
+        this.getActiveRoom = this.getActiveRoom.bind(this);
     }
 
     handleChange(event) {
@@ -113,9 +114,13 @@ export default class Chat extends Component {
                     <RoomContents messages={this.state.messages} userId={this.state.id} sendMessage={this.sendMessage}
                                   handleChange={this.handleChange}
                                   messageText={this.state.messageText}
-                                  roomId={this.state.activeRoom}/> : ''}
+                                  roomId={this.state.activeRoom} room={this.getActiveRoom()}/> : ''}
             </div>
         );
+    }
+
+    getActiveRoom() {
+        return this.state.rooms.filter(room => this.state.activeRoom == room.id)[0];
     }
 
     componentWillMount() {

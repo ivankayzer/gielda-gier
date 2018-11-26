@@ -45574,8 +45574,8 @@ var RoomContainer = function RoomContainer(props) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'h5',
                         null,
-                        'Chat room #',
-                        props.room.id
+                        'Chat z ',
+                        props.room.otherUser.name
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -45665,6 +45665,7 @@ var Chat = function (_Component) {
         _this.sendMessage = _this.sendMessage.bind(_this);
         _this.handleChange = _this.handleChange.bind(_this);
         _this.revertMessage = _this.revertMessage.bind(_this);
+        _this.getActiveRoom = _this.getActiveRoom.bind(_this);
         return _this;
     }
 
@@ -45740,8 +45741,17 @@ var Chat = function (_Component) {
                 this.state.activeRoom ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContents, { messages: this.state.messages, userId: this.state.id, sendMessage: this.sendMessage,
                     handleChange: this.handleChange,
                     messageText: this.state.messageText,
-                    roomId: this.state.activeRoom }) : ''
+                    roomId: this.state.activeRoom, room: this.getActiveRoom() }) : ''
             );
+        }
+    }, {
+        key: 'getActiveRoom',
+        value: function getActiveRoom() {
+            var _this4 = this;
+
+            return this.state.rooms.filter(function (room) {
+                return _this4.state.activeRoom == room.id;
+            })[0];
         }
     }, {
         key: 'componentWillMount',
@@ -45756,11 +45766,11 @@ var Chat = function (_Component) {
     }, {
         key: 'listenForBroadcast',
         value: function listenForBroadcast(id) {
-            var _this4 = this;
+            var _this5 = this;
 
             Echo.join('room.' + id).listen('ChatMessageSent', function (e) {
-                _this4.setState({
-                    messages: [].concat(_toConsumableArray(_this4.state.messages), [{
+                _this5.setState({
+                    messages: [].concat(_toConsumableArray(_this5.state.messages), [{
                         text: e.message,
                         user_id: e.user_id,
                         id: Math.random().toString(36).substr(2, 9)
