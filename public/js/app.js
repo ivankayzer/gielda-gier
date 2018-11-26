@@ -45545,6 +45545,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -45586,6 +45588,27 @@ var RoomContainer = function RoomContainer(props) {
     );
 };
 
+var Message = function Message(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: props.user === props.message.user_id ? "message-bubble me" : "message-bubble" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'message-bubble-inner' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'message-text' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'p',
+                    null,
+                    props.message.text
+                )
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
+    );
+};
+
 var RoomContents = function RoomContents(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -45603,174 +45626,18 @@ var RoomContents = function RoomContents(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'message-content-inner' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble me' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Thanks for choosing my offer. I will start working on your project tomorrow.'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Great. If you need any further clarification let me know. \uD83D\uDC4D'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble me' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-avatar' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/user-avatar-small-01.jpg',
-                            alt: '' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Ok, I will. \uD83D\uDE09'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble me' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-avatar' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/user-avatar-small-01.jpg',
-                            alt: '' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Hi Sindy, I just wanted to let you know that project is finished and I\'m waiting for your approval.'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-avatar' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/user-avatar-small-02.jpg',
-                            alt: '' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Hi Tom! Hate to break it to you, but I\'m actually on vacation \uD83C\uDF34 until Sunday so I can\'t check it now. \uD83D\uDE0E'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble me' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-avatar' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/user-avatar-small-01.jpg',
-                            alt: '' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Ok, no problem. But don\'t forget about last payment. \uD83D\uDE42'
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'message-bubble' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'message-bubble-inner' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-avatar' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: 'images/user-avatar-small-02.jpg',
-                            alt: '' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'message-text' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'typing-indicator' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null)
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'clearfix' })
-            )
+            props.messages.map(function (message) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Message, { key: message.id, user: props.userId, message: message });
+            })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'message-reply' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { cols: '1', rows: '1', placeholder: 'Your Message', 'data-autoresize': true }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { cols: '1', rows: '1', placeholder: '', name: 'messageText', 'data-autoresize': true,
+                onChange: props.handleChange, value: props.messageText }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'button',
-                { className: 'button ripple-effect', onClick: function onClick() {
-                        return props.sendMessage('text');
-                    } },
+                { className: 'button ripple-effect', onClick: props.sendMessage },
                 'Send'
             )
         )
@@ -45787,16 +45654,26 @@ var Chat = function (_Component) {
 
         _this.state = {
             rooms: [],
-            activeRoom: null
+            activeRoom: null,
+            messages: [],
+            messageText: '',
+            id: null
         };
 
         _this.selectRoom = _this.selectRoom.bind(_this);
         _this.listenForBroadcast = _this.listenForBroadcast.bind(_this);
         _this.sendMessage = _this.sendMessage.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.revertMessage = _this.revertMessage.bind(_this);
         return _this;
     }
 
     _createClass(Chat, [{
+        key: 'handleChange',
+        value: function handleChange(event) {
+            this.setState(_defineProperty({}, event.target.name, event.target.value));
+        }
+    }, {
         key: 'selectRoom',
         value: function selectRoom(id) {
             this.setState({
@@ -45806,19 +45683,44 @@ var Chat = function (_Component) {
             this.listenForBroadcast(id);
         }
     }, {
+        key: 'revertMessage',
+        value: function revertMessage(message) {
+            var newMessages = this.state.messages;
+
+            this.setState({
+                messages: newMessages.filter(function (mess) {
+                    return mess.id !== message.id;
+                })
+            });
+        }
+    }, {
         key: 'sendMessage',
-        value: function sendMessage(text) {
+        value: function sendMessage() {
+            var _this2 = this;
+
+            var message = {
+                text: this.state.messageText,
+                user_id: this.state.id,
+                id: Math.random().toString(36).substr(2, 9)
+            };
+
             axios.post('chat', {
                 room: this.state.activeRoom,
-                message: text
-            }).then(function (response) {
-                console.log(response);
+                message: this.state.messageText,
+                user_id: this.state.id
+            }).catch(function () {
+                return _this2.revertMessage(message);
+            });
+
+            this.setState({
+                messages: [].concat(_toConsumableArray(this.state.messages), [message]),
+                messageText: ''
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -45830,11 +45732,15 @@ var Chat = function (_Component) {
                         'ul',
                         null,
                         [].concat(_toConsumableArray(this.state.rooms)).map(function (room) {
-                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContainer, { selectRoom: _this2.selectRoom, room: room });
+                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContainer, { key: room.id, selectRoom: _this3.selectRoom,
+                                room: room });
                         })
                     )
                 ),
-                this.state.activeRoom ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContents, { sendMessage: this.sendMessage, roomId: this.state.activeRoom }) : ''
+                this.state.activeRoom ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContents, { messages: this.state.messages, userId: this.state.id, sendMessage: this.sendMessage,
+                    handleChange: this.handleChange,
+                    messageText: this.state.messageText,
+                    roomId: this.state.activeRoom }) : ''
             );
         }
     }, {
@@ -45843,16 +45749,23 @@ var Chat = function (_Component) {
             var rooms = JSON.parse(this.props.rooms);
 
             this.setState({
-                rooms: rooms
+                rooms: rooms,
+                id: this.props.id
             });
         }
     }, {
         key: 'listenForBroadcast',
         value: function listenForBroadcast(id) {
-            console.log('listening for broadcast ' + 'room.' + id);
+            var _this4 = this;
 
             Echo.join('room.' + id).listen('ChatMessageSent', function (e) {
-                console.log(e);
+                _this4.setState({
+                    messages: [].concat(_toConsumableArray(_this4.state.messages), [{
+                        text: e.message,
+                        user_id: e.user_id,
+                        id: Math.random().toString(36).substr(2, 9)
+                    }])
+                });
             });
         }
     }]);

@@ -6,7 +6,7 @@ const RoomContainer = (props) => {
         <a href="#" onClick={() => props.selectRoom(props.room.id)}>
             <div className="message-by">
                 <div className="message-by-headline">
-                    <h5>Chat room #{ props.room.id }</h5>
+                    <h5>Chat room #{props.room.id}</h5>
                 </div>
                 <p>...</p>
             </div>
@@ -14,90 +14,30 @@ const RoomContainer = (props) => {
     </li>);
 };
 
+const Message = (props) => {
+    return (<div className={props.user === props.message.user_id ? "message-bubble me" : "message-bubble"}>
+        <div className="message-bubble-inner">
+            <div className="message-text"><p>{props.message.text}</p></div>
+        </div>
+        <div className="clearfix"></div>
+    </div>);
+};
+
 const RoomContents = (props) => {
     return (
         <div className="message-content">
 
             <div className="messages-headline">
-                <h4>Chat room #{ props.roomId }</h4>
+                <h4>Chat room #{props.roomId}</h4>
             </div>
 
             <div className="message-content-inner">
-
-                <div className="message-bubble me">
-                    <div className="message-bubble-inner">
-                        <div className="message-text"><p>Thanks for choosing my offer. I will start
-                            working on your project tomorrow.</p></div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble">
-                    <div className="message-bubble-inner">
-                        <div className="message-text"><p>Great. If you need any further clarification
-                            let me know. 👍</p></div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble me">
-                    <div className="message-bubble-inner">
-                        <div className="message-avatar"><img src="images/user-avatar-small-01.jpg"
-                                                             alt=""/></div>
-                        <div className="message-text"><p>Ok, I will. 😉</p></div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble me">
-                    <div className="message-bubble-inner">
-                        <div className="message-avatar"><img src="images/user-avatar-small-01.jpg"
-                                                             alt=""/></div>
-                        <div className="message-text"><p>Hi Sindy, I just wanted to let you know that
-                            project is finished and I'm waiting for your approval.</p></div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble">
-                    <div className="message-bubble-inner">
-                        <div className="message-avatar"><img src="images/user-avatar-small-02.jpg"
-                                                             alt=""/></div>
-                        <div className="message-text"><p>Hi Tom! Hate to break it to you, but I'm
-                            actually on vacation 🌴 until Sunday so I can't check it now. 😎</p>
-                        </div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble me">
-                    <div className="message-bubble-inner">
-                        <div className="message-avatar"><img src="images/user-avatar-small-01.jpg"
-                                                             alt=""/></div>
-                        <div className="message-text"><p>Ok, no problem. But don't forget about last
-                            payment. 🙂</p></div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
-
-                <div className="message-bubble">
-                    <div className="message-bubble-inner">
-                        <div className="message-avatar"><img src="images/user-avatar-small-02.jpg"
-                                                             alt=""/></div>
-                        <div className="message-text">
-                            <div className="typing-indicator">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="clearfix"></div>
-                </div>
+                {props.messages.map(message => <Message key={message.id} user={props.userId} message={message}/>)}
             </div>
             <div className="message-reply">
-                <textarea cols="1" rows="1" placeholder="Your Message" data-autoresize></textarea>
-                <button className="button ripple-effect" onClick={() => props.sendMessage('text')}>Send</button>
+                <textarea cols="1" rows="1" placeholder="" name="messageText" data-autoresize
+                          onChange={props.handleChange} value={props.messageText}></textarea>
+                <button className="button ripple-effect" onClick={props.sendMessage}>Send</button>
             </div>
         </div>
     );
@@ -108,12 +48,21 @@ export default class Chat extends Component {
         super(props);
         this.state = {
             rooms: [],
-            activeRoom: null
+            activeRoom: null,
+            messages: [],
+            messageText: '',
+            id: null,
         };
 
         this.selectRoom = this.selectRoom.bind(this);
         this.listenForBroadcast = this.listenForBroadcast.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.revertMessage = this.revertMessage.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
     }
 
     selectRoom(id) {
@@ -124,12 +73,30 @@ export default class Chat extends Component {
         this.listenForBroadcast(id);
     };
 
-    sendMessage(text) {
+    revertMessage(message) {
+        const newMessages = this.state.messages;
+
+        this.setState({
+            messages: newMessages.filter(mess => mess.id !== message.id)
+        });
+    }
+
+    sendMessage() {
+        const message = {
+            text: this.state.messageText,
+            user_id: this.state.id,
+            id: Math.random().toString(36).substr(2, 9)
+        };
+
         axios.post('chat', {
             room: this.state.activeRoom,
-            message: text
-        }).then(function(response) {
-            console.log(response);
+            message: this.state.messageText,
+            user_id: this.state.id,
+        }).catch(() => this.revertMessage(message));
+
+        this.setState({
+            messages: [...this.state.messages, message],
+            messageText: ''
         });
     };
 
@@ -138,10 +105,15 @@ export default class Chat extends Component {
             <div className="messages-container-inner">
                 <div className="messages-inbox">
                     <ul>
-                        { [...this.state.rooms].map(room => <RoomContainer selectRoom={this.selectRoom} room={room} />) }
+                        {[...this.state.rooms].map(room => <RoomContainer key={room.id} selectRoom={this.selectRoom}
+                                                                          room={room}/>)}
                     </ul>
                 </div>
-                { this.state.activeRoom ? <RoomContents sendMessage={this.sendMessage} roomId={this.state.activeRoom}/> : '' }
+                {this.state.activeRoom ?
+                    <RoomContents messages={this.state.messages} userId={this.state.id} sendMessage={this.sendMessage}
+                                  handleChange={this.handleChange}
+                                  messageText={this.state.messageText}
+                                  roomId={this.state.activeRoom}/> : ''}
             </div>
         );
     }
@@ -150,14 +122,21 @@ export default class Chat extends Component {
         const rooms = JSON.parse(this.props.rooms);
 
         this.setState({
-            rooms
+            rooms,
+            id: this.props.id
         });
     }
 
     listenForBroadcast(id) {
-        console.log('listening for broadcast ' + 'room.' + id);
-
-        Echo.join('room.' + id).listen('ChatMessageSent', (e) => { console.log(e) });
+        Echo.join('room.' + id).listen('ChatMessageSent', (e) => {
+            this.setState({
+                messages: [...this.state.messages, {
+                    text: e.message,
+                    user_id: e.user_id,
+                    id: Math.random().toString(36).substr(2, 9)
+                }]
+            })
+        });
     }
 }
 

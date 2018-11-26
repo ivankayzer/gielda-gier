@@ -40,7 +40,8 @@ class ChatMessageSent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'message' => $this->message
+            'message' => $this->message,
+            'user_id' => Auth::id()
         ];
     }
 }

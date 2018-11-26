@@ -7,7 +7,7 @@
         ================================================== -->
         <div class="dashboard-content-container" data-simplebar>
 
-            <div class="messages-container margin-top-0" id="chat" data-rooms="{{ $rooms }}">
+            <div class="messages-container margin-top-0" id="chat" data-id="{{ Auth::id() }}" data-rooms="{{ $rooms }}">
             </div>
             <!-- Messages Container / End -->
         </div>

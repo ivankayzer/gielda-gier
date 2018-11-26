@@ -11,7 +11,12 @@ class ChatController extends Controller
 {
     public function index(Request $request)
     {
-        $rooms = $request->user()->chatRooms()->get();
+        $rooms = $request->user()->chatRooms()->with('user')->get();
+
+        $rooms = $rooms->map(function ($room) {
+            return [
+            ];
+        });
 
         return view('chat', [
             'rooms' => $rooms->toJson()
@@ -27,6 +32,6 @@ class ChatController extends Controller
     {
         $room = ChatRoom::find($request->get('room'));
 
-        event(new ChatMessageSent($room, $request->get('message')));
+        broadcast(new ChatMessageSent($room, $request->get('message')))->toOthers();
     }
 }
