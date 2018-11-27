@@ -15,16 +15,18 @@ class ChatMessageSent implements ShouldBroadcast
 
     protected $room;
     protected $message;
+    protected $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(ChatRoom $room, $message)
+    public function __construct(ChatRoom $room, $message, $user)
     {
         $this->room = $room;
         $this->message = $message;
+        $this->user = $user;
     }
 
     /**
@@ -41,7 +43,7 @@ class ChatMessageSent implements ShouldBroadcast
     {
         return [
             'message' => $this->message,
-            'user_id' => Auth::id()
+            'user_id' => $this->user->id
         ];
     }
 }

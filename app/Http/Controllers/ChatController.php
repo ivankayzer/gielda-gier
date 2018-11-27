@@ -60,6 +60,6 @@ class ChatController extends Controller
             'is_read' => false
         ])->save();
 
-        broadcast(new ChatMessageSent($room, $request->get('message')))->toOthers();
+        broadcast(new ChatMessageSent($room, $request->get('message'), $request->user()))->toOthers();
     }
 }

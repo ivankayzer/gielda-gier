@@ -45570,18 +45570,28 @@ var RoomContainer = function RoomContainer(props) {
                 { className: 'message-by' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
+                    { className: 'message-avatar' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: props.room.otherUser.avatar, alt: props.room.otherUser.name })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
                     { className: 'message-by-headline' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'h5',
                         null,
                         'Chat z ',
                         props.room.otherUser.name
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'span',
+                        null,
+                        '4 hours ago'
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'p',
                     null,
-                    '...'
+                    props.room.messages.slice(-1)[0].message
                 )
             )
         )
@@ -45591,17 +45601,24 @@ var RoomContainer = function RoomContainer(props) {
 var Message = function Message(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: props.user === props.message.user_id ? "message-bubble me" : "message-bubble" },
+        {
+            className: parseInt(props.user) === parseInt(props.message.sender_id) ? "message-bubble me" : "message-bubble" },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'message-bubble-inner' },
+            { className: 'message-bubble-inner', id: 'scrollContainer' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'message-avatar' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: parseInt(props.user) === parseInt(props.message.sender_id) ? props.room.currentUser.avatar : props.room.otherUser.avatar,
+                    alt: '' })
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'message-text' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'p',
                     null,
-                    props.message.text
+                    props.message.message
                 )
             )
         ),
@@ -45609,67 +45626,100 @@ var Message = function Message(props) {
     );
 };
 
-var RoomContents = function RoomContents(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'message-content' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'messages-headline' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h4',
-                null,
-                'Chat room #',
-                props.roomId
-            )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'message-content-inner' },
-            props.messages.map(function (message) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Message, { key: message.id, user: props.userId, message: message });
-            })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'message-reply' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { cols: '1', rows: '1', placeholder: '', name: 'messageText', 'data-autoresize': true,
-                onChange: props.handleChange, value: props.messageText }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { className: 'button ripple-effect', onClick: props.sendMessage },
-                'Send'
-            )
-        )
-    );
-};
+var RoomContents = function (_Component) {
+    _inherits(RoomContents, _Component);
 
-var Chat = function (_Component) {
-    _inherits(Chat, _Component);
+    function RoomContents(props) {
+        _classCallCheck(this, RoomContents);
+
+        return _possibleConstructorReturn(this, (RoomContents.__proto__ || Object.getPrototypeOf(RoomContents)).call(this, props));
+    }
+
+    _createClass(RoomContents, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.scroll();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'message-content' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'messages-headline' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'h4',
+                        null,
+                        'Chat z ',
+                        this.props.room.otherUser.name
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'message-content-inner', ref: function ref(el) {
+                            _this2.messagesContainer = el;
+                        } },
+                    this.props.messages.map(function (message) {
+                        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Message, { key: message.id, room: _this2.props.room, user: _this2.props.userId,
+                            message: message });
+                    })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'message-reply' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { cols: '1', rows: '1', placeholder: '', name: 'messageText', 'data-autoresize': true,
+                        onChange: this.props.handleChange, value: this.props.messageText }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { className: 'button ripple-effect', onClick: this.props.sendMessage },
+                        'Send'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return RoomContents;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+var Chat = function (_Component2) {
+    _inherits(Chat, _Component2);
 
     function Chat(props) {
         _classCallCheck(this, Chat);
 
-        var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
+        var _this3 = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 
-        _this.state = {
+        _this3.state = {
             rooms: [],
             activeRoom: null,
             messages: [],
             messageText: '',
-            id: null
+            id: null,
+            activeRoomObject: null
         };
 
-        _this.selectRoom = _this.selectRoom.bind(_this);
-        _this.listenForBroadcast = _this.listenForBroadcast.bind(_this);
-        _this.sendMessage = _this.sendMessage.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.revertMessage = _this.revertMessage.bind(_this);
-        _this.getActiveRoom = _this.getActiveRoom.bind(_this);
-        return _this;
+        _this3.selectRoom = _this3.selectRoom.bind(_this3);
+        _this3.listenForBroadcast = _this3.listenForBroadcast.bind(_this3);
+        _this3.sendMessage = _this3.sendMessage.bind(_this3);
+        _this3.handleChange = _this3.handleChange.bind(_this3);
+        _this3.revertMessage = _this3.revertMessage.bind(_this3);
+        _this3.scroll = _this3.scroll.bind(_this3);
+        return _this3;
     }
 
     _createClass(Chat, [{
+        key: 'scroll',
+        value: function scroll() {
+            setTimeout(function () {
+                return document.querySelector('.message-content-inner .message-bubble:last-child').scrollIntoView({ behavior: 'smooth' });
+            }, 250);
+        }
+    }, {
         key: 'handleChange',
         value: function handleChange(event) {
             this.setState(_defineProperty({}, event.target.name, event.target.value));
@@ -45677,8 +45727,15 @@ var Chat = function (_Component) {
     }, {
         key: 'selectRoom',
         value: function selectRoom(id) {
+            var _this4 = this;
+
             this.setState({
-                activeRoom: id
+                activeRoom: id,
+                activeRoomObject: this.state.rooms.filter(function (room) {
+                    return room.id === id;
+                })[0]
+            }, function () {
+                return _this4.scroll();
             });
 
             this.listenForBroadcast(id);
@@ -45697,11 +45754,11 @@ var Chat = function (_Component) {
     }, {
         key: 'sendMessage',
         value: function sendMessage() {
-            var _this2 = this;
+            var _this5 = this;
 
             var message = {
-                text: this.state.messageText,
-                user_id: this.state.id,
+                message: this.state.messageText,
+                sender_id: this.state.id,
                 id: Math.random().toString(36).substr(2, 9)
             };
 
@@ -45710,18 +45767,26 @@ var Chat = function (_Component) {
                 message: this.state.messageText,
                 user_id: this.state.id
             }).catch(function () {
-                return _this2.revertMessage(message);
+                return _this5.revertMessage(message);
+            });
+
+            var rooms = this.state.rooms.map(function (room) {
+                if (room.id === _this5.state.activeRoom) {
+                    room.messages = [].concat(_toConsumableArray(_this5.state.activeRoomObject.messages), [message]);
+                }
+
+                return room;
             });
 
             this.setState({
-                messages: [].concat(_toConsumableArray(this.state.messages), [message]),
+                rooms: rooms,
                 messageText: ''
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this6 = this;
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -45733,48 +45798,54 @@ var Chat = function (_Component) {
                         'ul',
                         null,
                         [].concat(_toConsumableArray(this.state.rooms)).map(function (room) {
-                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContainer, { key: room.id, selectRoom: _this3.selectRoom,
+                            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContainer, { key: room.id, selectRoom: _this6.selectRoom,
                                 room: room });
                         })
                     )
                 ),
-                this.state.activeRoom ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContents, { messages: this.state.messages, userId: this.state.id, sendMessage: this.sendMessage,
+                this.state.activeRoom ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(RoomContents, { messages: this.state.activeRoomObject.messages, userId: this.state.id,
+                    sendMessage: this.sendMessage,
                     handleChange: this.handleChange,
+                    scroll: this.scroll,
                     messageText: this.state.messageText,
-                    roomId: this.state.activeRoom, room: this.getActiveRoom() }) : ''
+                    roomId: this.state.activeRoom, room: this.state.activeRoomObject }) : ''
             );
-        }
-    }, {
-        key: 'getActiveRoom',
-        value: function getActiveRoom() {
-            var _this4 = this;
-
-            return this.state.rooms.filter(function (room) {
-                return _this4.state.activeRoom == room.id;
-            })[0];
         }
     }, {
         key: 'componentWillMount',
         value: function componentWillMount() {
+            var _this7 = this;
+
             var rooms = JSON.parse(this.props.rooms);
 
             this.setState({
                 rooms: rooms,
-                id: this.props.id
+                id: this.props.id,
+                activeRoomObject: this.state.rooms[0]
+            }, function () {
+                return _this7.selectRoom(_this7.state.rooms[0].id);
             });
         }
     }, {
         key: 'listenForBroadcast',
         value: function listenForBroadcast(id) {
-            var _this5 = this;
+            var _this8 = this;
 
             Echo.join('room.' + id).listen('ChatMessageSent', function (e) {
-                _this5.setState({
-                    messages: [].concat(_toConsumableArray(_this5.state.messages), [{
-                        text: e.message,
-                        user_id: e.user_id,
-                        id: Math.random().toString(36).substr(2, 9)
-                    }])
+                var rooms = _this8.state.rooms.map(function (room) {
+                    if (room.id === id) {
+                        room.messages = [].concat(_toConsumableArray(_this8.state.activeRoomObject.messages), [{
+                            message: e.message,
+                            sender_id: e.user_id,
+                            id: Math.random().toString(36).substr(2, 9)
+                        }]);
+                    }
+
+                    return room;
+                });
+
+                _this8.setState({
+                    rooms: rooms
                 });
             });
         }
