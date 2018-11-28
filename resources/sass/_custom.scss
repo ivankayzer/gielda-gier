@@ -287,3 +287,33 @@ mark.color {
   color: #9c2828;
   background-color: #f6e4e4;
 }
+
+.message-content-inner {
+  max-height: calc(100vh - 325px) !important;
+}
+
+.is-writing {
+  margin-left: 20px;
+
+  &.hide {
+    opacity: 0;
+  }
+
+  i {
+    display: block;
+    position: absolute;
+    animation: pencil .6s infinite alternate;
+    margin-top: 3px;
+  }
+
+  span {
+    margin-left: 20px;
+    font-size: 14px;
+  }
+}
+
+@keyframes pencil {
+  0% { transform: rotate(-21deg); }
+  50% { transform: rotate(-11deg); }
+  100% { transform: rotate(0deg); }
+}

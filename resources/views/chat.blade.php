@@ -2,10 +2,10 @@
 
 @section('content')
     <!-- Dashboard Container -->
-    <div class="dashboard-container">
+    <div class="container margin-top-30">
         <!-- Dashboard Content
         ================================================== -->
-        <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-container">
             <div class="messages-container margin-top-0" id="chat" data-id="{{ Auth::id() }}" data-rooms="{{ $rooms }}">
             </div>
         </div>

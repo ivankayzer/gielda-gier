@@ -10,7 +10,7 @@ const RoomContainer = (props) => {
                 </div>
                 <div className="message-by-headline">
                     <h5>Chat z {props.room.otherUser.name}</h5>
-                    <span>4 hours ago</span>
+                    <span></span>
                 </div>
                 <p>{ props.room.messages.slice(-1)[0].message }</p>
             </div>
@@ -56,10 +56,11 @@ class RoomContents extends Component {
                                                             message={message}/>)}
 
                 </div>
+                <div className={this.props.isTyping ? "is-writing" : "is-writing hide"}><i className="icon-feather-edit-2"></i><span>{this.props.room.otherUser.name} pisze</span></div>
                 <div className="message-reply">
                 <textarea cols="1" rows="1" placeholder="" name="messageText" data-autoresize
                           onChange={this.props.handleChange} value={this.props.messageText}></textarea>
-                    <button className="button ripple-effect" onClick={this.props.sendMessage}>Send</button>
+                    <button className="button ripple-effect" onClick={this.props.sendMessage}>Wyślij</button>
                 </div>
             </div>
         );
@@ -75,7 +76,8 @@ export default class Chat extends Component {
             messages: [],
             messageText: '',
             id: null,
-            activeRoomObject: null
+            activeRoomObject: null,
+            isTyping: false
         };
 
         this.selectRoom = this.selectRoom.bind(this);
@@ -92,6 +94,8 @@ export default class Chat extends Component {
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
+
+        Echo.join('room.' + this.state.activeRoom).whisper('typing');
     }
 
     selectRoom(id) {
@@ -112,6 +116,10 @@ export default class Chat extends Component {
     }
 
     sendMessage() {
+        if (!this.state.messageText) {
+            return;
+        }
+
         const message = {
             message: this.state.messageText,
             sender_id: this.state.id,
@@ -135,7 +143,7 @@ export default class Chat extends Component {
         this.setState({
             rooms,
             messageText: ''
-        });
+        }, () => this.scroll());
     };
 
     render() {
@@ -153,6 +161,7 @@ export default class Chat extends Component {
                                   handleChange={this.handleChange}
                                   scroll={this.scroll}
                                   messageText={this.state.messageText}
+                                  isTyping={this.state.isTyping}
                                   roomId={this.state.activeRoom} room={this.state.activeRoomObject}/> : ''}
             </div>
         );
@@ -169,7 +178,11 @@ export default class Chat extends Component {
     }
 
     listenForBroadcast(id) {
+        let typingInterval = setTimeout(() => this.setState({ isTyping: false }), 3000);
+
         Echo.join('room.' + id).listen('ChatMessageSent', (e) => {
+            clearInterval(typingInterval);
+
             const rooms = this.state.rooms.map(room => {
                 if (room.id === id) {
                     room.messages = [...this.state.activeRoomObject.messages, {
@@ -183,8 +196,14 @@ export default class Chat extends Component {
             });
 
             this.setState({
-                rooms
-            })
+                rooms,
+                isTyping: false
+            }, () => this.scroll())
+        }).listenForWhisper('typing', (e) => {
+            clearInterval(typingInterval);
+            this.setState({
+                isTyping: true
+            }, () => { typingInterval = setTimeout(() => this.setState({ isTyping: false }), 3000) })
         });
     }
 }
