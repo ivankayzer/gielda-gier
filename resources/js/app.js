@@ -16,3 +16,6 @@ require('./bootstrap');
 require('./components/Chat');
 
 window.gallery = require('gallery');
+// var Turbolinks = require("turbolinks");
+// Turbolinks.start();
+
