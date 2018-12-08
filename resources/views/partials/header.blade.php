@@ -184,7 +184,8 @@
 
                     </div>
                     <!--  User Notifications / End -->
-
+                    
+                    @user
                     <!-- User Menu -->
                     <div class="header-widget">
 
@@ -223,9 +224,9 @@
 
                             </div>
                         </div>
-
                     </div>
                     <!-- User Menu / End -->
+                    @enduser
 
                     <!-- Mobile Navigation Button -->
                     <span class="mmenu-trigger">
