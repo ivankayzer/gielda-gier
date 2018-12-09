@@ -174,6 +174,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\ViewComposerProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
 
     ],
 
