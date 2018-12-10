@@ -4,8 +4,9 @@ namespace App\Events\Offers;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Spatie\EventProjector\ShouldBeStored;
 
-class OfferConvertedToTransaction
+class OfferConvertedToTransaction implements ShouldBeStored
 {
     use Dispatchable, SerializesModels;
 

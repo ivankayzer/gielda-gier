@@ -4,8 +4,9 @@ namespace App\Events\Offers;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Spatie\EventProjector\ShouldBeStored;
 
-class OfferDeleted
+class OfferDeleted implements ShouldBeStored
 {
     use Dispatchable, SerializesModels;
 

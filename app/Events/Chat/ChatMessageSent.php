@@ -8,8 +8,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Spatie\EventProjector\ShouldBeStored;
 
-class ChatMessageSent implements ShouldBroadcast
+class ChatMessageSent implements ShouldBroadcast, ShouldBeStored
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

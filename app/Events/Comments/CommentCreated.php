@@ -4,8 +4,9 @@ namespace App\Events\Comments;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Spatie\EventProjector\ShouldBeStored;
 
-class CommentCreated
+class CommentCreated implements ShouldBeStored
 {
     use Dispatchable, SerializesModels;
 

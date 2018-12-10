@@ -4,8 +4,9 @@ namespace App\Events\User;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Spatie\EventProjector\ShouldBeStored;
 
-class ProfileEdited
+class ProfileEdited implements ShouldBeStored
 {
     use Dispatchable, SerializesModels;
 
