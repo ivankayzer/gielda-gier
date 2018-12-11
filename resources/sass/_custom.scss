@@ -318,6 +318,10 @@ mark.color {
   100% { transform: rotate(0deg); }
 }
 
-.notification-text, .header-notifications-content .notification-text {
+.notifications-wrapper .notification-text {
   padding-left: 0 !important;
+}
+
+.status-icon, .notification-avatar:after, .user-avatar:after {
+  content: none !important;
 }

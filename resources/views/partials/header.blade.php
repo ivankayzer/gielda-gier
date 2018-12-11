@@ -50,11 +50,12 @@
                         <div class="header-notifications">
                             <!-- Trigger -->
                             <div class="header-notifications-trigger">
-                                <a href="#"><i class="icon-feather-bell"></i><span>4</span></a>
+                                <a href="#"><i class="icon-feather-bell"></i>@if($notificationsCount)
+                                        <span>{{ $notificationsCount }}</span>@endif</a>
                             </div>
 
                             <!-- Dropdown -->
-                            <div class="header-notifications-dropdown">
+                            <div class="header-notifications-dropdown notifications-wrapper">
 
                                 <div class="header-notifications-headline">
                                     <h4>@lang('common.notifications')</h4>
@@ -63,12 +64,12 @@
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
-                                            @foreach(range(1, 5) as $notication)
+                                            @foreach($notifications as $notication)
                                                 <li class="notifications-not-read">
-                                                    <a href="dashboard-manage-candidates.html">
+                                                    <a href="{{ $notication->url ?? '#' }}">
                                                         <span class="notification-text">
-                                                        <strong>Michael Shannah</strong> applied for a job <span
-                                                                    class="color">Full Stack Software Engineer</span>
+                                                        {!! $notication->text !!}
+                                                             <p class="color">{{ $notication->created_at->diffForHumans() }}</p>
                                                     </span>
                                                     </a>
                                                 </li>
@@ -86,7 +87,8 @@
                         <!-- Messages -->
                         <div class="header-notifications">
                             <div class="header-notifications-trigger">
-                                <a href="#"><i class="icon-feather-mail"></i><span>3</span></a>
+                                <a href="#"><i class="icon-feather-mail"></i>@if($messagesCount)
+                                        <span>{{ $messagesCount }}</span>@endif</a>
                             </div>
 
                             <!-- Dropdown -->
@@ -99,50 +101,20 @@
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
-                                            <!-- Notification -->
+                                            @foreach($messages as $message)
                                             <li class="notifications-not-read">
-                                                <a href="#">
-                                                    <span class="notification-avatar status-online"><img
-                                                                src="{{ asset('images/user-avatar-small-03.jpg') }}"
+                                                <a href="{{ route('chat.index') }}">
+                                                    <span class="notification-avatar"><img
+                                                                src="{{ $message->sender->profile->getAvatar() }}"
                                                                 alt=""></span>
                                                     <div class="notification-text">
-                                                        <strong>David Peterson</strong>
-                                                        <p class="notification-msg-text">Thanks for reaching out. I'm
-                                                            quite busy right now on many...</p>
-                                                        <span class="color">4 hours ago</span>
+                                                        <p><strong>{{ $message->sender->name }}</strong></p>
+                                                        <p class="notification-msg-text">{{ $message->message }}</p>
+                                                        <p class="color">{{ $message->created_at->diffForHumans() }}</p>
                                                     </div>
                                                 </a>
                                             </li>
-
-                                            <!-- Notification -->
-                                            <li class="notifications-not-read">
-                                                <a href="#">
-                                                    <span class="notification-avatar status-offline"><img
-                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}"
-                                                                alt=""></span>
-                                                    <div class="notification-text">
-                                                        <strong>Sindy Forest</strong>
-                                                        <p class="notification-msg-text">Hi Tom! Hate to break it to
-                                                            you, but I'm actually on vacation until...</p>
-                                                        <span class="color">Yesterday</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <!-- Notification -->
-                                            <li class="notifications-not-read">
-                                                <a href="dashboard-messages.html">
-                                                    <span class="notification-avatar status-offline"><img
-                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}"
-                                                                alt=""></span>
-                                                    <div class="notification-text">
-                                                        <strong>Sindy Forest</strong>
-                                                        <p class="notification-msg-text">Hi Tom! Hate to break it to
-                                                            you, but I'm actually on vacation until...</p>
-                                                        <span class="color">Yesterday</span>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
