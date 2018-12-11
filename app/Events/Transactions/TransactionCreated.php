@@ -2,21 +2,26 @@
 
 namespace App\Events\Transactions;
 
+use App\Transaction;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Spatie\EventProjector\ShouldBeStored;
 
-class TransactionCreated implements ShouldBeStored
+class TransactionCreated
 {
     use Dispatchable, SerializesModels;
 
     /**
+     * @var Transaction
+     */
+    public $transaction;
+
+    /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Transaction $transaction
      */
-    public function __construct()
+    public function __construct(Transaction $transaction)
     {
-        //
+        $this->transaction = $transaction;
     }
 }

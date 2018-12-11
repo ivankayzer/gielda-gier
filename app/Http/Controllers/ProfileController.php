@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Events\User\ProfileEdited;
 use App\Profile;
 use App\Services\SentenceComposer;
 use App\User;
@@ -42,6 +43,8 @@ class ProfileController extends Controller
             $profile->avatar = $request->avatar->store('avatars', 'public');
         }
 
+        $oldData = $profile->toArray();
+
         $profile->fill($request->only([
             'name',
             'surname',
@@ -53,6 +56,10 @@ class ProfileController extends Controller
             'bank_nr',
             'company_name',
         ]))->save();
+
+        $newData = $profile->toArray();
+
+        event(new ProfileEdited($request->user()->id, $oldData, $newData));
 
         session()->flash('message', [
             'text' => __('common.write_success'),

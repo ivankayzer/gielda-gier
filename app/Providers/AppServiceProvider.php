@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             return app()->environment($environment);
         });
 
-	Schema::defaultStringLength(191);
+	    Schema::defaultStringLength(191);
     }
 
     /**

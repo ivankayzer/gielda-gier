@@ -5,7 +5,7 @@ namespace App\Events\Transactions;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class TransactionDeclined
+class TransactionAccepted
 {
     use Dispatchable, SerializesModels;
 
@@ -18,7 +18,6 @@ class TransactionDeclined
      */
     public function __construct($transactionId)
     {
-        //
         $this->transactionId = $transactionId;
     }
 }

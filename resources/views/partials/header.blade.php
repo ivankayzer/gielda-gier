@@ -185,7 +185,7 @@
                     </div>
                     <!--  User Notifications / End -->
                     
-                    @user
+                    @auth
                     <!-- User Menu -->
                     <div class="header-widget">
 
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     <!-- User Menu / End -->
-                    @enduser
+                    @endauth
 
                     <!-- Mobile Navigation Button -->
                     <span class="mmenu-trigger">

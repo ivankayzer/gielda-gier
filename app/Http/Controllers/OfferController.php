@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Components\Language;
 use App\Components\Platform;
+use App\Events\Offers\OfferCreated;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -79,6 +80,8 @@ class OfferController extends Controller
                 $offer->image()->create(['url' => $file->store('offers', 'public')])->save();
             }
         }
+
+        event(new OfferCreated($offer));
 
         session()->flash('message', [
             'text' => __('offers.write_success'),

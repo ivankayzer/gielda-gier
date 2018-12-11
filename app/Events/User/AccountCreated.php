@@ -2,21 +2,20 @@
 
 namespace App\Events\User;
 
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
-use Spatie\EventProjector\ShouldBeStored;
+use App\User;
 
-class AccountCreated implements ShouldBeStored
+class AccountCreated
 {
-    use Dispatchable, SerializesModels;
+    /** @var User */
+    public $user;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $userId
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 }

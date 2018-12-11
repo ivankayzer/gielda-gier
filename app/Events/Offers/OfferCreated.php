@@ -2,21 +2,26 @@
 
 namespace App\Events\Offers;
 
+use App\Offer;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Spatie\EventProjector\ShouldBeStored;
 
-class OfferCreated implements ShouldBeStored
+class OfferCreated
 {
     use Dispatchable, SerializesModels;
 
     /**
+     * @var Offer
+     */
+    public $offer;
+
+    /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Offer $offer
      */
-    public function __construct()
+    public function __construct(Offer $offer)
     {
-        //
+        $this->offer = $offer;
     }
 }

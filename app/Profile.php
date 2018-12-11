@@ -15,6 +15,10 @@ class Profile extends Model
 
     public function getCity()
     {
+        if (!$this->city) {
+            return '';
+        }
+
         return City::where('slug', $this->city)->first()->name;
     }
 

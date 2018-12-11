@@ -4,19 +4,20 @@ namespace App\Events\Transactions;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Spatie\EventProjector\ShouldBeStored;
 
-class TransactionCompleted implements ShouldBeStored
+class TransactionCompleted
 {
     use Dispatchable, SerializesModels;
+
+    public $transactionId;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $transactionId
      */
-    public function __construct()
+    public function __construct($transactionId)
     {
-        //
+        $this->transactionId = $transactionId;
     }
 }

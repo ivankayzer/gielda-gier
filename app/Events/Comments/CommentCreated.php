@@ -2,21 +2,26 @@
 
 namespace App\Events\Comments;
 
+use App\Review;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Spatie\EventProjector\ShouldBeStored;
 
-class CommentCreated implements ShouldBeStored
+class CommentCreated
 {
     use Dispatchable, SerializesModels;
 
     /**
+     * @var Review
+     */
+    public $review;
+
+    /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Review $review
      */
-    public function __construct()
+    public function __construct(Review $review)
     {
-        //
+        $this->review = $review;
     }
 }
