@@ -317,3 +317,7 @@ mark.color {
   50% { transform: rotate(-11deg); }
   100% { transform: rotate(0deg); }
 }
+
+.notification-text, .header-notifications-content .notification-text {
+  padding-left: 0 !important;
+}

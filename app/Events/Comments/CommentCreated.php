@@ -13,15 +13,15 @@ class CommentCreated
     /**
      * @var Review
      */
-    public $review;
+    public $comment;
 
     /**
      * Create a new event instance.
      *
-     * @param Review $review
+     * @param Review $comment
      */
-    public function __construct(Review $review)
+    public function __construct(Review $comment)
     {
-        $this->review = $review;
+        $this->comment = $comment;
     }
 }

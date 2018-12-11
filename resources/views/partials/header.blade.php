@@ -20,12 +20,14 @@
                                    @if(request()->is('offers') || request()->is('offers/*')) class="current" @endif>
                                     @lang('offers.offers')
                                 </a>
-                                <a href="{{ route('offers.create') }}" class="add-offers" style="padding: 0 !important;">
+                                <a href="{{ route('offers.create') }}" class="add-offers"
+                                   style="padding: 0 !important;">
                                     <i class="icon-feather-plus" style="position: absolute;"></i>
                                 </a>
                             </li>
                             <li><a href="{{ route('transactions.index') }}"
-                                   @if(request()->is('/transactions') || request()->is('/transactions/*')) class="current" @endif>@lang('common.transactions')</a></li>
+                                   @if(request()->is('/transactions') || request()->is('/transactions/*')) class="current" @endif>@lang('common.transactions')</a>
+                            </li>
                         </ul>
                     </nav>
                 @endauth
@@ -61,57 +63,22 @@
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
-                                            <!-- Notification -->
-                                            <li class="notifications-not-read">
-                                                <a href="dashboard-manage-candidates.html">
-                                                    <span class="notification-icon"><i
-                                                                class="icon-material-outline-group"></i></span>
-                                                    <span class="notification-text">
-													<strong>Michael Shannah</strong> applied for a job <span
-                                                                class="color">Full Stack Software Engineer</span>
-												</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Notification -->
-                                            <li>
-                                                <a href="dashboard-manage-bidders.html">
-                                                    <span class="notification-icon"><i
-                                                                class=" icon-material-outline-gavel"></i></span>
-                                                    <span class="notification-text">
-													<strong>Gilbert Allanis</strong> placed a bid on your <span
-                                                                class="color">iOS App Development</span> project
-												</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Notification -->
-                                            <li>
-                                                <a href="dashboard-manage-jobs.html">
-                                                    <span class="notification-icon"><i
-                                                                class="icon-material-outline-autorenew"></i></span>
-                                                    <span class="notification-text">
-													Your job listing <span class="color">Full Stack PHP Developer</span> is expiring.
-												</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Notification -->
-                                            <li>
-                                                <a href="dashboard-manage-candidates.html">
-                                                    <span class="notification-icon"><i
-                                                                class="icon-material-outline-group"></i></span>
-                                                    <span class="notification-text">
-													<strong>Sindy Forrest</strong> applied for a job <span
-                                                                class="color">Full Stack Software Engineer</span>
-												</span>
-                                                </a>
-                                            </li>
+                                            @foreach(range(1, 5) as $notication)
+                                                <li class="notifications-not-read">
+                                                    <a href="dashboard-manage-candidates.html">
+                                                        <span class="notification-text">
+                                                        <strong>Michael Shannah</strong> applied for a job <span
+                                                                    class="color">Full Stack Software Engineer</span>
+                                                    </span>
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
                                 <a href="{{ route('dashboard') }}"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_notifications')<i class="icon-material-outline-arrow-right-alt"></i></a>
+                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_notifications')
+                                    <i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
 
                         </div>
@@ -136,7 +103,8 @@
                                             <li class="notifications-not-read">
                                                 <a href="#">
                                                     <span class="notification-avatar status-online"><img
-                                                                src="{{ asset('images/user-avatar-small-03.jpg') }}" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-03.jpg') }}"
+                                                                alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>David Peterson</strong>
                                                         <p class="notification-msg-text">Thanks for reaching out. I'm
@@ -150,7 +118,8 @@
                                             <li class="notifications-not-read">
                                                 <a href="#">
                                                     <span class="notification-avatar status-offline"><img
-                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}"
+                                                                alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>Sindy Forest</strong>
                                                         <p class="notification-msg-text">Hi Tom! Hate to break it to
@@ -164,7 +133,8 @@
                                             <li class="notifications-not-read">
                                                 <a href="dashboard-messages.html">
                                                     <span class="notification-avatar status-offline"><img
-                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}" alt=""></span>
+                                                                src="{{ asset('images/user-avatar-small-02.jpg') }}"
+                                                                alt=""></span>
                                                     <div class="notification-text">
                                                         <strong>Sindy Forest</strong>
                                                         <p class="notification-msg-text">Hi Tom! Hate to break it to
@@ -178,57 +148,58 @@
                                 </div>
 
                                 <a href="{{ route('chat.index') }}"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_messages')<i class="icon-material-outline-arrow-right-alt"></i></a>
+                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_messages')
+                                    <i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
                         </div>
 
                     </div>
                     <!--  User Notifications / End -->
-                    
+
                     @auth
                     <!-- User Menu -->
-                    <div class="header-widget">
+                        <div class="header-widget">
 
-                        <!-- Messages -->
-                        <div class="header-notifications user-menu">
-                            <div class="header-notifications-trigger">
-                                <a href="#">
-                                    <div class="user-avatar"><img src="{{ auth()->user()->profile->getAvatar() }}"
-                                                                  alt=""></div>
-                                </a>
-                            </div>
-
-                            <!-- Dropdown -->
-                            <div class="header-notifications-dropdown">
-
-                                <!-- User Status -->
-                                <div class="user-status">
-
-                                    <!-- User Name / Avatar -->
-                                    <div class="user-details">
-                                        <div class="user-name">
-                                            {{ auth()->user()->profile->getFullName() }}
-                                            <span>{{ auth()->user()->profile->getCity() }}</span>
-                                        </div>
-                                    </div>
+                            <!-- Messages -->
+                            <div class="header-notifications user-menu">
+                                <div class="header-notifications-trigger">
+                                    <a href="#">
+                                        <div class="user-avatar"><img src="{{ auth()->user()->profile->getAvatar() }}"
+                                                                      alt=""></div>
+                                    </a>
                                 </div>
 
-                                <ul class="user-menu-small-nav">
-                                    <li><a href="{{ route('settings.index') }}"><i
-                                                    class="icon-material-outline-settings"></i> @lang('settings.settings')
-                                        </a></li>
-                                    <li><a href="{{ route('exit') }}"><i
-                                                    class="icon-material-outline-power-settings-new"></i> @lang('common.logout')
-                                        </a></li>
-                                </ul>
+                                <!-- Dropdown -->
+                                <div class="header-notifications-dropdown">
 
+                                    <!-- User Status -->
+                                    <div class="user-status">
+
+                                        <!-- User Name / Avatar -->
+                                        <div class="user-details">
+                                            <div class="user-name">
+                                                {{ auth()->user()->profile->getFullName() }}
+                                                <span>{{ auth()->user()->profile->getCity() }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ul class="user-menu-small-nav">
+                                        <li><a href="{{ route('settings.index') }}"><i
+                                                        class="icon-material-outline-settings"></i> @lang('settings.settings')
+                                            </a></li>
+                                        <li><a href="{{ route('exit') }}"><i
+                                                        class="icon-material-outline-power-settings-new"></i> @lang('common.logout')
+                                            </a></li>
+                                    </ul>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- User Menu / End -->
+                        <!-- User Menu / End -->
                     @endauth
 
-                    <!-- Mobile Navigation Button -->
+                <!-- Mobile Navigation Button -->
                     <span class="mmenu-trigger">
 					<button class="hamburger hamburger--collapse" type="button">
 						<span class="hamburger-box">
