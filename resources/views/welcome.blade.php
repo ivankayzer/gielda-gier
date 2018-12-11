@@ -46,23 +46,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Stats -->
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="intro-stats margin-top-45 hide-under-992px">
-                        <li>
-                            <strong class="counter">1,586</strong>
-                            <span>@lang('welcome.users')</span>
-                        </li>
-                        <li>
-                            <strong class="counter">3,543</strong>
-                            <span>@lang('welcome.offers')</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -128,69 +111,8 @@
     </div>
     <!-- Icon Boxes / End -->
 
-    <!-- Features Cities -->
-    <div class="section gray margin-top-65 padding-top-65 padding-bottom-65">
-        <div class="container">
-            <div class="row">
-
-                <!-- Section Headline -->
-                <div class="col-xl-12">
-                    <div class="section-headline margin-top-0 margin-bottom-45">
-                        <h3>@lang('welcome.featured_platforms')</h3>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Photo Box -->
-                    <a href="#" class="photo-box"
-                       data-background-image="images/featured-city-01.jpg">
-                        <div class="photo-box-content">
-                            <h3>Playstation 4</h3>
-                            <span>{{ $offersCount['ps4'] }} @lang('welcome.offers_l')</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Photo Box -->
-                    <a href="#" class="photo-box"
-                       data-background-image="images/featured-city-02.jpg">
-                        <div class="photo-box-content">
-                            <h3>Xbox One</h3>
-                            <span>{{ $offersCount['xone'] }} @lang('welcome.offers_l')</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Photo Box -->
-                    <a href="#" class="photo-box"
-                       data-background-image="images/featured-city-03.jpg">
-                        <div class="photo-box-content">
-                            <h3>Nintendo Switch</h3>
-                            <span>{{ $offersCount['switch'] }} @lang('welcome.offers_l')</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <!-- Photo Box -->
-                    <a href="#" class="photo-box"
-                       data-background-image="images/featured-city-04.jpg">
-                        <div class="photo-box-content">
-                            <h3>PC</h3>
-                            <span>{{ $offersCount['pc'] }} @lang('welcome.offers_l')</span>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Features Cities / End -->
-
     <!-- Features Games -->
-    <div class="section padding-top-65 padding-bottom-75">
+    <div class="section gray padding-top-65 padding-bottom-75">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
