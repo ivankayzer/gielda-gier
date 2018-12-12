@@ -37,6 +37,7 @@
                         <span>Already have an account? <a href="{{ route('login') }}">Log In!</a></span>
                     </div>
 
+
                     <!-- Form -->
                     <form method="post" action="{{ route('register') }}" id="register-account-form">
                         @csrf

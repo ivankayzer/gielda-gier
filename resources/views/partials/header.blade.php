@@ -36,10 +36,15 @@
             <div class="right-side">
                 @guest
                     <div class="header-widget">
-                        <a href="#sign-in-dialog" class="popup-with-zoom-anim log-in-button">
-                            <i class="icon-feather-log-in"></i> <span>@lang('auth.login')
-                                / @lang('auth.register')</span>
-                        </a>
+                        <nav id="navigation">
+                            <ul id="responsive">
+                                <li><a href="{{ route('login') }}"
+                                       @if(request()->is('login')) class="current" @endif>@lang('auth.login')</a></li>
+                                <li><a href="{{ route('register') }}"
+                                       @if(request()->is('register')) class="current" @endif>@lang('auth.register')</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 @endguest
                 @auth
@@ -69,7 +74,7 @@
                                                     <a href="{{ $notication->url ?? '#' }}">
                                                         <span class="notification-text">
                                                         {!! $notication->text !!}
-                                                             <p class="color">{{ $notication->created_at->diffForHumans() }}</p>
+                                                            <p class="color">{{ $notication->created_at->diffForHumans() }}</p>
                                                     </span>
                                                     </a>
                                                 </li>
@@ -102,18 +107,18 @@
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
                                             @foreach($messages as $message)
-                                            <li class="notifications-not-read">
-                                                <a href="{{ route('chat.index') }}">
+                                                <li class="notifications-not-read">
+                                                    <a href="{{ route('chat.index') }}">
                                                     <span class="notification-avatar"><img
                                                                 src="{{ $message->sender->profile->getAvatar() }}"
                                                                 alt=""></span>
-                                                    <div class="notification-text">
-                                                        <p><strong>{{ $message->sender->name }}</strong></p>
-                                                        <p class="notification-msg-text">{{ $message->message }}</p>
-                                                        <p class="color">{{ $message->created_at->diffForHumans() }}</p>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                                        <div class="notification-text">
+                                                            <p><strong>{{ $message->sender->name }}</strong></p>
+                                                            <p class="notification-msg-text">{{ $message->message }}</p>
+                                                            <p class="color">{{ $message->created_at->diffForHumans() }}</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div>
