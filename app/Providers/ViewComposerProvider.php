@@ -24,6 +24,9 @@ class ViewComposerProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
+            if (auth()->guest()) {
+                return;
+            }
             $notifications = auth()->user()->notifications()->latest()->get();
             $messages = auth()->user()->latestMessages();
             $view->with('notificationsCount', $notifications->filter(function ($notification) { return !$notification->is_read; })->count());

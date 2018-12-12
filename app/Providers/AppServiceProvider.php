@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             return app()->environment($environment);
         });
 
-	    Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -33,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->alias(\App\Services\Dispatcher::class, \Illuminate\Contracts\Bus\Dispatcher::class);
     }
 }
