@@ -15,10 +15,10 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-
             $table->integer('igdb_id');
-
             $table->string('title');
+            $table->string('slug');
+            $table->string('url');
             $table->string('cover');
             $table->json('platforms');
             $table->dateTime('release_date');

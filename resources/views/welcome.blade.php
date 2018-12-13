@@ -33,7 +33,7 @@
                         <div class="intro-search-field">
                             <label for="intro-keywords"
                                    class="field-title ripple-effect">@lang('welcome.game_title')</label>
-                            <input id="intro-keywords" type="text"
+                            <input id="game-keywords" type="search" autocomplete="off"
                                    placeholder="@lang('welcome.game_title_placeholder')">
                         </div>
 
@@ -162,5 +162,19 @@
             </div>
         </div>
     </div>
-    <!-- Featured Games / End -->
+@endsection
+
+@section('post-scripts')
+    <script>
+        autocomplete('#game-keywords',
+            { hint: false }, {
+                source: autocomplete.sources.hits(algolia, {hitsPerPage: 5}),
+                displayKey: 'name',
+                templates: {
+                    suggestion: function(suggestion) {
+                        return '<div class="algolia-suggestion">' + suggestion.title + '<img alt="' + suggestion.title + '" src="' + suggestion.cover + '"/></div>'
+                    }
+                }
+            });
+    </script>
 @endsection

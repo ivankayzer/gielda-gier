@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
 </head>
 <body>
 
@@ -159,6 +158,12 @@ Snackbar.show({
             backgroundColor: '#383838'
         });
     });
+</script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+<script>
+    var client = algoliasearch('YULENP2XSS', '04de3e60020d1f86ef283879bff67b39');
+    var algolia = client.initIndex('games');
 </script>
 @yield('post-scripts')
 </body>
