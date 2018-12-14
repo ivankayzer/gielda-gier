@@ -30,8 +30,7 @@
                                             <div class="col-xl-4">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.game')</h5>
-                                                    <select class="selectpicker-live with-border" data-size="7"
-                                                            data-live-search="true"
+                                                    <select data-size="7"
                                                             name="game_id"
                                                             title="@lang('offers.select_game')">
                                                     </select>

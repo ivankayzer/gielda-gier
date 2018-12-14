@@ -53,8 +53,7 @@
                         </div>
 
                         <div class="submit-field">
-                            <select class="selectpicker-live with-border" data-size="7"
-                                    data-live-search="true"
+                            <select data-size="7"
                                     name="game_id"
                                     required
                                     title="@lang('offers.select_game')">

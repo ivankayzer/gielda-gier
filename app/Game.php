@@ -26,6 +26,11 @@ class Game extends Model
         $this->attributes['release_date'] = Carbon::createFromTimestamp($value / 1000)->format('Y-m-d');
     }
 
+    public function getCoverAttribute()
+    {
+        return sprintf("https://images.igdb.com/igdb/image/upload/t_cover_big/%s.jpg", $this->attributes['cover']);
+    }
+
     public function thumb()
     {
         return sprintf("https://images.igdb.com/igdb/image/upload/t_thumb/%s.jpg", $this->cover);
@@ -34,6 +39,11 @@ class Game extends Model
     public function getScoutKey()
     {
         return $this->slug;
+    }
+
+    public function searchableAs()
+    {
+        return 'games';
     }
 
     public function toSearchableArray()

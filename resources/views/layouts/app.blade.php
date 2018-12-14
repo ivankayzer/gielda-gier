@@ -5,11 +5,15 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130652682-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'UA-130652682-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130652682-1');
     </script>
     @endenv
 
@@ -21,7 +25,6 @@
 
     <title>{{ config('app.name', 'Giełda gier') }}</title>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
@@ -29,8 +32,10 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/colors/blue.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -130,25 +135,24 @@
 @endguest
 
 <script src="{{ asset('js/vendor/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('js/vendor/jquery-migrate-3.0.0.min.js') }}"></script>
 <script src="{{ asset('js/vendor/mmenu.min.js') }}"></script>
 {{--<script src="{{ asset('js/vendor/counterup.min.js') }}"></script>--}}
 <script src="{{ asset('js/vendor/tippy.all.min.js') }}"></script>
 <script src="{{ asset('js/vendor/simplebar.min.js') }}"></script>
 <script src="{{ asset('js/vendor/bootstrap-slider.min.js') }}"></script>
-<script src="{{ asset('js/vendor/bootstrap-select.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ajax-bootstrap-select/1.4.4/js/ajax-bootstrap-select.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="{{ asset('js/vendor/snackbar.js') }}"></script>
 <script src="{{ asset('js/vendor/clipboard.min.js') }}"></script>
 <script src="{{ asset('js/vendor/magnific-popup.min.js') }}"></script>
 <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
 <script src="{{ asset('js/vendor/custom.js') }}"></script>
 <script>
-$('#snackbar-user-status label').click(function () {
-Snackbar.show({
+    $('#snackbar-user-status label').click(function () {
+        Snackbar.show({
             text: 'Your status has been changed!',
             pos: 'bottom-center',
             showAction: false,
@@ -161,10 +165,7 @@ Snackbar.show({
 </script>
 <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-<script>
-    var client = algoliasearch('YULENP2XSS', '04de3e60020d1f86ef283879bff67b39');
-    var algolia = client.initIndex('games');
-</script>
+<script src="{{ asset('js/app.js') }}"></script>
 @yield('post-scripts')
 </body>
 </html>
