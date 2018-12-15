@@ -18,34 +18,33 @@
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{ route('offers.index') }}" method="get">
-                    <div class="intro-banner-search-form margin-top-95">
-                        <!-- Search Field -->
-                        <div class="intro-search-field with-autocomplete">
-                            <label for="autocomplete-input"
-                                   class="field-title ripple-effect">@lang('welcome.where')</label>
+                        <div class="intro-banner-search-form margin-top-95">
+                            <!-- Search Field -->
+                            <div class="intro-search-field with-autocomplete">
+                                <label for="autocomplete-input"
+                                       class="field-title ripple-effect">@lang('welcome.where')</label>
                                 <select class="select2 no-border full-container cities" name="city"
                                         title="@lang('settings.select_city')">
                                     <option value="0">@lang('welcome.pick_city')</option>
                                 </select>
-                        </div>
+                            </div>
 
-                        <!-- Search Field -->
-                        <div class="intro-search-field">
-                            <label for="intro-keywords"
-                                   class="field-title ripple-effect">@lang('welcome.game_title')</label>
-                            <select class="select2 no-border full-container games" name="game_id"
-                                    title="@lang('welcome.game_title_placeholder')">
-                                <option value="0">Wybierz grę</option>
-                            </select>
-                        </div>
+                            <!-- Search Field -->
+                            <div class="intro-search-field">
+                                <label for="intro-keywords"
+                                       class="field-title ripple-effect">@lang('welcome.game_title')</label>
+                                <select class="select2 no-border full-container games" name="game_id"
+                                        title="@lang('welcome.game_title_placeholder')">
+                                    <option value="0">Wybierz grę</option>
+                                </select>
+                            </div>
 
-                        <!-- Button -->
-                        <div class="intro-search-button">
-                            <button class="button ripple-effect" type="submit">@lang('common.search')</button>
+                            <!-- Button -->
+                            <div class="intro-search-button">
+                                <button class="button ripple-effect" type="submit">@lang('common.search')</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -128,7 +127,8 @@
                     <!-- Games Container -->
                     <div class="listings-container compact-list-layout margin-top-35">
                         @foreach($offers as $offer)
-                            <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}" class="job-listing with-apply-button">
+                            <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
+                               class="job-listing with-apply-button">
                                 <div class="job-listing-details">
                                     <div class="job-listing-company-logo">
                                         <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">

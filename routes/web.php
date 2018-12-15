@@ -50,7 +50,7 @@ Route::post('/czat', 'ChatController@message')->name('chat.message');
 Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
 
 Route::get('/strona-glowna', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/powiadomienia', 'HomeController@dashboard')->name('dashboard');
 Route::get('/transakcje', 'TransactionController@index')->name('transactions.index');
 Route::post('/transakcje', 'TransactionController@create')->name('transactions.create');
 Route::get('/transakcje/{transaction}/zaakceptuj', 'TransactionController@accept')->name('transactions.accept');

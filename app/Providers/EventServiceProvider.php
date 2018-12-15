@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\Chat\ChatPageVisited;
 use App\Events\Comments\CommentCreated;
+use App\Events\Notifications\NotificationsPageVisited;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\User\AccountCreated;
 use App\Listeners\CreateProfile;
+use App\Listeners\MarkMessagesAsRead;
+use App\Listeners\MarkNotificationsAsRead;
 use App\Listeners\NotifyAboutNewComment;
 use App\Listeners\NotifyAboutNewTradeOffer;
 use Illuminate\Auth\Events\Registered;
@@ -31,7 +35,13 @@ class EventServiceProvider extends ServiceProvider
         ],
         TransactionCreated::class => [
             NotifyAboutNewTradeOffer::class
-        ]
+        ],
+        NotificationsPageVisited::class => [
+            MarkNotificationsAsRead::class
+        ],
+        ChatPageVisited::class =>[
+            MarkMessagesAsRead::class
+        ],
     ];
 
     /**

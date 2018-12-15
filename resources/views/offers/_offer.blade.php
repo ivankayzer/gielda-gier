@@ -9,16 +9,22 @@
 
             <!-- Avatar -->
             <div class="freelancer-avatar">
-                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"><img src="{{ $offer->game->cover }}" alt=""></a>
+                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"><img
+                            src="{{ $offer->game->cover }}" alt=""></a>
             </div>
 
             <!-- Name -->
             <div class="freelancer-name">
-                <h4><a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}">{{ $offer->game->title }} {!! $offer->flag() !!}</a></h4>
-                <h6><mark class="color {{ $offer->platform }}">{{ $offer->platform() }}</mark></h6>
+                <h4>
+                    <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}">{{ $offer->game->title }} {!! $offer->flag() !!}</a>
+                </h4>
+                <h6>
+                    <mark class="color {{ $offer->platform }}">{{ $offer->platform() }}</mark>
+                </h6>
 
                 <div class="d-flex align-items-center margin-top-5">
-                    <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}" class="seller-name margin-right-15">
+                    <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}"
+                       class="seller-name margin-right-15">
                         {{ $offer->seller->name }}
                     </a>
                     <div class="freelancer-rating">
@@ -49,8 +55,10 @@
         <p class="margin-top-5"><i class="icon-material-outline-access-time"></i>
             {{ $offer->publish_at->diffForHumans() }}</p>
 
-        <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
-           class="button button-sliding-icon ripple-effect">{{ $offer->buyText() }}
-            <i class="icon-material-outline-arrow-right-alt"></i></a>
+        @if($offer->sellable || $offer->tradeable)
+            <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
+               class="button button-sliding-icon ripple-effect">{{ $offer->buyText() }}
+                <i class="icon-material-outline-arrow-right-alt"></i></a>
+        @endif
     </div>
 </div>

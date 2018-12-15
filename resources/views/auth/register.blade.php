@@ -7,17 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
                     <h2>Register</h2>
-
-                    <!-- Breadcrumbs -->
-                    <nav id="breadcrumbs" class="dark">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li>Register</li>
-                        </ul>
-                    </nav>
-
                 </div>
             </div>
         </div>
@@ -63,15 +53,6 @@
 
                         <button class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
                     </form>
-
-                    <!-- Button -->
-
-                    <!-- Social Login -->
-                    <div class="social-login-separator"><span>or</span></div>
-                    <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via Facebook</button>
-                        <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via Google+</button>
-                    </div>
                 </div>
 
             </div>
