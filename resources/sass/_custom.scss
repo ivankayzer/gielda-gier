@@ -390,6 +390,15 @@ mark.color {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12);
 }
 
+.no-border .select2-selection {
+  box-shadow: none;
+}
+
+.full-container ~ .select2.select2-container, .full-container ~ .select2.select2-container .select2-selection__rendered {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .select2 {
   height: 50px;
 }
@@ -456,4 +465,8 @@ mark.color {
 
 .select2-results__option {
   padding-left: 15px !important;
+}
+
+.intro-search-field {
+  padding: 0 !important;
 }

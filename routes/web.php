@@ -13,47 +13,56 @@
 
 Route::get('/', 'HomeController@index')->name('welcome');
 
-Auth::routes();
 
-Route::get('/offers', 'OfferController@index')->name('offers.index');
-Route::get('/offers', 'OfferController@index')->name('offers.index');
-Route::get('/offers/create', 'OfferController@create')->name('offers.create');
-Route::post('/offers/create', 'OfferController@store')->name('offers.store');
-Route::get('/offers/show/{offer},{slug}', 'OfferController@show')->name('offers.show');
+Route::middleware(['guest'])->group(function () {
+    Route::get('zaloguj-sie', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('zaloguj-sie', 'Auth\LoginController@login');
 
-Route::post('/query/game', 'AjaxController@game')->name('ajax.game');
-Route::post('/query/platforms', 'AjaxController@platforms')->name('ajax.platforms');
+    Route::get('zaloz-konto', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('zaloz-konto', 'Auth\RegisterController@register');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/settings', 'ProfileController@index')->name('settings.index');
-    Route::patch('/settings', 'ProfileController@update')->name('settings.update');
+    Route::get('haslo/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('haslo/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('haslo/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('haslo/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 });
 
-Route::get('/user/{user}', 'ProfileController@show')->name('profile.show');
-Route::get('/transaction/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
+Route::get('/oferty', 'OfferController@index')->name('offers.index');
+Route::get('/oferty', 'OfferController@index')->name('offers.index');
+Route::get('/oferty/dodaj', 'OfferController@create')->name('offers.create');
+Route::post('/oferty/dodaj', 'OfferController@store')->name('offers.store');
+Route::get('/oferty/oferta/{offer},{slug}', 'OfferController@show')->name('offers.show');
 
-Route::get('/chat', 'ChatController@index')->name('chat.index');
-Route::post('/chat', 'ChatController@message')->name('chat.message');
+Route::post('/szukaj/gry', 'AjaxController@game')->name('ajax.game');
+Route::post('/szukaj/platformy', 'AjaxController@platforms')->name('ajax.platforms');
 
-Route::get('exit', 'Auth\LoginController@logout')->name('exit');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/ustawienia', 'ProfileController@index')->name('settings.index');
+    Route::patch('/ustawienia', 'ProfileController@update')->name('settings.update');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/uzytkownik/{user}', 'ProfileController@show')->name('profile.show');
+Route::get('/transakcja/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
+
+Route::get('/czat', 'ChatController@index')->name('chat.index');
+Route::post('/czat', 'ChatController@message')->name('chat.message');
+
+Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
+
+Route::get('/strona-glowna', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-Route::get('/transactions', 'TransactionController@index')->name('transactions.index');
-Route::post('/transactions', 'TransactionController@create')->name('transactions.create');
-Route::get('/transactions/{transaction}/accept', 'TransactionController@accept')->name('transactions.accept');
-Route::get('/transactions/{transaction}/decline', 'TransactionController@decline')->name('transactions.decline');
-Route::post('/transactions/rate', 'TransactionController@rate')->name('transactions.rate');
-Route::get('/reviews', 'HomeController@reviews')->name('reviews.index');
-Route::get('/users', 'HomeController@users')->name('users.index');
+Route::get('/transakcje', 'TransactionController@index')->name('transactions.index');
+Route::post('/transakcje', 'TransactionController@create')->name('transactions.create');
+Route::get('/transakcje/{transaction}/zaakceptuj', 'TransactionController@accept')->name('transactions.accept');
+Route::get('/transakcje/{transaction}/odzruc', 'TransactionController@decline')->name('transactions.decline');
+Route::post('/transakcje/ocen', 'TransactionController@rate')->name('transactions.rate');
+Route::get('/komentarze', 'HomeController@reviews')->name('reviews.index');
+Route::get('/uzytkownicy', 'HomeController@users')->name('users.index');
 
 
 Route::middleware(['disable_production'])->group(function () {
 
 });
-
-
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

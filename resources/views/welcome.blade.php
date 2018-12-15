@@ -17,32 +17,35 @@
             <!-- Search Bar -->
             <div class="row">
                 <div class="col-md-12">
+                    <form action="{{ route('offers.index') }}" method="get">
                     <div class="intro-banner-search-form margin-top-95">
-
                         <!-- Search Field -->
                         <div class="intro-search-field with-autocomplete">
                             <label for="autocomplete-input"
                                    class="field-title ripple-effect">@lang('welcome.where')</label>
-                            <div class="input-with-icon">
-                                <input id="autocomplete-input" type="text" placeholder="@lang('welcome.pick_city')">
-                                <i class="icon-material-outline-location-on"></i>
-                            </div>
+                                <select class="select2 no-border full-container cities" name="city"
+                                        title="@lang('settings.select_city')">
+                                    <option value="0">@lang('welcome.pick_city')</option>
+                                </select>
                         </div>
 
                         <!-- Search Field -->
                         <div class="intro-search-field">
                             <label for="intro-keywords"
                                    class="field-title ripple-effect">@lang('welcome.game_title')</label>
-                            <div class="game-autocomplete" data-id="games"></div>
+                            <select class="select2 no-border full-container games" name="game_id"
+                                    title="@lang('welcome.game_title_placeholder')">
+                                <option value="0">Wybierz grę</option>
+                            </select>
                         </div>
 
                         <!-- Button -->
                         <div class="intro-search-button">
-                            <button class="button ripple-effect"
-                                    onclick="window.location.href='#'">@lang('common.search')
-                            </button>
+                            <button class="button ripple-effect" type="submit">@lang('common.search')</button>
                         </div>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>
