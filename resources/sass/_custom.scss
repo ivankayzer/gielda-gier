@@ -470,3 +470,17 @@ mark.color {
 .intro-search-field {
   padding: 0 !important;
 }
+
+.intro-full-page {
+  min-height: calc(100vh - 257px);
+}
+
+.intro-banner.bg-left {
+  &:before {
+    background: linear-gradient(to left,rgba(250,250,250,1) 20%, rgba(250,250,250,.95) 50% ,rgba(250,250,250,0.1) 80%,rgba(250,250,250,0) 100%) !important;
+  }
+
+  .background-image-container {
+    left: 0 !important;
+  }
+}

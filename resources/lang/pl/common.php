@@ -53,5 +53,7 @@ return [
     'address' => 'Adres',
     'bought' => 'Kupił',
     'save' => 'Zapisz',
-    'username' => 'Imię użytkownika'
+    'username' => 'Imię użytkownika',
+    'reset_password' => 'Zresetuj hasło',
+    'Hello' => 'Cześć!'
 ];
