@@ -85,4 +85,16 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->belongsToMany(ChatRoom::class);
     }
+
+    public function latestMessages()
+    {
+        return $this->chatRooms->map(function ($room) {
+            return $room->messages()->orderBy('created_at', 'desc')->first();
+        });
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'receiver_id');
+    }
 }

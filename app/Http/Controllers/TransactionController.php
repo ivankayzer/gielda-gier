@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Comments\CommentCreated;
+use App\Events\Transactions\TransactionAccepted;
+use App\Events\Transactions\TransactionCompleted;
+use App\Events\Transactions\TransactionCreated;
+use App\Events\Transactions\TransactionDeclined;
 use App\Factories\TransactionFactory;
 use App\Offer;
 use App\Review;
@@ -47,10 +52,16 @@ class TransactionController extends Controller
         $offer = Offer::where('id', $request->get('offer_id'))->firstOrFail();
         $transaction = TransactionFactory::fromOffer($offer, $request);
 
-        if ($transaction->save() && !$transaction->isTrade()) {
+        $saved = $transaction->save();
+
+        if ($saved && !$transaction->isTrade()) {
             $offer->update([
                 'sold' => true
             ]);
+        }
+
+        if ($saved) {
+            event(new TransactionCreated($transaction));
         }
 
         return redirect()->route('transactions.index');
@@ -62,6 +73,8 @@ class TransactionController extends Controller
             'status_id' => TransactionStatus::IN_PROGRESS
         ]);
 
+        event(new TransactionAccepted($transaction->id));
+
         return back();
     }
 
@@ -70,6 +83,8 @@ class TransactionController extends Controller
         $transaction->update([
             'status_id' => TransactionStatus::DECLINED
         ]);
+
+        event(new TransactionDeclined($transaction->id));
 
         return back();
     }
@@ -95,12 +110,16 @@ class TransactionController extends Controller
 
         $comment->save();
 
+        event(new CommentCreated($comment));
+
         $attributes = [
             'status_id' => TransactionStatus::COMPLETED,
             ($transaction->isBuyer() ? 'buyer_comment' : 'seller_comment') => true
         ];
 
         $transaction->update($attributes);
+
+        event(new TransactionCompleted($transaction->id));
 
         return back();
     }

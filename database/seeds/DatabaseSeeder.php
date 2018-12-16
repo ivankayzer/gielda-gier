@@ -16,10 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CitiesSeeder::class);
-
-        factory(Game::class, 50)->create();
-
         factory(User::class, 10)->create()->each(function ($user) {
             /** @var $user User */
             $user->profile()->save(factory(Profile::class)->make());

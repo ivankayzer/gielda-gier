@@ -78,8 +78,10 @@
             <div class="col-xl-4 col-lg-4">
                 <div class="sidebar-container">
 
+                    @if($offer->sellable || $offer->tradeable)
                     <a href=".buy-dialog" class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
                                 class="icon-material-outline-arrow-right-alt"></i></a>
+                    @endif
 
                     <ul class="features margin-bottom-35">
                         <li><strong>@lang('offers.payment')</strong></li>

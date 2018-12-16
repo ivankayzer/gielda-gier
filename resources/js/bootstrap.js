@@ -8,8 +8,6 @@ window.Popper = require('popper.js').default;
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
-
     require('bootstrap');
 } catch (e) {
 }
@@ -40,9 +38,18 @@ if (token) {
 
 import Echo from "laravel-echo"
 
+window.Pusher = require('pusher-js');
+
+/* Socket.io
 window.io = require('socket.io-client');
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     host: window.location.hostname + ':6001',
+});
+*/
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '1661904c08d9f0bdf237'
 });

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Chat;
 use App\ChatMessage;
 use App\ChatRoom;
-use App\Events\ChatMessageSent;
+use App\Events\Chat\ChatMessageSent;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller

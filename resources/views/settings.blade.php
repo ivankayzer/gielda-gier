@@ -100,8 +100,7 @@
                                                     <div class="col-xl-4">
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
-                                                            <select class="selectpicker with-border"
-                                                                    data-live-search="true"
+                                                            <select class=""
                                                                     name="city"
                                                                     title="@lang('settings.select_city')">
                                                                 @foreach($cities as $slug => $city)
