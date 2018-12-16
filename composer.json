@@ -21,7 +21,8 @@
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-backup": "^5.11",
         "symfony/property-access": "^4.2",
-        "symfony/serializer": "^4.2"
+        "symfony/serializer": "^4.2",
+        "tcg/voyager": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
