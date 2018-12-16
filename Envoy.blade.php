@@ -35,7 +35,7 @@ git clean -df
 composer install --no-interaction --prefer-dist --ignore-platform-reqs --no-dev
 npm install --only=prod
 
-php artisan migrate
+php artisan migrate --force
 
 php artisan cache:clear
 php artisan view:clear
