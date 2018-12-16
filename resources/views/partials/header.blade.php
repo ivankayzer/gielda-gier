@@ -1,8 +1,4 @@
-<!-- Header Container
-================================================== -->
 <header id="header-container">
-
-    <!-- Header -->
     <div id="header">
         <div class="container">
             <div class="left-side">
@@ -39,7 +35,7 @@
                         <nav id="navigation">
                             <ul id="responsive">
                                 <li><a href="{{ route('login') }}"
-                                       @if(request()->is('login')) class="current" @endif>@lang('auth.login')</a></li>
+                                       @if(request()->is('login')) class="current" @endif>@lang('common.do_login')</a></li>
                                 <li><a href="{{ route('register') }}"
                                        @if(request()->is('register')) class="current" @endif>@lang('auth.register')</a>
                                 </li>

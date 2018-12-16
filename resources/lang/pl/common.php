@@ -52,5 +52,6 @@ return [
     'all_messages' => 'Wszystkie wiadomości',
     'address' => 'Adres',
     'bought' => 'Kupił',
-    'save' => 'Zapisz'
+    'save' => 'Zapisz',
+    'username' => 'Imię użytkownika'
 ];

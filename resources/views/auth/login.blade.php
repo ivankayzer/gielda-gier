@@ -1,21 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Titlebar
-================================================== -->
     <div id="titlebar" class="gradient">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Log In</h2>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <!-- Page Content
-    ================================================== -->
     <div class="container">
         <div class="row">
             <div class="col-xl-5 offset-xl-3">
@@ -24,40 +19,31 @@
                 <div class="login-register-page">
                     <!-- Welcome Text -->
                     <div class="welcome-text">
-                        <h3>We're glad to see you again!</h3>
-                        <span>Don't have an account? <a href="{{ route('register') }}">Sign Up!</a></span>
+                        <h3>@lang('common.glad_to_see_you_again')</h3>
+                        <span>@lang('common.no_account') <a href="{{ route('register') }}">@lang('common.do_register')
+                                !</a></span>
                     </div>
-
                     <!-- Form -->
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="post" action="{{ route('login') }}" id="login-form">
                         @csrf
+                        @include('partials.errors')
                         <div class="input-with-icon-left">
                             <i class="icon-material-baseline-mail-outline"></i>
-                            <input type="text" class="input-text with-border" name="email" id="email"
-                                   placeholder="Email Address" required/>
+                            <input type="text" class="input-text with-border" name="email" id="email" value="{{ old('email') }}"
+                                   placeholder="@lang('common.email')" required/>
                         </div>
 
                         <div class="input-with-icon-left">
                             <i class="icon-material-outline-lock"></i>
                             <input type="password" class="input-text with-border" name="password" id="password"
-                                   placeholder="Password" required/>
+                                   placeholder="@lang('common.password')" required/>
                         </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
+                        <a href="#" class="forgot-password">@lang('common.forget_pass')</a>
 
-                        <button class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit">
-                            Log In <i class="icon-material-outline-arrow-right-alt"></i></button>
+                        <button class="margin-top-20 button full-width button-sliding-icon ripple-effect" type="submit"
+                                form="login-form">@lang('common.do_login') <i
+                                    class="icon-material-outline-arrow-right-alt"></i></button>
                     </form>
-
-                    <!-- Social Login -->
-                    <div class="social-login-separator"><span>or</span></div>
-                    <div class="social-login-buttons">
-                        <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via
-                            Facebook
-                        </button>
-                        <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via
-                            Google+
-                        </button>
-                    </div>
                 </div>
 
             </div>
