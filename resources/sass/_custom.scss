@@ -396,7 +396,6 @@ mark.color {
 
 .full-container ~ .select2.select2-container, .full-container ~ .select2.select2-container .select2-selection__rendered {
   width: 100% !important;
-  height: 100% !important;
 }
 
 .select2 {
@@ -472,7 +471,7 @@ mark.color {
 }
 
 .intro-full-page {
-  min-height: calc(100vh - 257px);
+  min-height: calc(100vh - 160px);
 }
 
 .intro-banner.bg-left {
@@ -483,4 +482,43 @@ mark.color {
   .background-image-container {
     left: 0 !important;
   }
+}
+
+#loader {
+  display: none;
+  position: fixed;
+  background: white;
+  z-index: 1000000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+#loader img {
+  width: 120px;
+  animation: scale infinite alternate;
+  animation-duration: .7s;
+}
+
+@keyframes scale {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+.turbolinks-progress-bar {
+  z-index: 10000010;
+}
+
+select.select2 {
+  display: none;
+}
+
+.select2-container--open {
+  z-index: 9999999999 !important;
+}
+
+.submit-field {
+  min-height: 50px;
 }

@@ -12,6 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/js')
+    .react('resources/js/turbolinks.js', 'public/js')
     .copy('resources/js/vendor', 'public/js/vendor')
     .copy('resources/images', 'public/images')
     .copy('resources/images/favicon.ico', 'public/')

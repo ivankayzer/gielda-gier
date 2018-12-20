@@ -16,8 +16,6 @@ require('./bootstrap');
 require('./components/Chat');
 
 window.gallery = require('gallery');
-// var Turbolinks = require("turbolinks");
-// Turbolinks.start();
 
 var client = algoliasearch('YULENP2XSS', '04de3e60020d1f86ef283879bff67b39');
 window.algoliaGames = client.initIndex('games');

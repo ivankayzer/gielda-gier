@@ -53,21 +53,17 @@
                         </div>
 
                         <div class="submit-field">
-                            <select data-size="7"
-                                    name="game_id"
-                                    required
-                                    title="@lang('offers.select_game')">
+                            <select class="select2 full-container games" name="game_id"
+                                    title="@lang('common.game')">
+                                <option value="0">Wybierz grę</option>
                             </select>
                         </div>
 
                         <div class="submit-field">
-                            <select class="selectpicker with-border"
-                                    data-size="{{ count($platforms) }}"
-                                    name="platform"
-                                    required
-                                    title="@lang('offers.select_platform')">
-                                @foreach($platforms as $key => $platform)
-                                    <option value="{{ $key }}">{{ $platform }}</option>
+                            <select class="select2 full-container" name="platform" title="@lang('common.all_platforms')">
+                                @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
+                                    <option @if(in_array($slug, request()->get('platform', []))) selected
+                                            @endif value="{{ $slug }}">{{ $platform }}</option>
                                 @endforeach
                             </select>
                         </div>

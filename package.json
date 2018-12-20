@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "axios": "^0.18",
+        "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.23.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
@@ -22,10 +23,12 @@
         "react-dom": "^16.2.0"
     },
     "dependencies": {
+        "babel-preset-stage-2": "^6.24.1",
         "gallery": "^1.0.0",
         "laravel-echo": "^1.4.1",
         "pusher-js": "^4.3.1",
         "socket.io-client": "^2.1.1",
-        "turbolinks": "^5.2.0"
+        "turbolinks": "^5.2.0",
+        "turbolinks-animate": "^3.2.0"
     }
 }

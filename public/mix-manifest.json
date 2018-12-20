@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/style.css": "/css/style.css",
+    "/js/turbolinks.js": "/js/turbolinks.js",
     "/favicon.ico": "/favicon.ico"
 }
