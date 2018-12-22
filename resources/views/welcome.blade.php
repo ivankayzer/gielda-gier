@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Strona główna')
+
 @section('content')
     <!-- Intro Banner
 ================================================== -->

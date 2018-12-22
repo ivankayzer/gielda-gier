@@ -8,6 +8,11 @@ class Profile extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'notify_new_offer' => 'boolean',
+        'notify_new_transaction' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

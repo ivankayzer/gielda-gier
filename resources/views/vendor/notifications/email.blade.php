@@ -6,13 +6,13 @@
 @if ($level == 'error')
 # @lang('Whoops!')
 @else
-# @lang('Hello!')
+# @lang('Cześć!')
 @endif
 @endif
 
 {{-- Intro Lines --}}
 @foreach ($introLines as $line)
-{{ $line }}
+{!! $line !!}
 
 @endforeach
 
@@ -45,18 +45,4 @@
 @else
 @lang('Pozdrowienia'),<br>{{ config('app.name') }}
 @endif
-
-{{-- Subcopy --}}
-@isset($actionText)
-@component('mail::subcopy')
-@lang(
-    "Jeśli masz problem z kliknięciem przycisku \":actionText\" skopiuj i wklej poniższy adres URL\n".
-    'do przeglądarki internetowej: [:actionURL](:actionURL)',
-    [
-        'actionText' => $actionText,
-        'actionUrl' => $actionUrl
-    ]
-)
-@endcomponent
-@endisset
 @endcomponent

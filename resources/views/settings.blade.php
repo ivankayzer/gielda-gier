@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Ustawienia')
+
 @section('content')
     <!-- Dashboard Container -->
     <div class="dashboard-container">
@@ -136,6 +138,43 @@
                                                             <h5>@lang('settings.company_name')</h5>
                                                             <input type="text" class="with-border" name="company_name"
                                                                    value="{{ $profile->company_name }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12" id="notifications">
+                                <div class="dashboard-box">
+                                    <!-- Headline -->
+                                    <div class="headline">
+                                        <h3>
+                                            <i class="icon-material-outline-email"></i> @lang('settings.notifications')
+                                        </h3>
+                                    </div>
+                                    <div class="content">
+                                        <ul class="fields-ul">
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" name="notifications_new_offer" value="1" @if($profile->notify_new_offer) checked @endif
+                                                                   id="notifications_new_offer">
+                                                            <label for="notifications_new_offer"><span
+                                                                        class="checkbox-icon"></span> @lang('settings.notifications_new_offer')
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" name="notifications_new_transaction" value="1" @if($profile->notify_new_transaction) checked @endif
+                                                                   id="notifications_new_transaction">
+                                                            <label for="notifications_new_transaction"><span
+                                                                        class="checkbox-icon"></span> @lang('settings.notifications_new_transaction')
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>

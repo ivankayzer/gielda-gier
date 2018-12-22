@@ -103,4 +103,9 @@ class Transaction extends Model
             TransactionStatus::DECLINED
         ]);
     }
+
+    public function game()
+    {
+        return Game::where('igdb_id', data_get($this->seller_value, '0.value'))->first();
+    }
 }

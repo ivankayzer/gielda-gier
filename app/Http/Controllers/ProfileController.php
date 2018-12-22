@@ -31,8 +31,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -55,7 +54,12 @@ class ProfileController extends Controller
             'description',
             'bank_nr',
             'company_name',
-        ]))->save();
+        ]));
+
+        $profile->notify_new_offer = (bool) $request->get('notifications_new_offer', false);
+        $profile->notify_new_transaction = (bool) $request->get('notifications_new_transaction', false);
+
+        $profile->save();
 
         $newData = $profile->toArray();
 
@@ -66,6 +70,17 @@ class ProfileController extends Controller
         ]);
 
         return back();
+    }
+
+    public function me(Request $request)
+    {
+        $user = $request->user();
+
+        return view('users.profile', [
+            'user' => $user,
+            'reviews' => $user->reviews()->paginate(5),
+            'offers' => $user->offers()->active()->get()
+        ]);
     }
 
     public function show(User $user)

@@ -27,11 +27,13 @@ Route::middleware(['guest'])->group(function () {
     Route::post('haslo/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 });
 
-Route::get('/oferty', 'OfferController@index')->name('offers.index');
-Route::get('/oferty', 'OfferController@index')->name('offers.index');
-Route::get('/oferty/dodaj', 'OfferController@create')->name('offers.create');
-Route::post('/oferty/dodaj', 'OfferController@store')->name('offers.store');
-Route::get('/oferty/oferta/{offer},{slug}', 'OfferController@show')->name('offers.show');
+Route::get('/moje-ogloszenia', 'OfferController@index')->name('my-offers.index');
+
+Route::get('/ogloszenia', 'OfferController@index')->name('offers.index');
+Route::get('/ogloszenia', 'OfferController@index')->name('offers.index');
+Route::get('/ogloszenia/dodaj', 'OfferController@create')->name('offers.create');
+Route::post('/ogloszenia/dodaj', 'OfferController@store')->name('offers.store');
+Route::get('/ogloszenia/ogloszenie/{offer},{slug}', 'OfferController@show')->name('offers.show');
 
 Route::post('/szukaj/gry', 'AjaxController@game')->name('ajax.game');
 Route::post('/szukaj/platformy', 'AjaxController@platforms')->name('ajax.platforms');
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/uzytkownik/{user}', 'ProfileController@show')->name('profile.show');
+Route::get('/moj-profil', 'ProfileController@me')->name('profile.me');
+
 Route::get('/transakcja/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
 Route::get('/czat', 'ChatController@index')->name('chat.index');

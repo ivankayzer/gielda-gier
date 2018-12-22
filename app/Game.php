@@ -31,6 +31,11 @@ class Game extends Model
         return sprintf("https://images.igdb.com/igdb/image/upload/t_cover_big/%s.jpg", $this->attributes['cover']);
     }
 
+    public function getBackgroundAttribute()
+    {
+        return sprintf("https://images.igdb.com/igdb/image/upload/t_screenshot_huge/%s.jpg", $this->attributes['background']);
+    }
+
     public function thumb()
     {
         return sprintf("https://images.igdb.com/igdb/image/upload/t_thumb/%s.jpg", $this->cover);

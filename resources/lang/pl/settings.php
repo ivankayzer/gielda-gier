@@ -20,4 +20,7 @@ return [
     'new_pass' => 'Nowe hasło',
     'new_pass_confirm' => 'Potwierdzenie nowego hasła',
     'change_avatar' => 'Zmień awatar',
+    'notifications' => 'Powiadomienia mailowe',
+    'notifications_new_offer' => 'Powiadom mnie gdy dostaję nową ofertę',
+    'notifications_new_transaction' => 'Powiadom mnie gdy sprzedaję grę',
 ];

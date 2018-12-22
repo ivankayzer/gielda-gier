@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Notifications\NewTradeOffer;
+use App\Notifications\NewTransaction;
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Krossroad\UnionPaginator\UnionPaginatorTrait;
 
 class User extends \TCG\Voyager\Models\User
@@ -96,5 +98,28 @@ class User extends \TCG\Voyager\Models\User
     public function notifications()
     {
         return $this->hasMany(Notification::class, 'receiver_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
+
+    public function sendNewOfferNotification($offer)
+    {
+        if (!$this->profile->notify_new_offer) {
+            return;
+        }
+
+        $this->notify(new NewTradeOffer($offer));
+    }
+
+    public function sendNewTransactionNotification($transaction)
+    {
+        if (!$this->profile->notify_new_transaction) {
+            return;
+        }
+
+        $this->notify(new NewTransaction($transaction));
     }
 }

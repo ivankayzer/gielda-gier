@@ -24,7 +24,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Giełda gier') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'Giełda gier') }}</title>
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">

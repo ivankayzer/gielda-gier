@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Powiadomenia')
+
 @section('content')
     <!-- Dashboard Container -->
     <div class="dashboard-container gray">

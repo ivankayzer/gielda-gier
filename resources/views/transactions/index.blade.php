@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Transakcje')
+
 @section('content')
     <div class="dashboard-container">
         <div class="dashboard-content-container" data-simplebar>

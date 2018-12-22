@@ -55,7 +55,7 @@
         <p class="margin-top-5"><i class="icon-material-outline-access-time"></i>
             {{ $offer->publish_at->diffForHumans() }}</p>
 
-        @if($offer->sellable || $offer->tradeable)
+        @if($offer->actionable())
             <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
                class="button button-sliding-icon ripple-effect">{{ $offer->buyText() }}
                 <i class="icon-material-outline-arrow-right-alt"></i></a>

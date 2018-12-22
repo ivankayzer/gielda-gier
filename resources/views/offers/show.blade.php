@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page', 'offer-show')
+@section('title', $offer->game->title)
 
 @section('content')
     <div class="single-page-header" data-background-image="{{ $offer->game->background }}">
@@ -81,7 +81,7 @@
                 <div class="sidebar-container">
 
                     @auth
-                        @if($offer->sellable || $offer->tradeable)
+                        @if($offer->actionable())
                             <a href=".buy-dialog"
                                class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
                                         class="icon-material-outline-arrow-right-alt"></i></a>

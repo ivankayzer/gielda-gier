@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\Transactions\TransactionCreated;
 use App\Notification;
+use App\User;
 
 class NotifyAboutNewTradeOffer
 {
@@ -11,7 +12,11 @@ class NotifyAboutNewTradeOffer
     {
         $transaction = $event->transaction;
 
+        /** @var User $receiver */
+        $receiver = $transaction->otherPerson;
+
         if (!$transaction->isTrade()) {
+            $receiver->sendNewTransactionNotification($transaction);
             return;
         }
 
@@ -20,8 +25,10 @@ class NotifyAboutNewTradeOffer
             'text' => __('notifications.new_trade_offer', [
                 'username' => auth()->user()->name,
             ]),
-            'receiver_id' => $transaction->otherPerson->id,
+            'receiver_id' => $receiver->id,
             'created_by' => auth()->user()->id
         ])->save();
+
+        $receiver->sendNewOfferNotification($transaction);
     }
 }

@@ -164,4 +164,9 @@ class Offer extends Model
             ->limit($limit)
             ->get();
     }
+
+    public function actionable()
+    {
+        return ($this->sellable || $this->tradeable) && !$this->sold && auth()->check() && $this->seller->id !== auth()->user()->id;
+    }
 }

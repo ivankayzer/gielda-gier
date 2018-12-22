@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Czat')
+
 @section('content')
     <!-- Dashboard Container -->
     <div class="container margin-top-30">

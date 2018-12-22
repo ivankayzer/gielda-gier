@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Ogłoszenia')
+
 @section('content')
     <!-- Spacer -->
 
@@ -22,7 +24,7 @@
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.city')</h3>
-                                <select class="select2 cities" name="city"
+                                <select class="select2 full-container cities" name="city"
                                         title="@lang('settings.select_city')">
                                         <option value="0">Wybierz miasto</option>
                                 </select>
@@ -30,7 +32,7 @@
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.platform')</h3>
-                                <select class="select2" multiple name="platform[]" title="@lang('common.all_platforms')">
+                                <select class="select2 full-container" multiple name="platform[]" title="@lang('common.all_platforms')">
                                     @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
                                         <option @if(in_array($slug, request()->get('platform', []))) selected
                                                 @endif value="{{ $slug }}">{{ $platform }}</option>
@@ -40,7 +42,7 @@
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.game')</h3>
-                                <select class="select2 games" name="game_id"
+                                <select class="select2 full-container games" name="game_id"
                                         title="@lang('common.game')">
                                     <option value="0">Wybierz grę</option>
                                 </select>

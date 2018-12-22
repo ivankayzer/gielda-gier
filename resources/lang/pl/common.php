@@ -55,5 +55,7 @@ return [
     'save' => 'Zapisz',
     'username' => 'Imię użytkownika',
     'reset_password' => 'Zresetuj hasło',
-    'Hello' => 'Cześć!'
+    'Hello' => 'Cześć!',
+    'my-profile' => 'Mój profil',
+    'my-offers' => 'Moje ogłoszenia'
 ];

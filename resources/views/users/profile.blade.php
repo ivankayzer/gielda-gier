@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $user->name)
+
 @section('content')
     <div class="single-page-header freelancer-header">
         <div class="container">
@@ -11,7 +13,13 @@
                                                                              alt="">
                             </div>
                             <div class="header-details">
-                                <h3>{{ $user->profile->getFullName() }} <span>{{ $user->profile->getCity() }}</span>
+                                <h3>
+                                    @if(auth()->check() && $user->id === auth()->id())
+                                    {{ $user->profile->getFullName() }}
+                                    @else
+                                        {{ $user->name }}
+                                    @endif
+                                    <span>{{ $user->profile->getCity() }}</span>
                                 </h3>
                             </div>
                         </div>
@@ -60,6 +68,7 @@
                         </div>
                     </div>
 
+                    @if(auth()->check() && $user->id !== auth()->id())
                     <!-- Sidebar Widget -->
                     <div class="sidebar-widget">
                         <h3>@lang('offers.share')</h3>
@@ -90,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-
+                    @endif
                 </div>
             </div>
             <div class="col-xl-12 col-lg-12 content-right-offset">

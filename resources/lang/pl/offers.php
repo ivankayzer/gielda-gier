@@ -34,7 +34,7 @@ return [
     'comments_positive' => 'Opinie pozytywne',
     'comments_negative' => 'Opinie negatywne',
     'share' => 'Udostępnij',
-    'similar' => 'Podobne oferty',
+    'similar' => 'Podobne ogłoszenia',
     'you_are_buying' => 'Kupujesz',
     'for' => 'za',
     'on' => 'na',
