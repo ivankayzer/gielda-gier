@@ -1,5 +1,25 @@
-var Turbolinks = require('turbolinks');
-Turbolinks.start();
+var Barba = require('barba.js');
+
+$(document).ready(function () {
+    Barba.Pjax.start();
+});
+
+var OfferShow = Barba.BaseView.extend({
+    namespace: 'offer-show',
+    onEnter: function() {
+        $('.gallery').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        });
+    },
+    onEnterCompleted: function() {},
+    onLeave: function() {},
+    onLeaveCompleted: function() {
+    }
+});
+
+OfferShow.init();
 
 document.addEventListener('turbolinks:request-start', function () {
     var wrapper = document.querySelector('#wrapper');

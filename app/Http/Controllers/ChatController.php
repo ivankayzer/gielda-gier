@@ -44,11 +44,6 @@ class ChatController extends Controller
         ]);
     }
 
-    public function show(Request $request)
-    {
-
-    }
-
     public function message(Request $request)
     {
         $room = ChatRoom::find($request->get('room'));
@@ -61,5 +56,13 @@ class ChatController extends Controller
         ])->save();
 
         broadcast(new ChatMessageSent($room, $request->get('message'), $request->user()))->toOthers();
+    }
+
+    public function read(Request $request)
+    {
+        $room = ChatRoom::find($request->get('room'));
+
+        /** @var ChatRoom $room */
+        $room->markMessagesReadForUser($request->get('user_id'));
     }
 }

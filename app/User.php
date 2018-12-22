@@ -90,7 +90,7 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->chatRooms->map(function ($room) {
             return $room->messages()->orderBy('created_at', 'desc')->first();
-        });
+        })->sortByDesc('created_at');
     }
 
     public function notifications()

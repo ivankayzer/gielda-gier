@@ -398,6 +398,10 @@ mark.color {
   width: 100% !important;
 }
 
+.full-container.full-height ~ .select2.select2-container, .full-container.full-height ~ .select2.select2-container .select2-selection__rendered {
+  height: 100% !important;
+}
+
 .select2 {
   height: 50px;
 }
@@ -485,7 +489,7 @@ mark.color {
 }
 
 #loader {
-  display: none;
+  display: flex;
   position: fixed;
   background: white;
   z-index: 1000000;

@@ -17,4 +17,9 @@ class ChatMessage extends Model
     {
         return $this->belongsTo(ChatRoom::class);
     }
+
+    public function scopeUnread($query)
+    {
+        return $query->where('is_read', false);
+    }
 }

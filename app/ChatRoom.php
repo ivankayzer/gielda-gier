@@ -27,4 +27,15 @@ class ChatRoom extends Model
     {
         return $this->messages()->orderBy('created_at', 'desc')->first();
     }
+
+    public function markMessagesReadForUser($userId)
+    {
+        $notRead = $this->messages()->unread()->get()->filter(function ($message) use ($userId) {
+            return $message->sender_id != $userId;
+        })->pluck('id');
+
+        ChatMessage::whereIn('id', $notRead)->update([
+            'is_read' => true
+        ]);
+    }
 }

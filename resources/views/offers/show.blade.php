@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page', 'offer-show')
+
 @section('content')
     <div class="single-page-header" data-background-image="{{ $offer->game->background }}">
         <div class="container">
@@ -80,14 +82,15 @@
 
                     @auth
                         @if($offer->sellable || $offer->tradeable)
-                        <a href=".buy-dialog" data-turbolinks="false" class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
-                                    class="icon-material-outline-arrow-right-alt"></i></a>
+                            <a href=".buy-dialog"
+                               class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
+                                        class="icon-material-outline-arrow-right-alt"></i></a>
                         @endif
                     @endauth
 
                     @guest
-                            <a href="{{ route('login') }}" class="apply-now-button">@lang('common.do_login') <i
-                                        class="icon-material-outline-arrow-right-alt"></i></a>
+                        <a href="{{ route('login') }}" class="apply-now-button">@lang('common.do_login') <i
+                                    class="icon-material-outline-arrow-right-alt"></i></a>
                     @endguest
                     <ul class="features margin-bottom-35">
                         <li><strong>@lang('offers.payment')</strong></li>

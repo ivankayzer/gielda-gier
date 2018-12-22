@@ -23,7 +23,7 @@
                             <div class="intro-search-field with-autocomplete">
                                 <label for="autocomplete-input"
                                        class="field-title ripple-effect">@lang('welcome.where')</label>
-                                <select class="select2 no-border full-container cities" name="city"
+                                <select class="select2 no-border full-container full-height cities" name="city"
                                         title="@lang('settings.select_city')">
                                     <option value="0">@lang('welcome.pick_city')</option>
                                 </select>
@@ -33,7 +33,7 @@
                             <div class="intro-search-field">
                                 <label for="intro-keywords"
                                        class="field-title ripple-effect">@lang('welcome.game_title')</label>
-                                <select class="select2 no-border full-container games" name="game_id"
+                                <select class="select2 no-border full-container full-height games" name="game_id"
                                         title="@lang('welcome.game_title_placeholder')">
                                     <option value="0">Wybierz grę</option>
                                 </select>

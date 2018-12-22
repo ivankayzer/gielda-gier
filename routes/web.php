@@ -46,6 +46,7 @@ Route::get('/transakcja/{transaction}/info', 'TransactionController@showInfo')->
 
 Route::get('/czat', 'ChatController@index')->name('chat.index');
 Route::post('/czat', 'ChatController@message')->name('chat.message');
+Route::post('/czat/przeczytaj', 'ChatController@read')->name('chat.read');
 
 Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
 

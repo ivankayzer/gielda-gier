@@ -86,6 +86,7 @@ export default class Chat extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.revertMessage = this.revertMessage.bind(this);
         this.scroll = this.scroll.bind(this);
+        this.markAllMessagesAsRead = this.markAllMessagesAsRead.bind(this);
     }
 
     scroll() {
@@ -126,10 +127,11 @@ export default class Chat extends Component {
             id: Math.random().toString(36).substr(2, 9)
         };
 
-        axios.post('chat', {
+        axios.post('czat', {
             room: this.state.activeRoom,
             message: this.state.messageText,
             user_id: this.state.id,
+            is_read: false,
         }).catch(() => this.revertMessage(message));
 
         const rooms = this.state.rooms.map(room => {
@@ -180,8 +182,12 @@ export default class Chat extends Component {
     listenForBroadcast(id) {
         let typingInterval = setTimeout(() => this.setState({ isTyping: false }), 3000);
 
-        Echo.join('room.' + id).listen('ChatMessageSent', (e) => {
+        this.markAllMessagesAsRead(id);
+
+        Echo.join('room.' + id).listen('Chat.ChatMessageSent', (e) => {
             clearInterval(typingInterval);
+
+            this.markAllMessagesAsRead(id);
 
             const rooms = this.state.rooms.map(room => {
                 if (room.id === id) {
@@ -205,6 +211,13 @@ export default class Chat extends Component {
                 isTyping: true
             }, () => { typingInterval = setTimeout(() => this.setState({ isTyping: false }), 3000) })
         });
+    }
+
+    markAllMessagesAsRead(id) {
+        axios.post('czat/przeczytaj', {
+            room: id,
+            user_id: this.state.id
+        })
     }
 }
 
