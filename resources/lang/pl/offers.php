@@ -15,6 +15,7 @@ return [
     'select_language' => 'Wybierz język',
     'price' => 'Cena',
     'is_published' => 'Aktywne',
+    'not_published' => 'Aktywne',
     'publication' => 'Publikacja',
     'publish_at' => 'Data publikacji',
     'sellable' => 'Na sprzedaż',

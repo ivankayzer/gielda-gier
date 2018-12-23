@@ -73,6 +73,10 @@ class TransactionController extends Controller
             'status_id' => TransactionStatus::IN_PROGRESS
         ]);
 
+        $transaction->offer->update([
+            'sold' => true
+        ]);
+
         event(new TransactionAccepted($transaction->id));
 
         return back();

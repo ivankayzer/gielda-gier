@@ -35,6 +35,15 @@ class OfferController extends Controller
         ]);
     }
 
+    public function my(Request $request)
+    {
+        $offers = $request->user()->offers()->where('sold', false)->orderBy('updated_at', 'desc')->paginate(10);
+
+        return view('offers.my', [
+            'offers' => $offers,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

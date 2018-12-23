@@ -7,9 +7,6 @@ Route::get('/uzytkownik/{user}', 'ProfileController@show')->name('profile.show')
 Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
 
 Route::get('/ogloszenia', 'OfferController@index')->name('offers.index');
-Route::get('/ogloszenia', 'OfferController@index')->name('offers.index');
-Route::get('/ogloszenia/dodaj', 'OfferController@create')->name('offers.create');
-Route::post('/ogloszenia/dodaj', 'OfferController@store')->name('offers.store');
 Route::get('/ogloszenia/ogloszenie/{offer},{slug}', 'OfferController@show')->name('offers.show');
 
 Route::post('/szukaj/gry', 'AjaxController@game')->name('ajax.game');
@@ -31,7 +28,6 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/ustawienia', 'ProfileController@index')->name('settings.index');
     Route::patch('/ustawienia', 'ProfileController@update')->name('settings.update');
-    Route::get('/moje-ogloszenia', 'OfferController@index')->name('my-offers.index');
     Route::get('/powiadomienia', 'HomeController@dashboard')->name('dashboard');
     Route::get('/transakcje', 'TransactionController@index')->name('transactions.index');
     Route::post('/transakcje', 'TransactionController@create')->name('transactions.create');
@@ -43,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/czat', 'ChatController@index')->name('chat.index');
     Route::post('/czat', 'ChatController@message')->name('chat.message');
     Route::post('/czat/przeczytaj', 'ChatController@read')->name('chat.read');
+    Route::get('/moje-ogloszenia', 'OfferController@my')->name('my-offers.index');
+    Route::get('/moje-ogloszenia/dodaj', 'OfferController@create')->name('offers.create');
+    Route::post('/moje-ogloszenia/dodaj', 'OfferController@store')->name('offers.store');
 });
 
 Route::middleware(['disable_production'])->group(function () {

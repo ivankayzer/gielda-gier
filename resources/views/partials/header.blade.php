@@ -8,18 +8,18 @@
                 @auth
                     <nav id="navigation">
                         <ul id="responsive">
-                            <li class="margin-right-15">
+                            <li>
                                 <a href="{{ route('offers.index') }}"
                                    @if(request()->is('ogloszenia') || request()->is('ogloszenia/*')) class="current" @endif>
                                     @lang('offers.offers')
                                 </a>
+                            </li>
+                            <li class="margin-right-15"><a href="{{ route('my-offers.index') }}"
+                                   @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
                                 <a href="{{ route('offers.create') }}" class="add-offers"
                                    style="padding: 0 !important;">
                                     <i class="icon-feather-plus" style="position: absolute;"></i>
                                 </a>
-                            </li>
-                            <li><a href="{{ route('my-offers.index') }}"
-                                   @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
                             </li>
                             <li><a href="{{ route('transactions.index') }}"
                                    @if(request()->is('transakcje') || request()->is('transakcje/*')) class="current" @endif>@lang('common.transactions')</a>
