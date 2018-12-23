@@ -15,4 +15,9 @@ class City extends Model
     {
         return 'cities';
     }
+
+    public function getScoutKey()
+    {
+        return $this->slug;
+    }
 }
