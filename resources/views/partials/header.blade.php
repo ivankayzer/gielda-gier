@@ -8,9 +8,6 @@
                 @auth
                     <nav id="navigation">
                         <ul id="responsive">
-                            <li><a href="{{ route('welcome') }}"
-                                   @if(request()->is('/')) class="current" @endif>@lang('common.home')</a></li>
-                            {{--<li><a href="/dashboard">Dashboard</a></li>--}}
                             <li class="margin-right-15">
                                 <a href="{{ route('offers.index') }}"
                                    @if(request()->is('ogloszenia') || request()->is('ogloszenia/*')) class="current" @endif>
@@ -30,6 +27,19 @@
                         </ul>
                     </nav>
                 @endauth
+
+                @guest
+                    <nav id="navigation">
+                        <ul id="responsive">
+                            <li class="margin-right-15">
+                                <a href="{{ route('offers.index') }}"
+                                   @if(request()->is('ogloszenia') || request()->is('ogloszenia/*')) class="current" @endif>
+                                    @lang('offers.offers')
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                @endguest
                 <div class="clearfix"></div>
             </div>
             <div class="right-side">
@@ -38,9 +48,10 @@
                         <nav id="navigation">
                             <ul id="responsive">
                                 <li><a href="{{ route('login') }}"
-                                       @if(request()->is('login')) class="current" @endif>@lang('common.do_login')</a></li>
+                                       @if(request()->is('zaloguj-sie')) class="current" @endif>@lang('common.do_login')</a>
+                                </li>
                                 <li><a href="{{ route('register') }}"
-                                       @if(request()->is('register')) class="current" @endif>@lang('auth.register')</a>
+                                       @if(request()->is('zaloz-konto')) class="current" @endif>@lang('auth.register')</a>
                                 </li>
                             </ul>
                         </nav>
