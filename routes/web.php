@@ -42,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/moje-ogloszenia', 'OfferController@my')->name('my-offers.index');
     Route::get('/moje-ogloszenia/dodaj', 'OfferController@create')->name('offers.create');
     Route::post('/moje-ogloszenia/dodaj', 'OfferController@store')->name('offers.store');
+    Route::get('/moje-ogloszenia/{offer}/edytuj', 'OfferController@edit')->name('offers.edit');
+    Route::post('/moje-ogloszenia/{offer}/edytuj', 'OfferController@update')->name('offers.update');
+    Route::get('/moje-ogloszenia/{offer}/usun', 'OfferController@delete')->name('offers.delete');
 });
 
 Route::middleware(['disable_production'])->group(function () {

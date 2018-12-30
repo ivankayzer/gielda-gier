@@ -24,8 +24,8 @@
 
                 <div class="d-flex align-items-end margin-top-25 dashboard-box dashboard-box-list transparent">
                     <div class="buttons-to-right always-visible d-flex align-items-end">
-                        <a href="#" class="button gray ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
-                        <a href="#" class="button gray ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                        <a href="{{ route('offers.edit', ['offer' => $offer->id]) }}" class="button gray ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
+                        <a href="{{ route('offers.delete', ['offer' => $offer->id]) }}" onclick="return confirm('Na pewno?')" class="button gray ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
                     </div>
                 </div>
             </div>

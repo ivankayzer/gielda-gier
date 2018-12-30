@@ -61,6 +61,24 @@ class OfferController extends Controller
     }
 
     /**
+     * Edit the form for creating a new resource.
+     *
+     * @param Offer $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Offer $offer)
+    {
+        $platforms = Platform::availablePlatforms();
+        $languages = Language::availableLanguages();
+
+        return view('offers.edit', [
+            'model' => $offer,
+            'platforms' => $platforms,
+            'languages' => $languages,
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -117,18 +135,7 @@ class OfferController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Offer $offer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Offer $offer)
-    {
-        //
-    }
-
-    /**
+      /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -146,8 +153,10 @@ class OfferController extends Controller
      * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Offer $offer)
+    public function delete(Offer $offer)
     {
-        //
+        $offer->delete();
+
+        return back();
     }
 }

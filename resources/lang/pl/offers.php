@@ -6,6 +6,7 @@ return [
     'buy' => 'Kup',
     'trade' => 'Wymień się',
     'add_offer' => 'Dodaj ogłoszenie',
+    'edit_offer' => 'Edytuj ogłoszenie',
     'comment' => 'Komentarz',
     'game' => 'Gra',
     'select_game' => 'Wybierz grę',
