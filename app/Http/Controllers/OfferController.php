@@ -144,7 +144,11 @@ class OfferController extends Controller
      */
     public function update(Request $request, Offer $offer)
     {
-        //
+        $offer->fill($request->all());
+
+        $offer->save();
+
+        return redirect()->route('my-offers.index');
     }
 
     /**
