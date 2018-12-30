@@ -34,7 +34,9 @@
                                                     <h5>@lang('offers.game')</h5>
                                                     <select data-size="7"
                                                             name="game_id"
+                                                            class="select2 mw-100 games"
                                                             title="@lang('offers.select_game')">
+                                                        <option value="0">Wybierz grę</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -42,11 +44,12 @@
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <h5>@lang('common.platform')</h5>
-                                                    <select class="selectpicker with-border"
+                                                    <select class="select2 mw-100"
                                                             data-size="{{ count($platforms) }}"
                                                             name="platform"
                                                             title="@lang('offers.select_platform')">
-                                                        @foreach($platforms as $key => $platform)
+                                                        <option value="0" selected disabled>Wybierz platformę</option>
+                                                    @foreach($platforms as $key => $platform)
                                                             <option value="{{ $key }}">{{ $platform }}</option>
                                                         @endforeach
                                                     </select>
@@ -56,12 +59,12 @@
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.language')</h5>
-                                                    <select class="selectpicker with-border" data-size="7"
+                                                    <select class="select2 mw-100" data-size="7"
                                                             name="language"
                                                             title="@lang('offers.select_language')">
-                                                        @foreach ($languages as $language)
-                                                            <option value="{{ $language['value'] }}"
-                                                                    data-content='<div class="d-flex align-items-center"><img class="flag" src="{{ $language['icon'] }}"> <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span></div>'></option>
+                                                        <option value="0" selected disabled>Wybierz język</option>
+                                                    @foreach ($languages as $language)
+                                                            <option value="{{ $language['value'] }}"><div class="d-flex align-items-center"><img class="flag" src="{{ $language['icon'] }}"> <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span></div></option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -226,46 +229,9 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Footer -->
                     <div class="dashboard-footer-spacer"></div>
-                    <!-- Footer / End -->
-
                 </div>
             </div>
         </div>
-        <!-- Dashboard Content / End -->
-
     </div>
-@endsection
-
-@section('post-scripts')
-    <script>
-        $('.selectpicker-live')
-            .selectpicker({
-                liveSearch: true
-            })
-            .ajaxSelectPicker({
-                ajax: {
-                    url: '{{ route(('ajax.game')) }}',
-                    data: function () {
-                        var csrf_token = $('meta[name="csrf-token"]').attr('content');
-                        return {
-                            q: $(this)[0].plugin.query,
-                            _token: csrf_token
-                        };
-                    }
-                },
-                locale: {
-                    currentlySelected: '@lang('common.select_currently_selected')',
-                    emptyTitle: '@lang('common.select_empty_title')',
-                    errorText: '@lang('common.select_error_text')',
-                    searchPlaceholder: '@lang('common.select_search_placeholder')',
-                    statusInitialized: '@lang('common.select_initialized')',
-                    statusNoResults: '@lang('common.select_status_no_results')',
-                    statusSearching: '@lang('common.select_status_searching')',
-                    statusTooShort: '@lang('common.select_status_too_short')',
-                },
-                preserveSelected: false
-            });
-    </script>
 @endsection

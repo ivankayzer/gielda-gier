@@ -11,8 +11,9 @@
     <!-- Page Content
     ================================================== -->
     <div class="container gray">
-        <div class="dashboard-headline margin-left-10">
+        <div class="dashboard-headline margin-left-10 d-flex justify-content-between">
             <h3>@lang('common.my-offers')</h3>
+            <a href="{{ route('offers.create') }}" class="button ripple-effect"><i class="icon-feather-plus"></i> @lang('offers.add_offer')</a>
         </div>
         @if(session()->has('message'))
             @include('partials.message', ['message' => session()->get('message')])

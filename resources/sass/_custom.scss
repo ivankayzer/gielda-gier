@@ -530,3 +530,11 @@ select.select2 {
 .transparent {
   background: transparent !important;
 }
+
+.mw-100 {
+  max-width: 100% !important;
+
+  ~ .select2 {
+    max-width: 100% !important;
+  }
+}

@@ -8,9 +8,11 @@ class Platform
     public static function availablePlatforms()
     {
         return [
-            'ps4' => 'Playstation 4',
-            'xboxone' => 'Xbox One',
-            'pc' => 'PC',
+            9 => 'PlayStation 3',
+            12 => 'Xbox 360',
+            48 => 'Playstation 4',
+            49 => 'Xbox One',
+            130 => 'Nintendo Switch',
         ];
     }
 }
