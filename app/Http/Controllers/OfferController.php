@@ -102,9 +102,11 @@ class OfferController extends Controller
             'publish_at'
         ]));
 
-        foreach ($request->file('images') as $file) {
-            if ($file->isValid()) {
-                $offer->image()->create(['url' => $file->store('offers', 'public')])->save();
+        if ($request->file('images')) {
+            foreach ($request->file('images') as $file) {
+                if ($file->isValid()) {
+                    $offer->image()->create(['url' => $file->store('offers', 'public')])->save();
+                }
             }
         }
 
