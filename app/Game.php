@@ -53,8 +53,9 @@ class Game extends Model
 
     public function toSearchableArray()
     {
-        $attributes = $this->only(['title', 'id']);
+        $attributes = $this->only(['title']);
         $attributes['cover'] = $this->thumb();
+        $attributes['id'] = $this->igdb_id;
 
         return $attributes;
     }

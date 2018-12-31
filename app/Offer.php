@@ -110,6 +110,10 @@ class Offer extends Model
 
     public function city()
     {
+        if (!$this->sellerProfile->city) {
+            return '';
+        }
+
         return City::where('slug', $this->sellerProfile->city)->first()->name;
     }
 
