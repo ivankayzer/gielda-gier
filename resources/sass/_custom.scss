@@ -538,3 +538,21 @@ select.select2 {
     max-width: 100% !important;
   }
 }
+
+.registration.cities {
+  ~ .select2 {
+    margin-left: 48px;
+    max-height: 46px;
+    border-radius: 0;
+    max-width: calc(100% - 48px);
+
+    .select2-selection {
+      border-radius: 0 !important;
+      margin-top: 1px !important;
+    }
+
+    .select2-selection__rendered {
+      color: #808080 !important;
+    }
+  }
+}

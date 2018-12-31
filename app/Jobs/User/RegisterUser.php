@@ -17,14 +17,18 @@ class RegisterUser implements ShouldBeStored
      */
     public $user;
 
+    public $location;
+
     /**
      * Create a new job instance.
      *
      * @param User $user
+     * @param $location
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $location)
     {
         $this->user = $user;
+        $this->location = $location;
     }
 
     /**
@@ -35,7 +39,7 @@ class RegisterUser implements ShouldBeStored
     {
         $this->user->save();
 
-        event(new AccountCreated($this->user));
+        event(new AccountCreated($this->user, $this->location));
 
         return $this->user;
     }

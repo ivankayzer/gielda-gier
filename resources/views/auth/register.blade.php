@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Załóż konto')
+
 @section('content')
     <div class="intro-banner intro-full-page bg-left d-flex align-items-center" data-background-image="images/register-background.jpg">
         <div class="container">
@@ -26,6 +28,14 @@
                                 <i class="icon-material-baseline-mail-outline"></i>
                                 <input type="email" class="input-text with-border" name="email" value="{{ old('email') }}"
                                        placeholder="@lang('common.email')" required/>
+                            </div>
+
+                            <div class="input-with-icon-left margin-bottom-15">
+                                <i class="icon-material-outline-my-location"></i>
+                                <select class="select2 full-container registration cities" name="city"
+                                        title="@lang('settings.select_city')">
+                                    <option value="0">Wybierz miasto</option>
+                                </select>
                             </div>
 
                             <div class="input-with-icon-left">

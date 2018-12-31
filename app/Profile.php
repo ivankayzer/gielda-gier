@@ -24,12 +24,16 @@ class Profile extends Model
             return '';
         }
 
-        return City::where('slug', $this->city)->first()->name;
+        return City::where('id', $this->city)->first()->name;
     }
 
     public function getFullName()
     {
-        return $this->name . ' ' . $this->surname;
+        if ($this->name && $this->surname) {
+            return $this->name . ' ' . $this->surname;
+        }
+
+        return $this->user->name;
     }
 
     public function getAvatar()

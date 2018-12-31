@@ -8,6 +8,8 @@ class CreateProfile
 {
     public function handle(AccountCreated $event)
     {
-        $event->user->profile()->create();
+        $event->user->profile()->create([
+            'city' => $event->location
+        ]);
     }
 }

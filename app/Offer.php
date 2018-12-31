@@ -2,17 +2,12 @@
 
 namespace App;
 
+use App\Components\Platform;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
-    protected $platformsMap = [
-        'ps4' => 'Playstation 4',
-        'xboxone' => 'Xbox One',
-        'pc' => 'PC'
-    ];
-
     protected $dates = [
         'publish_at'
     ];
@@ -80,7 +75,7 @@ class Offer extends Model
 
     public function platform()
     {
-        return array_get($this->platformsMap, $this->platform, null);
+        return array_get(Platform::availablePlatforms(), $this->platform, null);
     }
 
     public function seller()
@@ -114,7 +109,7 @@ class Offer extends Model
             return '';
         }
 
-        return City::where('slug', $this->sellerProfile->city)->first()->name;
+        return City::where('id', $this->sellerProfile->city)->first()->name;
     }
 
     public function price()

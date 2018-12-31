@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Zaloguj się')
+
 @section('content')
     <div class="intro-banner intro-full-page d-flex align-items-center" data-background-image="images/login-background.jpg">
         <div class="container">

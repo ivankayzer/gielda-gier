@@ -60,6 +60,7 @@
             <div class="col-xl-4 col-lg-4">
                 <div class="sidebar-container">
 
+                    @if($user->profile->description)
                     <!-- Profile Overview -->
                     <div class="profile-overview">
                         <div class="single-page-section">
@@ -67,6 +68,7 @@
                             <p>{{ $user->profile->description }}</p>
                         </div>
                     </div>
+                    @endif
 
                     @if(auth()->check() && $user->id !== auth()->id())
                     <!-- Sidebar Widget -->
