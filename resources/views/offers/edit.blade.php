@@ -15,8 +15,8 @@
                         <div class="row">
                             @csrf
                             <div class="col-xl-12">
+                                @include('partials.errors')
                                 <div class="dashboard-box margin-top-0">
-
                                     <div class="headline">
                                         <h3><i class="icon-material-outline-assignment"></i> @lang('offers.basic')</h3>
                                     </div>
@@ -32,7 +32,7 @@
                                                             title="@lang('offers.select_platform')">
                                                         <option value="0" disabled>Wybierz platformę</option>
                                                         @foreach($platforms as $key => $platform)
-                                                            <option @if($key === $model->platform) selected
+                                                            <option @if($key == $model->platform) selected
                                                                     @endif value="{{ $key }}">{{ $platform }}</option>
                                                         @endforeach
                                                     </select>
@@ -64,7 +64,7 @@
                                                     <h5>@lang('offers.price')</h5>
                                                     <div class="input-with-icon">
                                                         <input class="with-border" type="text"
-                                                               name="price" value="{{ $model->price / 100 }}"
+                                                               name="price" value="{{ new \App\Components\Price($model->price) }}"
                                                                placeholder="@lang('offers.price')">
                                                         <i class="currency">@lang('common.zl')</i>
                                                     </div>

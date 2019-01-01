@@ -7,6 +7,7 @@ use App\Components\Language;
 use App\Components\Platform;
 use App\Events\Offers\OfferCreated;
 use App\Http\Requests\CreateOfferRequest;
+use App\Http\Requests\UpdateOfferRequest;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -121,7 +122,7 @@ class OfferController extends Controller
             'text' => __('offers.write_success'),
         ]);
 
-        return redirect()->route('offers.index');
+        return redirect()->route('my-offers.index');
     }
 
     /**
@@ -145,13 +146,16 @@ class OfferController extends Controller
       /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(UpdateOfferRequest $request, Offer $offer)
     {
-        $offer->fill($request->all());
+        $data = $request->all();
+
+        $data['price'] = $this->formatPrice($data['price']);
+
+        $offer->fill($data);
 
         $offer->save();
 

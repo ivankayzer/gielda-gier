@@ -92,9 +92,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="{{ route('dashboard') }}"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_notifications')
-                                    <i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>
 
                         </div>

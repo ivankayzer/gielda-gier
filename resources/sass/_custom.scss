@@ -556,3 +556,16 @@ select.select2 {
     }
   }
 }
+
+#footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+#wrapper {
+  min-height: 100vh;
+  padding-top: 82px;
+  position: relative;
+  padding-bottom: 78px;
+}

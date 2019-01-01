@@ -42,7 +42,7 @@
             </div>
         @endif
         <p class="margin-top-5"><i class="icon-material-outline-access-time"></i>
-            {{ $offer->publish_at->diffForHumans() }}</p>
+            {{ $offer->publish_at ? $offer->publish_at->diffForHumans() : $offer->created_at->diffForHumans() }}</p>
 
             @if($offer->is_published)
                 <span class="dashboard-status-button green">@lang('offers.is_published')</span>
