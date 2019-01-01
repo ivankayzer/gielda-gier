@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Components\Platform;
+use App\Components\Price;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -114,7 +115,7 @@ class Offer extends Model
 
     public function price()
     {
-        return $this->price / 100 . ' zł';
+        return new Price($this->price) . ' zł';
     }
 
     public function buyText()
@@ -143,14 +144,10 @@ class Offer extends Model
     public function setIsPublishedAttribute($value)
     {
         $this->attributes['is_published'] = $value;
+
         if ($value) {
             $this->attributes['publish_at'] = Carbon::now();
         }
-    }
-
-    public function setPriceAttribute($value)
-    {
-        $this->attributes['price'] = $value * 100;
     }
 
     public function getSimilar($limit)

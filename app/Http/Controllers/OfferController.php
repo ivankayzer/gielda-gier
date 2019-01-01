@@ -6,6 +6,7 @@ use App\City;
 use App\Components\Language;
 use App\Components\Platform;
 use App\Events\Offers\OfferCreated;
+use App\Http\Requests\CreateOfferRequest;
 use App\Offer;
 use Illuminate\Http\Request;
 
@@ -84,9 +85,9 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOfferRequest $request)
     {
-        $offer = $request->user()->offers()->create($request->only([
+        $data = $request->only([
             'game_id',
             'platform',
             'language',
@@ -100,7 +101,11 @@ class OfferController extends Controller
             'tradeable',
             'is_published',
             'publish_at'
-        ]));
+        ]);
+
+        $data['price'] = $this->formatPrice($data['price']);
+
+        $offer = $request->user()->offers()->create($data);
 
         if ($request->file('images')) {
             foreach ($request->file('images') as $file) {
@@ -164,5 +169,22 @@ class OfferController extends Controller
         $offer->delete();
 
         return back();
+    }
+
+    private function formatPrice($price)
+    {
+        $price = str_replace(' ',  '', $price);
+
+        if (strpos($price, '.') !== false) {
+            $newPrice = explode('.', $price);
+            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
+        }
+
+        if (strpos($price, ',') !== false) {
+            $newPrice = explode(',', $price);
+            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
+        }
+
+        return $price * 100;
     }
 }

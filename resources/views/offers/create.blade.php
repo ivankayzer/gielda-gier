@@ -20,6 +20,7 @@
                         @csrf
                         <!-- Dashboard Box -->
                             <div class="col-xl-12">
+                                @include('partials.errors')
                                 <div class="dashboard-box margin-top-0">
 
                                     <div class="headline">

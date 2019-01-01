@@ -33,9 +33,7 @@
                                     </div>
                                 </div>
                             @endif
-
                             @if(count($toRate))
-
                                 <div class="dashboard-box margin-top-{{ count($pending) ? '50' : '0' }}">
 
                                     <div class="headline">
@@ -52,11 +50,8 @@
                                         </ul>
                                     </div>
                                 </div>
-
                             @endif
-
                             @if(count($active))
-
                                 <div class="dashboard-box margin-top-{{ count($toRate) ? '50' : '0' }}">
 
                                     <div class="headline">
@@ -73,11 +68,8 @@
                                         </ul>
                                     </div>
                                 </div>
-
                             @endif
-
                             @if(count($completed))
-
                                 <div class="dashboard-box margin-top-50">
 
                                     <div class="headline">
@@ -95,9 +87,8 @@
                                     </div>
 
                                 </div>
+                            @endif
                         </div>
-
-                        @endif
                     </div>
                     {{ $completed->links() }}
                 </div>
