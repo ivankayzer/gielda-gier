@@ -9277,8 +9277,8 @@ $('.select2.games').select2({
     minimumInputLength: 0,
     cache: false,
     templateSelection: function templateSelection(suggestion) {
-        if (suggestion.text === "Wybierz grę") {
-            return "Wybierz grę";
+        if (suggestion.text === suggestion.element.parentElement.title) {
+            return suggestion.text;
         } else {
             return suggestion.title;
         }
@@ -9313,8 +9313,8 @@ $('.select2.cities').select2({
     minimumInputLength: 0,
     cache: false,
     templateSelection: function templateSelection(suggestion) {
-        if (suggestion.text === "Wybierz miasto") {
-            return "Wybierz miasto";
+        if (suggestion.text === suggestion.element.parentElement.title) {
+            return suggestion.text;
         } else {
             return suggestion.name;
         }

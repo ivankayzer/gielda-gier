@@ -18,21 +18,21 @@
 
             <div class="row">
                 <div class="col-xl-3 col-lg-4 filters">
-
                     <form method="get">
                         <div class="sidebar-container">
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.city')</h3>
                                 <select class="select2 full-container cities" name="city"
-                                        title="@lang('settings.select_city')">
-                                        <option value="0">Wybierz miasto</option>
+                                        title="{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}">
+                                    <option value="0">{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}</option>
                                 </select>
                             </div>
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.platform')</h3>
-                                <select class="select2 full-container" multiple name="platform[]" title="@lang('common.all_platforms')">
+                                <select class="select2 full-container" multiple name="platform[]"
+                                        title="@lang('common.all_platforms')">
                                     @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
                                         <option @if(in_array($slug, request()->get('platform', []))) selected
                                                 @endif value="{{ $slug }}">{{ $platform }}</option>
@@ -43,20 +43,10 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.game')</h3>
                                 <select class="select2 full-container games" name="game_id"
-                                        title="@lang('common.game')">
-                                    <option value="0">Wybierz grę</option>
+                                        title="{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}">
+                                    <option value="0">{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="sidebar-widget">
-                            <h3>@lang('common.price')</h3>
-                            <div class="margin-top-55"></div>
-
-                            <!-- Range Slider -->
-                            <input class="range-slider" type="text" name="price" data-slider-currency="zł "
-                                   data-slider-min="{{ request()->get}}"
-                                   data-slider-max="{{ $maxPrice }}" data-slider-step="5"
-                                   data-slider-value="[{{ request()->get('price', $minPrice . ',' . $maxPrice) }}]"/>
                         </div>
 
                         <div class="sidebar-widget">
@@ -75,19 +65,25 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="button button-sliding-icon ripple-effect hidden filters-action">
+                        <button type="submit" class="button button-sliding-icon ripple-effect hidden filters-action margin-bottom-10">
                             @lang('common.filter')
                             <i class="icon-material-outline-arrow-right-alt"></i>
                         </button>
+                        @if($isFiltered)
+                        <a class="button button-sliding-icon ripple-effect" href="{{ route('offers.index') }}">
+                        @lang('common.reset_filter')
+                        <i class="icon-material-outline-arrow-right-alt"></i>
+                        </a>
+                        @endif
                         <div class="clearfix"></div>
-
+                    </form>
                 </div>
                 <div class="col-xl-9 col-lg-8 content-left-offset">
 
                     <div class="notify-box margin-bottom-15">
                         <div class="sort-by">
                             <span>@lang('common.sort_by'):</span>
-                            <select name="sort" class="selectpicker hide-tick submit-on-select">
+                            <select name="sort" class="select2 submit-on-select">
                                 <option @if(request()->get('sort') === 'date_desc') selected
                                         @endif value="date_desc">@lang('common.sort_date_desc')</option>
                                 <option @if(request()->get('sort') === 'date_asc') selected
@@ -111,7 +107,7 @@
         </form>
 
     </div>
-    
+
     <div class="dashboard-footer-spacer"></div>
 @endsection
 

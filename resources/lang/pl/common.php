@@ -57,5 +57,6 @@ return [
     'reset_password' => 'Zresetuj hasło',
     'Hello' => 'Cześć!',
     'my-profile' => 'Mój profil',
-    'my-offers' => 'Moje ogłoszenia'
+    'my-offers' => 'Moje ogłoszenia',
+    'reset_filter' => 'Resetuj filtr'
 ];

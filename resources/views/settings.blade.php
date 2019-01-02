@@ -102,13 +102,9 @@
                                                     <div class="col-xl-4">
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
-                                                            <select class=""
-                                                                    name="city"
-                                                                    title="@lang('settings.select_city')">
-                                                                @foreach($cities as $slug => $city)
-                                                                    <option @if($profile->city === $slug) selected
-                                                                            @endif value="{{ $slug }}">{{ $city }}</option>
-                                                                @endforeach
+                                                            <select class="select2 full-container cities" name="city"
+                                                                    title="{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}">
+                                                                <option value="0">{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}</option>
                                                             </select>
                                                         </div>
                                                     </div>

@@ -33,7 +33,8 @@ class OfferController extends Controller
             'offers' => $offers,
             'cities' => $cities,
             'minPrice' => $minPrice,
-            'maxPrice' => $maxPrice
+            'maxPrice' => $maxPrice,
+            'isFiltered' => !empty($request->all())
         ]);
     }
 

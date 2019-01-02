@@ -539,6 +539,14 @@ select.select2 {
   }
 }
 
+.mh-100 {
+  max-height: 100% !important;
+
+  ~ .select2 {
+    max-height: 100% !important;
+  }
+}
+
 .registration.cities {
   ~ .select2 {
     margin-left: 48px;
@@ -568,4 +576,14 @@ select.select2 {
   padding-top: 82px;
   position: relative;
   padding-bottom: 78px;
+}
+
+.sort-by {
+  width: 300px;
+  justify-content: space-evenly;
+
+  .select2 {
+    max-width: 200px;
+    height: 30px;
+  }
 }

@@ -36,9 +36,8 @@ class Offer extends Model
             $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.title', 'like', '%' . $filters->get('name') . '%');
         }
 
-        if ($filters->get('price')) {
-            [$min, $max] = explode(',', $filters->get('price'));
-            $query->whereBetween('price', [$min * 100, $max * 100]);
+        if ($filters->get('game_id')) {
+            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.igdb_id', $filters->get('game_id'));
         }
 
         if ($filters->get('sort')) {
