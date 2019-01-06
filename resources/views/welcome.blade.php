@@ -6,7 +6,7 @@
     <!-- Intro Banner
 ================================================== -->
     <!-- add class "disable-gradient" to enable consistent background overlay -->
-    <div class="intro-banner" data-background-image="images/home-background.png">
+    <div class="intro-banner" data-background-image="images/home-background.jpg">
         <div class="container">
 
             <!-- Intro Headline -->
@@ -19,7 +19,7 @@
             <!-- Search Bar -->
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('offers.index') }}" method="get">
+                    <form action="{{ route('offers.index') }}" method="get" id="welcome-search">
                         <div class="intro-banner-search-form margin-top-95">
                             <!-- Search Field -->
                             <div class="intro-search-field with-autocomplete">

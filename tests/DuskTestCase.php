@@ -41,4 +41,9 @@ abstract class DuskTestCase extends BaseTestCase
             )
         );
     }
+
+    protected function newBrowser($driver)
+    {
+        return new DuskBrowser($driver);
+    }
 }
