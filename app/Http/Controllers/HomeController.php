@@ -9,31 +9,22 @@ use App\Offer;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $offers = Offer::inRandomOrder()->active()->limit(5)->get();
-
-        return view('welcome')->withOffers($offers);
+        return view('welcome', [
+            'offers' => Offer::inRandomOrder()->active()->limit(5)->get()
+        ]);
     }
 
-    public function dashboard()
+    public function notifications()
     {
         event(new NotificationsPageVisited());
 
-        return view('dashboard');
+        return view('notifications');
     }
 
     public function transactions()

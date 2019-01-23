@@ -28,7 +28,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/ustawienia', 'ProfileController@index')->name('settings.index');
     Route::patch('/ustawienia', 'ProfileController@update')->name('settings.update');
-    Route::get('/powiadomienia', 'HomeController@dashboard')->name('dashboard');
+    Route::get('/powiadomienia', 'HomeController@notifications')->name('notifications');
     Route::get('/transakcje', 'TransactionController@index')->name('transactions.index');
     Route::post('/transakcje', 'TransactionController@create')->name('transactions.create');
     Route::get('/transakcje/{transaction}/zaakceptuj', 'TransactionController@accept')->name('transactions.accept');
