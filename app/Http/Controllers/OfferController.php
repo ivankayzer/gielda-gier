@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Components\Language;
 use App\Components\Platform;
+use App\Components\Price;
 use App\Events\Offers\OfferCreated;
 use App\Http\Requests\CreateOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
@@ -24,26 +25,19 @@ class OfferController extends Controller
 
         $offers = $query->paginate(10);
 
-        $cities = City::all()->pluck('name', 'slug');
-
-        $minPrice = $query->where('price', '>', 0)->min('price') / 100;
-        $maxPrice = $query->where('price', '>', 0)->max('price') / 100;
-
         return view('offers.index', [
             'offers' => $offers,
-            'cities' => $cities,
-            'minPrice' => $minPrice,
-            'maxPrice' => $maxPrice,
+            'cities' => City::getList(),
+            'minPrice' => $query->where('price', '>', 0)->min('price') / 100,
+            'maxPrice' => $query->where('price', '>', 0)->max('price') / 100,
             'isFiltered' => !empty($request->all())
         ]);
     }
 
     public function my(Request $request)
     {
-        $offers = $request->user()->offers()->where('sold', false)->orderBy('updated_at', 'desc')->paginate(10);
-
         return view('offers.my', [
-            'offers' => $offers,
+            'offers' => $request->user()->offers()->where('sold', false)->orderBy('updated_at', 'desc')->paginate(10),
         ]);
     }
 
@@ -54,12 +48,9 @@ class OfferController extends Controller
      */
     public function create()
     {
-        $platforms = Platform::availablePlatforms();
-        $languages = Language::availableLanguages();
-
         return view('offers.create', [
-            'platforms' => $platforms,
-            'languages' => $languages,
+            'platforms' => Platform::availablePlatforms(),
+            'languages' => Language::availableLanguages(),
         ]);
     }
 
@@ -71,13 +62,10 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        $platforms = Platform::availablePlatforms();
-        $languages = Language::availableLanguages();
-
         return view('offers.edit', [
             'model' => $offer,
-            'platforms' => $platforms,
-            'languages' => $languages,
+            'platforms' => Platform::availablePlatforms(),
+            'languages' => Language::availableLanguages(),
         ]);
     }
 
@@ -89,23 +77,9 @@ class OfferController extends Controller
      */
     public function store(CreateOfferRequest $request)
     {
-        $data = $request->only([
-            'game_id',
-            'platform',
-            'language',
-            'price',
-            'payment_bank_transfer',
-            'payment_cash',
-            'delivery_post',
-            'delivery_in_person',
-            'comment',
-            'sellable',
-            'tradeable',
-            'is_published',
-            'publish_at'
-        ]);
+        $data = $request->all();
 
-        $data['price'] = $this->formatPrice($data['price']);
+        $data['price'] = Price::createForDatabase($data['price']);
 
         $offer = $request->user()->offers()->create($data);
 
@@ -134,17 +108,14 @@ class OfferController extends Controller
      */
     public function show(Offer $offer, $slug)
     {
-        $similar = $offer->getSimilar(3);
-        $platforms = Platform::availablePlatforms();
-
         return view('offers.show', [
             'offer' => $offer,
-            'similar' => $similar,
-            'platforms' => $platforms
+            'similar' => $offer->getSimilar(3),
+            'platforms' => Platform::availablePlatforms()
         ]);
     }
 
-      /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Offer $offer
@@ -154,7 +125,7 @@ class OfferController extends Controller
     {
         $data = $request->all();
 
-        $data['price'] = $this->formatPrice($data['price']);
+        $data['price'] = Price::createForDatabase($data['price']);
 
         $offer->fill($data);
 
@@ -168,28 +139,12 @@ class OfferController extends Controller
      *
      * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function delete(Offer $offer)
     {
         $offer->delete();
 
         return back();
-    }
-
-    private function formatPrice($price)
-    {
-        $price = str_replace(' ',  '', $price);
-
-        if (strpos($price, '.') !== false) {
-            $newPrice = explode('.', $price);
-            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
-        }
-
-        if (strpos($price, ',') !== false) {
-            $newPrice = explode(',', $price);
-            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
-        }
-
-        return $price * 100;
     }
 }

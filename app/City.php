@@ -25,4 +25,9 @@ class City extends Model
     {
         return join(',', [$this->id, $this->slug]);
     }
+
+    public static function getList()
+    {
+        return self::all()->pluck('name', 'slug');
+    }
 }

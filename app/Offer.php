@@ -18,7 +18,21 @@ class Offer extends Model
         'pl' => 'pl'
     ];
 
-    protected $guarded = [];
+    protected $fillable = [
+        'game_id',
+        'platform',
+        'language',
+        'price',
+        'payment_bank_transfer',
+        'payment_cash',
+        'delivery_post',
+        'delivery_in_person',
+        'comment',
+        'sellable',
+        'tradeable',
+        'is_published',
+        'publish_at'
+    ];
 
     public function scopeFilter($query, $filters)
     {
