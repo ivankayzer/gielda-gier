@@ -51,6 +51,10 @@ $('.select2.games').select2({
     minimumInputLength: 0,
     cache: false,
     templateSelection: function (suggestion) {
+        if (suggestion.loading) {
+            return 'Ładowanie'
+        }
+
         if (suggestion.text === suggestion.element.parentElement.title) {
             return suggestion.text;
         } else {
@@ -58,6 +62,10 @@ $('.select2.games').select2({
         }
     },
     templateResult: function (suggestion) {
+        if (suggestion.loading) {
+            return 'Ładowanie'
+        }
+
         return '<div class="algolia-suggestion">' + suggestion.title + '</div>';
     }
 });
@@ -87,6 +95,10 @@ $('.select2.cities').select2({
     minimumInputLength: 0,
     cache: false,
     templateSelection: function (suggestion) {
+        if (suggestion.loading) {
+            return 'Ładowanie'
+        }
+
         if (suggestion.text === suggestion.element.parentElement.title) {
             return suggestion.text;
         } else {
@@ -94,6 +106,9 @@ $('.select2.cities').select2({
         }
     },
     templateResult: function (suggestion) {
+        if (suggestion.loading) {
+            return 'Ładowanie'
+        }
         return '<div class="algolia-suggestion">' + suggestion.name + '</div>';
     }
 });
