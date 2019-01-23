@@ -6,6 +6,8 @@ $factory->define(App\Game::class, function (Faker $faker) {
     return [
         'igdb_id' => $faker->numberBetween(10000, 1000000),
         'title' => ucfirst(join(' ', $faker->words(2))),
+        'slug' => $faker->slug,
+        'url' => $faker->url,
         'cover' => $faker->randomElement([
             'https://images.igdb.com/igdb/image/upload/t_cover_big/ax2kqsyxkwmy2ewqgumx.jpg',
             'https://images.igdb.com/igdb/image/upload/t_cover_big/xvqrf8vseeesyor6nhfn.jpg',
@@ -25,7 +27,7 @@ $factory->define(App\Game::class, function (Faker $faker) {
             'xboxone',
             'pc',
         ],
-        'release_date' => (new DateTime())->format('Y-m-d'),
+        'release_date' => (new DateTime())->getTimestamp() * 1000,
         'background' => $faker->randomElement([
             'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ybliaszwqkwui7djaou4.jpg',
             'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tp3tsdlzfkdp1hhofmb1.jpg',

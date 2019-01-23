@@ -23,6 +23,12 @@ $factory->define(App\Offer::class, function (Faker $faker) {
         'delivery_post' => $faker->randomElement([true, false]),
         'delivery_in_person' => $faker->randomElement([true, false]),
         'is_published' => $faker->randomElement([true, false]),
-        'publish_at' => $faker->dateTime
+        'publish_at' => $faker->dateTime,
+        'seller_id' => function () {
+            return factory(\App\User::class)->create()->id;
+        },
+        'game_id' => function () {
+            return factory(\App\Game::class)->create()->igdb_id;
+        },
     ];
 });

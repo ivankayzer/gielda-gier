@@ -49,31 +49,16 @@
                             </div>
                         </div>
 
-                        <div class="sidebar-widget">
-                            <h3>@lang('common.type')</h3>
-                            <div class="checkbox">
-                                <input type="checkbox" name="sellable" value="1" id="sellable"
-                                       @if(request()->get('sellable')) checked="checked" @endif>
-                                <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <input type="checkbox" name="tradeable" value="1" id="tradeable"
-                                       @if(request()->get('tradeable')) checked="checked" @endif>
-                                <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="button button-sliding-icon ripple-effect hidden filters-action margin-bottom-10">
+                        <button type="submit"
+                                class="button button-sliding-icon ripple-effect hidden filters-action margin-bottom-10">
                             @lang('common.filter')
                             <i class="icon-material-outline-arrow-right-alt"></i>
                         </button>
                         @if($isFiltered)
-                        <a class="button button-sliding-icon ripple-effect" href="{{ route('offers.index') }}">
-                        @lang('common.reset_filter')
-                        <i class="icon-material-outline-arrow-right-alt"></i>
-                        </a>
+                            <a class="button button-sliding-icon ripple-effect" href="{{ route('offers.index') }}">
+                                @lang('common.reset_filter')
+                                <i class="icon-material-outline-arrow-right-alt"></i>
+                            </a>
                         @endif
                         <div class="clearfix"></div>
                     </form>

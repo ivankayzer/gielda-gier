@@ -20,4 +20,9 @@ class City extends Model
     {
         return $this->slug;
     }
+
+    public function getUrlParam()
+    {
+        return join(',', [$this->id, $this->slug]);
+    }
 }

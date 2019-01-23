@@ -25,19 +25,17 @@ class Offer extends Model
         $filters = collect($filters);
 
         if ($filters->get('city')) {
-            $query->join('profiles', 'profiles.user_id', 'offers.seller_id')->where('profiles.city', $filters->get('city'));
+            [$cityId,] = explode(',', $filters->get('city'));
+            $query->join('profiles', 'profiles.user_id', 'offers.seller_id')->where('profiles.city', $cityId);
         }
 
         if ($filters->get('platform')) {
             $query->whereIn('platform', $filters->get('platform'));
         }
 
-        if ($filters->get('name')) {
-            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.title', 'like', '%' . $filters->get('name') . '%');
-        }
-
         if ($filters->get('game_id')) {
-            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.igdb_id', $filters->get('game_id'));
+            [$gameId,] = explode(',', $filters->get('game_id'));
+            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.igdb_id', $gameId);
         }
 
         if ($filters->get('sort')) {
@@ -50,17 +48,6 @@ class Offer extends Model
             $query->orderBy($field, $direction);
         } else {
             $query->orderBy('publish_at', 'desc');
-        }
-
-
-        if (!$filters->get('tradeable') || !$filters->get('sellable')) {
-            if ($filters->get('tradeable')) {
-                $query->where('tradeable', true);
-            }
-
-            if ($filters->get('sellable')) {
-                $query->where('sellable', true);
-            }
         }
 
         return $query;

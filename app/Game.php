@@ -59,4 +59,9 @@ class Game extends Model
 
         return $attributes;
     }
+
+    public function getUrlParam()
+    {
+        return join(',', [$this->igdb_id, $this->slug]);
+    }
 }
