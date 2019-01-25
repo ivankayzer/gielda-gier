@@ -19,12 +19,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        $cities = City::all()->pluck('name', 'slug');
-
         return view('settings', [
             'profile' => $request->user()->profile,
             'user' => $request->user(),
-            'cities' => $cities,
+            'cities' => City::all()->pluck('name', 'slug'),
         ]);
     }
 
@@ -44,20 +42,10 @@ class ProfileController extends Controller
 
         $oldData = $profile->toArray();
 
-        $profile->fill($request->only([
-            'name',
-            'surname',
-            'phone',
-            'address',
-            'city',
-            'zip',
-            'description',
-            'bank_nr',
-            'company_name',
-        ]));
+        $profile->fill($request->all());
 
-        $profile->notify_new_offer = (bool) $request->get('notifications_new_offer', false);
-        $profile->notify_new_transaction = (bool) $request->get('notifications_new_transaction', false);
+        $profile->notify_new_offer = (bool)$request->get('notifications_new_offer', false);
+        $profile->notify_new_transaction = (bool)$request->get('notifications_new_transaction', false);
 
         $profile->save();
 

@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'surname',
+        'phone',
+        'address',
+        'city',
+        'zip',
+        'description',
+        'bank_nr',
+        'company_name',
+        'notify_new_offer',
+        'notify_new_transaction',
+    ];
 
     protected $casts = [
         'notify_new_offer' => 'boolean',
