@@ -15,6 +15,6 @@ class DisableProduction
      */
     public function handle($request, Closure $next)
     {
-        return redirect()->route('welcome');
+        return redirect()->route('home');
     }
 }
