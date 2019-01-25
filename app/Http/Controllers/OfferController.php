@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\Components\Language;
-use App\Components\Platform;
-use App\Components\Price;
+use App\ValueObjects\Language;
+use App\ValueObjects\Platform;
+use App\Services\Price;
 use App\Events\Offers\OfferCreated;
 use App\Http\Requests\CreateOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;

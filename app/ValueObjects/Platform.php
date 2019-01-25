@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace App\ValueObjects;
 
 
 class Platform

@@ -4,11 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Offer::class, function (Faker $faker) {
     return [
-        'platform' => $faker->randomElement([
-            'ps4',
-            'xboxone',
-            'pc'
-        ]),
+        'platform' => $faker->randomElement(array_keys(\App\ValueObjects\Platform::availablePlatforms())),
         'language' => $faker->randomElement([
             'pl',
             'en',

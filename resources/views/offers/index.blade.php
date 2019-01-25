@@ -24,8 +24,8 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.city')</h3>
                                 <select class="select2 full-container cities" name="city"
-                                        title="{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}">
-                                    <option value="0">{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}</option>
+                                        title="{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}">
+                                    <option value="0">{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}</option>
                                 </select>
                             </div>
 
@@ -33,7 +33,7 @@
                                 <h3>@lang('common.platform')</h3>
                                 <select class="select2 full-container" multiple name="platform[]"
                                         title="@lang('common.all_platforms')">
-                                    @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
+                                    @foreach(\App\ValueObjects\Platform::availablePlatforms() as $slug => $platform)
                                         <option @if(in_array($slug, request()->get('platform', []))) selected
                                                 @endif value="{{ $slug }}">{{ $platform }}</option>
                                     @endforeach
@@ -43,8 +43,8 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.game')</h3>
                                 <select class="select2 full-container games" name="game_id"
-                                        title="{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}">
-                                    <option value="0">{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}</option>
+                                        title="{{ new \App\Services\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}">
+                                    <option value="0">{{ new \App\Services\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}</option>
                                 </select>
                             </div>
                         </div>

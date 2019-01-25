@@ -12,11 +12,6 @@ class Transaction extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        'seller_value' => 'array',
-        'buyer_value' => 'array'
-    ];
-
     protected static function boot()
     {
         parent::boot();

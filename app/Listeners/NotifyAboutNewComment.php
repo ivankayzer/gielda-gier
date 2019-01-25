@@ -15,7 +15,9 @@ class NotifyAboutNewComment
             return;
         }
 
-        (new Notification())->fill([
+        $notification = new Notification;
+
+        $notification->fill([
             'url' => route('transactions.index'),
             'text' => __('notifications.new_comment', [
                 'username' => auth()->user()->name,

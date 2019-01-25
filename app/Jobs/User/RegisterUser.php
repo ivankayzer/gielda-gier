@@ -2,7 +2,7 @@
 
 namespace App\Jobs\User;
 
-use App\Contracts\ShouldBeStored;
+use App\Events\ShouldBeStored;
 use App\Events\User\AccountCreated;
 use App\User;
 use Illuminate\Foundation\Bus\Dispatchable;

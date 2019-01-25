@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace App\Services;
 
 use App\City;
 use App\Game;

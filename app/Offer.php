@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Components\Platform;
-use App\Components\Price;
+use App\ValueObjects\Platform;
+use App\Services\Price;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace App\Services;
 
 class Price
 {
@@ -25,14 +25,11 @@ class Price
     {
         $price = str_replace(' ', '', $price);
 
-        if (strpos($price, '.') !== false) {
-            $newPrice = explode('.', $price);
-            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
-        }
-
-        if (strpos($price, ',') !== false) {
-            $newPrice = explode(',', $price);
-            return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
+        foreach (['.', ','] as $delimiter) {
+            if (strpos($price, $delimiter) !== false) {
+                $newPrice = explode($delimiter, $price);
+                return $newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0'));
+            }
         }
 
         return $price * 100;

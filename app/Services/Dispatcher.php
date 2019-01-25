@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Contracts\ShouldBeStored;
+use App\Events\ShouldBeStored;
 use App\StoredJob;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;

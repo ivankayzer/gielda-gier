@@ -53,11 +53,15 @@ class TransactionStatus
         return $this->status === self::IN_PROGRESS;
     }
 
+    /**
+     * @return string
+     * @throws \Throwable
+     */
     public function getLabel()
     {
         $color = array_get($this->getColors(), $this->status);
         $text = array_get($this->getTexts(), $this->status);
 
-        return "<span class='dashboard-status-button {$color}'>{$text}</span>";
+        return view('chunks.transaction_status', ['color' => $color, 'text' => $text])->render();
     }
 }

@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\City;
-use App\Components\Platform;
+use App\ValueObjects\Platform;
 use App\Game;
 use App\Offer;
 use App\Profile;

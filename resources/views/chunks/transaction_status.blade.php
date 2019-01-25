@@ -1,0 +1,1 @@
+<span class='dashboard-status-button {{ $color }}'>{{ $text }}</span>
