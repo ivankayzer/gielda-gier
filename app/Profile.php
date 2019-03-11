@@ -24,7 +24,7 @@ class Profile extends Model
             return '';
         }
 
-        return City::where('id', $this->city)->first()->name;
+        return City::where('slug', $this->city)->first()->name;
     }
 
     public function getFullName()

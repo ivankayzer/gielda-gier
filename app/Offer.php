@@ -109,7 +109,7 @@ class Offer extends Model
             return '';
         }
 
-        return City::where('id', $this->sellerProfile->city)->first()->name;
+        return City::where('slug', $this->sellerProfile->city)->first()->name;
     }
 
     public function price()
