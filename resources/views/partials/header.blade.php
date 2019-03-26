@@ -115,7 +115,7 @@
                                         <ul>
                                             @foreach($messages as $message)
                                                 <li class="notifications-not-read">
-                                                    <a href="{{ route('chat.index') }}">
+                                                    <a href="#">
                                                     <span class="notification-avatar"><img
                                                                 src="{{ $message->sender->profile->getAvatar() }}"
                                                                 alt=""></span>
@@ -131,7 +131,7 @@
                                     </div>
                                 </div>
 
-                                <a href="{{ route('chat.index') }}"
+                                <a href="#"
                                    class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_messages')
                                     <i class="icon-material-outline-arrow-right-alt"></i></a>
                             </div>

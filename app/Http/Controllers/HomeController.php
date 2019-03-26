@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\Chat\ChatPageVisited;
 use App\Events\Notifications\NotificationsPageVisited;
 use App\Offer;
 
@@ -35,13 +34,6 @@ class HomeController extends Controller
     public function reviews()
     {
         return view('reviews.index');
-    }
-
-    public function chat()
-    {
-        event(new ChatPageVisited());
-
-        return view('chat');
     }
 
     public function users()

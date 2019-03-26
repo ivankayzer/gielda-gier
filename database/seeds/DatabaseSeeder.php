@@ -1,6 +1,5 @@
 <?php
 
-use App\Chat;
 use App\Game;
 use App\Profile;
 use App\Transaction;
@@ -41,23 +40,6 @@ class DatabaseSeeder extends Seeder
                 $user->reviews()->save(factory(\App\Review::class)->make([
                     'transaction_id' => Transaction::inRandomOrder()->first()->id,
                 ]));
-            }
-
-            $room = (new \App\ChatRoom());
-
-            $room->save();
-
-            $sender = $user->id;
-            $receiver = User::inRandomOrder()->where('id', '!=', $user->id)->first()->id;
-
-            $room->user()->attach($sender);
-            $room->user()->attach($receiver);
-
-            foreach (range(1, 15) as $message) {
-                factory(App\ChatMessage::class)->create([
-                    'sender_id' => collect([$sender, $receiver])->shuffle()->first(),
-                    'chat_room_id' => $room->id
-                ]);
             }
         });
     }
