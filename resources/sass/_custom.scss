@@ -388,6 +388,7 @@ mark.color {
   border: none !important;
   height: 30px !important;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12);
+  outline: none; // TODO
 }
 
 .no-border .select2-selection {
@@ -587,3 +588,4 @@ select.select2 {
     height: 30px;
   }
 }
+

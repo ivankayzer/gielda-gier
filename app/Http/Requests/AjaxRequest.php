@@ -23,8 +23,6 @@ class AjaxRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'q' => 'required'
-        ];
+        return [];
     }
 }

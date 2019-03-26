@@ -11,8 +11,9 @@ Route::prefix('ogloszenia')->group(function () {
 });
 
 Route::prefix('szukaj')->group(function () {
-    Route::post('gry', 'AjaxController@game')->name('ajax.game');
-    Route::post('platformy', 'AjaxController@platforms')->name('ajax.platforms');
+    Route::get('gry', 'AjaxController@game')->name('ajax.game');
+    Route::get('platformy', 'AjaxController@platforms')->name('ajax.platforms');
+    Route::get('miasta', 'AjaxController@cities')->name('ajax.cities');
 });
 
 Route::middleware(['guest'])->group(function () {

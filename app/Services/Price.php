@@ -18,7 +18,7 @@ class Price
 
     public function __toString(): string
     {
-        return str_replace('.', ',', money_format('%.2n', $this->value / 100));
+        return str_replace('.', ',', sprintf('%01.2f', $this->value / 100));
     }
 
     public static function createForDatabase($price)

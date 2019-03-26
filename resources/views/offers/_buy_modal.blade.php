@@ -61,7 +61,7 @@
 
                         <div class="submit-field">
                             <select class="select2 full-container" name="platform" title="@lang('common.all_platforms')">
-                                @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
+                                @foreach(\App\ValueObjects\Platform::availablePlatforms() as $slug => $platform)
                                     <option @if(in_array($slug, request()->get('platform', []))) selected
                                             @endif value="{{ $slug }}">{{ $platform }}</option>
                                 @endforeach
