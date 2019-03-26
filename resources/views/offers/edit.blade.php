@@ -64,7 +64,7 @@
                                                     <h5>@lang('offers.price')</h5>
                                                     <div class="input-with-icon">
                                                         <input class="with-border" type="text"
-                                                               name="price" value="{{ new \App\Components\Price($model->price) }}"
+                                                               name="price" value="{{ new \App\Services\Price($model->price) }}"
                                                                placeholder="@lang('offers.price')">
                                                         <i class="currency">@lang('common.zl')</i>
                                                     </div>

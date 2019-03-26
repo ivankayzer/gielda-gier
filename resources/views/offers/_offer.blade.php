@@ -37,7 +37,7 @@
 
                 <div class="offer-location">
                     <strong><i class="icon-material-outline-location-on"></i>
-                        {{ $offer->city() }}</strong>
+                        {{ $offer->city->name }}</strong>
                 </div>
             </div>
         </div>

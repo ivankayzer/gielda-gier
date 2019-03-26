@@ -41,5 +41,6 @@ return [
     'for' => 'za',
     'on' => 'na',
     'trade_game' => 'Wymień',
-    'money_add' => 'Dopłata'
+    'money_add' => 'Dopłata',
+    'city' => 'Miasto',
 ];

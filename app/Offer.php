@@ -31,7 +31,8 @@ class Offer extends Model
         'sellable',
         'tradeable',
         'is_published',
-        'publish_at'
+        'publish_at',
+        'city_id',
     ];
 
     public function scopeFilter($query, $filters)
@@ -106,11 +107,7 @@ class Offer extends Model
 
     public function city()
     {
-        if (!$this->sellerProfile->city) {
-            return '';
-        }
-
-        return City::where('id', $this->sellerProfile->city)->first()->name;
+        return $this->belongsTo(City::class);
     }
 
     public function price()

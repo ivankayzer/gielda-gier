@@ -15,7 +15,7 @@
                                 </a>
                             </li>
                             <li class="margin-right-15"><a href="{{ route('my-offers.index') }}"
-                                   @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
+                                                           @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
                                 <a href="{{ route('offers.create') }}" class="add-offers"
                                    style="padding: 0 !important;">
                                     <i class="icon-feather-plus" style="position: absolute;"></i>
@@ -99,8 +99,7 @@
                         <!-- Messages -->
                         <div class="header-notifications">
                             <div class="header-notifications-trigger">
-                                <a href="#"><i class="icon-feather-mail"></i>@if($messagesCount)
-                                        <span>{{ $messagesCount }}</span>@endif</a>
+                                <a href="#"><i class="icon-feather-mail"></i></a>
                             </div>
 
                             <!-- Dropdown -->
@@ -113,7 +112,7 @@
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
-                                            @foreach($messages as $message)
+                                            @foreach([] as $message)
                                                 <li class="notifications-not-read">
                                                     <a href="#">
                                                     <span class="notification-avatar"><img

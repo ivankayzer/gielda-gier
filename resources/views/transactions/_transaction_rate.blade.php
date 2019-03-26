@@ -31,7 +31,7 @@
     <!-- Task Details -->
     <ul class="dashboard-task-info">
         <li><span>{{ $transaction->otherPersonType() }}</span><strong><a href="{{ route('profile.show', ['user' => $transaction->otherPerson->name]) }}">{{ $transaction->otherPerson->name }}</a></strong></li>
-        <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city() }}</strong></li>
+        <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city()->name }}</strong></li>
     </ul>
 
     <!-- Buttons -->

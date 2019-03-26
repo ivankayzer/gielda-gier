@@ -26,5 +26,8 @@ $factory->define(App\Offer::class, function (Faker $faker) {
         'game_id' => function () {
             return factory(\App\Game::class)->create()->igdb_id;
         },
+        'city_id' => function () {
+            return factory(\App\City::class)->create()->id;
+        },
     ];
 });

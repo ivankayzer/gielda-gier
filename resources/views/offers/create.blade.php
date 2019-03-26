@@ -42,6 +42,18 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-xl-4">
+                                                <div class="submit-field">
+                                                    <h5>@lang('offers.city')</h5>
+                                                    <select data-size="7"
+                                                            name="city_id"
+                                                            class="select2 mw-100 cities"
+                                                            title="@lang('offers.select_city')">
+                                                        <option value="0">Wybierz miasto</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <h5>@lang('common.platform')</h5>

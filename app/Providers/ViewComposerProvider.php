@@ -28,11 +28,8 @@ class ViewComposerProvider extends ServiceProvider
                 return;
             }
             $notifications = auth()->user()->notifications()->latest()->get();
-            $messages = auth()->user()->latestMessages();
             $view->with('notificationsCount', $notifications->filter(function ($notification) { return !$notification->is_read; })->count());
-            $view->with('messagesCount', $messages->filter(function ($message) { return !$message->is_read; })->count());
             $view->with('notifications', $notifications);
-            $view->with('messages', $messages);
         });
     }
 

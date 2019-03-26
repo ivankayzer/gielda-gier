@@ -19,7 +19,7 @@
                                 <ul class="margin-top-25">
                                     <li><strong>
                                             <i class="icon-material-outline-location-on"></i>
-                                            {{ $offer->city() }}
+                                            {{ $offer->city->name }}
                                         </strong></li>
                                 </ul>
                             </div>
@@ -118,7 +118,7 @@
                                     <li>
                                         <i class="icon-material-outline-location-on"></i>
                                         <span>@lang('offers.location')</span>
-                                        <h5>{{ $offer->city() }}</h5>
+                                        <h5>{{ $offer->city->name }}</h5>
                                     </li>
                                     <li>
                                         <i class="icon-material-outline-access-time"></i>
@@ -195,7 +195,7 @@
                                             <li>
                                                 <i class="icon-material-outline-location-on"></i>
                                                 <span>@lang('offers.location')</span>
-                                                <h5>{{ $offer->city() }}</h5>
+                                                <h5>{{ $offer->city->name }}</h5>
                                             </li>
                                             <li>
                                                 <i class="icon-material-outline-access-time"></i>
