@@ -54,6 +54,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/moj-profil', 'ProfileController@me')->name('profile.me');
     Route::get('/transakcja/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
+    Route::prefix('czat')->group(function () {
+        Route::get('/', 'ChatController@index')->name('chat.index');
+        Route::post('/', 'ChatController@message')->name('chat.message');
+        Route::post('przeczytaj', 'ChatController@read')->name('chat.read');
+    });
+
     Route::prefix('moje-ogloszenia')->group(function () {
         Route::get('/', 'OfferController@my')->name('my-offers.index');
         Route::get('dodaj', 'OfferController@create')->name('offers.create');

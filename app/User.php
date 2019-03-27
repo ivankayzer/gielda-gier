@@ -84,6 +84,18 @@ class User extends Authenticatable
         return 'name';
     }
 
+    public function chatRooms()
+    {
+        return $this->belongsToMany(ChatRoom::class);
+    }
+
+    public function latestMessages()
+    {
+        return $this->chatRooms->map(function ($room) {
+            return $room->messages()->orderBy('created_at', 'desc')->first();
+        })->sortByDesc('created_at');
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class, 'receiver_id');
