@@ -103,8 +103,8 @@
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
                                                             <select class="select2 full-container cities" name="city"
-                                                                    title="{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}">
-                                                                <option value="0">{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}</option>
+                                                                    title="{{ $profile->city ?: __('settings.select_city') }}">
+                                                                <option value="0">{{ $profile->city ?: __('settings.select_city') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>

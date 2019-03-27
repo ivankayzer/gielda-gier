@@ -31,14 +31,6 @@ class FixTransactionsSchema extends Migration
      */
     public function down()
     {
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->json('seller_value');
-            $table->json('buyer_value')->nullable();
 
-            $table->dropColumn('buyer_game_platform');
-            $table->dropColumn('buyer_game_id');
-
-            $table->dropForeign(['buyer_game_id']);
-        });
     }
 }

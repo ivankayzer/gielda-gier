@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\Game;
 use App\ValueObjects\Language;
 use App\ValueObjects\Platform;
 use App\Services\Price;
@@ -25,12 +26,22 @@ class OfferController extends Controller
 
         $offers = $query->paginate(10);
 
+        if ($request->has('city')) {
+            $city = City::find($request->get('city'));
+        }
+
+        if ($request->has('game_id')) {
+            $game = Game::where('igdb_id', $request->get('game_id'))->first();
+        }
+
         return view('offers.index', [
             'offers' => $offers,
             'cities' => City::getList(),
             'minPrice' => $query->where('price', '>', 0)->min('price') / 100,
             'maxPrice' => $query->where('price', '>', 0)->max('price') / 100,
             'isFiltered' => !empty($request->all()),
+            'selectedCity' => isset($city) ? $city->name : __('settings.select_city'),
+            'selectedGame' => isset($game) ? $game->title : __('settings.select_game')
         ]);
     }
 

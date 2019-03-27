@@ -24,8 +24,8 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.city')</h3>
                                 <select class="select2 full-container cities" name="city"
-                                        title="{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}">
-                                    <option value="0">{{ new \App\Services\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}</option>
+                                        title="{{ $selectedCity }}">
+                                    <option value="0">{{ $selectedCity }}</option>
                                 </select>
                             </div>
 
@@ -43,8 +43,8 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.game')</h3>
                                 <select class="select2 full-container games" name="game_id"
-                                        title="{{ new \App\Services\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}">
-                                    <option value="0">{{ new \App\Services\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}</option>
+                                        title="{{ $selectedGame  }}">
+                                    <option value="0">{{ $selectedGame }}</option>
                                 </select>
                             </div>
                         </div>

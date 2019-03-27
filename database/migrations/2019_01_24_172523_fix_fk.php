@@ -51,18 +51,6 @@ class FixFk extends Migration
      */
     public function down()
     {
-        Schema::table('offers', function (Blueprint $table) {
-            $table->dropForeign(['game_id']);
-        });
 
-        Schema::table('notifications', function (Blueprint $table) {
-            $table->dropForeign(['receiver_id', 'created_by']);
-        });
-
-        Schema::table('reviews', function (Blueprint $table) {
-            $table->dropColumn('type');
-            $table->enum('type', ['positive', 'negative']);
-            $table->dropForeign(['user_id', 'transaction_id']);
-        });
     }
 }
