@@ -97,7 +97,9 @@ class TransactionController extends Controller
     {
         $user = $transaction->otherPerson;
 
-        return SentenceComposer::userInfo($user);
+        return view('chunks.user_info', [
+            'profile' => $user->profile
+        ]);
     }
 
     public function rate(Request $request)

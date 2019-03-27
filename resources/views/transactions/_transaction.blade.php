@@ -23,7 +23,6 @@
             </div>
 
             <div class="d-flex align-items-center">
-                <p>{!! \App\Services\SentenceComposer::transactionInfo($transaction) !!}</p>
             </div>
         </div>
     </div>
