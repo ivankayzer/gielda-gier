@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Events\User\ProfileEdited;
-use App\Profile;
-use App\Services\SentenceComposer;
 use App\User;
 use Illuminate\Http\Request;
 

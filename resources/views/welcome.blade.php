@@ -88,45 +88,47 @@
             </div>
         </div>
     </div>
-    <div class="section gray padding-top-65 padding-bottom-75">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-headline margin-top-0 margin-bottom-35">
-                        <h3>@lang('welcome.featured_offers')</h3>
-                        <a href="{{ route('offers.index') }}" class="headline-link">@lang('welcome.all_offers')</a>
-                    </div>
-                    <div class="listings-container compact-list-layout margin-top-35">
-                        @foreach($offers as $offer)
-                            <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
-                               class="job-listing with-apply-button">
-                                <div class="job-listing-details">
-                                    <div class="job-listing-company-logo">
-                                        <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
-                                    </div>
-                                    <div class="job-listing-description">
-                                        <h3 class="job-listing-title">{{ $offer->game->title }}</h3>
-                                        <div class="job-listing-footer">
-                                            <ul>
-                                                <li>
-                                                    <i class="icon-material-outline-business"></i> {{ $offer->sellerProfile->getFullName() }}
-                                                </li>
-                                                <li>
-                                                    <i class="icon-material-outline-location-on"></i> {{ $offer->city->name }}
-                                                </li>
-                                                <li>
-                                                    <i class="icon-material-outline-access-time"></i> {{ $offer->humanCreatedAt() }}
-                                                </li>
-                                            </ul>
+    @if(count($offers))
+        <div class="section gray padding-top-65 padding-bottom-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-headline margin-top-0 margin-bottom-35">
+                            <h3>@lang('welcome.featured_offers')</h3>
+                            <a href="{{ route('offers.index') }}" class="headline-link">@lang('welcome.all_offers')</a>
+                        </div>
+                        <div class="listings-container compact-list-layout margin-top-35">
+                            @foreach($offers as $offer)
+                                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"
+                                   class="job-listing with-apply-button">
+                                    <div class="job-listing-details">
+                                        <div class="job-listing-company-logo">
+                                            <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
                                         </div>
+                                        <div class="job-listing-description">
+                                            <h3 class="job-listing-title">{{ $offer->game->title }}</h3>
+                                            <div class="job-listing-footer">
+                                                <ul>
+                                                    <li>
+                                                        <i class="icon-material-outline-business"></i> {{ $offer->sellerProfile->getFullName() }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="icon-material-outline-location-on"></i> {{ $offer->city->name }}
+                                                    </li>
+                                                    <li>
+                                                        <i class="icon-material-outline-access-time"></i> {{ $offer->humanCreatedAt() }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <span class="list-apply-button ripple-effect">@lang('welcome.check')</span>
                                     </div>
-                                    <span class="list-apply-button ripple-effect">@lang('welcome.check')</span>
-                                </div>
-                            </a>
-                        @endforeach
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

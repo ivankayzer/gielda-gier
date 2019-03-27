@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Game;
-use App\Http\Requests\AjaxRequest;
+use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
-    public function game(AjaxRequest $request)
+    public function game(Request $request)
     {
         $query = $request->get('q');
 
@@ -17,7 +17,7 @@ class AjaxController extends Controller
         })->toJson();
     }
 
-    public function cities(AjaxRequest $request)
+    public function cities(Request $request)
     {
         $query = $request->get('q');
 
@@ -26,7 +26,7 @@ class AjaxController extends Controller
         })->toJson();
     }
 
-    public function platforms(AjaxRequest $request)
+    public function platforms(Request $request)
     {
         $query = $request->get('q');
 

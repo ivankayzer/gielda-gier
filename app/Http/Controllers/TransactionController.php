@@ -10,7 +10,6 @@ use App\Events\Transactions\TransactionDeclined;
 use App\Factories\TransactionFactory;
 use App\Offer;
 use App\Review;
-use App\Services\SentenceComposer;
 use App\Transaction;
 use App\ValueObjects\TransactionStatus;
 use Illuminate\Http\Request;

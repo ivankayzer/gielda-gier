@@ -22,3 +22,11 @@ $factory->define(App\Offer::class, function (Faker $faker) {
         'publish_at' => $faker->dateTime,
     ];
 });
+
+$factory->state(\App\Offer::class, 'active', function (Faker $faker) {
+    return [
+        'is_published' => true,
+        'sold' => false,
+        'sellable' => true,
+    ];
+});
