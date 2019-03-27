@@ -27,7 +27,7 @@
                         <div class="right-side">
                             @if($offer->sellable)
                                 <div class="salary-box">
-                                    <div class="salary-amount"><strong>{{ $offer->price() }}</strong></div>
+                                    <div class="salary-amount"><strong>{{ $offer->formatted_price }}</strong></div>
                                 </div>
                             @endif
                         </div>

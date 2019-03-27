@@ -77,11 +77,7 @@ class OfferController extends Controller
      */
     public function store(CreateOfferRequest $request)
     {
-        $data = $request->all();
-
-        $data['price'] = Price::createForDatabase($data['price']);
-
-        $offer = $request->user()->offers()->create($data);
+        $offer = $request->user()->offers()->create($request->all());
 
         if ($request->file('images')) {
             foreach ($request->file('images') as $file) {
@@ -123,11 +119,7 @@ class OfferController extends Controller
      */
     public function update(UpdateOfferRequest $request, Offer $offer)
     {
-        $data = $request->all();
-
-        $data['price'] = Price::createForDatabase($data['price']);
-
-        $offer->fill($data);
+        $offer->fill($request->all());
 
         $offer->save();
 

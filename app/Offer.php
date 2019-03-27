@@ -3,19 +3,18 @@
 namespace App;
 
 use App\ValueObjects\Platform;
-use App\Services\Price;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
     protected $dates = [
-        'publish_at'
+        'publish_at',
     ];
 
     protected $flags = [
         'en' => 'gb',
-        'pl' => 'pl'
+        'pl' => 'pl',
     ];
 
     protected $fillable = [
@@ -110,9 +109,27 @@ class Offer extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function price()
+    public function setPriceAttribute($value)
     {
-        return new Price($this->price) . ' zł';
+        $price = str_replace(' ', '', $value);
+        foreach (['.', ','] as $delimiter) {
+            if (strpos($price, $delimiter) !== false) {
+                $newPrice = explode($delimiter, $price);
+
+                return $this->attributes['price'] = (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+            }
+        }
+        $this->attributes['price'] = (int)$price * 100;
+    }
+
+    public function getFloatPrice()
+    {
+        return str_replace('.', ',', sprintf('%01.2f', $this->price / 100));
+    }
+
+    public function getFormattedPriceAttribute()
+    {
+        return $this->getFloatPrice() . ' zł';
     }
 
     public function buyText()
@@ -134,7 +151,8 @@ class Offer extends Model
     {
         if ($this->language && isset($this->flags[$this->language])) {
             $flag = asset('images/flags/' . $this->flags[$this->language] . '.svg');
-            return '<img class="flag" src="'. $flag .'">';
+
+            return '<img class="flag" src="' . $flag . '">';
         }
     }
 

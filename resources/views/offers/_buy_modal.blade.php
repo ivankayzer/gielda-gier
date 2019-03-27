@@ -25,7 +25,7 @@
                             <h3>{{ $offer->game->title }}</h3>
                             <span>{{ $offer->platform() }}</span>
                             <span>@lang('offers.for')</span>
-                            <h3>{{ $offer->price() }}</h3>
+                            <h3>{{ $offer->formatted_price }}</h3>
                         </div>
 
                         <button class="button full-width button-sliding-icon ripple-effect" type="submit">
