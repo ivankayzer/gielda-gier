@@ -20,4 +20,12 @@ class Language
             ]
         ];
     }
+
+    public static function getLabelById($id)
+    {
+        return data_get(collect(self::availableLanguages())
+            ->filter(function ($lang) use ($id) {
+                return $lang['value'] === $id;
+            })->first(), 'name');
+    }
 }

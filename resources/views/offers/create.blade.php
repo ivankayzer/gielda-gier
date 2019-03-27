@@ -57,7 +57,7 @@
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <h5>@lang('common.platform')</h5>
-                                                    <select class="select2 mw-100"
+                                                    <select class="select2 platforms mw-100"
                                                             data-size="{{ count($platforms) }}"
                                                             name="platform"
                                                             title="@lang('offers.select_platform')">
@@ -72,7 +72,7 @@
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.language')</h5>
-                                                    <select class="select2 mw-100" data-size="7"
+                                                    <select class="select2 language mw-100" data-size="7"
                                                             name="language"
                                                             title="@lang('offers.select_language')">
                                                         <option value="0" selected disabled>Wybierz język</option>

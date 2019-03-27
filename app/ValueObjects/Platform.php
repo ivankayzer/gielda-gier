@@ -15,4 +15,9 @@ class Platform
             130 => 'Nintendo Switch',
         ];
     }
+
+    public static function getLabelById($id)
+    {
+        return data_get(self::availablePlatforms(), $id);
+    }
 }
