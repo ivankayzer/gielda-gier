@@ -34,4 +34,21 @@ class RegistrationTest extends DuskTestCase
             ]);
         });
     }
+
+    /** @test */
+    public function user_cant_visit_the_registration_page()
+    {
+        $user = factory(User::class)->create();
+
+        $this->browse(function (DuskBrowser $browser) use ($user) {
+            $browser->loginAs($user);
+            $browser->visit(route('register'))->assertUrlIs(route('home') . '/');
+        });
+    }
+
+    /** @test */
+    public function user_gets_a_welcome_email()
+    {
+        // @TODO
+    }
 }
