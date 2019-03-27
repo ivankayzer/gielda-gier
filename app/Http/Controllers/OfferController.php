@@ -30,7 +30,7 @@ class OfferController extends Controller
             'cities' => City::getList(),
             'minPrice' => $query->where('price', '>', 0)->min('price') / 100,
             'maxPrice' => $query->where('price', '>', 0)->max('price') / 100,
-            'isFiltered' => !empty($request->all())
+            'isFiltered' => !empty($request->all()),
         ]);
     }
 
