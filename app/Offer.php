@@ -40,7 +40,7 @@ class Offer extends Model
 
         if ($filters->get('city')) {
             [$cityId,] = explode(',', $filters->get('city'));
-            $query->join('profiles', 'profiles.user_id', 'offers.seller_id')->where('profiles.city', $cityId);
+            $query->join('profiles', 'profiles.user_id', 'offers.seller_id')->where('profiles.city_id', $cityId);
         }
 
         if ($filters->get('platform')) {

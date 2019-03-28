@@ -104,4 +104,24 @@ class ViewOffersListingTest extends TestCase
             ->assertSee($offer->game->title)
             ->assertDontSee($secondUsersProfile->game->title);
     }
+
+    /** @test */
+    public function offer_should_not_be_visible_if_sold()
+    {
+        $firstUser = factory(Profile::class)->state('withUser')->create();
+        $secondUser = factory(Profile::class)->state('withUser')->create();
+
+        $offer = factory(Offer::class)->state('active')->create([
+            'seller_id' => $firstUser,
+            'sold' => true
+        ]);
+
+        $this->actingAs($secondUser->user)
+            ->get(route('offers.index'))
+            ->assertDontSee($offer->game->title);
+
+        $this->actingAs($firstUser->user)
+            ->get(route('offers.index'))
+            ->assertDontSee($offer->game->title);
+    }
 }

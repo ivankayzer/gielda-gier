@@ -6,6 +6,7 @@ use App\City;
 use App\Game;
 use App\Offer;
 use App\Profile;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
@@ -149,5 +150,117 @@ class AddOfferTest extends TestCase
             'tradeable' => true,
             'is_published' => true,
         ]);
+    }
+    
+    /** @test */
+    public function game_id_is_required_to_add_an_offer()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+            'price' => 0
+        ]);
+
+        $response->assertSessionHasErrors('game_id');
+    }
+    
+    /** @test */
+    public function platform_is_required_to_add_an_offer()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'language' => $offer->language,
+            'price' => 0
+        ]);
+
+        $response->assertSessionHasErrors('platform');
+    }
+    
+    /** @test */
+    public function language_is_required_to_add_an_offer()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'price' => 0
+        ]);
+
+        $response->assertSessionHasErrors('language');
+    }
+    
+    /** @test */
+    public function city_is_required_to_add_an_offer()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+            'price' => 0
+        ]);
+
+        $response->assertSessionHasErrors('city_id');
+    }
+
+    /** @test */
+    public function price_is_required_to_add_an_offer()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+        ]);
+
+        $response->assertSessionHasErrors('price');
+    }
+
+    /** @test */
+    public function price_should_be_greater_than_zero_if_offer_is_sellable()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+            'price' => 0,
+            'sellable' => true,
+        ]);
+
+        $response->assertSessionHasErrors('price');
+    }
+
+    /** @test */
+    public function offer_should_be_sellable_or_tradeable_in_order_to_be_published()
+    {
+        $offer = factory(Offer::class)->make();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+            'price' => 10,
+            'sellable' => false,
+            'tradeable' => false,
+            'is_published' => true,
+        ]);
+
+        $response->assertSessionHasErrors(['sellable', 'tradeable']);
     }
 }
