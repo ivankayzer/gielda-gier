@@ -11,7 +11,7 @@ class Profile extends Model
         'surname',
         'phone',
         'address',
-        'city',
+        'city_id',
         'zip',
         'description',
         'bank_nr',
@@ -30,13 +30,9 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getCity()
+    public function city()
     {
-        if (!$this->city) {
-            return '';
-        }
-
-        return City::where('id', $this->city)->first()->name;
+        return $this->belongsTo(City::class);
     }
 
     public function getFullName()

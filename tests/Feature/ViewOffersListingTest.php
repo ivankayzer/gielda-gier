@@ -21,7 +21,9 @@ class ViewOffersListingTest extends TestCase
             'seller_id' => $firstUser,
         ]);
 
-        $this->actingAs($secondUser->user)->get(route('offers.index'))->assertSee($offer->game->title);
+        $this->actingAs($secondUser->user)
+            ->get(route('offers.index'))
+            ->assertSee($offer->game->title);
     }
 
     /** @test */
@@ -47,15 +49,17 @@ class ViewOffersListingTest extends TestCase
             'is_published' => false
         ]);
 
-        $this->actingAs($secondUser->user)->get(route('offers.index'))->assertDontSee($offer->game->title);
+        $this->actingAs($secondUser->user)
+            ->get(route('offers.index'))
+            ->assertDontSee($offer->game->title);
     }
-    
+
     /** @test */
     public function guest_cant_access_my_offers_page()
     {
         $this->get(route('my-offers.index'))->assertLocation(route('login'));
     }
-    
+
     /** @test */
     public function user_can_see_own_published_and_unpublished_offers_on_my_offers_page()
     {
@@ -70,8 +74,15 @@ class ViewOffersListingTest extends TestCase
             'seller_id' => $profile->user_id,
         ]);
 
-        $this->actingAs($profile->user)->get(route('my-offers.index'))->assertSee($offer->game->title)->assertSee(__('offers.is_published'));
-        $this->actingAs($profile->user)->get(route('my-offers.index'))->assertSee($publishedOffer->game->title)->assertSee(__('offers.not_published'));
+        $this->actingAs($profile->user)
+            ->get(route('my-offers.index'))
+            ->assertSee($offer->game->title)
+            ->assertSee(__('offers.is_published'));
+
+        $this->actingAs($profile->user)
+            ->get(route('my-offers.index'))
+            ->assertSee($publishedOffer->game->title)
+            ->assertSee(__('offers.not_published'));
     }
 
     /** @test */
@@ -88,6 +99,9 @@ class ViewOffersListingTest extends TestCase
             'seller_id' => $secondProfile->user_id,
         ]);
 
-        $this->actingAs($profile->user)->get(route('my-offers.index'))->assertSee($offer->game->title)->assertDontSee($secondUsersProfile->game->title);
+        $this->actingAs($profile->user)
+            ->get(route('my-offers.index'))
+            ->assertSee($offer->game->title)
+            ->assertDontSee($secondUsersProfile->game->title);
     }
 }

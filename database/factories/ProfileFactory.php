@@ -10,7 +10,7 @@ $factory->define(App\Profile::class, function (Faker $faker) {
         'surname' => $faker->lastName,
         'address' => $faker->address,
         'zip' => $faker->postcode,
-        'city' => function () {
+        'city_id' => function () {
             return factory(\App\City::class)->create()->id;
         },
         'phone' => $faker->phoneNumber,
