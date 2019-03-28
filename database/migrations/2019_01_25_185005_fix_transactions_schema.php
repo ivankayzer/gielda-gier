@@ -14,8 +14,7 @@ class FixTransactionsSchema extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->dropColumn('seller_value');
-            $table->dropColumn('buyer_value');
+            $table->dropColumn(['seller_value', 'buyer_value']);
 
             $table->integer('buyer_game_id')->nullable();
             $table->integer('buyer_game_platform')->nullable();

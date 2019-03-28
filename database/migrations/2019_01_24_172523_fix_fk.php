@@ -36,7 +36,7 @@ class FixFk extends Migration
         });
 
         Schema::table('reviews', function (Blueprint $table) {
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->unsignedInteger('user_id')->nullable()->change();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

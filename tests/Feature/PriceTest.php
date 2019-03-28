@@ -3,10 +3,13 @@
 namespace Tests\Feature;
 
 use App\Offer;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class PriceTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function offer_should_have_a_formatted_price()
     {

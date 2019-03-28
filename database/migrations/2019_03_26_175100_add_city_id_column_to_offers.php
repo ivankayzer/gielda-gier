@@ -14,7 +14,7 @@ class AddCityIdColumnToOffers extends Migration
     public function up()
     {
         Schema::table('offers', function (Blueprint $table) {
-            $table->integer('city_id')->unsigned();
+            $table->integer('city_id')->nullable()->unsigned();
         });
     }
 

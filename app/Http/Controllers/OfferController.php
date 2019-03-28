@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Game;
+use App\Http\Requests\DeleteOfferRequest;
 use App\ValueObjects\Language;
 use App\ValueObjects\Platform;
 use App\Services\Price;
@@ -83,7 +84,7 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CreateOfferRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateOfferRequest $request)
@@ -130,7 +131,7 @@ class OfferController extends Controller
      */
     public function update(UpdateOfferRequest $request, Offer $offer)
     {
-        $offer->fill($request->all());
+        $offer->fill($request->except('game_id'));
 
         $offer->save();
 
@@ -140,11 +141,12 @@ class OfferController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param DeleteOfferRequest $request
      * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function delete(Offer $offer)
+    public function delete(DeleteOfferRequest $request, Offer $offer)
     {
         $offer->delete();
 
