@@ -29,9 +29,14 @@ class ProfileController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'avatar' => 'sometimes|max:2048|mimes:jpeg,bmp,png',
+        ]);
+
         $profile = $request->user()->profile;
 
         if ($request->has('avatar')) {
@@ -42,8 +47,8 @@ class ProfileController extends Controller
 
         $profile->fill($request->all());
 
-        $profile->notify_new_offer = (bool)$request->get('notifications_new_offer', false);
-        $profile->notify_new_transaction = (bool)$request->get('notifications_new_transaction', false);
+        $profile->notify_new_offer = $request->get('notify_new_offer', false);
+        $profile->notify_new_transaction = $request->get('notify_new_transaction', false);
 
         $profile->save();
 
