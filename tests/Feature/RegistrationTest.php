@@ -87,4 +87,20 @@ class RegistrationTest extends TestCase
 
         $response->assertSessionHasErrors('password');
     }
+
+    /** @test */
+    public function city_is_stored_in_profile_table()
+    {
+        $this->post(route('register'), [
+            'email' => 'test@example.com',
+            'name' => 'test',
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+            'city' => '1',
+        ]);
+
+        $this->assertDatabaseHas('profiles', [
+            'city_id' => '1'
+        ]);
+    }
 }

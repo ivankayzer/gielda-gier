@@ -9,7 +9,7 @@ class CreateProfile
     public function handle(AccountCreated $event)
     {
         $event->user->profile()->create([
-            'city' => $event->location
+            'city_id' => $event->location
         ]);
     }
 }
