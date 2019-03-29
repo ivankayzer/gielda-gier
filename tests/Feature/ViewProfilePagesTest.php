@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Offer;
 use App\Profile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -41,5 +42,41 @@ class ViewProfilePagesTest extends TestCase
             ->assertDontSee($otherProfile->surname)
             ->assertSee($otherProfile->user->name)
             ->assertSee($otherProfile->city->name);
+    }
+
+    /** @test */
+    public function can_see_own_offers_on_own_profile_page()
+    {
+        $profile = factory(Profile::class)->state('withUser')->create();
+        $unpublishedOffer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
+        $publishedOffer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
+
+        $this->actingAs($profile->user)->get(route('profile.me'))
+            ->assertDontSee($unpublishedOffer->game->title)
+            ->assertSee($publishedOffer->game->title);
+    }
+
+    /** @test */
+    public function can_see_other_users_published_offers_on_their_profile_page()
+    {
+        $profile = factory(Profile::class)->state('withUser')->create();
+        $secondProfile = factory(Profile::class)->state('withUser')->create();
+
+        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
+
+        $this->actingAs($secondProfile->user)->get(route('profile.show', ['user' => $profile->user->name]))
+            ->assertSee($offer->game->title);
+    }
+
+    /** @test */
+    public function cant_see_other_users_unpublished_offers_on_their_profile_page()
+    {
+        $profile = factory(Profile::class)->state('withUser')->create();
+        $secondProfile = factory(Profile::class)->state('withUser')->create();
+
+        $offer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
+
+        $this->actingAs($secondProfile->user)->get(route('profile.show', ['user' => $profile->user->name]))
+            ->assertDontSee($offer->game->title);
     }
 }

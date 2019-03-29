@@ -124,4 +124,26 @@ class ViewOffersListingTest extends TestCase
             ->get(route('offers.index'))
             ->assertDontSee($offer->game->title);
     }
+
+    /** @test */
+    public function can_see_offer_details()
+    {
+        $firstUser = factory(Profile::class)->state('withUser')->create();
+
+        $offer = factory(Offer::class)->state('active')->create([
+            'seller_id' => $firstUser,
+        ]);
+
+        $this->get(route('offers.index'))
+            ->assertSee($offer->game->title)
+            ->assertSee($offer->platform)
+            ->assertSee($offer->language)
+            ->assertSee($offer->formatted_price)
+            ->assertSee($offer->publish_at->diffForHumans())
+            ->assertSee($offer->city->name)
+            ->assertSee($offer->seller->name)
+            ->assertSee($offer->seller->positiveReviewsCount())
+            ->assertSee($offer->seller->negativeReviewsCount())
+            ->assertSee($offer->game->cover);
+    }
 }

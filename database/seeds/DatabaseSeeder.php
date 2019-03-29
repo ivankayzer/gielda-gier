@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             $user->profile()->save(factory(Profile::class)->make());
 
             foreach (range(1, 5) as $iteration) {
-                $offer = $user->offers()->save(factory(\App\Offer::class)->make([
-                    'game_id' => Game::inRandomOrder()->first()->igdb_id
+                $offer = $user->offers()->save(factory(\App\Offer::class)->state('active')->make([
+                    'game_id' => factory(Game::class)->create()->igdb_id
                 ]));
 
                 /** @var $offer \App\Offer */

@@ -113,6 +113,7 @@
                                     <li class="d-flex justify-content-center" style="padding-left: 0 !important;">
                                         <div class="user-avatar">
                                             <img src="{{ $offer->sellerProfile->getAvatar() }}" alt="">
+                                            <h5>{{ $offer->seller->name }}</h5>
                                         </div>
                                     </li>
                                     <li>
@@ -190,6 +191,7 @@
                                             <li class="d-flex justify-content-center" style="padding-left: 0 !important;">
                                                 <div class="user-avatar">
                                                     <img src="{{ $offer->sellerProfile->getAvatar() }}" alt="">
+                                                    <h5>{{ $offer->seller->name }}</h5>
                                                 </div>
                                             </li>
                                             <li>

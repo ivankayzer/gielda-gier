@@ -214,21 +214,6 @@ class AddOfferTest extends TestCase
     }
 
     /** @test */
-    public function price_is_required_to_add_an_offer()
-    {
-        $offer = factory(Offer::class)->make();
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
-            'platform' => $offer->platform,
-            'language' => $offer->language,
-        ]);
-
-        $response->assertSessionHasErrors('price');
-    }
-
-    /** @test */
     public function price_should_be_greater_than_zero_if_offer_is_sellable()
     {
         $offer = factory(Offer::class)->make();
@@ -243,6 +228,22 @@ class AddOfferTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors('price');
+    }
+
+    /** @test */
+    public function price_has_to_be_numeric()
+    {
+        $offer = factory(Offer::class)->make();
+
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->post(route('offers.store'), [
+            'game_id' => $offer->game_id,
+            'platform' => $offer->platform,
+            'language' => $offer->language,
+            'price' => 'not-valid-price',
+            'sellable' => true,
+        ])->assertSessionHasErrors('price');
     }
 
     /** @test */
