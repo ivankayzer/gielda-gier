@@ -189,4 +189,9 @@ class Offer extends Model
     {
         return $this->seller_id == auth()->user()->id;
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

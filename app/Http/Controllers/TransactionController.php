@@ -70,13 +70,16 @@ class TransactionController extends Controller
 
     public function accept(Transaction $transaction)
     {
+        if ($transaction->seller_id != auth()->user()->id || $transaction->status_id != TransactionStatus::PENDING) {
+            abort(404);
+        }
+
         $transaction->update([
             'status_id' => TransactionStatus::IN_PROGRESS
         ]);
 
-        $transaction->offer->update([
-            'sold' => true
-        ]);
+        $transaction->offer->sold = true;
+        $transaction->offer->save();
 
         event(new TransactionAccepted($transaction->id));
 
@@ -85,6 +88,10 @@ class TransactionController extends Controller
 
     public function decline(Transaction $transaction)
     {
+        if ($transaction->seller_id != auth()->user()->id || $transaction->status_id != TransactionStatus::PENDING) {
+            abort(404);
+        }
+
         $transaction->update([
             'status_id' => TransactionStatus::DECLINED
         ]);
