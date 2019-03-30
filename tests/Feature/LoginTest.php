@@ -13,7 +13,7 @@ class LoginTest extends TestCase
     /** @test */
     public function password_is_required_to_login()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
 
         $response = $this->post(route('login'), [
             'email' => $profile->user->email

@@ -99,7 +99,7 @@ class RegistrationTest extends TestCase
             'city' => '1',
         ]);
 
-        $this->assertDatabaseHas('profiles', [
+        $this->assertDatabaseHas('users', [
             'city_id' => '1'
         ]);
     }

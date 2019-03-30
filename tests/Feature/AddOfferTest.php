@@ -24,7 +24,7 @@ class AddOfferTest extends TestCase
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->state('withUser')->create();
+        $this->profile = factory(Profile::class)->create();
     }
 
     /** @test */

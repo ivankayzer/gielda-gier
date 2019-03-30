@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         factory(User::class, 10)->create()->each(function ($user) {
             /** @var $user User */
-            $user->profile()->save(factory(Profile::class)->make());
+            $user->profile()->save(factory(Profile::class)->state('withoutUser')->make());
 
             foreach (range(1, 5) as $iteration) {
                 $offer = $user->offers()->save(factory(\App\Offer::class)->state('active')->make([

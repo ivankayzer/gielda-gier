@@ -14,7 +14,7 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function can_visit_published_offer_details_page()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
         $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))->assertOk()->assertSee($offer->game->title);
@@ -23,7 +23,7 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function cant_visit_unpublished_offer_details_page()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
         $offer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))
@@ -34,7 +34,7 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function can_see_offer_details()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
         $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))

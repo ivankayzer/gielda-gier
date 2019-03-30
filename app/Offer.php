@@ -180,4 +180,9 @@ class Offer extends Model
     {
         return ($this->sellable || $this->tradeable) && !$this->sold && auth()->check() && $this->seller->id !== auth()->user()->id;
     }
+
+    public function isMyOffer()
+    {
+        return $this->seller_id === auth()->user()->id;
+    }
 }

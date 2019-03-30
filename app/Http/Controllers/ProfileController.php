@@ -45,12 +45,15 @@ class ProfileController extends Controller
 
         $oldData = $profile->toArray();
 
-        $profile->fill($request->all());
+        $profile->fill($request->except('city_id'));
+
+        $profile->user->city_id = $request->get('city_id');
 
         $profile->notify_new_offer = $request->get('notify_new_offer', false);
         $profile->notify_new_transaction = $request->get('notify_new_transaction', false);
 
         $profile->save();
+        $profile->user->save();
 
         $newData = $profile->toArray();
 

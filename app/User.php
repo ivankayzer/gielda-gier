@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'city_id'
     ];
 
     /**
@@ -30,6 +30,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::created(function(User $model){
+            $model->profile()->create();
+        });
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 
     public function profile()
     {
@@ -123,4 +137,5 @@ class User extends Authenticatable
 
         $this->notify(new NewTransaction($transaction));
     }
+
 }

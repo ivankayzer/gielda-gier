@@ -162,7 +162,7 @@
                                         <div class="user-details">
                                             <div class="user-name">
                                                 {{ auth()->user()->profile->getFullName() }}
-                                                <span>{{ auth()->user()->profile->city->name }}</span>
+                                                <span>{{ auth()->user()->city->name }}</span>
                                             </div>
                                         </div>
                                     </div>

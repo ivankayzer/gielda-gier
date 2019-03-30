@@ -14,8 +14,8 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function user_can_see_published_offers()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
-        $secondUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
+        $secondUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->state('active')->create([
             'seller_id' => $firstUser,
@@ -29,10 +29,10 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function guest_can_see_published_offers()
     {
-        $user = factory(Profile::class)->state('withUser')->create();
+        $user = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $user,
+            'seller_id' => $user->user_id,
         ]);
 
         $this->get(route('offers.index'))->assertSee($offer->game->title);
@@ -41,8 +41,8 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function users_cant_see_unpublished_offers()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
-        $secondUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
+        $secondUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->create([
             'seller_id' => $firstUser->user_id,
@@ -63,7 +63,7 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function user_can_see_own_published_and_unpublished_offers_on_my_offers_page()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->create([
             'seller_id' => $profile->user_id,
@@ -88,8 +88,8 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function user_cant_see_others_offers_on_my_offers_page()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
-        $secondProfile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
+        $secondProfile = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->state('active')->create([
             'seller_id' => $profile->user_id,
@@ -108,8 +108,8 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function offer_should_not_be_visible_if_sold()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
-        $secondUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
+        $secondUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->state('active')->create([
             'seller_id' => $firstUser,
@@ -128,10 +128,10 @@ class ViewOffersListingTest extends TestCase
     /** @test */
     public function can_see_offer_details()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $firstUser,
+            'seller_id' => $firstUser->user_id,
         ]);
 
         $this->get(route('offers.index'))

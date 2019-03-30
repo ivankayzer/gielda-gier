@@ -23,3 +23,11 @@ $factory->state(\App\Offer::class, 'active', function (Faker $faker) {
         'sellable' => true,
     ];
 });
+
+$factory->state(\App\Offer::class, 'user', function (Faker $faker) {
+    return [
+        'seller_id' => function () {
+            return factory(\App\User::class)->create()->id;
+        }
+    ];
+});

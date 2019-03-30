@@ -14,7 +14,7 @@ class DeleteOfferTest extends TestCase
     /** @test */
     public function user_can_delete_an_offer()
     {
-        $profile = factory(Profile::class)->state('withUser')->create();
+        $profile = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->create([
             'seller_id' => $profile->user_id,
@@ -31,8 +31,8 @@ class DeleteOfferTest extends TestCase
     /** @test */
     public function user_cant_delete_other_users_offers()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
-        $secondUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
+        $secondUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->create([
             'seller_id' => $firstUser->user_id,

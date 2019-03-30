@@ -11,7 +11,6 @@ class Profile extends Model
         'surname',
         'phone',
         'address',
-        'city_id',
         'zip',
         'description',
         'bank_nr',
@@ -28,11 +27,6 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
     }
 
     public function getFullName()

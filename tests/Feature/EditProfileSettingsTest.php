@@ -22,7 +22,7 @@ class EditProfileSettingsTest extends TestCase
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->state('withUser')->create();
+        $this->profile = factory(Profile::class)->create();
 
         $this->user = $this->actingAs($this->profile->user);
     }
@@ -101,7 +101,7 @@ class EditProfileSettingsTest extends TestCase
 
         $this->sendSettingsForm(['city_id' => $city->id]);
 
-        $this->assertDatabaseHas('profiles', ['city_id' => $city->id]);
+        $this->assertDatabaseHas('users', ['city_id' => $city->id]);
     }
 
     /** @test * */

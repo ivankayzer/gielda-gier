@@ -19,7 +19,7 @@
                                     @else
                                         {{ $user->name }}
                                     @endif
-                                    <span>{{ $user->profile->city->name }}</span>
+                                    <span>{{ $user->city->name }}</span>
                                 </h3>
                             </div>
                         </div>

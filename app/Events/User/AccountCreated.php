@@ -9,17 +9,14 @@ class AccountCreated
     /** @var User */
     public $user;
 
-    public $location;
-
     /**
      * Create a new event instance.
      *
      * @param User $user
      * @param $location
      */
-    public function __construct(User $user, $location)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->location = $location;
     }
 }

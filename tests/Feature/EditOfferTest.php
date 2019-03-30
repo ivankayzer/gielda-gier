@@ -24,7 +24,7 @@ class EditOfferTest extends TestCase
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->state('withUser')->create();
+        $this->profile = factory(Profile::class)->create();
     }
 
     /** @test */
@@ -113,8 +113,8 @@ class EditOfferTest extends TestCase
     /** @test */
     public function user_cant_edit_other_users_offers()
     {
-        $firstUser = factory(Profile::class)->state('withUser')->create();
-        $secondUser = factory(Profile::class)->state('withUser')->create();
+        $firstUser = factory(Profile::class)->create();
+        $secondUser = factory(Profile::class)->create();
 
         $offer = factory(Offer::class)->create([
             'seller_id' => $firstUser->user_id,
