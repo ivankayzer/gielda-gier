@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('transakcje')->group(function () {
         Route::get('/', 'TransactionController@index')->name('transactions.index');
-        Route::post('/', 'TransactionController@create')->name('transactions.create');
+        Route::post('/', 'TransactionController@store')->name('transactions.create');
         Route::get('{transaction}/zaakceptuj', 'TransactionController@accept')->name('transactions.accept');
         Route::get('{transaction}/odzruc', 'TransactionController@decline')->name('transactions.decline');
         Route::post('ocen', 'TransactionController@rate')->name('transactions.rate');

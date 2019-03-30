@@ -2,10 +2,16 @@
 
 namespace Tests\Feature;
 
+use App\Notifications\NewTransaction;
 use App\Offer;
 use App\Profile;
+use App\Transaction;
 use App\User;
+use App\ValueObjects\TransactionType;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Testing\Fakes\NotificationFake;
 use Tests\TestCase;
 
 class BuyGamesTest extends TestCase
@@ -38,6 +44,90 @@ class BuyGamesTest extends TestCase
 
         $this->actingAs($user)->get($this->offerRoute($offer))
             ->assertSee(__('offers.buy'));
+    }
+
+
+    /** @test */
+    public function can_buy_an_offer()
+    {
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+
+        $this->actingAs($user)->post(route('transactions.create'), [
+            'offer_id' => $offer->id,
+            'type' => TransactionType::PURCHASE
+        ]);
+
+        $this->assertDatabaseHas('offers', ['id' => $offer->id, 'sold' => true]);
+        $this->assertDatabaseHas('transactions', ['offer_id' => $offer->id]);
+    }
+
+    /** @test */
+    public function cant_buy_the_same_game_twice()
+    {
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+
+        $this->actingAs($user)->post(route('transactions.create'), [
+            'offer_id' => $offer->id,
+            'type' => TransactionType::PURCHASE
+        ]);
+
+        $this->actingAs($user)->get($this->offerRoute($offer))->assertNotFound();
+
+        $this->actingAs($user)->post(route('transactions.create'), [
+            'offer_id' => $offer->id,
+            'type' => TransactionType::PURCHASE
+        ])
+            ->assertNotFound();
+
+        $this->assertEquals(1, Transaction::where('offer_id', $offer->id)->count());
+    }
+
+    /** @test */
+    public function cant_buy_own_offer()
+    {
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+
+        $this->actingAs($offer->seller)->post(route('transactions.create'), ['offer_id' => $offer->id]);
+
+        $this->assertDatabaseHas('offers', ['id' => $offer->id, 'sold' => false]);
+        $this->assertDatabaseMissing('offers', ['id' => $offer->id, 'sold' => true]);
+        $this->assertDatabaseMissing('transactions', ['offer_id' => $offer->id]);
+    }
+
+    /** @test */
+    public function seller_should_receive_an_email_when_game_is_sold()
+    {
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+
+        Notification::fake();
+
+        Notification::assertNothingSent();
+
+        $this->actingAs($user)->post(route('transactions.create'), [
+            'offer_id' => $offer->id,
+            'type' => TransactionType::PURCHASE
+        ]);
+
+        Notification::assertSentTo($offer->seller, NewTransaction::class);
+    }
+
+    /** @test */
+    public function seller_should_not_receive_an_email_if_he_has_not_given_the_consent()
+    {
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+        $offer->seller->profile->update(['notify_new_transaction' => false]);
+
+        Notification::fake();
+
+        Notification::assertNothingSent();
+
+        $this->actingAs($user)->post(route('transactions.create'), ['offer_id' => $offer->id]);
+
+        Notification::assertNothingSent();
     }
 
     private function offerRoute($offer)

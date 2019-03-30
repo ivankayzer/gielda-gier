@@ -17,6 +17,10 @@ class Offer extends Model
         'pl' => 'pl',
     ];
 
+    protected $casts = [
+        'sold' => 'boolean'
+    ];
+
     protected $fillable = [
         'game_id',
         'platform',
@@ -183,6 +187,6 @@ class Offer extends Model
 
     public function isMyOffer()
     {
-        return $this->seller_id === auth()->user()->id;
+        return $this->seller_id == auth()->user()->id;
     }
 }

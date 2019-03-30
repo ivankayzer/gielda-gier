@@ -8,6 +8,7 @@ use App\Events\Transactions\TransactionCompleted;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\Transactions\TransactionDeclined;
 use App\Factories\TransactionFactory;
+use App\Http\Requests\CreateTransactionRequest;
 use App\Offer;
 use App\Review;
 use App\Transaction;
@@ -44,19 +45,20 @@ class TransactionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param CreateTransactionRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(CreateTransactionRequest $request)
     {
-        $offer = Offer::where('id', $request->get('offer_id'))->firstOrFail();
+        /** @var Offer $offer */
+        $offer = Offer::active()->findOrFail($request->get('offer_id'));
         $transaction = TransactionFactory::fromOffer($offer, $request);
 
         $saved = $transaction->save();
 
         if ($saved && !$transaction->isTrade()) {
-            $offer->update([
-                'sold' => true
-            ]);
+            $offer->sold = true;
+            $offer->save();
         }
 
         if ($saved) {

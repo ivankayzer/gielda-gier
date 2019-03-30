@@ -24,6 +24,14 @@ $factory->state(\App\Offer::class, 'active', function (Faker $faker) {
     ];
 });
 
+$factory->state(\App\Offer::class, 'tradeable', function (Faker $faker) {
+    return [
+        'is_published' => true,
+        'sold' => false,
+        'tradeable' => true,
+    ];
+});
+
 $factory->state(\App\Offer::class, 'user', function (Faker $faker) {
     return [
         'seller_id' => function () {

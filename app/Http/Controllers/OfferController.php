@@ -114,8 +114,10 @@ class OfferController extends Controller
      * @param  \App\Offer $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer, $slug)
+    public function show($offer, $slug)
     {
+        $offer = Offer::active()->findOrFail($offer);
+
         return view('offers.show', [
             'offer' => $offer,
             'similar' => $offer->getSimilar(3),

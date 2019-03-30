@@ -101,6 +101,6 @@ class Transaction extends Model
 
     public function game()
     {
-        return Game::where('igdb_id', data_get($this->seller_value, '0.value'))->first();
+        return $this->offer->game;
     }
 }

@@ -291,7 +291,7 @@
 
 @section('modals')
     @auth
-        @if($offer->isMyOffer())
+        @if(!$offer->isMyOffer())
             @include('offers._buy_modal', ['offer' => $offer])
         @endif
     @endauth

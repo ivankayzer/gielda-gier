@@ -25,7 +25,7 @@ class TransactionFactory
             $transaction->status_id = TransactionStatus::PENDING;
         }
 
-        $transaction->price = $type === TransactionType::PURCHASE ? $offer->price : $request->get('money') * 100;
+        $transaction->price = $type === TransactionType::PURCHASE ? $offer->price : self::formatMoney($request->get('money'));
 
         if ($type === TransactionType::PURCHASE) {
             return $transaction;
@@ -37,5 +37,22 @@ class TransactionFactory
         }
 
         return $transaction;
+    }
+
+    private static function formatMoney($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        $price = str_replace(' ', '', $value);
+        foreach (['.', ','] as $delimiter) {
+            if (strpos($price, $delimiter) !== false) {
+                $newPrice = explode($delimiter, $price);
+
+                return (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+            }
+        }
+        return (int)$price * 100;
     }
 }
