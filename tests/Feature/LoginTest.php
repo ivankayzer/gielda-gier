@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Profile;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -13,10 +14,10 @@ class LoginTest extends TestCase
     /** @test */
     public function password_is_required_to_login()
     {
-        $profile = factory(Profile::class)->create();
+        $user = factory(User::class)->create();
 
         $response = $this->post(route('login'), [
-            'email' => $profile->user->email
+            'email' => $user->email
         ]);
 
         $response->assertSessionHasErrors('password');

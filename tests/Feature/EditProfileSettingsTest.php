@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\City;
 use App\Profile;
+use App\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -13,37 +14,36 @@ class EditProfileSettingsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @var TestCase user */
-    protected $user;
+    /** @var TestCase loggedIn */
+    protected $loggedIn;
 
-    protected $profile;
+    protected $user;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->create();
-
-        $this->user = $this->actingAs($this->profile->user);
+        $this->user = factory(User::class)->create();
+        $this->loggedIn = $this->actingAs($this->user);
     }
 
     public function sendSettingsForm($params)
     {
-        return $this->user->patch(route('settings.update'), $params);
+        return $this->loggedIn->patch(route('settings.update'), $params);
     }
 
     /** @test */
     public function can_visit_settings_page()
     {
-        $this->user->get(route('settings.index'))->assertSee($this->profile->user->email);
+        $this->loggedIn->get(route('settings.index'))->assertSee($this->user->email);
     }
 
     /** @test */
     public function cant_update_email_address()
     {
-        $this->sendSettingsForm(['email' => 'changed@mail.com'])->assertDontSee($this->profile->user->email);
+        $this->sendSettingsForm(['email' => 'changed@mail.com'])->assertDontSee($this->user->email);
 
-        $this->assertDatabaseHas('users', ['email' => $this->profile->user->email]);
+        $this->assertDatabaseHas('users', ['email' => $this->user->email]);
         $this->assertDatabaseMissing('users', ['email' => 'changed@mail.com']);
     }
 
@@ -51,7 +51,7 @@ class EditProfileSettingsTest extends TestCase
     public function cant_update_password()
     {
         $password = 'not_secret';
-        $oldPasswordHash = $this->profile->user->password;
+        $oldPasswordHash = $this->user->password;
 
         $this->sendSettingsForm(['password' => $password, 'password_confirmation']);
         $this->assertDatabaseHas('users', ['password' => $oldPasswordHash]);

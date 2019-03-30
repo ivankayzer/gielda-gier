@@ -17,14 +17,14 @@ class AddOfferTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @var Profile */
-    private $profile;
+    /** @var User */
+    private $user;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->create();
+        $this->user = factory(User::class)->create();
     }
 
     /** @test */
@@ -32,10 +32,10 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), $offer);
+        $this->actingAs($this->user)->post(route('offers.store'), $offer);
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'game_id' => $offer['game_id'],
             'platform' => $offer['platform'],
         ]);
@@ -46,13 +46,13 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'payment_bank_transfer' => false,
             'payment_cash' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'payment_bank_transfer' => false,
             'payment_cash' => true,
         ]);
@@ -63,13 +63,13 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'delivery_post' => false,
             'delivery_in_person' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'delivery_post' => false,
             'delivery_in_person' => true,
         ]);
@@ -80,12 +80,12 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'comment' => 'Example comment',
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'comment' => 'Example comment',
         ]);
     }
@@ -99,12 +99,12 @@ class AddOfferTest extends TestCase
 
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'images' => [$file],
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'game_id' => $offer['game_id'],
         ]);
 
@@ -122,12 +122,12 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'is_published' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'is_published' => true,
             'publish_at' => Carbon::now(),
         ]);
@@ -138,14 +138,14 @@ class AddOfferTest extends TestCase
     {
         $offer = factory(Offer::class)->make()->toArray();
 
-        $this->actingAs($this->profile->user)->post(route('offers.store'), array_merge([
+        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'sellable' => false,
             'tradeable' => true,
             'is_published' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'sellable' => false,
             'tradeable' => true,
             'is_published' => true,

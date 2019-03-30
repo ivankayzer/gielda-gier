@@ -36,10 +36,10 @@ class ViewProfilePagesTest extends TestCase
     /** @test */
     public function anyone_can_visit_other_users_profile_page()
     {
-        $profile = factory(Profile::class)->create();
+        $user = factory(User::class)->create();
         $otherProfile = factory(Profile::class)->create();
 
-        $this->actingAs($profile->user)->get(route('profile.show', ['user' => $otherProfile->user->name]))
+        $this->actingAs($user)->get(route('profile.show', ['user' => $otherProfile->user->name]))
             ->assertDontSee($otherProfile->name)
             ->assertDontSee($otherProfile->surname)
             ->assertSee($otherProfile->user->name)
@@ -49,11 +49,10 @@ class ViewProfilePagesTest extends TestCase
     /** @test */
     public function can_see_own_offers_on_own_profile_page()
     {
-        $profile = factory(Profile::class)->create();
-        $unpublishedOffer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
-        $publishedOffer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
-
-        $this->actingAs($profile->user)->get(route('profile.me'))
+        $user = factory(User::class)->create();
+        $unpublishedOffer = factory(Offer::class)->create(['seller_id' => $user->id]);
+        $publishedOffer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
+        $this->actingAs($user)->get(route('profile.me'))
             ->assertDontSee($unpublishedOffer->game->title)
             ->assertSee($publishedOffer->game->title);
     }
@@ -61,24 +60,24 @@ class ViewProfilePagesTest extends TestCase
     /** @test */
     public function can_see_other_users_published_offers_on_their_profile_page()
     {
-        $profile = factory(Profile::class)->create();
-        $secondProfile = factory(Profile::class)->create();
+        $user = factory(User::class)->create();
+        $secondUser = factory(User::class)->create();
 
-        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
+        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
 
-        $this->actingAs($secondProfile->user)->get(route('profile.show', ['user' => $profile->user->name]))
+        $this->actingAs($secondUser)->get(route('profile.show', ['user' => $user->name]))
             ->assertSee($offer->game->title);
     }
 
     /** @test */
     public function cant_see_other_users_unpublished_offers_on_their_profile_page()
     {
-        $profile = factory(Profile::class)->create();
-        $secondProfile = factory(Profile::class)->create();
+        $user = factory(User::class)->create();
+        $secondUser = factory(User::class)->create();
 
-        $offer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
+        $offer = factory(Offer::class)->create(['seller_id' => $user->id]);
 
-        $this->actingAs($secondProfile->user)->get(route('profile.show', ['user' => $profile->user->name]))
+        $this->actingAs($secondUser)->get(route('profile.show', ['user' => $user->name]))
             ->assertDontSee($offer->game->title);
     }
 }

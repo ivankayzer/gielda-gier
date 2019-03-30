@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Offer;
 use App\Profile;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -11,25 +12,25 @@ class SortingOffersTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private $profile;
+    private $user;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->create();
+        $this->user = factory(User::class)->create();
     }
 
     /** @test */
     public function can_be_sorted_by_date_from_old_to_new()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'publish_at' => '2019-01-01 12:00:00'
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'publish_at' => '2019-01-01 13:00:00'
         ]);
 
@@ -41,12 +42,12 @@ class SortingOffersTest extends TestCase
     public function can_be_sorted_by_date_from_new_to_old()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'publish_at' => '2019-01-01 12:00:00'
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'publish_at' => '2019-01-01 13:00:00'
         ]);
 
@@ -58,12 +59,12 @@ class SortingOffersTest extends TestCase
     public function can_be_sorted_by_price_from_cheapest_to_most_expensive()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'price' => '10'
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'price' => '20'
         ]);
 
@@ -75,12 +76,12 @@ class SortingOffersTest extends TestCase
     public function can_be_sorted_by_price_from_most_expensive_to_cheapest()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'price' => '10'
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'price' => '20'
         ]);
 

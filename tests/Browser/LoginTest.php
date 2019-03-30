@@ -15,7 +15,7 @@ class LoginTest extends DuskTestCase
     /** @test */
     public function guest_can_login()
     {
-        $profile = factory(Profile::class)->create();
+        $profile = factory(User::class)->create();
         $password = 'secret';
 
         $this->browse(function (Browser $browser) use ($profile, $password) {

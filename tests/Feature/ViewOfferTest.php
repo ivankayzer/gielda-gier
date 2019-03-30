@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Offer;
 use App\Profile;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -14,8 +15,8 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function can_visit_published_offer_details_page()
     {
-        $profile = factory(Profile::class)->create();
-        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))->assertOk()->assertSee($offer->game->title);
     }
@@ -23,8 +24,8 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function cant_visit_unpublished_offer_details_page()
     {
-        $profile = factory(Profile::class)->create();
-        $offer = factory(Offer::class)->create(['seller_id' => $profile->user_id]);
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->create(['seller_id' => $user->id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))
             ->assertDontSee($offer->game->title)
@@ -34,8 +35,8 @@ class ViewOfferTest extends TestCase
     /** @test */
     public function can_see_offer_details()
     {
-        $profile = factory(Profile::class)->create();
-        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $profile->user_id]);
+        $user = factory(User::class)->create();
+        $offer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
 
         $this->get(route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]))
             ->assertSee($offer->game->title)

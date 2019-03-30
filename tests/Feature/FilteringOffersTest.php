@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Offer;
 use App\Profile;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -11,20 +12,20 @@ class FilteringOffersTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private $profile;
+    private $user;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->create();
+        $this->user = factory(User::class)->create();
     }
 
     /** @test */
     public function can_be_filtered_by_game_id()
     {
-        $firstOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->profile->user_id]);
-        $secondOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->profile->user_id]);
+        $firstOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id]);
+        $secondOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id]);
 
         $this->get(route('offers.index', ['game_id' => $firstOffer->game_id]))
             ->assertSee($firstOffer->game->title)
@@ -34,8 +35,8 @@ class FilteringOffersTest extends TestCase
     /** @test */
     public function can_be_filtered_by_city_id()
     {
-        $firstOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->profile->user_id]);
-        $secondOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->profile->user_id]);
+        $firstOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id]);
+        $secondOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id]);
 
         $this->get(route('offers.index', ['city' => $firstOffer->city_id]))
             ->assertSee($firstOffer->game->title)
@@ -46,11 +47,11 @@ class FilteringOffersTest extends TestCase
     public function can_be_filtered_by_platform()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 9
         ]);
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 12
         ]);
 
@@ -63,15 +64,15 @@ class FilteringOffersTest extends TestCase
     public function can_be_filtered_by_multiple_platforms()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 9
         ]);
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 12
         ]);
         $thirdOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 48
         ]);
 

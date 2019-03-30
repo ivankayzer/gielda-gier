@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Offer;
 use App\Profile;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -32,10 +33,10 @@ class BuyGamesTest extends TestCase
     /** @test */
     public function buy_button_is_visible()
     {
-        $profile = factory(Profile::class)->create();
+        $user = factory(User::class)->create();
         $offer = factory(Offer::class)->states(['active', 'user'])->create();
 
-        $this->actingAs($profile->user)->get($this->offerRoute($offer))
+        $this->actingAs($user)->get($this->offerRoute($offer))
             ->assertSee(__('offers.buy'));
     }
 

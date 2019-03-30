@@ -36,7 +36,7 @@ class HomepageTest extends DuskTestCase
     public function offers_section_shows_recent_offers()
     {
         $game = factory(Game::class)->create();
-        $profile = factory(Profile::class)->create();
+        $profile = factory(User::class)->create();
         $city = factory(City::class)->create();
 
         factory(Offer::class)->state('active')->create([

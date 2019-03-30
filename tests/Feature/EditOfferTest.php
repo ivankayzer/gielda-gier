@@ -6,6 +6,7 @@ use App\City;
 use App\Game;
 use App\Offer;
 use App\Profile;
+use App\User;
 use App\ValueObjects\Platform;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,14 +18,14 @@ class EditOfferTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @var Profile */
-    private $profile;
+    /** @var User */
+    private $user;
 
     protected function setUp()
     {
         parent::setUp();
 
-        $this->profile = factory(Profile::class)->create();
+        $this->user = factory(User::class)->create();
     }
 
     /** @test */
@@ -34,7 +35,7 @@ class EditOfferTest extends TestCase
         $secondCity = factory(City::class)->create();
 
         $offer = factory(Offer::class)->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'platform' => 12,
             'language' => 'pl',
             'price' => '500,00',
@@ -49,7 +50,7 @@ class EditOfferTest extends TestCase
             'is_published' => false,
         ]);
 
-        $this->actingAs($this->profile->user)
+        $this->actingAs($this->user)
             ->post(route('offers.update', ['offer' => $offer->id]),
                 array_merge($offer->toArray(), [
                     'platform' => 9,
@@ -67,7 +68,7 @@ class EditOfferTest extends TestCase
                 ]));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'game_id' => $offer['game_id'],
             'platform' => 9,
             'language' => 'en',
@@ -90,22 +91,22 @@ class EditOfferTest extends TestCase
         $game = factory(Game::class)->create();
 
         $offer = factory(Offer::class)->create([
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
         ]);
 
-        $this->actingAs($this->profile->user)
+        $this->actingAs($this->user)
             ->post(route('offers.update', ['offer' => $offer->id]),
                 array_merge($offer->toArray(), [
                     'game_id' => $game->igdb_id,
                 ]));
 
         $this->assertDatabaseMissing('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'game_id' => $game->igdb_id,
         ]);
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->profile->user_id,
+            'seller_id' => $this->user->id,
             'game_id' => $offer['game_id'],
         ]);
     }
@@ -113,14 +114,14 @@ class EditOfferTest extends TestCase
     /** @test */
     public function user_cant_edit_other_users_offers()
     {
-        $firstUser = factory(Profile::class)->create();
-        $secondUser = factory(Profile::class)->create();
+        $firstUser = factory(User::class)->create();
+        $secondUser = factory(User::class)->create();
 
         $offer = factory(Offer::class)->create([
-            'seller_id' => $firstUser->user_id,
+            'seller_id' => $firstUser->id,
         ]);
 
-        $this->actingAs($secondUser->user)->get(route('offers.edit',
+        $this->actingAs($secondUser)->get(route('offers.edit',
             ['offer' => $offer->id]))->assertLocation(route('home'));
     }
 }
