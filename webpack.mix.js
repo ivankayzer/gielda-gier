@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js')
     .copy('resources/images', 'public/images')
     .copy('resources/images/favicon.ico', 'public/')
     .copy('resources/fonts', 'public/css/fonts')
@@ -20,7 +20,6 @@ mix.react('resources/js/app.js', 'public/js')
         'resources/js/vendor/jquery-3.3.1.min.js',
         'resources/js/vendor/slick.min.js',
         'resources/js/vendor/algoliasearchLite.min.js',
-        'resources/js/vendor/autocomplete.min.js',
         'resources/js/vendor/select2.min.js',
         'resources/js/vendor/mmenu.min.js',
         'resources/js/vendor/tippy.all.min.js',
