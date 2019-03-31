@@ -115,14 +115,16 @@ class TransactionController extends Controller
     {
         $this->validate($request, [
             'type' => ['required', Rule::in(['positive', 'negative'])],
-            'transaction_id' => 'required|exists:transactions'
+            'transaction_id' => 'required'
         ]);
 
         /** @var Transaction $transaction */
-        $transaction = Transaction::where('id', $request->get('transaction_id'))->firstOrFail();
+        $transaction = Transaction::where('id', $request->get('transaction_id'))->where(function ($query) use ($request) {
+            return $query->where('buyer_id', $request->user()->id)->orWhere('seller_id', $request->user()->id);
+        })->firstOrFail();
 
         $comment = new Review([
-            'user_id' => $request->user()->id,
+            'user_id' => $transaction->otherPerson->id,
             'transaction_id' => $transaction->id,
             'type' => $request->get('type'),
             'comment' => $request->get('message')
