@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Profile;
 
 use App\Offer;
 use App\Profile;
@@ -79,17 +79,5 @@ class ViewProfilePagesTest extends TestCase
 
         $this->actingAs($secondUser)->get(route('profile.show', ['user' => $user->name]))
             ->assertDontSee($offer->game->title);
-    }
-
-    /** @test */
-    public function can_see_comments_to_transactions_on_my_own_profile()
-    {
-
-    }
-
-    /** @test */
-    public function can_see_comments_to_transactions_on_others_profiles()
-    {
-
     }
 }

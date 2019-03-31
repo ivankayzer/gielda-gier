@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Profile;
 
 use App\City;
 use App\Profile;
@@ -216,18 +216,6 @@ class EditProfileSettingsTest extends TestCase
         $this->sendSettingsForm(['zip' => '01-001']);
 
         $this->assertDatabaseHas('profiles', ['notify_new_transaction' => false]);
-    }
-
-    /** @test */
-    public function notify_new_offer_should_be_set_by_user_during_registration()
-    {
-        // @TODO
-    }
-
-    /** @test */
-    public function notify_new_transaction_should_be_set_by_user_during_registration()
-    {
-        // @TODO
     }
 
     private function successfulUpload($extension)

@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Transactions;
 
 use App\Game;
 use App\Notifications\NewTradeOffer;
-use App\Notifications\NewTransaction;
 use App\Offer;
 use App\Transaction;
 use App\User;

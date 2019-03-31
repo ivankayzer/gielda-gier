@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Transactions;
 
 use App\Offer;
-use App\Review;
 use App\Transaction;
 use App\User;
 use App\ValueObjects\TransactionStatus;

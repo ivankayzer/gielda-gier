@@ -6,6 +6,7 @@ use App\City;
 use App\Game;
 use App\Offer;
 use App\Profile;
+use App\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -36,12 +37,12 @@ class HomepageTest extends DuskTestCase
     public function offers_section_shows_recent_offers()
     {
         $game = factory(Game::class)->create();
-        $profile = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $city = factory(City::class)->create();
 
         factory(Offer::class)->state('active')->create([
             'game_id' => $game->igdb_id,
-            'seller_id' => $profile->user_id,
+            'seller_id' => $user->id,
             'city_id' => $city
         ]);
 

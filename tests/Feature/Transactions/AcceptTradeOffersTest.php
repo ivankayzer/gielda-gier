@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Transactions;
 
 use App\Offer;
 use App\Transaction;

@@ -45,10 +45,4 @@ class RegistrationTest extends DuskTestCase
             $browser->visit(route('register'))->assertUrlIs(route('home') . '/');
         });
     }
-
-    /** @test */
-    public function user_gets_a_welcome_email()
-    {
-        // @TODO
-    }
 }

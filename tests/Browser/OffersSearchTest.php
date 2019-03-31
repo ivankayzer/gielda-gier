@@ -42,10 +42,4 @@ class OffersSearchTest extends DuskTestCase
             $browser->visit(route('offers.index') . '?city=' . $city->id)->assertSee($city->name);
         });
     }
-
-    /** @test */
-    public function filtering_by_city_returns_correct_results()
-    {
-        // @TODO
-    }
 }

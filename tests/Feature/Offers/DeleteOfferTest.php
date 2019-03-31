@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Offers;
 
 use App\Offer;
 use App\Profile;

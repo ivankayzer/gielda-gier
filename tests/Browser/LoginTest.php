@@ -15,17 +15,17 @@ class LoginTest extends DuskTestCase
     /** @test */
     public function guest_can_login()
     {
-        $profile = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $password = 'secret';
 
-        $this->browse(function (Browser $browser) use ($profile, $password) {
+        $this->browse(function (Browser $browser) use ($user, $password) {
             $browser->visit(route('login'))
                 ->assertSee(__('common.glad_to_see_you_again'))
-                ->type('email', $profile->user->email)
+                ->type('email', $user->email)
                 ->type('password', $password)
                 ->click('button[type="submit"]');
 
-            $browser->assertAuthenticatedAs($profile->user);
+            $browser->assertAuthenticatedAs($user);
         });
     }
 

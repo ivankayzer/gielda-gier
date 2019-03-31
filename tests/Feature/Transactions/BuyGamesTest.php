@@ -1,17 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Transactions;
 
 use App\Notifications\NewTransaction;
 use App\Offer;
-use App\Profile;
 use App\Transaction;
 use App\User;
 use App\ValueObjects\TransactionType;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Testing\Fakes\NotificationFake;
 use Tests\TestCase;
 
 class BuyGamesTest extends TestCase
