@@ -106,11 +106,12 @@ class AcceptTradeOffersTest extends TestCase
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
             'offer_id' => $offer->id,
-            'status_id' => TransactionStatus::IN_PROGRESS,
+            'status_id' => TransactionStatus::PENDING,
         ]);
 
         $this->actingAs($user)
-            ->get(route('transactions.accept', ['transaction' => $transaction->id]));
+            ->get(route('transactions.accept', ['transaction' => $transaction->id]))
+            ->assertSessionHasNoErrors();
 
         $this->get(route('offers.index'))->assertDontSee($offer->game->title);
     }

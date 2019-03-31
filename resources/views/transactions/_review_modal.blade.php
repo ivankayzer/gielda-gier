@@ -38,7 +38,7 @@
                               id="message" cols="7" required=""></textarea>
 
                     <button class="button full-width button-sliding-icon ripple-effect" type="submit"
-                            style="width: 30px;">@lang('common.save') <i
+                            style="width: 30px;">@lang('common.send') <i
                                 class="icon-material-outline-arrow-right-alt"></i></button>
 
                 </form>

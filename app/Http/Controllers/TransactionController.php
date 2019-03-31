@@ -14,6 +14,7 @@ use App\Review;
 use App\Transaction;
 use App\ValueObjects\TransactionStatus;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TransactionController extends Controller
 {
@@ -112,6 +113,11 @@ class TransactionController extends Controller
 
     public function rate(Request $request)
     {
+        $this->validate($request, [
+            'type' => ['required', Rule::in(['positive', 'negative'])],
+            'transaction_id' => 'required|exists:transactions'
+        ]);
+
         /** @var Transaction $transaction */
         $transaction = Transaction::where('id', $request->get('transaction_id'))->firstOrFail();
 
