@@ -5,6 +5,7 @@ $('.select2').select2({
 });
 
 $('.select2.games').select2({
+    language: 'pl',
     ajax: {
         url: '/szukaj/gry',
         dataType: 'json',
@@ -18,6 +19,7 @@ $('.select2.games').select2({
 });
 
 $('.select2.cities').select2({
+    language: 'pl',
     ajax: {
         url: '/szukaj/miasta',
         dataType: 'json',

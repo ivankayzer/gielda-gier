@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
         'resources/js/vendor/slick.min.js',
         'resources/js/vendor/algoliasearchLite.min.js',
         'resources/js/vendor/select2.min.js',
+        'resources/js/vendor/select2.pl.js',
         'resources/js/vendor/mmenu.min.js',
         'resources/js/vendor/tippy.all.min.js',
         'resources/js/vendor/simplebar.min.js',

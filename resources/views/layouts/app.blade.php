@@ -8,8 +8,6 @@
     <title>@yield('title') - {{ config('app.name', 'Giełda gier') }}</title>
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/vendor/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/vendor/colors/blue.css') }}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
 </head>
