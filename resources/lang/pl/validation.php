@@ -142,5 +142,27 @@ return [
     */
 
     'attributes' => [
+        'password' => 'hasło',
+        'city' => 'miasto',
+        'email' => 'e-mail',
+        'password_confirmation' => 'potwierdzenie hasła',
+        'message' => 'wiadomość',
+        'name' => 'nazwa',
+        'title' => 'tytuł',
+        'platform' => 'platforma',
+        'comment' => 'komentarz',
+        'language' => 'język',
+        'price' => 'cena',
+        'is_published' => 'opublikowane',
+        'publish_at' => 'data publikacji',
+        'sellable' => 'na sprzedaż',
+        'tradeable' => 'na wymianę',
+        'city_id' => 'miasto',
+        'surname' => 'nazwisko',
+        'address' => 'adres',
+        'zip' => 'kod pocztowy',
+        'phone' => 'telefon',
+        'bank_nr' => 'numer konta bankowego',
+        'company_name' => 'nazwa firmy',
     ],
 ];
