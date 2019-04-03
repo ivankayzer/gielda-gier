@@ -88,7 +88,7 @@ class ProfileController extends Controller
 
         return view('users.profile', [
             'user' => $user,
-            'reviews' => $user->reviews()->paginate(5),
+            'reviews' => $user->reviews()->orderBy('created_at', 'desc')->paginate(5),
             'offers' => $offers,
             'background' => $background
         ]);
