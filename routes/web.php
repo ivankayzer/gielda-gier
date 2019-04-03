@@ -2,7 +2,7 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/uzytkownik/{user}', 'ProfileController@show')->name('profile.show');
+Route::get('/uzytkownik/{user?}', 'ProfileController@show')->name('profile.show');
 Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
 
 Route::prefix('ogloszenia')->group(function () {
@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('ocen', 'TransactionController@rate')->name('transactions.rate');
     });
 
-    Route::get('/moj-profil', 'ProfileController@me')->name('profile.me');
+    Route::get('/moj-profil', 'ProfileController@show')->name('profile.me');
     Route::get('/transakcja/{transaction}/info', 'TransactionController@showInfo')->name('transactions.info');
 
     Route::prefix('czat')->group(function () {

@@ -3,7 +3,7 @@
 @section('title', $user->name)
 
 @section('content')
-    <div class="single-page-header freelancer-header">
+    <div class="single-page-header freelancer-header intro-banner" data-background-image="{{ $background }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

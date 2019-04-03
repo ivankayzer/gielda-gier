@@ -66,23 +66,31 @@ class ProfileController extends Controller
         return back();
     }
 
-    public function me(Request $request)
+    public function show(Request $request, $user = null)
     {
-        $user = $request->user();
+        if ($user) {
+            $user = User::where('name', $user)->firstOrFail();
+        }
+
+        if (!$user) {
+            $user = $request->user();
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        $offers = $user->offers()->with('game')->active()->get();
+
+        $background = $offers->map(function ($offer) {
+            return $offer->game->background;
+        })->shuffle()->first();
 
         return view('users.profile', [
             'user' => $user,
             'reviews' => $user->reviews()->paginate(5),
-            'offers' => $user->offers()->active()->get()
-        ]);
-    }
-
-    public function show(User $user)
-    {
-        return view('users.profile', [
-            'user' => $user,
-            'reviews' => $user->reviews()->paginate(5),
-            'offers' => $user->offers()->active()->get()
+            'offers' => $offers,
+            'background' => $background
         ]);
     }
 }

@@ -29,13 +29,13 @@ $factory->define(App\Game::class, function (Faker $faker) {
         ],
         'release_date' => (new DateTime())->getTimestamp() * 1000,
         'background' => $faker->randomElement([
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ybliaszwqkwui7djaou4',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tp3tsdlzfkdp1hhofmb1',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ukzjmwiud0hdn8jk5fkb',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/xtwej9t60lrwfbazurcy',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/c3wpjcbt3octz1ruzdrn',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tvzsd22vjayreghdylpv',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/z43tnr86e1bpwrilnlqx'
+            'ybliaszwqkwui7djaou4',
+            'tp3tsdlzfkdp1hhofmb1',
+            'ukzjmwiud0hdn8jk5fkb',
+            'xtwej9t60lrwfbazurcy',
+            'c3wpjcbt3octz1ruzdrn',
+            'tvzsd22vjayreghdylpv',
+            'z43tnr86e1bpwrilnlqx'
         ])
     ];
 });
