@@ -68,6 +68,11 @@ class Offer extends Model
             $query->orderBy('publish_at', 'desc');
         }
 
+        if ($filters->get('price')) {
+            [$minPrice, $maxPrice] = explode('-', $filters->get('price'));
+            $query->whereBetween('price', [$minPrice * 100, $maxPrice * 100]);
+        }
+
         return $query;
     }
 

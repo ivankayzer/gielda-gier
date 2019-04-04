@@ -30,6 +30,17 @@
                             </div>
 
                             <div class="sidebar-widget">
+                                <h3>@lang('common.price')</h3>
+                                <div class="margin-top-55"></div>
+
+                                <!-- Range Slider -->
+                                <input class="range-slider" type="text" name="price" data-slider-currency="zł "
+                                       data-slider-min="{{ $minPrice }}"
+                                       data-slider-max="{{ $maxPrice }}" data-slider-step="5"
+                                       data-slider-value="[{{ request()->get('price', $minPrice . ',' . $maxPrice) }}]"/>
+                            </div>
+
+                            <div class="sidebar-widget">
                                 <h3>@lang('common.platform')</h3>
                                 <select class="select2 full-container" multiple name="platform[]"
                                         title="@lang('common.all_platforms')">
