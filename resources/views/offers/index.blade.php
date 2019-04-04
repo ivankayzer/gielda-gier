@@ -58,6 +58,26 @@
                                     <option value="0">{{ $selectedGame }}</option>
                                 </select>
                             </div>
+
+
+                            <div class="sidebar-widget">
+                                <h3>@lang('common.type')</h3>
+                                <div class="checkbox">
+                                    <input type="hidden" name="sellable" value="0">
+                                    <input type="checkbox" name="sellable" value="1" id="sellable"
+                                           @if(!request()->has('sellable') || request()->get('sellable') == "1") checked="checked" @endif>
+                                    <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="checkbox">
+                                    <input type="hidden" name="tradeable" value="0">
+                                    <input type="checkbox" name="tradeable" value="1" id="tradeable"
+                                           @if(!request()->has('tradeable') || request()->get('tradeable') == "1") checked="checked" @endif>
+                                    <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <button type="submit"
