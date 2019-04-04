@@ -35,7 +35,7 @@
                     </div>
 
                     <textarea class="with-border" placeholder="@lang('transactions.comment')" name="message"
-                              id="message" cols="7" required=""></textarea>
+                              id="message" cols="7"></textarea>
 
                     <button class="button full-width button-sliding-icon ripple-effect" type="submit"
                             style="width: 30px;">@lang('common.send') <i

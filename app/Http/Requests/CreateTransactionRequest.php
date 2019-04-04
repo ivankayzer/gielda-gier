@@ -49,7 +49,7 @@ class CreateTransactionRequest extends FormRequest
         });
 
         $validator->sometimes('money', ['bail', 'sometimes', 'regex:/[0-9],?|.?[0-9]/', 'min:1', Rule::notIn(['0', '0.00', '0,00'])], function ($input) {
-            return $input->type === TransactionType::TRADE;
+            return $input->type === TransactionType::TRADE && strlen($input->money);
         });
     }
 }
