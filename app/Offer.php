@@ -69,7 +69,7 @@ class Offer extends Model
         }
 
         if ($filters->get('price')) {
-            [$minPrice, $maxPrice] = explode('-', $filters->get('price'));
+            [$minPrice, $maxPrice] = explode(',', $filters->get('price'));
             $query->whereBetween('price', [$minPrice * 100, $maxPrice * 100]);
         }
 

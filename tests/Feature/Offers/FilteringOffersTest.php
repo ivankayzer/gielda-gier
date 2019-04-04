@@ -88,19 +88,19 @@ class FilteringOffersTest extends TestCase
         $firstOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id, 'price' => '100.00']);
         $secondOffer = factory(Offer::class)->state('active')->create(['seller_id' => $this->user->id, 'price' => '150.00']);
 
-        $this->get(route('offers.index', ['price' => '70-120']))
+        $this->get(route('offers.index', ['price' => '70,120']))
             ->assertSee($firstOffer->game->title)
             ->assertDontSee($secondOffer->game->title);
 
-        $this->get(route('offers.index', ['price' => '100-100']))
+        $this->get(route('offers.index', ['price' => '100,100']))
             ->assertSee($firstOffer->game->title)
             ->assertDontSee($secondOffer->game->title);
 
-        $this->get(route('offers.index', ['price' => '145-160']))
+        $this->get(route('offers.index', ['price' => '145,160']))
             ->assertDontSee($firstOffer->game->title)
             ->assertSee($secondOffer->game->title);
 
-        $this->get(route('offers.index', ['price' => '50-60']))
+        $this->get(route('offers.index', ['price' => '50,60']))
             ->assertDontSee($firstOffer->game->title)
             ->assertDontSee($secondOffer->game->title);
     }

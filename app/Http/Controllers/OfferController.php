@@ -38,8 +38,7 @@ class OfferController extends Controller
         return view('offers.index', [
             'offers' => $offers,
             'cities' => City::getList(),
-            'minPrice' => $query->where('price', '>', 0)->min('price') / 100,
-            'maxPrice' => $query->where('price', '>', 0)->max('price') / 100,
+            'maxPrice' => Offer::max('price') / 100,
             'isFiltered' => !empty($request->all()),
             'selectedCity' => isset($city) ? $city->name : __('settings.select_city'),
             'selectedGame' => isset($game) ? $game->title : __('settings.select_game')
