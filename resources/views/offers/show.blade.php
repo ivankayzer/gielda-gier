@@ -48,13 +48,8 @@
                         <p>{{ $offer->comment }}</p>
                     </div>
 
-                    <ul id="vertical" class="gallery padding-bottom-20">
+                    <ul id="vertical" class="gallery @if(count($offer->image) === 1) disabled @endif padding-bottom-20">
                         @foreach ($offer->image as $image)
-                            <img data-gallery-src="{{ asset('storage/' . $image->url) }}"
-                                 class="gallery__item"
-                                 src="{{ asset('storage/' . $image->url) }}"
-                                 onerror="this.src='{{ asset('images/no-image.png') }}'"
-                            />
                             <img data-gallery-src="{{ asset('storage/' . $image->url) }}"
                                  class="gallery__item"
                                  src="{{ asset('storage/' . $image->url) }}"
@@ -230,9 +225,9 @@
 
 @section('post-scripts')
     <script>
-        $('.gallery').slick({
+        $('.gallery:not(.disabled)').slick({
             infinite: true,
-            slidesToShow: 3,
+            slidesToShow: 1,
             slidesToScroll: 1
         });
     </script>
