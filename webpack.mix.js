@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.react('resources/js/app.js', 'public/js')
     .copy('resources/images', 'public/images')
     .copy('resources/images/favicon.ico', 'public/')
     .copy('resources/fonts', 'public/css/fonts')

@@ -112,7 +112,7 @@
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
                                         <ul>
-                                            @foreach([] as $message)
+                                            @foreach($messages as $message)
                                                 <li class="notifications-not-read">
                                                     <a href="{{ route('chat.index') }}">
                                                     <span class="notification-avatar"><img
