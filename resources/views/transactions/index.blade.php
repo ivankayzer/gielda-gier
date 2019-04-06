@@ -12,7 +12,9 @@
                     <div class="dashboard-headline">
                         <h3>@lang('common.transactions')</h3>
                     </div>
-
+                    @if(session()->has('message'))
+                        @include('partials.message', ['message' => session()->get('message')])
+                    @endif
                     <div class="row">
                         <div class="col-xl-12">
                             @if(count($pending))

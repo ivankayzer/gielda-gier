@@ -6,7 +6,7 @@ Route::get('/uzytkownik/{user?}', 'ProfileController@show')->name('profile.show'
 Route::get('wyloguj-sie', 'Auth\LoginController@logout')->name('exit');
 
 Route::prefix('ogloszenia')->group(function () {
-    Route::get('/', 'OfferController@index')->name('offers.index');
+    Route::get('/', 'OfferController@index')->name('offers.index')->middleware('add_notification');
     Route::get('ogloszenie/{offer},{slug}', 'OfferController@show')->name('offers.show');
 });
 
@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/powiadomienia', 'HomeController@notifications')->name('notifications');
 
     Route::prefix('transakcje')->group(function () {
-        Route::get('/', 'TransactionController@index')->name('transactions.index');
+        Route::get('/', 'TransactionController@index')->name('transactions.index')->middleware('add_notification');
         Route::post('/', 'TransactionController@store')->name('transactions.create');
         Route::get('{transaction}/zaakceptuj', 'TransactionController@accept')->name('transactions.accept');
         Route::get('{transaction}/odzruc', 'TransactionController@decline')->name('transactions.decline');
@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('moje-ogloszenia')->group(function () {
-        Route::get('/', 'OfferController@my')->name('my-offers.index');
+        Route::get('/', 'OfferController@my')->name('my-offers.index')->middleware('add_notification');
         Route::get('dodaj', 'OfferController@create')->name('offers.create');
         Route::post('dodaj', 'OfferController@store')->name('offers.store');
         Route::get('{offer}/edytuj', 'OfferController@edit')->name('offers.edit');
