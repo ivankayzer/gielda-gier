@@ -37,7 +37,7 @@
         @if($offer->sellable)
             <div class="offer-details">
                 <div class="offer-price">
-                    <strong>{{ $offer->price() }}</strong>
+                    <strong>{{ $offer->formatted_price }}</strong>
                 </div>
             </div>
         @endif

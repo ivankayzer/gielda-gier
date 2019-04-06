@@ -22,19 +22,19 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center">
-                <p>{!! \App\Services\SentenceComposer::transactionInfo($transaction) !!}</p>
-            </div>
+            @include('transactions._items')
         </div>
     </div>
 
     <!-- Task Details -->
     <ul class="dashboard-task-info">
-        <li><span>{{ $transaction->otherPersonType() }}</span><strong><a href="{{ route('profile.show', ['user' => $transaction->otherPerson->name]) }}">{{ $transaction->otherPerson->name }}</a></strong></li>
-        <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city() }}</strong></li>
+        <li><span>{{ $transaction->otherPersonType() }}</span><strong><a
+                        href="{{ route('profile.show', ['user' => $transaction->otherPerson->name]) }}">{{ $transaction->otherPerson->name }}</a></strong>
+        </li>
+        <li><span>@lang('offers.location')</span><strong>{{ $transaction->offer->city->name }}</strong></li>
     </ul>
 
-@if($transaction->status()->isInProgress())
+    @if($transaction->status()->isInProgress())
         <div class="buttons-to-right always-visible">
             <a href=".user-info-dialog" data-id="{{ $transaction->id }}"
                class="button ripple-effect popup-with-zoom-anim open-transaction-data"><i

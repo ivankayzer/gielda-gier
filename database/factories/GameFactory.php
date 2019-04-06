@@ -6,34 +6,36 @@ $factory->define(App\Game::class, function (Faker $faker) {
     return [
         'igdb_id' => $faker->numberBetween(10000, 1000000),
         'title' => ucfirst(join(' ', $faker->words(2))),
+        'slug' => $faker->slug,
+        'url' => $faker->url,
         'cover' => $faker->randomElement([
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/ax2kqsyxkwmy2ewqgumx.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/xvqrf8vseeesyor6nhfn.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/nxaptelx9e5ttkntu8ro.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/yfk9f2lbo0r7slytuhra.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/co1h1a.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/rrroofmmjqgvgmfxwewd.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/fgoxeekdfch5w69ufwpb.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/stgtcfzbombzc15e4epk.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/knwpjdgqd4dxtvmdccka.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/sfcxfj5bhvc1ietxxrx1.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/oohajoszpr1y4emf8syc.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_cover_big/dfnfr4vbf3tbcr6daagw.jpg'
+            'ax2kqsyxkwmy2ewqgumx',
+            'xvqrf8vseeesyor6nhfn',
+            'nxaptelx9e5ttkntu8ro',
+            'yfk9f2lbo0r7slytuhra',
+            'co1h1a',
+            'rrroofmmjqgvgmfxwewd',
+            'fgoxeekdfch5w69ufwpb',
+            'stgtcfzbombzc15e4epk',
+            'knwpjdgqd4dxtvmdccka',
+            'sfcxfj5bhvc1ietxxrx1',
+            'oohajoszpr1y4emf8syc',
+            'dfnfr4vbf3tbcr6daagw'
         ]),
         'platforms' => [
             'ps4',
             'xboxone',
             'pc',
         ],
-        'release_date' => (new DateTime())->format('Y-m-d'),
+        'release_date' => (new DateTime())->getTimestamp() * 1000,
         'background' => $faker->randomElement([
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ybliaszwqkwui7djaou4.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tp3tsdlzfkdp1hhofmb1.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/ukzjmwiud0hdn8jk5fkb.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/xtwej9t60lrwfbazurcy.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/c3wpjcbt3octz1ruzdrn.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/tvzsd22vjayreghdylpv.jpg',
-            'https://images.igdb.com/igdb/image/upload/t_screenshot_big/z43tnr86e1bpwrilnlqx.jpg'
+            'ybliaszwqkwui7djaou4',
+            'tp3tsdlzfkdp1hhofmb1',
+            'ukzjmwiud0hdn8jk5fkb',
+            'xtwej9t60lrwfbazurcy',
+            'c3wpjcbt3octz1ruzdrn',
+            'tvzsd22vjayreghdylpv',
+            'z43tnr86e1bpwrilnlqx'
         ])
     ];
 });

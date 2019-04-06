@@ -24,16 +24,27 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.city')</h3>
                                 <select class="select2 full-container cities" name="city"
-                                        title="{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}">
-                                    <option value="0">{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), request()->get('city')) }}</option>
+                                        title="{{ $selectedCity }}">
+                                    <option value="0">{{ $selectedCity }}</option>
                                 </select>
+                            </div>
+
+                            <div class="sidebar-widget">
+                                <h3>@lang('common.price')</h3>
+                                <div class="margin-top-55"></div>
+
+                                <!-- Range Slider -->
+                                <input class="range-slider" type="text" name="price" data-slider-currency="zł "
+                                       data-slider-min="0"
+                                       data-slider-max="{{ $maxPrice }}" data-slider-step="5"
+                                       data-slider-value="[{{ request()->get('price', 0 . ',' . $maxPrice) }}]"/>
                             </div>
 
                             <div class="sidebar-widget">
                                 <h3>@lang('common.platform')</h3>
                                 <select class="select2 full-container" multiple name="platform[]"
                                         title="@lang('common.all_platforms')">
-                                    @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
+                                    @foreach(\App\ValueObjects\Platform::availablePlatforms() as $slug => $platform)
                                         <option @if(in_array($slug, request()->get('platform', []))) selected
                                                 @endif value="{{ $slug }}">{{ $platform }}</option>
                                     @endforeach
@@ -43,37 +54,42 @@
                             <div class="sidebar-widget">
                                 <h3>@lang('common.game')</h3>
                                 <select class="select2 full-container games" name="game_id"
-                                        title="{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}">
-                                    <option value="0">{{ new \App\Components\SelectValueResolver('games', 'Wybierz grę', request()->get('game_id')) }}</option>
+                                        title="{{ $selectedGame  }}">
+                                    <option value="0">{{ $selectedGame }}</option>
                                 </select>
                             </div>
+
+
+                            <div class="sidebar-widget">
+                                <h3>@lang('common.type')</h3>
+                                <div class="checkbox">
+                                    <input type="hidden" name="sellable" value="0">
+                                    <input type="checkbox" name="sellable" value="1" id="sellable"
+                                           @if(!request()->has('sellable') || request()->get('sellable') == "1") checked="checked" @endif>
+                                    <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')
+                                    </label>
+                                </div>
+                                <br>
+                                <div class="checkbox">
+                                    <input type="hidden" name="tradeable" value="0">
+                                    <input type="checkbox" name="tradeable" value="1" id="tradeable"
+                                           @if(!request()->has('tradeable') || request()->get('tradeable') == "1") checked="checked" @endif>
+                                    <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="sidebar-widget">
-                            <h3>@lang('common.type')</h3>
-                            <div class="checkbox">
-                                <input type="checkbox" name="sellable" value="1" id="sellable"
-                                       @if(request()->get('sellable')) checked="checked" @endif>
-                                <label for="sellable"><span class="checkbox-icon"></span> @lang('common.for_sale')
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <input type="checkbox" name="tradeable" value="1" id="tradeable"
-                                       @if(request()->get('tradeable')) checked="checked" @endif>
-                                <label for="tradeable"><span class="checkbox-icon"></span> @lang('common.for_trade')
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="button button-sliding-icon ripple-effect hidden filters-action margin-bottom-10">
+                        <button type="submit"
+                                class="button button-sliding-icon ripple-effect hidden filters-action margin-bottom-10">
                             @lang('common.filter')
                             <i class="icon-material-outline-arrow-right-alt"></i>
                         </button>
                         @if($isFiltered)
-                        <a class="button button-sliding-icon ripple-effect" href="{{ route('offers.index') }}">
-                        @lang('common.reset_filter')
-                        <i class="icon-material-outline-arrow-right-alt"></i>
-                        </a>
+                            <a class="button button-sliding-icon ripple-effect" href="{{ route('offers.index') }}">
+                                @lang('common.reset_filter')
+                                <i class="icon-material-outline-arrow-right-alt"></i>
+                            </a>
                         @endif
                         <div class="clearfix"></div>
                     </form>

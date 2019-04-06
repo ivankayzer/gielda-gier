@@ -103,8 +103,8 @@
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
                                                             <select class="select2 full-container cities" name="city"
-                                                                    title="{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}">
-                                                                <option value="0">{{ new \App\Components\SelectValueResolver('city', __('settings.select_city'), $profile->city) }}</option>
+                                                                    title="{{ $profile->city ?: __('settings.select_city') }}">
+                                                                <option value="0">{{ $profile->city ?: __('settings.select_city') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -157,7 +157,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-12">
                                                         <div class="checkbox">
-                                                            <input type="checkbox" name="notifications_new_offer" value="1" @if($profile->notify_new_offer) checked @endif
+                                                            <input type="checkbox" name="notify_new_offer" value="1" @if($profile->notify_new_offer) checked @endif
                                                                    id="notifications_new_offer">
                                                             <label for="notifications_new_offer"><span
                                                                         class="checkbox-icon"></span> @lang('settings.notifications_new_offer')
@@ -166,7 +166,7 @@
                                                     </div>
                                                     <div class="col-xl-12">
                                                         <div class="checkbox">
-                                                            <input type="checkbox" name="notifications_new_transaction" value="1" @if($profile->notify_new_transaction) checked @endif
+                                                            <input type="checkbox" name="notify_new_transaction" value="1" @if($profile->notify_new_transaction) checked @endif
                                                                    id="notifications_new_transaction">
                                                             <label for="notifications_new_transaction"><span
                                                                         class="checkbox-icon"></span> @lang('settings.notifications_new_transaction')

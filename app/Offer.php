@@ -2,42 +2,58 @@
 
 namespace App;
 
-use App\Components\Platform;
-use App\Components\Price;
+use App\ValueObjects\Platform;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
     protected $dates = [
-        'publish_at'
+        'publish_at',
     ];
 
     protected $flags = [
         'en' => 'gb',
-        'pl' => 'pl'
+        'pl' => 'pl',
     ];
 
-    protected $guarded = [];
+    protected $casts = [
+        'sold' => 'boolean'
+    ];
+
+    protected $fillable = [
+        'game_id',
+        'platform',
+        'language',
+        'price',
+        'payment_bank_transfer',
+        'payment_cash',
+        'delivery_post',
+        'delivery_in_person',
+        'comment',
+        'sellable',
+        'tradeable',
+        'is_published',
+        'publish_at',
+        'city_id',
+    ];
 
     public function scopeFilter($query, $filters)
     {
         $filters = collect($filters);
 
         if ($filters->get('city')) {
-            $query->join('profiles', 'profiles.user_id', 'offers.seller_id')->where('profiles.city', $filters->get('city'));
+            [$cityId,] = explode(',', $filters->get('city'));
+            $query->where('city_id', $cityId);
         }
 
         if ($filters->get('platform')) {
             $query->whereIn('platform', $filters->get('platform'));
         }
 
-        if ($filters->get('name')) {
-            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.title', 'like', '%' . $filters->get('name') . '%');
-        }
-
         if ($filters->get('game_id')) {
-            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.igdb_id', $filters->get('game_id'));
+            [$gameId,] = explode(',', $filters->get('game_id'));
+            $query->join('games', 'games.igdb_id', 'offers.game_id')->where('games.igdb_id', $gameId);
         }
 
         if ($filters->get('sort')) {
@@ -52,15 +68,21 @@ class Offer extends Model
             $query->orderBy('publish_at', 'desc');
         }
 
+        if ($filters->get('price')) {
+            [$minPrice, $maxPrice] = explode(',', $filters->get('price'));
+            $query->whereBetween('price', [$minPrice * 100, $maxPrice * 100]);
+        }
 
-        if (!$filters->get('tradeable') || !$filters->get('sellable')) {
-            if ($filters->get('tradeable')) {
-                $query->where('tradeable', true);
-            }
+        if ($filters->get('tradeable') === "1" || !$filters->has('tradeable')) {
+            $query->where('tradeable', true);
+        }
 
-            if ($filters->get('sellable')) {
-                $query->where('sellable', true);
-            }
+        if ($filters->get('sellable') === "1" || !$filters->has('sellable')) {
+            $query->orWhere('sellable', true);
+        }
+
+        if ($filters->get('tradeable') === "0" && $filters->get('sellable') === "0") {
+            $query->where('sellable', false)->where('tradeable', false);
         }
 
         return $query;
@@ -105,16 +127,30 @@ class Offer extends Model
 
     public function city()
     {
-        if (!$this->sellerProfile->city) {
-            return '';
-        }
-
-        return City::where('slug', $this->sellerProfile->city)->first()->name;
+        return $this->belongsTo(City::class);
     }
 
-    public function price()
+    public function setPriceAttribute($value)
     {
-        return new Price($this->price) . ' zł';
+        $price = str_replace(' ', '', $value);
+        foreach (['.', ','] as $delimiter) {
+            if (strpos($price, $delimiter) !== false) {
+                $newPrice = explode($delimiter, $price);
+
+                return $this->attributes['price'] = (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+            }
+        }
+        $this->attributes['price'] = (int)$price * 100;
+    }
+
+    public function getFloatPrice()
+    {
+        return str_replace('.', ',', sprintf('%01.2f', $this->price / 100));
+    }
+
+    public function getFormattedPriceAttribute()
+    {
+        return $this->getFloatPrice() . ' zł';
     }
 
     public function buyText()
@@ -136,7 +172,8 @@ class Offer extends Model
     {
         if ($this->language && isset($this->flags[$this->language])) {
             $flag = asset('images/flags/' . $this->flags[$this->language] . '.svg');
-            return '<img class="flag" src="'. $flag .'">';
+
+            return '<img class="flag" src="' . $flag . '">';
         }
     }
 
@@ -163,5 +200,15 @@ class Offer extends Model
     public function actionable()
     {
         return ($this->sellable || $this->tradeable) && !$this->sold && auth()->check() && $this->seller->id !== auth()->user()->id;
+    }
+
+    public function isMyOffer()
+    {
+        return $this->seller_id == auth()->user()->id;
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

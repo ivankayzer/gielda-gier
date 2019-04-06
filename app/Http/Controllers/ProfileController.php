@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Events\User\ProfileEdited;
-use App\Profile;
-use App\Services\SentenceComposer;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -19,12 +17,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        $cities = City::all()->pluck('name', 'slug');
-
         return view('settings', [
             'profile' => $request->user()->profile,
             'user' => $request->user(),
-            'cities' => $cities,
+            'cities' => City::all()->pluck('name', 'slug'),
         ]);
     }
 
@@ -33,9 +29,14 @@ class ProfileController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'avatar' => 'sometimes|max:2048|mimes:jpeg,bmp,png',
+        ]);
+
         $profile = $request->user()->profile;
 
         if ($request->has('avatar')) {
@@ -44,22 +45,15 @@ class ProfileController extends Controller
 
         $oldData = $profile->toArray();
 
-        $profile->fill($request->only([
-            'name',
-            'surname',
-            'phone',
-            'address',
-            'city',
-            'zip',
-            'description',
-            'bank_nr',
-            'company_name',
-        ]));
+        $profile->fill($request->except('city_id'));
 
-        $profile->notify_new_offer = (bool) $request->get('notifications_new_offer', false);
-        $profile->notify_new_transaction = (bool) $request->get('notifications_new_transaction', false);
+        $profile->user->city_id = $request->get('city_id');
+
+        $profile->notify_new_offer = $request->get('notify_new_offer', false);
+        $profile->notify_new_transaction = $request->get('notify_new_transaction', false);
 
         $profile->save();
+        $profile->user->save();
 
         $newData = $profile->toArray();
 
@@ -72,23 +66,31 @@ class ProfileController extends Controller
         return back();
     }
 
-    public function me(Request $request)
+    public function show(Request $request, $user = null)
     {
-        $user = $request->user();
+        if ($user) {
+            $user = User::where('name', $user)->firstOrFail();
+        }
+
+        if (!$user) {
+            $user = $request->user();
+        }
+
+        if (!$user) {
+            abort(404);
+        }
+
+        $offers = $user->offers()->with('game')->active()->get();
+
+        $background = $offers->map(function ($offer) {
+            return $offer->game->background;
+        })->shuffle()->first();
 
         return view('users.profile', [
             'user' => $user,
-            'reviews' => $user->reviews()->paginate(5),
-            'offers' => $user->offers()->active()->get()
-        ]);
-    }
-
-    public function show(User $user)
-    {
-        return view('users.profile', [
-            'user' => $user,
-            'reviews' => $user->reviews()->paginate(5),
-            'offers' => $user->offers()->active()->get()
+            'reviews' => $user->reviews()->orderBy('created_at', 'desc')->paginate(5),
+            'offers' => $offers,
+            'background' => $background
         ]);
     }
 }

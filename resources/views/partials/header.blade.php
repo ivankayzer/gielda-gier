@@ -15,7 +15,7 @@
                                 </a>
                             </li>
                             <li class="margin-right-15"><a href="{{ route('my-offers.index') }}"
-                                   @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
+                                                           @if(request()->is('moje-ogloszenia') || request()->is('moje-ogloszenia/*')) class="current" @endif>@lang('common.my-offers')</a>
                                 <a href="{{ route('offers.create') }}" class="add-offers"
                                    style="padding: 0 !important;">
                                     <i class="icon-feather-plus" style="position: absolute;"></i>
@@ -99,8 +99,7 @@
                         <!-- Messages -->
                         <div class="header-notifications">
                             <div class="header-notifications-trigger">
-                                <a href="#"><i class="icon-feather-mail"></i>@if($messagesCount)
-                                        <span>{{ $messagesCount }}</span>@endif</a>
+                                <a href="#"><i class="icon-feather-mail"></i></a>
                             </div>
 
                             <!-- Dropdown -->
@@ -163,7 +162,7 @@
                                         <div class="user-details">
                                             <div class="user-name">
                                                 {{ auth()->user()->profile->getFullName() }}
-                                                <span>{{ auth()->user()->profile->getCity() }}</span>
+                                                <span>{{ auth()->user()->city->name }}</span>
                                             </div>
                                         </div>
                                     </div>

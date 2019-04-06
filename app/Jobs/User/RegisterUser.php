@@ -2,7 +2,7 @@
 
 namespace App\Jobs\User;
 
-use App\Contracts\ShouldBeStored;
+use App\Events\ShouldBeStored;
 use App\Events\User\AccountCreated;
 use App\User;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,18 +17,15 @@ class RegisterUser implements ShouldBeStored
      */
     public $user;
 
-    public $location;
-
     /**
      * Create a new job instance.
      *
      * @param User $user
      * @param $location
      */
-    public function __construct(User $user, $location)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->location = $location;
     }
 
     /**
@@ -39,7 +36,7 @@ class RegisterUser implements ShouldBeStored
     {
         $this->user->save();
 
-        event(new AccountCreated($this->user, $this->location));
+        event(new AccountCreated($this->user));
 
         return $this->user;
     }

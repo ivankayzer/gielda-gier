@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'surname',
+        'phone',
+        'address',
+        'zip',
+        'description',
+        'bank_nr',
+        'company_name',
+        'notify_new_offer',
+        'notify_new_transaction',
+    ];
 
     protected $casts = [
         'notify_new_offer' => 'boolean',
@@ -16,15 +27,6 @@ class Profile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function getCity()
-    {
-        if (!$this->city) {
-            return '';
-        }
-
-        return City::where('slug', $this->city)->first()->name;
     }
 
     public function getFullName()

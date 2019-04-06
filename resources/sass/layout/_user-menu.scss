@@ -64,16 +64,17 @@
 
 /* Avatar */
 .user-avatar {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
   position: relative;
   img {
-    width: 100%;
     display: inline-block;
     border-radius: 50%;
     image-rendering: -webkit-optimize-contrast;
+    width: 42px;
+    height: 42px;
   }
 }
 

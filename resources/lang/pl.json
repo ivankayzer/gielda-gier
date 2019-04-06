@@ -1,0 +1,17 @@
+{
+  "Service Unavailable": "Coś poszło nie tak.",
+  "Sorry, the page you are looking for could not be found.": "Nie udało się znaleźć strony.",
+  "Go Home": "Strony główna",
+  "Page Not Found": "Strona nie znaleziona",
+  "Unauthorized": "Nieautoryzowany",
+  "Sorry, you are not authorized to access this page.": "Przepraszamy, nie masz uprawnień do dostępu do tej strony.",
+  "Forbidden": "Nie masz dostępu",
+  "Sorry, you are forbidden to access this page.": "Niestety, nie masz dostępu do tej strony.",
+  "Page Expired": "Strona wygasła",
+  "Sorry, your session has expired. Please refresh and try again.": "Przepraszamy, Twoja sesja wygasła. Odśwież i spróbuj ponownie.",
+  "Too Many Requests": "Coś poszło nie tak.",
+  "Sorry, you are making too many requests to our servers.": "Przepraszamy, ale wysyłasz zbyt wiele żądań do naszych serwerów.",
+  "Error": "Błąd",
+  "Whoops, something went wrong on our servers.": "Ups, coś poszło nie tak na naszych serwerach.",
+  "Sorry, we are doing some maintenance. Please check back soon.": "Przepraszamy, trwa konserwacja. Niebawem wracamy."
+}

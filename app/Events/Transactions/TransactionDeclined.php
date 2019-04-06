@@ -18,7 +18,6 @@ class TransactionDeclined
      */
     public function __construct($transactionId)
     {
-        //
         $this->transactionId = $transactionId;
     }
 }

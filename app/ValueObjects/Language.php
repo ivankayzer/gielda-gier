@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace App\ValueObjects;
 
 
 class Language
@@ -19,5 +19,13 @@ class Language
                 'icon' => asset('images/flags/pl.svg')
             ]
         ];
+    }
+
+    public static function getLabelById($id)
+    {
+        return data_get(collect(self::availableLanguages())
+            ->filter(function ($lang) use ($id) {
+                return $lang['value'] === $id;
+            })->first(), 'name');
     }
 }

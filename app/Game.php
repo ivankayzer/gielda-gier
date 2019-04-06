@@ -4,12 +4,9 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class Game extends Model
 {
-    use Searchable;
-
     protected $casts = [
         'platforms' => 'array'
     ];
@@ -41,22 +38,8 @@ class Game extends Model
         return sprintf("https://images.igdb.com/igdb/image/upload/t_thumb/%s.jpg", $this->cover);
     }
 
-    public function getScoutKey()
+    public function getUrlParam()
     {
-        return $this->slug;
-    }
-
-    public function searchableAs()
-    {
-        return 'games';
-    }
-
-    public function toSearchableArray()
-    {
-        $attributes = $this->only(['title']);
-        $attributes['cover'] = $this->thumb();
-        $attributes['id'] = $this->igdb_id;
-
-        return $attributes;
+        return join(',', [$this->igdb_id, $this->slug]);
     }
 }

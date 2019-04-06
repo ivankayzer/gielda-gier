@@ -388,6 +388,7 @@ mark.color {
   border: none !important;
   height: 30px !important;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12);
+  outline: none; // TODO
 }
 
 .no-border .select2-selection {
@@ -423,7 +424,7 @@ mark.color {
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: #2e4aea !important;
+  background-color: $primary-color !important;
 }
 
 .select2-search__field {
@@ -454,9 +455,9 @@ mark.color {
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-  background-color: #2e4aea !important;
+  background-color: $primary-color !important;
   color: white !important;
-  border: 1px solid #2e4aea !important;
+  border: 1px solid $primary-color !important;
   padding: 0 10px !important;
 }
 
@@ -586,4 +587,48 @@ select.select2 {
     max-width: 200px;
     height: 30px;
   }
+}
+
+.transaction-item {
+  border-radius: 50px;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.transaction-price {
+  font-size: 40px;
+  opacity: 0.5;
+  color: #9a9a9a94;
+}
+
+.transaction-price-wrapper {
+  position: relative;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font-weight: 900;
+    color: black;
+    position: absolute;
+    font-size: 21px;
+  }
+}
+
+.transaction-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.transaction-items {
+  display: flex;
+}
+
+.job-listing-items {
+  flex-basis: 375px;
 }

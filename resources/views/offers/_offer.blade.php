@@ -37,7 +37,7 @@
 
                 <div class="offer-location">
                     <strong><i class="icon-material-outline-location-on"></i>
-                        {{ $offer->city() }}</strong>
+                        {{ $offer->city->name }}</strong>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
         @if($offer->sellable)
             <div class="offer-details">
                 <div class="offer-price">
-                    <strong>{{ $offer->price() }}</strong>
+                    <strong>{{ $offer->formatted_price }}</strong>
                 </div>
             </div>
         @endif

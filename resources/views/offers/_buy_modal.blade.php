@@ -25,7 +25,7 @@
                             <h3>{{ $offer->game->title }}</h3>
                             <span>{{ $offer->platform() }}</span>
                             <span>@lang('offers.for')</span>
-                            <h3>{{ $offer->price() }}</h3>
+                            <h3>{{ $offer->formatted_price }}</h3>
                         </div>
 
                         <button class="button full-width button-sliding-icon ripple-effect" type="submit">
@@ -61,7 +61,7 @@
 
                         <div class="submit-field">
                             <select class="select2 full-container" name="platform" title="@lang('common.all_platforms')">
-                                @foreach(\App\Components\Platform::availablePlatforms() as $slug => $platform)
+                                @foreach(\App\ValueObjects\Platform::availablePlatforms() as $slug => $platform)
                                     <option @if(in_array($slug, request()->get('platform', []))) selected
                                             @endif value="{{ $slug }}">{{ $platform }}</option>
                                 @endforeach

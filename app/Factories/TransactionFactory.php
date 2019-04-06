@@ -17,39 +17,42 @@ class TransactionFactory
         $type = $request->get('type');
 
         $transaction->offer_id = $offer->id;
-
         $transaction->seller_id = $offer->seller_id;
         $transaction->buyer_id = $request->user()->id;
-
         $transaction->status_id = TransactionStatus::IN_PROGRESS;
 
         if ($type === TransactionType::TRADE) {
             $transaction->status_id = TransactionStatus::PENDING;
         }
 
-        $transaction->seller_value = [
-            [
-                'type' => 'game',
-                'value' => $offer->game_id
-            ]
-        ];
-
-        $transaction->price = $type === TransactionType::PURCHASE ? $offer->price : $request->get('money') * 100;
+        $transaction->price = $type === TransactionType::PURCHASE ? $offer->price : self::formatMoney($request->get('money'));
 
         if ($type === TransactionType::PURCHASE) {
             return $transaction;
         }
 
         if ($request->get('game_id')) {
-            $transaction->buyer_value = [
-                [
-                    'type' => 'game',
-                    'platform' => $request->get('platform', ''),
-                    'game_id' => $request->get('game_id'),
-                ]
-            ];
+            $transaction->buyer_game_id = $request->get('game_id');
+            $transaction->buyer_game_platform = $request->get('platform');
         }
 
         return $transaction;
+    }
+
+    private static function formatMoney($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        $price = str_replace(' ', '', $value);
+        foreach (['.', ','] as $delimiter) {
+            if (strpos($price, $delimiter) !== false) {
+                $newPrice = explode($delimiter, $price);
+
+                return (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+            }
+        }
+        return (int)$price * 100;
     }
 }

@@ -7,7 +7,7 @@
                 @elseif($review->type === 'negative')
                     <i class="icon-material-outline-thumb-down negative-review"></i>
                 @endif
-                {!! \App\Services\SentenceComposer::revieweeTransactionText($review->transaction) !!}
+                <a href="{{ route('profile.show', ['user' => $review->user->name]) }}">{{ $review->user->name }}</a>
             </h4>
             <div class="item-details margin-top-10">
                 <div class="detail-item"><i class="icon-material-outline-date-range"></i>

@@ -8,12 +8,13 @@ use App\Events\Transactions\TransactionCompleted;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\Transactions\TransactionDeclined;
 use App\Factories\TransactionFactory;
+use App\Http\Requests\CreateTransactionRequest;
 use App\Offer;
 use App\Review;
-use App\Services\SentenceComposer;
 use App\Transaction;
 use App\ValueObjects\TransactionStatus;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TransactionController extends Controller
 {
@@ -45,19 +46,20 @@ class TransactionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param CreateTransactionRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(CreateTransactionRequest $request)
     {
-        $offer = Offer::where('id', $request->get('offer_id'))->firstOrFail();
+        /** @var Offer $offer */
+        $offer = Offer::active()->findOrFail($request->get('offer_id'));
         $transaction = TransactionFactory::fromOffer($offer, $request);
 
         $saved = $transaction->save();
 
         if ($saved && !$transaction->isTrade()) {
-            $offer->update([
-                'sold' => true
-            ]);
+            $offer->sold = true;
+            $offer->save();
         }
 
         if ($saved) {
@@ -69,13 +71,16 @@ class TransactionController extends Controller
 
     public function accept(Transaction $transaction)
     {
+        if ($transaction->seller_id != auth()->user()->id || $transaction->status_id != TransactionStatus::PENDING) {
+            abort(404);
+        }
+
         $transaction->update([
             'status_id' => TransactionStatus::IN_PROGRESS
         ]);
 
-        $transaction->offer->update([
-            'sold' => true
-        ]);
+        $transaction->offer->sold = true;
+        $transaction->offer->save();
 
         event(new TransactionAccepted($transaction->id));
 
@@ -84,6 +89,10 @@ class TransactionController extends Controller
 
     public function decline(Transaction $transaction)
     {
+        if ($transaction->seller_id != auth()->user()->id || $transaction->status_id != TransactionStatus::PENDING) {
+            abort(404);
+        }
+
         $transaction->update([
             'status_id' => TransactionStatus::DECLINED
         ]);
@@ -97,16 +106,25 @@ class TransactionController extends Controller
     {
         $user = $transaction->otherPerson;
 
-        return SentenceComposer::userInfo($user);
+        return view('chunks.user_info', [
+            'profile' => $user->profile
+        ]);
     }
 
     public function rate(Request $request)
     {
+        $this->validate($request, [
+            'type' => ['required', Rule::in(['positive', 'negative'])],
+            'transaction_id' => 'required'
+        ]);
+
         /** @var Transaction $transaction */
-        $transaction = Transaction::where('id', $request->get('transaction_id'))->firstOrFail();
+        $transaction = Transaction::where('id', $request->get('transaction_id'))->where(function ($query) use ($request) {
+            return $query->where('buyer_id', $request->user()->id)->orWhere('seller_id', $request->user()->id);
+        })->firstOrFail();
 
         $comment = new Review([
-            'user_id' => $request->user()->id,
+            'user_id' => $transaction->otherPerson->id,
             'transaction_id' => $transaction->id,
             'type' => $request->get('type'),
             'comment' => $request->get('message')

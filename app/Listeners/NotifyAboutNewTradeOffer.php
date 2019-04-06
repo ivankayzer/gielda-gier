@@ -20,7 +20,9 @@ class NotifyAboutNewTradeOffer
             return;
         }
 
-        (new Notification())->fill([
+        $notification = new Notification;
+
+        $notification->fill([
             'url' => route('transactions.index'),
             'text' => __('notifications.new_trade_offer', [
                 'username' => auth()->user()->name,

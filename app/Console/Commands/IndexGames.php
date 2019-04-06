@@ -74,6 +74,9 @@ class IndexGames extends Command
             })->each(function ($game) {
                 $screenshots = collect(data_get($game, 'screenshots', []));
                 $screenshots = $screenshots->reduce(function ($carry, $item) {
+                    if (!isset($item['width'])) {
+                        return $carry;
+                    }
                     return $item['width'] > $carry['width'] ? $item : $carry;
                 });
 

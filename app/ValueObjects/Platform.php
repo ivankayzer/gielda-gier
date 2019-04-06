@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Components;
+namespace App\ValueObjects;
 
 
 class Platform
@@ -14,5 +14,10 @@ class Platform
             49 => 'Xbox One',
             130 => 'Nintendo Switch',
         ];
+    }
+
+    public static function getLabelById($id)
+    {
+        return data_get(self::availablePlatforms(), $id);
     }
 }

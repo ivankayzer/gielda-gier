@@ -3,11 +3,12 @@
 @section('title', 'Zaloguj się')
 
 @section('content')
-    <div class="intro-banner intro-full-page d-flex align-items-center" data-background-image="images/login-background.jpg">
+    <div class="intro-banner intro-full-page d-flex align-items-center">
+        <div class="background-image-container" style="background-image: url('images/login-background.jpg');"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="login-register-page">
+                    <div class="login-register-page animated pulse faster">
                         <!-- Welcome Text -->
                         <div class="welcome-text">
                             <h3>@lang('common.glad_to_see_you_again')</h3>

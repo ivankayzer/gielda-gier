@@ -11,6 +11,7 @@ return [
     'city' => 'Miasto',
     'zip' => 'Kod pocztowy',
     'select_city' => 'Wybierz miasto',
+    'select_game' => 'Wybierz grę',
     'phone' => 'Nr telefonu',
     'bank_nr' => 'Nr rachunku bankowego',
     'company_name' => 'Nazwa firmy',

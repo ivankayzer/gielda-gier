@@ -18,6 +18,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->userName,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
+        'city_id' => function () {
+            return factory(\App\City::class)->create()->id;
+        },
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
     ];

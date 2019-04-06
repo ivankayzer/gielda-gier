@@ -70,8 +70,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'city_id' => $data['city']
         ]);
 
-        return RegisterUser::dispatchNow($user, $data['city']);
+        return RegisterUser::dispatchNow($user);
     }
 }
