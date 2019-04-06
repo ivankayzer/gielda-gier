@@ -22,8 +22,7 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center">
-            </div>
+            @include('transactions._items')
         </div>
     </div>
 

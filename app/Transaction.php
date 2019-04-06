@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\ValueObjects\Platform;
 use App\ValueObjects\TransactionStatus;
 use Illuminate\Database\Eloquent\Model;
 use Krossroad\UnionPaginator\UnionPaginatorTrait;
@@ -34,6 +35,26 @@ class Transaction extends Model
     public function offer()
     {
         return $this->belongsTo(Offer::class);
+    }
+
+    public function buyerGame()
+    {
+        return $this->belongsTo(Game::class, 'buyer_game_id', 'igdb_id');
+    }
+
+    public function getFloatPrice()
+    {
+        return str_replace('.', ',', sprintf('%01.2f', $this->price / 100));
+    }
+
+    public function getFormattedPriceAttribute()
+    {
+        return $this->getFloatPrice() . ' zł';
+    }
+
+    public function buyerPlatform()
+    {
+        return array_get(Platform::availablePlatforms(), $this->buyer_game_platform, null);
     }
 
     public function scopeActive($query)

@@ -1,4 +1,5 @@
 window.axios = require('axios');
+window.Popper = require('popper.js').default;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
