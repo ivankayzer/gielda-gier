@@ -3,7 +3,8 @@
 @section('title', 'Strona główna')
 
 @section('content')
-    <div class="intro-banner" data-background-image="images/home-background.jpg">
+    <div class="intro-banner">
+        <div class="background-image-container animated fadeIn" style="background-image: url('images/home-background.jpg');"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -13,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{ route('offers.index') }}" method="get" id="welcome-search">
-                        <div class="intro-banner-search-form margin-top-95">
+                        <div class="intro-banner-search-form margin-top-95 animated bounce">
                             <div class="intro-search-field with-autocomplete">
                                 <label for="autocomplete-input"
                                        class="field-title ripple-effect">@lang('welcome.where')</label>

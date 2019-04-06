@@ -24,6 +24,7 @@
         "react-dom": "^16.2.0"
     },
     "dependencies": {
+        "animate.css": "^3.7.0",
         "babel-preset-stage-2": "^6.24.1",
         "gallery": "^1.0.0",
         "laravel-echo": "^1.4.1",

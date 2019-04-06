@@ -7,7 +7,7 @@ return [
     'search' => 'Szukaj',
     'do_login' => 'Zaloguj się',
     'do_register' => 'Załóż konto',
-    'glad_to_see_you_again' => 'Miło cię znowu widzieć!',
+    'glad_to_see_you_again' => 'Miło Cię znowu widzieć!',
     'no_account' => 'Nie masz konta?',
     'email' => 'E-mail',
     'password' => 'Hasło',

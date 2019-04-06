@@ -1,3 +1,5 @@
+import 'animate.css';
+
 window.axios = require('axios');
 window.Popper = require('popper.js').default;
 

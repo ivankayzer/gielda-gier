@@ -8,12 +8,7 @@ class Review extends Model
 {
     protected $guarded = [];
 
-    public function reviewee()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function reviewer()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

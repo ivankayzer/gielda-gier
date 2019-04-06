@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="login-register-page">
+                    <div class="login-register-page animated pulse faster">
                         <!-- Welcome Text -->
                         <div class="welcome-text">
                             <h3>@lang('common.reset_password')</h3>
