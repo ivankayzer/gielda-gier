@@ -7,6 +7,7 @@ use App\Events\Transactions\TransactionAccepted;
 use App\Events\Transactions\TransactionCompleted;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\Transactions\TransactionDeclined;
+use App\Events\Transactions\VisitTransactionsPage;
 use App\Factories\TransactionFactory;
 use App\Http\Requests\CreateTransactionRequest;
 use App\Offer;
@@ -34,6 +35,8 @@ class TransactionController extends Controller
         $pending = $user->transactionsSeller()->pending()->get();
 
         $toRate = $user->transactionsBuyer()->toRate('buyer')->union($user->transactionsSeller()->toRate('seller'))->get();
+
+        event(new VisitTransactionsPage());
 
         return view('transactions.index', [
             'active' => $active,

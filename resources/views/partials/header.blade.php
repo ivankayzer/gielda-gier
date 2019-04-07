@@ -22,7 +22,9 @@
                                 </a>
                             </li>
                             <li><a href="{{ route('transactions.index') }}"
-                                   @if(request()->is('transakcje') || request()->is('transakcje/*')) class="current" @endif>@lang('common.transactions')</a>
+                                   @if(request()->is('transakcje') || request()->is('transakcje/*')) class="current" @endif>@lang('common.transactions')
+                                    @if($newTransactionsCount)<span class="header-notifications-trigger margin-left-10 margin-top-5">
+                                        <span>{{ $newTransactionsCount }}</span></span>@endif</a>
                             </li>
                         </ul>
                     </nav>
