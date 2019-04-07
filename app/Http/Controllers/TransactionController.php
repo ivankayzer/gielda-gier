@@ -65,6 +65,11 @@ class TransactionController extends Controller
 
         if ($saved) {
             event(new TransactionCreated($transaction));
+            session()->flash('message', ['text' => __('common.offer_created')]);
+        }
+
+        if ($transaction->isTrade()) {
+            return redirect()->route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]);
         }
 
         return redirect()->route('transactions.index');

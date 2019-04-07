@@ -37,6 +37,9 @@
         </div>
     </div>
     <div class="container">
+        @if(session()->has('message'))
+            @include('partials.message', ['message' => session()->get('message')])
+        @endif
         <div class="row">
 
 

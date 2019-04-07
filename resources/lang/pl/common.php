@@ -19,6 +19,7 @@ return [
     'dashboard' => "Aktualności",
     'logout' => 'Wyloguj się',
     'write_success' => 'Zmiany zostały zapisane',
+    'offer_created' => 'Oferta została złożona',
     'fill_profile' => '<a href=":url">Uzupełnij profil</a> by przyspieszyć realizację transakcji',
     'city' => 'Miasto',
     'platform' => 'Platforma',
