@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="intro-banner intro-full-page d-flex align-items-center">
-        <div class="background-image-container" style="background-image: url('images/login-background.jpg');"></div>
+        <div class="background-image-container animated fadeIn" style="background-image: url('images/login-background.jpg');"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

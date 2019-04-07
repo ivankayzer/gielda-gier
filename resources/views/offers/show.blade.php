@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     <div class="single-page-header-inner">
                         <div class="left-side">
-                            <div class="header-image"><img src="{{ $offer->game->cover }}"
+                            <div class="header-image"><img src="{{ $offer->game->cover }}" class="animated fadeIn"
                                                            alt="{{ $offer->game->title }}"></div>
                             <div class="header-details">
                                 <h3>{{ $offer->game->title }}</h3>
