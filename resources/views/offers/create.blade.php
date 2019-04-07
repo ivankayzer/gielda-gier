@@ -48,8 +48,12 @@
                                                     <select data-size="7"
                                                             name="city_id"
                                                             class="select2 mw-100 cities"
-                                                            title="@lang('offers.select_city')">
-                                                        <option value="0">Wybierz miasto</option>
+                                                            title="{{ auth()->user()->city ? auth()->user()->city->name : __('offers.select_city') }}">
+                                                        @if(auth()->user()->city)
+                                                            <option value="{{ auth()->user()->city->id }}">{{ auth()->user()->city->name }}</option>
+                                                        @else
+                                                            <option value="0">@lang('offers.select_city')</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
@@ -62,7 +66,7 @@
                                                             name="platform"
                                                             title="@lang('offers.select_platform')">
                                                         <option value="0" selected disabled>Wybierz platformę</option>
-                                                    @foreach($platforms as $key => $platform)
+                                                        @foreach($platforms as $key => $platform)
                                                             <option value="{{ $key }}">{{ $platform }}</option>
                                                         @endforeach
                                                     </select>
@@ -76,8 +80,13 @@
                                                             name="language"
                                                             title="@lang('offers.select_language')">
                                                         <option value="0" selected disabled>Wybierz język</option>
-                                                    @foreach ($languages as $language)
-                                                            <option value="{{ $language['value'] }}"><div class="d-flex align-items-center"><img class="flag" src="{{ $language['icon'] }}"> <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span></div></option>
+                                                        @foreach ($languages as $language)
+                                                            <option value="{{ $language['value'] }}">
+                                                                <div class="d-flex align-items-center"><img class="flag"
+                                                                                                            src="{{ $language['icon'] }}">
+                                                                    <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span>
+                                                                </div>
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -173,7 +182,8 @@
                                             <div class="col-xl-12">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.comment')</h5>
-                                                    <textarea cols="30" rows="5" class="with-border" name="comment"></textarea>
+                                                    <textarea cols="30" rows="5" class="with-border"
+                                                              name="comment"></textarea>
                                                     <div class="uploadButton margin-top-30">
                                                         <input class="uploadButton-input" type="file"
                                                                name="images[]"
