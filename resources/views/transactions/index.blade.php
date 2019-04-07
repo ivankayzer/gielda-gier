@@ -15,6 +15,12 @@
                     @if(session()->has('message'))
                         @include('partials.message', ['message' => session()->get('message')])
                     @endif
+                    @if($isEmpty)
+                    <section id="not-found" class="center margin-top-50 margin-bottom-25">
+                        <h2><i class="icon-line-awesome-question-circle"></i></h2>
+                        <p>@lang('transactions.empty')</p>
+                    </section>
+                    @endif
                     <div class="row">
                         <div class="col-xl-12">
                             @if(count($pending))

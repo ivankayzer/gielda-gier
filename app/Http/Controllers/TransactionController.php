@@ -39,7 +39,8 @@ class TransactionController extends Controller
             'active' => $active,
             'pending' => $pending,
             'completed' => $completed,
-            'toRate' => $toRate
+            'toRate' => $toRate,
+            'isEmpty' => !count($active) && !count($pending) && !count($completed) && !count($toRate)
         ]);
     }
 
