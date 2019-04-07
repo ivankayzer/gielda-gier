@@ -132,7 +132,19 @@ class OfferController extends Controller
      */
     public function update(UpdateOfferRequest $request, Offer $offer)
     {
-        $offer->fill($request->except('game_id'));
+        $data = $request->except('game_id');
+
+        $data = collect([
+            'payment_bank_transfer' => false,
+            'payment_cash' => false,
+            'delivery_post' => false,
+            'delivery_in_person' => false,
+            'sellable' => false,
+            'tradeable' => false,
+            'is_published' => false
+        ])->merge($data)->toArray();
+
+        $offer->fill($data);
 
         $offer->save();
 
