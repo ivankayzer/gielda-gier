@@ -16,6 +16,7 @@ mix.react('resources/js/app.js', 'public/js')
     .copy('resources/images/favicon.ico', 'public/')
     .copy('resources/fonts', 'public/css/fonts')
     .sass('resources/sass/style.scss', 'public/css')
+    .copy('resources/js/vendor', 'public/js/vendor')
     .combine([
         'resources/js/vendor/jquery-3.3.1.min.js',
         'resources/js/vendor/slick.min.js',
