@@ -59,5 +59,7 @@ return [
     'Hello' => 'Cześć!',
     'my-profile' => 'Mój profil',
     'my-offers' => 'Moje ogłoszenia',
-    'reset_filter' => 'Resetuj filtr'
+    'reset_filter' => 'Resetuj filtr',
+    'empty_notifications' => 'Nie masz jeszcze powiadomień',
+    'empty_messages' => 'Nie masz jeszcze wiadomości'
 ];

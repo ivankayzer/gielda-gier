@@ -18,6 +18,11 @@ class Game extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function scopeById($query, $id)
+    {
+        return $query->where('igdb_id', $id);
+    }
+
     public function setReleaseDateAttribute($value)
     {
         $this->attributes['release_date'] = Carbon::createFromTimestamp($value / 1000)->format('Y-m-d');

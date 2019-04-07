@@ -78,18 +78,24 @@
 
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
-                                        <ul>
-                                            @foreach($notifications as $notication)
-                                                <li class="notifications-not-read">
-                                                    <a href="{{ $notication->url ?? '#' }}">
+                                        @if(count($notifications))
+                                            <ul>
+                                                @foreach($notifications as $notication)
+                                                    <li class="notifications-not-read">
+                                                        <a href="{{ $notication->url ?? '#' }}">
                                                         <span class="notification-text">
                                                         {!! $notication->text !!}
                                                             <p class="color">{{ $notication->created_at->diffForHumans() }}</p>
                                                     </span>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <div class="margin-bottom-20 margin-top-20 margin-left-20">
+                                                <p>@lang('common.empty_notifications')</p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +117,7 @@
 
                                 <div class="header-notifications-content">
                                     <div class="header-notifications-scroll" data-simplebar>
+                                        @if(count($messages))
                                         <ul>
                                             @foreach($messages as $message)
                                                 <li class="notifications-not-read">
@@ -127,6 +134,11 @@
                                                 </li>
                                             @endforeach
                                         </ul>
+                                        @else
+                                            <div class="margin-bottom-20 margin-top-20 margin-left-20">
+                                                <p>@lang('common.empty_messages')</p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
