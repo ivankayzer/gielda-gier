@@ -96,4 +96,22 @@ class ViewProfilePagesTest extends TestCase
             ->assertSee($publishedOffer->game->background)
             ->assertDontSee($unpublishedOffer->game->background);
     }
+
+    /** @test */
+    public function can_see_available_offers_section_if_user_has_published_offers()
+    {
+        $offer = factory(Offer::class)->states(['active', 'user'])->create();
+
+        $this->get(route('profile.show', ['user' => $offer->seller->name]))
+            ->assertSee(__('profile.offers'));
+    }
+
+    /** @test */
+    public function cant_see_available_offers_section_if_user_has_no_published_offers()
+    {
+        $offer = factory(Offer::class)->states(['user'])->create();
+
+        $this->get(route('profile.show', ['user' => $offer->seller->name]))
+            ->assertDontSee(__('profile.offers'));
+    }
 }

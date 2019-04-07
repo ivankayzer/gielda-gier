@@ -73,22 +73,21 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-xl-12 col-lg-12 content-right-offset">
-
-
-                            <div class="boxed-list margin-bottom-60">
-                                <div class="boxed-list-headline">
-                                    <h3><i class="icon-material-outline-business"></i> @lang('profile.offers')</h3>
+                        @if(count($offers))
+                            <div class="col-xl-12 col-lg-12 content-right-offset">
+                                <div class="boxed-list margin-bottom-60">
+                                    <div class="boxed-list-headline">
+                                        <h3><i class="icon-material-outline-business"></i> @lang('profile.offers')</h3>
+                                    </div>
+                                    <div class="freelancers-container freelancers-list-layout compact-list">
+                                        @foreach($offers as $offer)
+                                            @include('offers._offer', ['offer' => $offer])
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="freelancers-container freelancers-list-layout compact-list">
 
-                                    @foreach($offers as $offer)
-                                        @include('offers._offer', ['offer' => $offer])
-                                    @endforeach
-                                </div>
                             </div>
-
-                        </div>
+                        @endif
 
                 </div>
         </div>
