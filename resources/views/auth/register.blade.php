@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-6">
-                    <div class="login-register-page animated pulse faster">
+                    <div class="login-register-page">
                         <!-- Welcome Text -->
                         <div class="welcome-text">
                             <h3>@lang('common.do_register')</h3>

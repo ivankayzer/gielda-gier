@@ -12,7 +12,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css">
 </head>
 <body>
-<div id="wrapper" class="animated fadeIn faster">
+<div id="wrapper">
     @include('partials.header')
     @yield('content')
     @include('partials.footer')
