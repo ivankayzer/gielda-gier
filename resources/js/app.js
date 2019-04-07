@@ -35,3 +35,7 @@ $('.select2.cities').select2({
         }
     },
 });
+
+$('.notifications-trigger').click(function () {
+    $.get('/powiadomienia/przeczytaj');
+});

@@ -66,7 +66,7 @@
                         <!-- Notifications -->
                         <div class="header-notifications">
                             <!-- Trigger -->
-                            <div class="header-notifications-trigger">
+                            <div class="header-notifications-trigger notifications-trigger">
                                 <a href="#"><i class="icon-feather-bell"></i>@if($notificationsCount)
                                         <span>{{ $notificationsCount }}</span>@endif</a>
                             </div>
