@@ -102,7 +102,7 @@
                                                     <div class="col-xl-4">
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
-                                                            <select class="select2 full-container cities" name="city"
+                                                            <select class="select2 full-container cities" name="city_id"
                                                                     title="{{ $profile->city ?: __('settings.select_city') }}">
                                                                 <option value="0">{{ $profile->city ?: __('settings.select_city') }}</option>
                                                             </select>
