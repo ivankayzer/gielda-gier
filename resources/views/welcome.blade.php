@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{ route('offers.index') }}" method="get" id="welcome-search">
-                        <div class="intro-banner-search-form margin-top-95 animated bounce">
+                        <div class="intro-banner-search-form margin-top-95">
                             <div class="intro-search-field with-autocomplete">
                                 <label for="autocomplete-input"
                                        class="field-title ripple-effect">@lang('welcome.where')</label>

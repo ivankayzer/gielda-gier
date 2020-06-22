@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="login-register-page animated pulse faster">
+                    <div class="login-register-page">
                         <!-- Welcome Text -->
                         <div class="welcome-text">
                             <h3>@lang('common.glad_to_see_you_again')</h3>
