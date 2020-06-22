@@ -6,7 +6,7 @@
     <div class="intro-banner intro-full-page bg-left d-flex align-items-center" data-background-image="images/register-background.jpg">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 offset-6">
+                <div class="col-md-6 offset-md-6">
                     <div class="login-register-page">
                         <!-- Welcome Text -->
                         <div class="welcome-text">
