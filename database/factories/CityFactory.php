@@ -5,6 +5,6 @@ use Faker\Generator as Faker;
 $factory->define(App\City::class, function (Faker $faker) {
     return [
         'slug' => $faker->slug,
-        'name' => $faker->word
+        'name' => $faker->unique()->words(3, true)
     ];
 });

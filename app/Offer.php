@@ -73,13 +73,14 @@ class Offer extends Model
             $query->whereBetween('price', [$minPrice * 100, $maxPrice * 100]);
         }
 
-        if ($filters->get('tradeable') === "1" || !$filters->has('tradeable')) {
-            $query->where('tradeable', true);
-        }
-
-        if ($filters->get('sellable') === "1" || !$filters->has('sellable')) {
-            $query->orWhere('sellable', true);
-        }
+        $query->where(function ($where) use ($filters) {
+            if ($filters->get('tradeable') === "1" || !$filters->has('tradeable')) {
+                $where->where('tradeable', true);
+            }
+            if ($filters->get('sellable') === "1" || !$filters->has('sellable')) {
+                $where->orWhere('sellable', true);
+            }
+        });
 
         if ($filters->get('tradeable') === "0" && $filters->get('sellable') === "0") {
             $query->where('sellable', false)->where('tradeable', false);
