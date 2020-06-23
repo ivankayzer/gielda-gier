@@ -7,7 +7,7 @@
         <div class="background-image-container animated fadeIn" style="background-image: url('images/register-background.jpg');"></div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 offset-6">
+                <div class="col-md-6 offset-md-6">
                     <div class="login-register-page">
                         <!-- Welcome Text -->
                         <div class="welcome-text">

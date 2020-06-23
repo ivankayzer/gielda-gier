@@ -23,7 +23,7 @@ class HomepageTest extends DuskTestCase
                     ->assertSee(__('welcome.intro'));
         });
     }
-    
+
     /** @test */
     public function offers_section_is_not_visible_if_there_are_no_offers()
     {

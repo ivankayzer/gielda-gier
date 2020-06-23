@@ -23,7 +23,7 @@ class OfferController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Offer::filter($request->all())->active();
+        $query = Offer::filter($request->all())->with(['seller'])->active();
 
         $offers = $query->paginate(10);
 
