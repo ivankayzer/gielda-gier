@@ -26,7 +26,7 @@ return [
     'payment_bank_transfer' => 'Przelew bankowy',
     'payment_cash' => 'Gotówka',
     'delivery_post' => 'Wysyłka pocztą',
-    'delivery_in_person' => 'Odbior osobisty',
+    'delivery_in_person' => 'Odbiór osobisty',
     'basic' => 'Podstawowe informacje',
     'additional' => 'Dodatkowe informacje',
     'photos' => 'Dodaj zdjęcia',

@@ -3,7 +3,8 @@
 @section('title', 'Załóż konto')
 
 @section('content')
-    <div class="intro-banner intro-full-page bg-left d-flex align-items-center" data-background-image="images/register-background.jpg">
+    <div class="intro-banner intro-full-page bg-left d-flex align-items-center">
+        <div class="background-image-container animated fadeIn" style="background-image: url('images/register-background.jpg');"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-6">

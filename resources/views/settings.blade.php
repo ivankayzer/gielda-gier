@@ -39,7 +39,8 @@
                                                     <img class="profile-pic" src="{{ $profile->getAvatar() }}"
                                                          alt=""/>
                                                     <div class="upload-button"></div>
-                                                    <input class="file-upload" name="avatar" type="file" accept="image/*"/>
+                                                    <input class="file-upload" name="avatar" type="file"
+                                                           accept="image/*"/>
                                                 </div>
                                             </div>
 
@@ -102,9 +103,13 @@
                                                     <div class="col-xl-4">
                                                         <div class="submit-field">
                                                             <h5>@lang('settings.city')</h5>
-                                                            <select class="select2 full-container cities" name="city"
-                                                                    title="{{ $profile->city ?: __('settings.select_city') }}">
-                                                                <option value="0">{{ $profile->city ?: __('settings.select_city') }}</option>
+                                                            <select class="select2 full-container cities" name="city_id"
+                                                                    title="{{ $profile->user->city ? $profile->user->city->name : __('settings.select_city') }}">
+                                                                @if($profile->user->city)
+                                                                    <option value="{{ $profile->user->city->id }}">{{ $profile->user->city->name }}</option>
+                                                                @else
+                                                                    <option value="0">{{ $profile->user->city ?: __('settings.select_city') }}</option>
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
@@ -157,7 +162,8 @@
                                                 <div class="row">
                                                     <div class="col-xl-12">
                                                         <div class="checkbox">
-                                                            <input type="checkbox" name="notify_new_offer" value="1" @if($profile->notify_new_offer) checked @endif
+                                                            <input type="checkbox" name="notify_new_offer" value="1"
+                                                                   @if($profile->notify_new_offer) checked @endif
                                                                    id="notifications_new_offer">
                                                             <label for="notifications_new_offer"><span
                                                                         class="checkbox-icon"></span> @lang('settings.notifications_new_offer')
@@ -166,7 +172,9 @@
                                                     </div>
                                                     <div class="col-xl-12">
                                                         <div class="checkbox">
-                                                            <input type="checkbox" name="notify_new_transaction" value="1" @if($profile->notify_new_transaction) checked @endif
+                                                            <input type="checkbox" name="notify_new_transaction"
+                                                                   value="1"
+                                                                   @if($profile->notify_new_transaction) checked @endif
                                                                    id="notifications_new_transaction">
                                                             <label for="notifications_new_transaction"><span
                                                                         class="checkbox-icon"></span> @lang('settings.notifications_new_transaction')
@@ -180,40 +188,41 @@
                                 </div>
                             </div>
                             <!-- Dashboard Box -->
-                            {{--<div class="col-xl-12">--}}
-                                {{--<div id="test1" class="dashboard-box">--}}
-                                    {{--<!-- Headline -->--}}
-                                    {{--<div class="headline">--}}
-                                        {{--<h3><i class="icon-material-outline-lock"></i> @lang('settings.pass_change')--}}
-                                        {{--</h3>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="content with-padding">--}}
-                                        {{--<div class="row">--}}
-                                            {{--<div class="col-xl-4">--}}
-                                                {{--<div class="submit-field">--}}
-                                                    {{--<h5>@lang('settings.current_pass')</h5>--}}
-                                                    {{--<input type="password" class="with-border" name="current_password" placeholder="********">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col-xl-4">--}}
-                                                {{--<div class="submit-field">--}}
-                                                    {{--<h5>@lang('settings.new_pass')</h5>--}}
-                                                    {{--<input type="password" class="with-border" name="new_password" placeholder="********">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col-xl-4">--}}
-                                                {{--<div class="submit-field">--}}
-                                                    {{--<h5>@lang('settings.new_pass_confirm')</h5>--}}
-                                                    {{--<input type="password" class="with-border" name="new_password_confirmation" placeholder="********">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            <!-- Button -->
+                        {{--<div class="col-xl-12">--}}
+                        {{--<div id="test1" class="dashboard-box">--}}
+                        {{--<!-- Headline -->--}}
+                        {{--<div class="headline">--}}
+                        {{--<h3><i class="icon-material-outline-lock"></i> @lang('settings.pass_change')--}}
+                        {{--</h3>--}}
+                        {{--</div>--}}
+                        {{--<div class="content with-padding">--}}
+                        {{--<div class="row">--}}
+                        {{--<div class="col-xl-4">--}}
+                        {{--<div class="submit-field">--}}
+                        {{--<h5>@lang('settings.current_pass')</h5>--}}
+                        {{--<input type="password" class="with-border" name="current_password" placeholder="********">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4">--}}
+                        {{--<div class="submit-field">--}}
+                        {{--<h5>@lang('settings.new_pass')</h5>--}}
+                        {{--<input type="password" class="with-border" name="new_password" placeholder="********">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-xl-4">--}}
+                        {{--<div class="submit-field">--}}
+                        {{--<h5>@lang('settings.new_pass_confirm')</h5>--}}
+                        {{--<input type="password" class="with-border" name="new_password_confirmation" placeholder="********">--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+                        <!-- Button -->
                             <div class="col-xl-12">
-                                <input type="submit" class="button ripple-effect big margin-top-30" value="@lang('settings.save')" /></input>
+                                <input type="submit" class="button ripple-effect big margin-top-30"
+                                       value="@lang('settings.save')"/></input>
                             </div>
                         </form>
                     </div>

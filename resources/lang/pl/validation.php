@@ -147,7 +147,7 @@ return [
         'email' => 'e-mail',
         'password_confirmation' => 'potwierdzenie hasła',
         'message' => 'wiadomość',
-        'name' => 'nazwa',
+        'name' => 'username',
         'title' => 'tytuł',
         'platform' => 'platforma',
         'comment' => 'komentarz',

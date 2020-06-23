@@ -27,6 +27,11 @@ class HomeController extends Controller
         return view('notifications');
     }
 
+    public function readNotifications()
+    {
+        event(new NotificationsPageVisited());
+    }
+
     public function transactions()
     {
         return view('transactions.index');

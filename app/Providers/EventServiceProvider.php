@@ -7,13 +7,13 @@ use App\Events\Comments\CommentCreated;
 use App\Events\Notifications\NotificationsPageVisited;
 use App\Events\Transactions\TransactionAccepted;
 use App\Events\Transactions\TransactionCreated;
-use App\Events\User\AccountCreated;
-use App\Listeners\CreateProfile;
+use App\Events\Transactions\VisitTransactionsPage;
 use App\Listeners\MarkMessagesAsRead;
 use App\Listeners\MarkNotificationsAsRead;
 use App\Listeners\NotifyAboutNewComment;
 use App\Listeners\NotifyAboutNewTradeOffer;
 use App\Listeners\DeclinePendingTransactionsForOffer;
+use App\Listeners\UpdateLastTransactionsVisitDate;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -38,12 +38,15 @@ class EventServiceProvider extends ServiceProvider
         NotificationsPageVisited::class => [
             MarkNotificationsAsRead::class
         ],
-        ChatPageVisited::class =>[
+        ChatPageVisited::class => [
             MarkMessagesAsRead::class
         ],
         TransactionAccepted::class => [
             DeclinePendingTransactionsForOffer::class
-        ]
+        ],
+        VisitTransactionsPage::class => [
+            UpdateLastTransactionsVisitDate::class,
+        ],
     ];
 
     /**

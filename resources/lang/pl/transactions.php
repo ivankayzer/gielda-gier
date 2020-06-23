@@ -19,5 +19,6 @@ return [
     'negative' => 'Negatywna',
     'comment' => 'Komentarz',
     'rate_transaction' => 'Oceń transakcję',
-    'to_rate' => 'Do oceny'
+    'to_rate' => 'Do oceny',
+    'empty' => 'Nie masz jeszcze transakcji'
 ];

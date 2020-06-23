@@ -19,6 +19,7 @@ return [
     'dashboard' => "Aktualności",
     'logout' => 'Wyloguj się',
     'write_success' => 'Zmiany zostały zapisane',
+    'offer_created' => 'Oferta została złożona',
     'fill_profile' => '<a href=":url">Uzupełnij profil</a> by przyspieszyć realizację transakcji',
     'city' => 'Miasto',
     'platform' => 'Platforma',
@@ -59,5 +60,7 @@ return [
     'Hello' => 'Cześć!',
     'my-profile' => 'Mój profil',
     'my-offers' => 'Moje ogłoszenia',
-    'reset_filter' => 'Resetuj filtr'
+    'reset_filter' => 'Resetuj filtr',
+    'empty_notifications' => 'Nie masz jeszcze powiadomień',
+    'empty_messages' => 'Nie masz jeszcze wiadomości'
 ];

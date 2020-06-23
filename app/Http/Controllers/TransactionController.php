@@ -7,6 +7,7 @@ use App\Events\Transactions\TransactionAccepted;
 use App\Events\Transactions\TransactionCompleted;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\Transactions\TransactionDeclined;
+use App\Events\Transactions\VisitTransactionsPage;
 use App\Factories\TransactionFactory;
 use App\Http\Requests\CreateTransactionRequest;
 use App\Offer;
@@ -35,11 +36,14 @@ class TransactionController extends Controller
 
         $toRate = $user->transactionsBuyer()->toRate('buyer')->union($user->transactionsSeller()->toRate('seller'))->get();
 
+        event(new VisitTransactionsPage());
+
         return view('transactions.index', [
             'active' => $active,
             'pending' => $pending,
             'completed' => $completed,
-            'toRate' => $toRate
+            'toRate' => $toRate,
+            'isEmpty' => !count($active) && !count($pending) && !count($completed) && !count($toRate)
         ]);
     }
 
@@ -64,6 +68,11 @@ class TransactionController extends Controller
 
         if ($saved) {
             event(new TransactionCreated($transaction));
+            session()->flash('message', ['text' => __('common.offer_created')]);
+        }
+
+        if ($transaction->isTrade()) {
+            return redirect()->route('offers.show', ['offer' => $offer->id, 'slug' => $offer->game->slug]);
         }
 
         return redirect()->route('transactions.index');

@@ -9,7 +9,7 @@
 
             <!-- Avatar -->
             <div class="freelancer-avatar">
-                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"><img
+                <a href="{{ route('offers.show', ['offer' => $offer->id, 'slug' => str_slug($offer->game->title)]) }}"><img class="animated fadeIn"
                             src="{{ $offer->game->cover }}" alt=""></a>
             </div>
 

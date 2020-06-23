@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="intro-banner intro-full-page d-flex align-items-center"
+    <div class="intro-banner intro-full-page d-flex align-items-center animated fadeIn"
          data-background-image="../images/reset-background.jpg">
         <div class="container">
             <div class="row">

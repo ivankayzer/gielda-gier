@@ -37,7 +37,11 @@
                                                             name="game_id"
                                                             class="select2 mw-100 games"
                                                             title="@lang('offers.select_game')">
-                                                        <option value="0">Wybierz grę</option>
+                                                        @if(old('game_id'))
+                                                            <option value="{{ old('game_id') }}">{{ \App\Game::byId(old('game_id'))->first()->title }}</option>
+                                                        @else
+                                                            <option value="0">@lang('offers.select_game')</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
@@ -48,8 +52,12 @@
                                                     <select data-size="7"
                                                             name="city_id"
                                                             class="select2 mw-100 cities"
-                                                            title="@lang('offers.select_city')">
-                                                        <option value="0">Wybierz miasto</option>
+                                                            title="{{ auth()->user()->city ? auth()->user()->city->name : __('offers.select_city') }}">
+                                                        @if(auth()->user()->city)
+                                                            <option value="{{ auth()->user()->city->id }}">{{ auth()->user()->city->name }}</option>
+                                                        @else
+                                                            <option value="0">@lang('offers.select_city')</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
@@ -61,9 +69,11 @@
                                                             data-size="{{ count($platforms) }}"
                                                             name="platform"
                                                             title="@lang('offers.select_platform')">
-                                                        <option value="0" selected disabled>Wybierz platformę</option>
-                                                    @foreach($platforms as $key => $platform)
-                                                            <option value="{{ $key }}">{{ $platform }}</option>
+                                                        <option value="0" selected
+                                                                disabled>@lang('offers.select_platform')</option>
+                                                        @foreach($platforms as $key => $platform)
+                                                            <option @if(old('platform') && $key == old('platform')) selected
+                                                                    @endif value="{{ $key }}">{{ $platform }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -76,8 +86,15 @@
                                                             name="language"
                                                             title="@lang('offers.select_language')">
                                                         <option value="0" selected disabled>Wybierz język</option>
-                                                    @foreach ($languages as $language)
-                                                            <option value="{{ $language['value'] }}"><div class="d-flex align-items-center"><img class="flag" src="{{ $language['icon'] }}"> <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span></div></option>
+                                                        @foreach ($languages as $language)
+                                                            <option value="{{ $language['value'] }}"
+                                                                    @if(old('language') && $language['value'] == old('language')) selected
+                                                                    @endif>
+                                                                <div class="d-flex align-items-center"><img class="flag"
+                                                                                                            src="{{ $language['icon'] }}">
+                                                                    <span style="margin: 2px 0 0 5px;">{{ $language['name'] }}</span>
+                                                                </div>
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -88,7 +105,7 @@
                                                     <h5>@lang('offers.price')</h5>
                                                     <div class="input-with-icon">
                                                         <input class="with-border" type="text"
-                                                               name="price"
+                                                               name="price" value="{{ old('price') }}"
                                                                placeholder="@lang('offers.price')">
                                                         <i class="currency">@lang('common.zl')</i>
                                                     </div>
@@ -107,6 +124,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="payment_bank_transfer" value="1"
+                                                               @if(old('payment_bank_transfer')) checked @endif
                                                                id="payment_bank_transfer">
                                                         <label for="payment_bank_transfer"><span
                                                                     class="checkbox-icon"></span> @lang('offers.payment_bank_transfer')
@@ -119,6 +137,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="payment_cash" value="1"
+                                                               @if(old('payment_cash')) checked @endif
                                                                id="payment_cash">
                                                         <label for="payment_cash"><span
                                                                     class="checkbox-icon"></span> @lang('offers.payment_cash')
@@ -140,6 +159,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="delivery_post" value="1"
+                                                               @if(old('delivery_post')) checked @endif
                                                                id="delivery_post">
                                                         <label for="delivery_post"><span
                                                                     class="checkbox-icon"></span> @lang('offers.delivery_post')
@@ -152,6 +172,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="delivery_in_person" value="1"
+                                                               @if(old('delivery_in_person')) checked @endif
                                                                id="delivery_in_person">
                                                         <label for="delivery_in_person"><span
                                                                     class="checkbox-icon"></span> @lang('offers.delivery_in_person')
@@ -173,7 +194,8 @@
                                             <div class="col-xl-12">
                                                 <div class="submit-field">
                                                     <h5>@lang('offers.comment')</h5>
-                                                    <textarea cols="30" rows="5" class="with-border" name="comment"></textarea>
+                                                    <textarea cols="30" rows="5" class="with-border"
+                                                              name="comment">{{ old('comment') }}</textarea>
                                                     <div class="uploadButton margin-top-30">
                                                         <input class="uploadButton-input" type="file"
                                                                name="images[]"
@@ -193,13 +215,13 @@
                                         </h3>
                                     </div>
                                     <div class="content with-padding padding-bottom-10">
-
                                         <div class="row">
-
                                             <div class="col-xl-3">
                                                 <div class="submit-field">
                                                     <div class="checkbox">
-                                                        <input type="checkbox" name="sellable" value="1" id="sellable">
+                                                        <input type="checkbox" name="sellable"
+                                                               @if(old('sellable')) checked @endif
+                                                               value="1" id="sellable">
                                                         <label for="sellable"><span
                                                                     class="checkbox-icon"></span> @lang('offers.sellable')
                                                         </label>
@@ -211,6 +233,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="tradeable" value="1"
+                                                               @if(old('tradeable')) checked @endif
                                                                id="tradeable">
                                                         <label for="tradeable"><span
                                                                     class="checkbox-icon"></span> @lang('offers.tradeable')
@@ -223,6 +246,7 @@
                                                 <div class="submit-field">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="is_published" value="1"
+                                                               @if(old('is_published')) checked @endif
                                                                id="is_published">
                                                         <label for="is_published"><span
                                                                     class="checkbox-icon"></span> @lang('offers.is_published')

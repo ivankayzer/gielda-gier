@@ -22,6 +22,10 @@ class User extends Authenticatable
         'name', 'email', 'password', 'city_id'
     ];
 
+    protected $dates = [
+        'last_transactions_visit'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

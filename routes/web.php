@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/powiadomienia', 'HomeController@notifications')->name('notifications');
+    Route::get('/powiadomienia/przeczytaj', 'HomeController@readNotifications')->name('read_notifications');
 
     Route::prefix('transakcje')->group(function () {
         Route::get('/', 'TransactionController@index')->name('transactions.index')->middleware('add_notification');

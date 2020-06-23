@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="intro-banner">
-        <div class="background-image-container animated fadeIn" style="background-image: url('images/home-background.jpg');"></div>
+        <div class="background-image-container animated fadeInjob-listing-company-logo" style="background-image: url('images/home-background.jpg');"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -104,7 +104,7 @@
                                    class="job-listing with-apply-button">
                                     <div class="job-listing-details">
                                         <div class="job-listing-company-logo">
-                                            <img src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
+                                            <img class="animated fadeIn" src="{{ $offer->game->cover }}" alt="{{ $offer->game->title }}">
                                         </div>
                                         <div class="job-listing-description">
                                             <h3 class="job-listing-title">{{ $offer->game->title }}</h3>
