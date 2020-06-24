@@ -11,6 +11,10 @@ use Krossroad\UnionPaginator\UnionPaginatorTrait;
 
 class User extends Authenticatable
 {
+    protected static $positiveReviewsCount = null;
+
+    protected static $negativeReviewsCount = null;
+
     use Notifiable, UnionPaginatorTrait;
 
     /**
@@ -89,12 +93,20 @@ class User extends Authenticatable
 
     public function positiveReviewsCount()
     {
-        return $this->reviews()->positive()->count();
+        if (is_null(static::$positiveReviewsCount)) {
+            static::$positiveReviewsCount = $this->reviews()->positive()->count();
+        }
+
+        return static::$positiveReviewsCount;
     }
 
     public function negativeReviewsCount()
     {
-        return $this->reviews()->negative()->count();
+        if (is_null(static::$negativeReviewsCount)) {
+            static::$negativeReviewsCount = $this->reviews()->negative()->count();
+        }
+
+        return static::$negativeReviewsCount;
     }
 
     public function getRouteKeyName()
