@@ -1,7 +1,5 @@
 require('./bootstrap');
 
-require('./components/Chat');
-
 window.gallery = require('gallery');
 
 $('.select2').select2({

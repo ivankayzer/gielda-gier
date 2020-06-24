@@ -104,52 +104,6 @@
 
                         </div>
 
-                        <!-- Messages -->
-                        <div class="header-notifications">
-                            <div class="header-notifications-trigger">
-                                <a href="#"><i class="icon-feather-mail"></i></a>
-                            </div>
-
-                            <!-- Dropdown -->
-                            <div class="header-notifications-dropdown">
-
-                                <div class="header-notifications-headline">
-                                    <h4>@lang('common.messages')</h4>
-                                </div>
-
-                                <div class="header-notifications-content">
-                                    <div class="header-notifications-scroll" data-simplebar>
-                                        @if(count($messages))
-                                        <ul>
-                                            @foreach($messages as $message)
-                                                <li class="notifications-not-read">
-                                                    <a href="{{ route('chat.index') }}">
-                                                    <span class="notification-avatar"><img
-                                                                src="{{ $message->sender->profile->getAvatar() }}"
-                                                                alt=""></span>
-                                                        <div class="notification-text">
-                                                            <p><strong>{{ $message->sender->name }}</strong></p>
-                                                            <p class="notification-msg-text">{{ $message->message }}</p>
-                                                            <p class="color">{{ $message->created_at->diffForHumans() }}</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                        @else
-                                            <div class="margin-bottom-20 margin-top-20 margin-left-20">
-                                                <p>@lang('common.empty_messages')</p>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <a href="{{ route('chat.index') }}"
-                                   class="header-notifications-button ripple-effect button-sliding-icon">@lang('common.all_messages')
-                                    <i class="icon-material-outline-arrow-right-alt"></i></a>
-                            </div>
-                        </div>
-
                     </div>
                     <!--  User Notifications / End -->
 
