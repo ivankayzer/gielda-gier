@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-
+require('laravel-mix-purgecss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -32,4 +32,5 @@ mix.react('resources/js/app.js', 'public/js')
         'resources/js/vendor/clipboard.min.js',
         'resources/js/vendor/magnific-popup.min.js',
         'resources/js/vendor/custom.js',
-    ], 'public/js/bundle.js');
+    ], 'public/js/bundle.js')
+    .purgeCss();

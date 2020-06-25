@@ -19,10 +19,9 @@
         "cross-env": "^5.1",
         "jquery": "^3.5.1",
         "laravel-mix": "^5.0.4",
+        "laravel-mix-purgecss": "^5.0.0",
         "lodash": "^4.17.15",
         "popper.js": "^1.12",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.26.9",
         "sass-loader": "^8.0.2"
@@ -31,8 +30,6 @@
         "animate.css": "^3.7.0",
         "babel-preset-stage-2": "^6.24.1",
         "gallery": "^1.0.0",
-        "laravel-echo": "^1.4.1",
-        "pusher-js": "^4.3.1",
         "turbolinks-animate": "^3.2.0"
     }
 }
