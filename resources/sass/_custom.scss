@@ -632,3 +632,36 @@ select.select2 {
 .job-listing-items {
   flex-basis: 375px;
 }
+
+@media only screen and (min-width: 550px) and (max-width: 1240px) {
+  .freelancers-container.freelancers-list-layout.compact-list {
+    .freelancer {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .freelancer-details {
+      justify-content: center;
+      flex: 1 0 150px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .freelancers-container.freelancers-list-layout.compact-list {
+    .freelancer-details {
+      flex: 1 0 0 !important;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .freelancers-container.freelancers-list-layout.compact-list {
+    .offer-location {
+      position: static;
+    }
+  }
+}
