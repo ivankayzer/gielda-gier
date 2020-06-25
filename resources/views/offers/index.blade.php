@@ -5,7 +5,7 @@
 @section('content')
     <!-- Spacer -->
 
-    <div class="margin-top-90"></div>
+    <div class="margin-top-50"></div>
     <!-- Spacer / End-->
 
     <!-- Page Content

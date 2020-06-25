@@ -23,7 +23,8 @@
                             </li>
                             <li><a href="{{ route('transactions.index') }}"
                                    @if(request()->is('transakcje') || request()->is('transakcje/*')) class="current" @endif>@lang('common.transactions')
-                                    @if($newTransactionsCount)<span class="header-notifications-trigger margin-left-10 margin-top-5">
+                                    @if($newTransactionsCount)<span
+                                        class="header-notifications-trigger margin-left-10 margin-top-5">
                                         <span>{{ $newTransactionsCount }}</span></span>@endif</a>
                             </li>
                         </ul>
@@ -38,6 +39,12 @@
                                    @if(request()->is('ogloszenia') || request()->is('ogloszenia/*')) class="current" @endif>
                                     @lang('offers.offers')
                                 </a>
+                            </li>
+                            <li><a href="{{ route('login') }}"
+                                   @if(request()->is('zaloguj-sie')) class="current" @endif>@lang('common.do_login')</a>
+                            </li>
+                            <li><a href="{{ route('register') }}"
+                                   @if(request()->is('zaloz-konto')) class="current" @endif>@lang('auth.register')</a>
                             </li>
                         </ul>
                     </nav>
@@ -106,62 +113,57 @@
 
                     </div>
                     <!--  User Notifications / End -->
-
-                    @auth
                     <!-- User Menu -->
-                        <div class="header-widget">
+                    <div class="header-widget">
 
-                            <!-- Messages -->
-                            <div class="header-notifications user-menu">
-                                <div class="header-notifications-trigger">
-                                    <a href="#">
-                                        <div class="user-avatar"><img src="{{ auth()->user()->profile->getAvatar() }}"
-                                                                      alt=""></div>
-                                    </a>
-                                </div>
+                        <!-- Messages -->
+                        <div class="header-notifications user-menu">
+                            <div class="header-notifications-trigger">
+                                <a href="#">
+                                    <div class="user-avatar"><img src="{{ auth()->user()->profile->getAvatar() }}"
+                                                                  alt=""></div>
+                                </a>
+                            </div>
 
-                                <!-- Dropdown -->
-                                <div class="header-notifications-dropdown">
+                            <!-- Dropdown -->
+                            <div class="header-notifications-dropdown">
 
-                                    <!-- User Status -->
-                                    <div class="user-status">
+                                <!-- User Status -->
+                                <div class="user-status">
 
-                                        <!-- User Name / Avatar -->
-                                        <div class="user-details">
-                                            <div class="user-name">
-                                                {{ auth()->user()->profile->getFullName() }}
-                                                <span>{{ auth()->user()->city->name }}</span>
-                                            </div>
+                                    <!-- User Name / Avatar -->
+                                    <div class="user-details">
+                                        <div class="user-name">
+                                            {{ auth()->user()->profile->getFullName() }}
+                                            <span>{{ auth()->user()->city->name }}</span>
                                         </div>
                                     </div>
-
-                                    <ul class="user-menu-small-nav">
-                                        <li><a href="{{ route('profile.me') }}"><i
-                                                        class="icon-material-outline-person-pin"></i> @lang('common.my-profile')
-                                            </a></li>
-                                        <li><a href="{{ route('settings.index') }}"><i
-                                                        class="icon-material-outline-settings"></i> @lang('settings.settings')
-                                            </a></li>
-                                        <li><a href="{{ route('exit') }}"><i
-                                                        class="icon-material-outline-power-settings-new"></i> @lang('common.logout')
-                                            </a></li>
-                                    </ul>
-
                                 </div>
+
+                                <ul class="user-menu-small-nav">
+                                    <li><a href="{{ route('profile.me') }}"><i
+                                                class="icon-material-outline-person-pin"></i> @lang('common.my-profile')
+                                        </a></li>
+                                    <li><a href="{{ route('settings.index') }}"><i
+                                                class="icon-material-outline-settings"></i> @lang('settings.settings')
+                                        </a></li>
+                                    <li><a href="{{ route('exit') }}"><i
+                                                class="icon-material-outline-power-settings-new"></i> @lang('common.logout')
+                                        </a></li>
+                                </ul>
+
                             </div>
                         </div>
-                        <!-- User Menu / End -->
-                    @endauth
-
-                <!-- Mobile Navigation Button -->
-                    <span class="mmenu-trigger">
+                    </div>
+                    <!-- User Menu / End -->
+                @endauth
+                <span class="mmenu-trigger">
 					<button class="hamburger hamburger--collapse" type="button">
 						<span class="hamburger-box">
 							<span class="hamburger-inner"></span>
 						</span>
 					</button>
 				</span>
-                @endauth
             </div>
         </div>
     </div>

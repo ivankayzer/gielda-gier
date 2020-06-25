@@ -665,3 +665,35 @@ select.select2 {
     }
   }
 }
+
+@media only screen and (max-width: 1100px) {
+  .intro-search-field.with-label {
+    height: 50px;
+  }
+
+  #navigation {
+    display: none !important;
+  }
+
+  .mm-listview {
+    .add-offers {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .single-page-header-inner {
+    padding-left: 10px;
+
+    .header-image {
+      padding-left: 0;
+      margin-right: 10px;
+    }
+
+    .right-side {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}
