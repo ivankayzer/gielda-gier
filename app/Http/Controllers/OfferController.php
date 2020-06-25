@@ -25,7 +25,7 @@ class OfferController extends Controller
     {
         $query = Offer::filter($request->all())->with(['game', 'city'])->active();
 
-        $offers = $query->paginate(10);
+        $offers = $query->paginate(10)->appends(request()->query());
 
         if ($request->has('city')) {
             $city = City::find($request->get('city'));

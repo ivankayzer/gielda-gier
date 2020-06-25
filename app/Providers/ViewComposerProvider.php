@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Offer;
+use App\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,11 +17,13 @@ class ViewComposerProvider extends ServiceProvider
     public function boot()
     {
         View::composer('welcome', function ($view) {
+            $view->with('usersCount', number_format(User::count()));
+            $view->with('totalOffersCount', number_format(Offer::count()));
             $view->with('offersCount', [
-                'switch' => 0,
-                'ps4' => 141,
-                'xone' => 221,
-                'pc' => 15
+                'switch' => Offer::where(['platform' => 130])->count(),
+                'ps4' => Offer::where(['platform' => 48])->count(),
+                'xone' => Offer::where(['platform' => 49])->count(),
+                'pc' => Offer::where(['platform' => 15])->count()
             ]);
         });
 

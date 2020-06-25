@@ -40,11 +40,18 @@
                                     @lang('offers.offers')
                                 </a>
                             </li>
-                            <li><a href="{{ route('login') }}"
-                                   @if(request()->is('zaloguj-sie')) class="current" @endif>@lang('common.do_login')</a>
+
+                            <li class="mobile-only">
+                                <a href="{{ route('login') }}"
+                                   @if(request()->is('zaloguj-sie')) class="current" @endif>
+                                    @lang('common.do_login')
+                                </a>
                             </li>
-                            <li><a href="{{ route('register') }}"
-                                   @if(request()->is('zaloz-konto')) class="current" @endif>@lang('auth.register')</a>
+                            <li class="mobile-only">
+                                <a href="{{ route('register') }}"
+                                   @if(request()->is('zaloz-konto')) class="current" @endif>
+                                    @lang('auth.register')
+                                </a>
                             </li>
                         </ul>
                     </nav>
