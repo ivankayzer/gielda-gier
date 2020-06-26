@@ -19,15 +19,13 @@ mix.react('resources/js/app.js', 'public/js')
     .copy('resources/js/vendor', 'public/js/vendor')
     .combine([
         'resources/js/vendor/jquery-3.3.1.min.js',
-        'resources/js/vendor/slick.min.js',
         'resources/js/vendor/select2.min.js',
         'resources/js/vendor/select2.pl.js',
         'resources/js/vendor/mmenu.min.js',
         'resources/js/vendor/tippy.all.min.js',
         'resources/js/vendor/simplebar.min.js',
         'resources/js/vendor/bootstrap-slider.min.js',
-        'resources/js/vendor/photoswipe.min.js',
-        'resources/js/vendor/photoswipe-ui-default.min.js',
+        'resources/js/vendor/flickity.pkgd.js',
         'resources/js/vendor/snackbar.js',
         'resources/js/vendor/clipboard.min.js',
         'resources/js/vendor/magnific-popup.min.js',

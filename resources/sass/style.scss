@@ -84,7 +84,6 @@
 /* -------------------------------------------------------------- */
 /* 04. Vendor (third party assets styles)
 ----------------------------------------------------------------- */
-@import 'vendor/slick-carousel';
 @import 'vendor/custom-scrollbar';
 @import 'vendor/tooltips';
 @import 'vendor/popups';
@@ -125,8 +124,8 @@
 */
 
 @import 'vendor/animate.min.css';
-@import 'vendor/photoswipe.min.css';
 @import 'vendor/select2.min.css';
+@import 'vendor/flickity.css';
 @import 'vendor/slick.css';
 
 @import 'custom';

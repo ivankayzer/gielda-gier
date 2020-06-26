@@ -6,13 +6,7 @@ $(document).ready(function () {
 
 var OfferShow = Barba.BaseView.extend({
     namespace: 'offer-show',
-    onEnter: function() {
-        $('.gallery').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 1
-        });
-    },
+    onEnter: function() {},
     onEnterCompleted: function() {},
     onLeave: function() {},
     onLeaveCompleted: function() {

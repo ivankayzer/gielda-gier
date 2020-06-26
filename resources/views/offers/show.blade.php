@@ -51,15 +51,14 @@
                         <p>{{ $offer->comment }}</p>
                     </div>
 
-                    <ul id="vertical" class="gallery @if(count($offer->image) === 1) disabled @endif padding-bottom-20">
+                    <div id="vertical" class="carousel @if(count($offer->image) === 1) disabled @endif padding-bottom-20" tabindex="-1" role="dialog" aria-hidden="true"
+                         data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
                         @foreach ($offer->image as $image)
-                            <img data-gallery-src="{{ asset('storage/' . $image->url) }}"
-                                 class="gallery__item"
-                                 src="{{ asset('storage/' . $image->url) }}"
+                            <img alt="" src="{{ asset('storage/' . $image->url) }}"
                                  onerror="this.src='{{ asset('images/no-image.png') }}'"
                             />
                         @endforeach
-                    </ul>
+                    </div>
 
                     @if(count($similar))
                         <div class="single-page-section">
@@ -85,13 +84,13 @@
                             @if($offer->actionable())
                                 <a href=".buy-dialog"
                                    class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
-                                            class="icon-material-outline-arrow-right-alt"></i></a>
+                                        class="icon-material-outline-arrow-right-alt"></i></a>
                             @endif
                         @endauth
 
                         @guest
                             <a href="{{ route('login') }}" class="apply-now-button">@lang('common.do_login') <i
-                                        class="icon-material-outline-arrow-right-alt"></i></a>
+                                    class="icon-material-outline-arrow-right-alt"></i></a>
                         @endguest
                         <ul class="features margin-bottom-35">
                             <li><strong>@lang('offers.payment')</strong></li>
@@ -195,13 +194,13 @@
                             @if($offer->actionable())
                                 <a href=".buy-dialog"
                                    class="apply-now-button popup-with-zoom-anim">{{ $offer->buyText() }} <i
-                                            class="icon-material-outline-arrow-right-alt"></i></a>
+                                        class="icon-material-outline-arrow-right-alt"></i></a>
                             @endif
                         @endauth
 
                         @guest
                             <a href="{{ route('login') }}" class="apply-now-button">@lang('common.do_login') <i
-                                        class="icon-material-outline-arrow-right-alt"></i></a>
+                                    class="icon-material-outline-arrow-right-alt"></i></a>
                         @endguest
                         <ul class="features margin-bottom-35">
                             <li><strong>@lang('offers.payment')</strong></li>
@@ -228,10 +227,6 @@
 
 @section('post-scripts')
     <script>
-        $('.gallery:not(.disabled)').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
+
     </script>
 @endsection
