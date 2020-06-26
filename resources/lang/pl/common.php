@@ -21,6 +21,7 @@ return [
     'write_success' => 'Zmiany zostały zapisane',
     'offer_created' => 'Oferta została złożona',
     'fill_profile' => '<a href=":url">Uzupełnij profil</a> by przyspieszyć realizację transakcji',
+    'disclaimer' => 'Informacje przedstawione na tej stronie służą wyłącznie do celów demonstracyjnych',
     'city' => 'Miasto',
     'platform' => 'Platforma',
     'all_platforms' => 'Wszystkie platformy',
