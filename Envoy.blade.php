@@ -9,10 +9,10 @@ git checkout --force master
 git reset --hard FETCH_HEAD
 git clean -df
 
-composer install --no-interaction --prefer-dist --ignore-platform-reqs --no-dev
-npm install --only=prod
+composer install
+npm install
 
-php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed --force
 
 php artisan cache:clear
 php artisan view:clear
