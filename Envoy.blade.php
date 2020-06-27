@@ -10,7 +10,7 @@ git reset --hard FETCH_HEAD
 git clean -df
 
 composer install --no-interaction --prefer-dist --ignore-platform-reqs --no-dev
-npm install
+npm install --only=prod
 
 php artisan migrate --force
 
