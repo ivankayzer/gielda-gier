@@ -51,7 +51,9 @@
                         <p>{{ $offer->comment }}</p>
                     </div>
 
-                    <div id="vertical" class="carousel @if(count($offer->image) === 1) disabled @endif padding-bottom-20" tabindex="-1" role="dialog" aria-hidden="true"
+                    <div id="vertical"
+                         class="carousel @if(count($offer->image) === 1) disabled @endif padding-bottom-20"
+                         tabindex="-1" role="dialog" aria-hidden="true"
                          data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
                         @foreach ($offer->image as $image)
                             <img alt="" src="{{ asset('storage/' . $image->url) }}"
@@ -61,7 +63,7 @@
                     </div>
 
                     @if(count($similar))
-                        <div class="single-page-section">
+                        <div class="single-page-section margin-top-100">
                             <h3 class="margin-bottom-25">@lang('offers.similar')</h3>
 
                             <div class="freelancers-container freelancers-list-layout compact-list">
@@ -110,7 +112,8 @@
                                         <li class="d-flex justify-content-center" style="padding-left: 0 !important;">
                                             <div class="user-avatar">
                                                 <img src="{{ $offer->sellerProfile->getAvatar() }}" alt="">
-                                                <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}"><h5>{{ $offer->seller->name }}</h5></a>
+                                                <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}">
+                                                    <h5>{{ $offer->seller->name }}</h5></a>
                                             </div>
                                         </li>
                                         <li>
@@ -140,11 +143,16 @@
                         </div>
                     </div>
                 </div>
-        @endif
+            @endif
 
-        @if(!count($offer->image))
-            <!-- Sidebar -->
-                <div class="col-xl-4 col-lg-4 offset-4">
+            @if(!count($offer->image))
+                <div class="col-xl-4 col-lg-4">
+                    <div class="single-page-section">
+                        <p>{{ $offer->comment }}</p>
+                    </div>
+                </div>
+                <!-- Sidebar -->
+                <div class="col-xl-4 col-lg-4">
                     <div class="sidebar-container">
 
                         <!-- Sidebar Widget -->
@@ -156,7 +164,8 @@
                                         <li class="d-flex justify-content-center" style="padding-left: 0 !important;">
                                             <div class="user-avatar">
                                                 <img src="{{ $offer->sellerProfile->getAvatar() }}" alt="">
-                                                <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}"><h5>{{ $offer->seller->name }}</h5></a>
+                                                <a href="{{ route('profile.show', ['user' => $offer->seller->name]) }}">
+                                                    <h5>{{ $offer->seller->name }}</h5></a>
                                             </div>
                                         </li>
                                         <li>

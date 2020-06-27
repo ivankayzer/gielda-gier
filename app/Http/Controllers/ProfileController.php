@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Events\User\ProfileEdited;
+use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 

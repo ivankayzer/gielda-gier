@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return Review::whereIn('transaction_id', $this->transactions->pluck('id'))->where('user_id', '!=', $this->id);
     }
 
     public function offers()

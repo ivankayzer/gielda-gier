@@ -16,11 +16,11 @@ $factory->define(App\Profile::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
         'bank_nr' => $faker->bankAccountNumber,
         'company_name' => $faker->company,
-    ];
-});
-
-$factory->state(App\Profile::class, 'withoutUser', function (Faker $faker) {
-    return [
-        'user_id' => null
+        'avatar' => $faker->randomElement([
+            'user-avatar-big-01.jpg',
+            'user-avatar-big-02.jpg',
+            'user-avatar-big-03.jpg',
+            'user-avatar-placeholder.png',
+        ])
     ];
 });

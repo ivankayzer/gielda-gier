@@ -1,5 +1,6 @@
 <?php
 
+use App\City;
 use App\Game;
 use App\Profile;
 use App\Transaction;
@@ -119,34 +120,59 @@ class DatabaseSeeder extends Seeder
             factory(Game::class)->create($game);
         }
 
+        $gameIds = Game::pluck('igdb_id');
+        $cityIds = City::pluck('id');
 
-        return;
+        // user avatar
 
-        factory(User::class, 135)->create()->each(function ($user) {
+        factory(User::class, 135)->create(['city_id' => $cityIds->shuffle()->first()])->each(function ($user) use ($gameIds, $cityIds) {
+            $user->profile()->delete();
             /** @var $user User */
-            $user->profile()->save(factory(Profile::class)->state('withoutUser')->make());
+            factory(Profile::class)->create(['user_id' => $user->id]);
 
-            foreach (range(1, 5) as $iteration) {
+            $offersCount = rand(0, 2);
+
+            if (!$offersCount) return;
+
+            $reviewSaved = false;
+
+            foreach (range(0, $offersCount) as $i) {
+                /** @var $offer \App\Offer */
                 $offer = $user->offers()->save(factory(\App\Offer::class)->state('active')->make([
-                    'game_id' => factory(Game::class)->create()->igdb_id
+                    'game_id' => $gameIds->shuffle()->first(),
+                    'city_id' => $cityIds->shuffle()->first(),
                 ]));
 
-                /** @var $offer \App\Offer */
-                foreach (range(1, 3) as $item) {
-                    $offer->image()->save(factory(\App\OfferImage::class)->make());
-                }
-
                 $user->transactionsSeller()->save(factory(Transaction::class)->make([
+                    'offer_id' => $offer->id,
+                    'seller_id' => $user->id,
                     'buyer_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
                 ]));
 
                 $user->transactionsBuyer()->save(factory(Transaction::class)->make([
+                    'offer_id' => $offer->id,
+                    'buyer_id' => $user->id,
                     'seller_id' => User::inRandomOrder()->where('id', '!=', $user->id)->first()->id
                 ]));
 
-                $user->reviews()->save(factory(\App\Review::class)->make([
-                    'transaction_id' => Transaction::inRandomOrder()->first()->id,
-                ]));
+                $transaction = Transaction::inRandomOrder()->where('seller_id', $user->id)->orWhere('buyer_id', $user->id)->first();
+
+                if ($transaction && !$reviewSaved) {
+                    factory(\App\Review::class)->create([
+                        'transaction_id' => $transaction->id,
+                        'user_id' => $transaction->seller_id === $user->id ? $transaction->buyer_id : $transaction->seller_id,
+                    ]);
+                    $reviewSaved = true;
+                }
+
+
+                $offerImagesCount = rand(0, 2);
+
+                if (!$offerImagesCount) return;
+
+                foreach (range(0, $offerImagesCount) as $i) {
+                    $offer->image()->save(factory(\App\OfferImage::class)->make());
+                }
             }
         });
     }
