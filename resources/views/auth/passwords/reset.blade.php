@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Zresetuj hasło')
+
 @section('content')
     <div class="intro-banner intro-full-page bg-left d-flex align-items-center"
          data-background-image="../../images/confirm-background.jpg">
