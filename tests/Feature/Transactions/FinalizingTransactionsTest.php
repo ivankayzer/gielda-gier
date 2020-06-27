@@ -28,7 +28,7 @@ class FinalizingTransactionsTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.rate'))->assertSessionHasErrors(['transaction_id']);
     }
-    
+
     /** @test */
     public function can_finalize_transaction_by_leaving_negative_comment()
     {
@@ -86,9 +86,9 @@ class FinalizingTransactionsTest extends TestCase
 
         $this->assertEquals(1, $buyer->positiveReviewsCount());
     }
-    
+
     public function can_finalize_only_own_transactions()
     {
-        
+
     }
 }

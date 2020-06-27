@@ -133,7 +133,7 @@ class TransactionController extends Controller
         })->firstOrFail();
 
         $comment = new Review([
-            'user_id' => $transaction->otherPerson->id,
+            'user_id' => $transaction->id,
             'transaction_id' => $transaction->id,
             'type' => $request->get('type'),
             'comment' => $request->get('message')

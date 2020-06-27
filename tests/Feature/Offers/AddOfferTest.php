@@ -78,11 +78,11 @@ class AddOfferTest extends TestCase
     /** @test */
     public function user_can_add_a_comment()
     {
-        $offer = factory(Offer::class)->make()->toArray();
-
-        $this->actingAs($this->user)->post(route('offers.store'), array_merge([
+        $offer = factory(Offer::class)->make([
             'comment' => 'Example comment',
-        ], $offer));
+        ])->toArray();
+
+        $this->actingAs($this->user)->post(route('offers.store'), $offer);
 
         $this->assertDatabaseHas('offers', [
             'seller_id' => $this->user->id,
@@ -151,7 +151,7 @@ class AddOfferTest extends TestCase
             'is_published' => true,
         ]);
     }
-    
+
     /** @test */
     public function game_id_is_required_to_add_an_offer()
     {
@@ -166,7 +166,7 @@ class AddOfferTest extends TestCase
 
         $response->assertSessionHasErrors('game_id');
     }
-    
+
     /** @test */
     public function platform_is_required_to_add_an_offer()
     {
@@ -181,7 +181,7 @@ class AddOfferTest extends TestCase
 
         $response->assertSessionHasErrors('platform');
     }
-    
+
     /** @test */
     public function language_is_required_to_add_an_offer()
     {
@@ -196,7 +196,7 @@ class AddOfferTest extends TestCase
 
         $response->assertSessionHasErrors('language');
     }
-    
+
     /** @test */
     public function city_is_required_to_add_an_offer()
     {
