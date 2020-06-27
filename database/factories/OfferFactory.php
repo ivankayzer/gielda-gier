@@ -6,7 +6,7 @@ $factory->define(App\Offer::class, function (Faker $faker) {
     return [
         'platform' => $faker->randomElement(array_keys(\App\ValueObjects\Platform::availablePlatforms())),
         'language' => $faker->randomElement(['pl', 'en', 'de',]),
-        'price' => $faker->numberBetween(50, 250),
+        'price' => $faker->numberBetween(25, 250),
         'game_id' => function () {
             return factory(\App\Game::class)->create()->igdb_id;
         },
