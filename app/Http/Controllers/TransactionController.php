@@ -44,7 +44,7 @@ class TransactionController extends Controller
             'pending'   => $pending,
             'completed' => $completed,
             'toRate'    => $toRate,
-            'isEmpty'   => !count($active) && !count($pending) && !count($completed) && !count($toRate),
+            'isEmpty'   => ! count($active) && ! count($pending) && ! count($completed) && ! count($toRate),
         ]);
     }
 
@@ -63,7 +63,7 @@ class TransactionController extends Controller
 
         $saved = $transaction->save();
 
-        if ($saved && !$transaction->isTrade()) {
+        if ($saved && ! $transaction->isTrade()) {
             $offer->sold = true;
             $offer->save();
         }

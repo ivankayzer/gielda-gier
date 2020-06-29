@@ -143,9 +143,9 @@ class DatabaseSeeder extends Seeder
 
         $offersCount = rand(0, 2);
 
-        if (!$offersCount) {
-            return;
-        }
+            if (! $offersCount) {
+                return;
+            }
 
         $reviewSaved = false;
 
@@ -170,19 +170,19 @@ class DatabaseSeeder extends Seeder
 
             $transaction = Transaction::inRandomOrder()->where('seller_id', $user->id)->orWhere('buyer_id', $user->id)->first();
 
-            if ($transaction && !$reviewSaved) {
-                factory(\App\Review::class)->create([
-                    'transaction_id' => $transaction->id,
-                    'user_id'        => $transaction->seller_id === $user->id ? $transaction->buyer_id : $transaction->seller_id,
-                ]);
-                $reviewSaved = true;
-            }
+                if ($transaction && ! $reviewSaved) {
+                    factory(\App\Review::class)->create([
+                        'transaction_id' => $transaction->id,
+                        'user_id'        => $transaction->seller_id === $user->id ? $transaction->buyer_id : $transaction->seller_id,
+                    ]);
+                    $reviewSaved = true;
+                }
 
             $offerImagesCount = rand(0, 2);
 
-            if (!$offerImagesCount) {
-                return;
-            }
+                if (! $offerImagesCount) {
+                    return;
+                }
 
             foreach (range(0, $offerImagesCount) as $i) {
                 $offer->image()->save(factory(\App\OfferImage::class)->make());

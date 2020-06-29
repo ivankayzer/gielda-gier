@@ -115,7 +115,7 @@ class User extends Authenticatable
 
     public function sendNewOfferNotification($offer)
     {
-        if (!$this->profile->notify_new_offer) {
+        if (! $this->profile->notify_new_offer) {
             return;
         }
 
@@ -124,7 +124,7 @@ class User extends Authenticatable
 
     public function sendNewTransactionNotification($transaction)
     {
-        if (!$this->profile->notify_new_transaction) {
+        if (! $this->profile->notify_new_transaction) {
             return;
         }
 
