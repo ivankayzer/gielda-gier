@@ -5,6 +5,16 @@
 ![Quality Score](https://img.shields.io/scrutinizer/quality/g/ivankayzer/gielda-gier?style=flat-square)
 [![StyleCI](https://styleci.io/repos/164491579/shield)](https://styleci.io/repos/164491579)
 
+## Demo
+
+https://gielda-gier.ivankayzer.com/
+
+Login details:
+
+email: **demo@ivankayzer.com**
+
+password: **secret**
+
 ## Setup and configuration
 
 ``` php
