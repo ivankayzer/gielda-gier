@@ -9,11 +9,12 @@
 
 https://gielda-gier.ivankayzer.com/
 
-Login details:
+### Login details
 
-email: **demo@ivankayzer.com**
-
-password: **secret**
+```
+email: demo@ivankayzer.com
+password: secret
+```
 
 ## Setup and configuration
 
