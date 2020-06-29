@@ -109,7 +109,7 @@ class Transaction extends Model
 
     public function isBuyer()
     {
-        return !$this->isSeller();
+        return ! $this->isSeller();
     }
 
     public function isTrade()

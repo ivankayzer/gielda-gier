@@ -147,11 +147,11 @@ class Offer extends Model
             return __('offers.buy_or_trade');
         }
 
-        if (!$this->sellable && $this->tradeable) {
+        if (! $this->sellable && $this->tradeable) {
             return __('offers.trade');
         }
 
-        if ($this->sellable && !$this->tradeable) {
+        if ($this->sellable && ! $this->tradeable) {
             return __('offers.buy');
         }
     }
@@ -187,7 +187,7 @@ class Offer extends Model
 
     public function actionable()
     {
-        return ($this->sellable || $this->tradeable) && !$this->sold && auth()->check() && $this->seller->id !== auth()->user()->id;
+        return ($this->sellable || $this->tradeable) && ! $this->sold && auth()->check() && $this->seller->id !== auth()->user()->id;
     }
 
     public function isMyOffer()

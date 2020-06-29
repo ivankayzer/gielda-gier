@@ -16,13 +16,13 @@ class AddNotification
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return $next($request);
         }
 
         $profile = $request->user()->profile;
 
-        if (!$profile->address || !$profile->zip || !$profile->bank_nr) {
+        if (! $profile->address || ! $profile->zip || ! $profile->bank_nr) {
             session()->flash('message', [
                 'text' => __('common.fill_profile', ['url' => route('settings.index')]),
                 'type' => 'warning',

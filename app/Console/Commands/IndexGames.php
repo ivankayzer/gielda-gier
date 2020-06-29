@@ -70,11 +70,11 @@ class IndexGames extends Command
             $inDatabase = Game::whereIn('igdb_id', $ids)->pluck('igdb_id')->toArray();
 
             $games->filter(function ($game) use ($inDatabase) {
-                return !in_array($game['id'], $inDatabase);
+                return ! in_array($game['id'], $inDatabase);
             })->each(function ($game) {
                 $screenshots = collect(data_get($game, 'screenshots', []));
                 $screenshots = $screenshots->reduce(function ($carry, $item) {
-                    if (!isset($item['width'])) {
+                    if (! isset($item['width'])) {
                         return $carry;
                     }
 
