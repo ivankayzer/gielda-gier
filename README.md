@@ -44,7 +44,7 @@ php artisan db:seed
 ## Testing
 
 ``` bash
-$ composer test
+composer test
 ```
 
 ## License
