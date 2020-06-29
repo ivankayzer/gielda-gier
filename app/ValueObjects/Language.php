@@ -2,7 +2,6 @@
 
 namespace App\ValueObjects;
 
-
 class Language
 {
     public static function availableLanguages()
@@ -10,14 +9,14 @@ class Language
         return [
             [
                 'value' => 'en',
-                'name' => __('common.english'),
-                'icon' => asset('images/flags/gb.svg')
+                'name'  => __('common.english'),
+                'icon'  => asset('images/flags/gb.svg'),
             ],
             [
                 'value' => 'pl',
-                'name' => __('common.polish'),
-                'icon' => asset('images/flags/pl.svg')
-            ]
+                'name'  => __('common.polish'),
+                'icon'  => asset('images/flags/pl.svg'),
+            ],
         ];
     }
 

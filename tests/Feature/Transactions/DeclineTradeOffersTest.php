@@ -19,18 +19,18 @@ class DeclineTradeOffersTest extends TestCase
         $user = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'status_id' => TransactionStatus::PENDING
+            'status_id' => TransactionStatus::PENDING,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.decline', ['transaction' => $transaction->id]));
 
         $this->assertDatabaseHas('transactions', [
-            'id' => $transaction->id,
-            'status_id' => TransactionStatus::DECLINED
+            'id'        => $transaction->id,
+            'status_id' => TransactionStatus::DECLINED,
         ]);
     }
-    
+
     /** @test */
     public function cant_decline_offers_addressed_to_other_users()
     {
@@ -38,15 +38,15 @@ class DeclineTradeOffersTest extends TestCase
         $secondUser = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'status_id' => TransactionStatus::PENDING
+            'status_id' => TransactionStatus::PENDING,
         ]);
 
         $this->actingAs($secondUser)
             ->get(route('transactions.decline', ['transaction' => $transaction->id]));
 
         $this->assertDatabaseMissing('transactions', [
-            'id' => $transaction->id,
-            'status_id' => TransactionStatus::DECLINED
+            'id'        => $transaction->id,
+            'status_id' => TransactionStatus::DECLINED,
         ]);
     }
 
@@ -58,7 +58,7 @@ class DeclineTradeOffersTest extends TestCase
 
         factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::DECLINED,
         ]);
 

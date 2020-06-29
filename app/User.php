@@ -11,7 +11,8 @@ use Krossroad\UnionPaginator\UnionPaginatorTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable, UnionPaginatorTrait;
+    use Notifiable;
+    use UnionPaginatorTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +20,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'city_id'
+        'name', 'email', 'password', 'city_id',
     ];
 
     protected $dates = [
-        'last_transactions_visit'
+        'last_transactions_visit',
     ];
 
     /**
@@ -39,7 +40,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        self::created(function(User $model){
+        self::created(function (self $model) {
             $model->profile()->create();
         });
     }
@@ -129,5 +130,4 @@ class User extends Authenticatable
 
         $this->notify(new NewTransaction($transaction));
     }
-
 }

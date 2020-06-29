@@ -9,8 +9,9 @@ class AddNotification
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -24,7 +25,7 @@ class AddNotification
         if (!$profile->address || !$profile->zip || !$profile->bank_nr) {
             session()->flash('message', [
                 'text' => __('common.fill_profile', ['url' => route('settings.index')]),
-                'type' => 'warning'
+                'type' => 'warning',
             ]);
         }
 

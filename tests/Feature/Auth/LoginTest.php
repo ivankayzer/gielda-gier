@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -17,7 +16,7 @@ class LoginTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->post(route('login'), [
-            'email' => $user->email
+            'email' => $user->email,
         ]);
 
         $response->assertSessionHasErrors('password');
@@ -27,7 +26,7 @@ class LoginTest extends TestCase
     public function email_is_required_to_login()
     {
         $response = $this->post(route('login'), [
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $response->assertSessionHasErrors('email');

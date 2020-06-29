@@ -38,21 +38,21 @@ class FinalizingTransactionsTest extends TestCase
         $offer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
 
         $transaction = factory(Transaction::class)->create([
-            'buyer_id' => $buyer->id,
+            'buyer_id'  => $buyer->id,
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
 
         $this->actingAs($user)
             ->post(route('transactions.rate'), [
-                'type' => 'negative',
-                'transaction_id' => $transaction->id
+                'type'           => 'negative',
+                'transaction_id' => $transaction->id,
             ]);
 
         $this->assertDatabaseHas('reviews', [
-            'type' => 'negative',
-            'transaction_id' => $transaction->id
+            'type'           => 'negative',
+            'transaction_id' => $transaction->id,
         ]);
 
         $this->assertEquals(1, $buyer->negativeReviewsCount());
@@ -67,21 +67,21 @@ class FinalizingTransactionsTest extends TestCase
         $offer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
 
         $transaction = factory(Transaction::class)->create([
-            'buyer_id' => $buyer->id,
+            'buyer_id'  => $buyer->id,
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
 
         $this->actingAs($user)
             ->post(route('transactions.rate'), [
-                'type' => 'positive',
-                'transaction_id' => $transaction->id
+                'type'           => 'positive',
+                'transaction_id' => $transaction->id,
             ]);
 
         $this->assertDatabaseHas('reviews', [
-            'type' => 'positive',
-            'transaction_id' => $transaction->id
+            'type'           => 'positive',
+            'transaction_id' => $transaction->id,
         ]);
 
         $this->assertEquals(1, $buyer->positiveReviewsCount());
@@ -89,6 +89,5 @@ class FinalizingTransactionsTest extends TestCase
 
     public function can_finalize_only_own_transactions()
     {
-
     }
 }

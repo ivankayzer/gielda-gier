@@ -5,11 +5,10 @@ namespace Tests\Browser;
 use App\City;
 use App\Game;
 use App\Offer;
-use App\Profile;
 use App\User;
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class HomepageTest extends DuskTestCase
 {
@@ -41,9 +40,9 @@ class HomepageTest extends DuskTestCase
         $city = factory(City::class)->create();
 
         factory(Offer::class)->state('active')->create([
-            'game_id' => $game->igdb_id,
+            'game_id'   => $game->igdb_id,
             'seller_id' => $user->id,
-            'city_id' => $city
+            'city_id'   => $city,
         ]);
 
         $this->browse(function (Browser $browser) use ($game) {

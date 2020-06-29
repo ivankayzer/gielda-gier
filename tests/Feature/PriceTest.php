@@ -14,7 +14,7 @@ class PriceTest extends TestCase
     public function offer_should_have_a_formatted_price()
     {
         $offer = factory(Offer::class)->make([
-            'price' => '105,32'
+            'price' => '105,32',
         ]);
 
         $this->assertEquals('105,32 zł', $offer->formatted_price);
@@ -24,7 +24,7 @@ class PriceTest extends TestCase
     public function price_should_be_converted_to_int()
     {
         $offer = factory(Offer::class)->make([
-            'price' => '100,31'
+            'price' => '100,31',
         ]);
         $this->assertEquals('10031', $offer->price);
 

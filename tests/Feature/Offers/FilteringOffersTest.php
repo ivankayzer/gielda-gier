@@ -3,7 +3,6 @@
 namespace Tests\Feature\Offers;
 
 use App\Offer;
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -48,11 +47,11 @@ class FilteringOffersTest extends TestCase
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'platform' => 9
+            'platform'  => 9,
         ]);
         $secondOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'platform' => 12
+            'platform'  => 12,
         ]);
 
         $this->get(route('offers.index', ['platform' => [$firstOffer->platform]]))
@@ -65,15 +64,15 @@ class FilteringOffersTest extends TestCase
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'platform' => 9
+            'platform'  => 9,
         ]);
         $secondOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'platform' => 12
+            'platform'  => 12,
         ]);
         $thirdOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'platform' => 48
+            'platform'  => 48,
         ]);
 
         $this->get(route('offers.index', ['platform' => [$firstOffer->platform, $thirdOffer->platform]]))

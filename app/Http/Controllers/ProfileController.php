@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Events\User\ProfileEdited;
-use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -14,23 +13,26 @@ class ProfileController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         return view('settings', [
             'profile' => $request->user()->profile,
-            'user' => $request->user(),
-            'cities' => City::all()->pluck('name', 'slug'),
+            'user'    => $request->user(),
+            'cities'  => City::all()->pluck('name', 'slug'),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
@@ -88,10 +90,10 @@ class ProfileController extends Controller
         })->shuffle()->first();
 
         return view('users.profile', [
-            'user' => $user,
-            'reviews' => $user->reviews()->orderBy('created_at', 'desc')->paginate(5),
-            'offers' => $offers,
-            'background' => $background
+            'user'       => $user,
+            'reviews'    => $user->reviews()->orderBy('created_at', 'desc')->paginate(5),
+            'offers'     => $offers,
+            'background' => $background,
         ]);
     }
 }

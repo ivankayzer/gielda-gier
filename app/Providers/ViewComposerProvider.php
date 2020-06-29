@@ -21,9 +21,9 @@ class ViewComposerProvider extends ServiceProvider
             $view->with('totalOffersCount', number_format(Offer::count()));
             $view->with('offersCount', [
                 'switch' => Offer::where(['platform' => 130])->count(),
-                'ps4' => Offer::where(['platform' => 48])->count(),
-                'xone' => Offer::where(['platform' => 49])->count(),
-                'pc' => Offer::where(['platform' => 15])->count()
+                'ps4'    => Offer::where(['platform' => 48])->count(),
+                'xone'   => Offer::where(['platform' => 49])->count(),
+                'pc'     => Offer::where(['platform' => 15])->count(),
             ]);
         });
 
@@ -42,12 +42,14 @@ class ViewComposerProvider extends ServiceProvider
                 $sellerCount = auth()->user()->transactionsSeller()->where(
                     'created_at',
                     '>',
-                    auth()->user()->last_transactions_visit)->active()->count();
+                    auth()->user()->last_transactions_visit
+                )->active()->count();
 
                 $buyerCount = auth()->user()->transactionsBuyer()->where(
                     'created_at',
                     '>',
-                    auth()->user()->last_transactions_visit)->active()->count();
+                    auth()->user()->last_transactions_visit
+                )->active()->count();
             }
 
             $view->with('newTransactionsCount', $buyerCount + $sellerCount);

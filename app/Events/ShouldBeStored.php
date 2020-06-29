@@ -4,5 +4,4 @@ namespace App\Events;
 
 interface ShouldBeStored
 {
-
 }

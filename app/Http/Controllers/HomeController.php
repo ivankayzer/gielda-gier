@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('welcome', [
-            'offers' => Offer::inRandomOrder()->active()->limit(5)->get()
+            'offers' => Offer::inRandomOrder()->active()->limit(5)->get(),
         ]);
     }
 

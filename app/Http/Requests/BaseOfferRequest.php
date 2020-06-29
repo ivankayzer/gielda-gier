@@ -15,9 +15,9 @@ class BaseOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'game_id' => 'required',
+            'game_id'  => 'required',
             'language' => 'required',
-            'city_id' => 'required',
+            'city_id'  => 'required',
             'platform' => 'required',
         ];
     }

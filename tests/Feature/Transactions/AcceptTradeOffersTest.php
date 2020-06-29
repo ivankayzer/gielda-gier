@@ -19,18 +19,18 @@ class AcceptTradeOffersTest extends TestCase
         $user = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'status_id' => TransactionStatus::PENDING
+            'status_id' => TransactionStatus::PENDING,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.accept', ['transaction' => $transaction->id]));
 
         $this->assertDatabaseHas('transactions', [
-            'id' => $transaction->id,
-            'status_id' => TransactionStatus::IN_PROGRESS
+            'id'        => $transaction->id,
+            'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
     }
-    
+
     /** @test */
     public function cant_accept_offers_addressed_to_other_users()
     {
@@ -38,18 +38,18 @@ class AcceptTradeOffersTest extends TestCase
         $secondUser = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'status_id' => TransactionStatus::PENDING
+            'status_id' => TransactionStatus::PENDING,
         ]);
 
         $this->actingAs($secondUser)
             ->get(route('transactions.accept', ['transaction' => $transaction->id]));
 
         $this->assertDatabaseMissing('transactions', [
-            'id' => $transaction->id,
-            'status_id' => TransactionStatus::IN_PROGRESS
+            'id'        => $transaction->id,
+            'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
     }
-    
+
     /** @test */
     public function accepting_the_trade_will_make_other_trades_for_this_offer_disappear()
     {
@@ -58,13 +58,13 @@ class AcceptTradeOffersTest extends TestCase
 
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
         ]);
 
         $secondTransaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
         ]);
 
@@ -72,16 +72,16 @@ class AcceptTradeOffersTest extends TestCase
             ->get(route('transactions.accept', ['transaction' => $transaction->id]));
 
         $this->assertDatabaseHas('transactions', [
-            'id' => $transaction->id,
-            'status_id' => TransactionStatus::IN_PROGRESS
+            'id'        => $transaction->id,
+            'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
 
         $this->assertDatabaseHas('transactions', [
-            'id' => $secondTransaction->id,
-            'status_id' => TransactionStatus::DECLINED
+            'id'        => $secondTransaction->id,
+            'status_id' => TransactionStatus::DECLINED,
         ]);
     }
-    
+
     /** @test */
     public function pending_trade_offers_are_still_visible_on_offers_listing()
     {
@@ -90,7 +90,7 @@ class AcceptTradeOffersTest extends TestCase
 
         factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
         ]);
 
@@ -105,7 +105,7 @@ class AcceptTradeOffersTest extends TestCase
 
         $transaction = factory(Transaction::class)->create([
             'seller_id' => $user->id,
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
         ]);
 

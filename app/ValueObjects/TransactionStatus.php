@@ -24,22 +24,22 @@ class TransactionStatus
     private function getColors()
     {
         return [
-            self::PENDING => 'yellow',
-            self::DECLINED => 'red',
+            self::PENDING     => 'yellow',
+            self::DECLINED    => 'red',
             self::IN_PROGRESS => 'yellow',
-            self::COMPLETED => 'green',
-            self::CANCELED => 'red'
+            self::COMPLETED   => 'green',
+            self::CANCELED    => 'red',
         ];
     }
 
     private function getTexts()
     {
         return [
-            self::PENDING => __('transactions.pending'),
-            self::DECLINED => __('transactions.declined'),
+            self::PENDING     => __('transactions.pending'),
+            self::DECLINED    => __('transactions.declined'),
             self::IN_PROGRESS => __('transactions.in_progress'),
-            self::COMPLETED => __('transactions.completed'),
-            self::CANCELED => __('transactions.canceled')
+            self::COMPLETED   => __('transactions.completed'),
+            self::CANCELED    => __('transactions.canceled'),
         ];
     }
 
@@ -54,8 +54,9 @@ class TransactionStatus
     }
 
     /**
-     * @return string
      * @throws \Throwable
+     *
+     * @return string
      */
     public function getLabel()
     {

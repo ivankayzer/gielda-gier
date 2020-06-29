@@ -49,7 +49,7 @@ class Transaction extends Model
 
     public function getFormattedPriceAttribute()
     {
-        return $this->getFloatPrice() . ' zł';
+        return $this->getFloatPrice().' zł';
     }
 
     public function buyerPlatform()
@@ -116,7 +116,7 @@ class Transaction extends Model
     {
         return in_array($this->status_id, [
             TransactionStatus::PENDING,
-            TransactionStatus::DECLINED
+            TransactionStatus::DECLINED,
         ]);
     }
 

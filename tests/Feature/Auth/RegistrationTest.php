@@ -13,9 +13,9 @@ class RegistrationTest extends TestCase
     public function username_is_required_to_register()
     {
         $response = $this->post(route('register'), [
-            'city' => '1',
-            'email' => 'test@example.com',
-            'password' => 'secret',
+            'city'                  => '1',
+            'email'                 => 'test@example.com',
+            'password'              => 'secret',
             'password_confirmation' => 'secret',
         ]);
 
@@ -26,9 +26,9 @@ class RegistrationTest extends TestCase
     public function email_is_required_to_register()
     {
         $response = $this->post(route('register'), [
-            'city' => '1',
-            'name' => 'test',
-            'password' => 'secret',
+            'city'                  => '1',
+            'name'                  => 'test',
+            'password'              => 'secret',
             'password_confirmation' => 'secret',
         ]);
 
@@ -39,9 +39,9 @@ class RegistrationTest extends TestCase
     public function city_is_required_to_register()
     {
         $response = $this->post(route('register'), [
-            'email' => 'test@example.com',
-            'name' => 'test',
-            'password' => 'secret',
+            'email'                 => 'test@example.com',
+            'name'                  => 'test',
+            'password'              => 'secret',
             'password_confirmation' => 'secret',
         ]);
 
@@ -52,9 +52,9 @@ class RegistrationTest extends TestCase
     public function password_is_required_to_register()
     {
         $response = $this->post(route('register'), [
-            'email' => 'test@example.com',
-            'name' => 'test',
-            'city' => '1',
+            'email'                 => 'test@example.com',
+            'name'                  => 'test',
+            'city'                  => '1',
             'password_confirmation' => 'secret',
         ]);
 
@@ -65,10 +65,10 @@ class RegistrationTest extends TestCase
     public function password_confirmation_is_required_to_register()
     {
         $response = $this->post(route('register'), [
-            'email' => 'test@example.com',
-            'name' => 'test',
+            'email'    => 'test@example.com',
+            'name'     => 'test',
             'password' => 'secret',
-            'city' => '1',
+            'city'     => '1',
         ]);
 
         $response->assertSessionHasErrors('password');
@@ -78,11 +78,11 @@ class RegistrationTest extends TestCase
     public function password_confirmation_should_be_same_as_password_to_register()
     {
         $response = $this->post(route('register'), [
-            'email' => 'test@example.com',
-            'name' => 'test',
-            'password' => 'secret',
+            'email'                 => 'test@example.com',
+            'name'                  => 'test',
+            'password'              => 'secret',
             'password_confirmation' => 'secret123',
-            'city' => '1',
+            'city'                  => '1',
         ]);
 
         $response->assertSessionHasErrors('password');
@@ -92,15 +92,15 @@ class RegistrationTest extends TestCase
     public function city_is_stored_in_profile_table()
     {
         $this->post(route('register'), [
-            'email' => 'test@example.com',
-            'name' => 'test',
-            'password' => 'secret',
+            'email'                 => 'test@example.com',
+            'name'                  => 'test',
+            'password'              => 'secret',
             'password_confirmation' => 'secret',
-            'city' => '1',
+            'city'                  => '1',
         ]);
 
         $this->assertDatabaseHas('users', [
-            'city_id' => '1'
+            'city_id' => '1',
         ]);
     }
 }
