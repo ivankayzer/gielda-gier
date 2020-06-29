@@ -5,6 +5,10 @@
 ![Quality Score](https://img.shields.io/scrutinizer/quality/g/ivankayzer/gielda-gier?style=flat-square)
 [![StyleCI](https://styleci.io/repos/164491579/shield)](https://styleci.io/repos/164491579)
 
+<p align="center">
+<img src="https://i.imgur.com/LtbtlnA.png">
+</p>
+
 ## Demo
 
 https://gielda-gier.ivankayzer.com/
@@ -20,8 +24,8 @@ password: secret
 
 ``` php
 cp .env.example .env
-php artisan key:generate
 composer install
+php artisan key:generate
 npm install
 npm run dev
 ```
