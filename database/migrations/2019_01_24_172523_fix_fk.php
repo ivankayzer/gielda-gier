@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class FixFk extends Migration
 {
@@ -51,6 +51,5 @@ class FixFk extends Migration
      */
     public function down()
     {
-
     }
 }

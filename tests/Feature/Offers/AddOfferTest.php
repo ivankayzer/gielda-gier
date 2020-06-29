@@ -2,10 +2,7 @@
 
 namespace Tests\Feature\Offers;
 
-use App\City;
-use App\Game;
 use App\Offer;
-use App\Profile;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -36,8 +33,8 @@ class AddOfferTest extends TestCase
 
         $this->assertDatabaseHas('offers', [
             'seller_id' => $this->user->id,
-            'game_id' => $offer['game_id'],
-            'platform' => $offer['platform'],
+            'game_id'   => $offer['game_id'],
+            'platform'  => $offer['platform'],
         ]);
     }
 
@@ -48,13 +45,13 @@ class AddOfferTest extends TestCase
 
         $this->actingAs($this->user)->post(route('offers.store'), array_merge([
             'payment_bank_transfer' => false,
-            'payment_cash' => true,
+            'payment_cash'          => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->user->id,
+            'seller_id'             => $this->user->id,
             'payment_bank_transfer' => false,
-            'payment_cash' => true,
+            'payment_cash'          => true,
         ]);
     }
 
@@ -64,13 +61,13 @@ class AddOfferTest extends TestCase
         $offer = factory(Offer::class)->make()->toArray();
 
         $this->actingAs($this->user)->post(route('offers.store'), array_merge([
-            'delivery_post' => false,
+            'delivery_post'      => false,
             'delivery_in_person' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->user->id,
-            'delivery_post' => false,
+            'seller_id'          => $this->user->id,
+            'delivery_post'      => false,
             'delivery_in_person' => true,
         ]);
     }
@@ -86,7 +83,7 @@ class AddOfferTest extends TestCase
 
         $this->assertDatabaseHas('offers', [
             'seller_id' => $this->user->id,
-            'comment' => 'Example comment',
+            'comment'   => 'Example comment',
         ]);
     }
 
@@ -105,13 +102,13 @@ class AddOfferTest extends TestCase
 
         $this->assertDatabaseHas('offers', [
             'seller_id' => $this->user->id,
-            'game_id' => $offer['game_id'],
+            'game_id'   => $offer['game_id'],
         ]);
 
-        Storage::disk('public')->assertExists('offers/' . $file->hashName());
+        Storage::disk('public')->assertExists('offers/'.$file->hashName());
 
         $this->assertDatabaseHas('offer_images', [
-            'url' => 'offers/' . $file->hashName(),
+            'url' => 'offers/'.$file->hashName(),
         ]);
 
         Storage::disk('public')->deleteDirectory('offers');
@@ -127,9 +124,9 @@ class AddOfferTest extends TestCase
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->user->id,
+            'seller_id'    => $this->user->id,
             'is_published' => true,
-            'publish_at' => Carbon::now(),
+            'publish_at'   => Carbon::now(),
         ]);
     }
 
@@ -139,15 +136,15 @@ class AddOfferTest extends TestCase
         $offer = factory(Offer::class)->make()->toArray();
 
         $this->actingAs($this->user)->post(route('offers.store'), array_merge([
-            'sellable' => false,
-            'tradeable' => true,
+            'sellable'     => false,
+            'tradeable'    => true,
             'is_published' => true,
         ], $offer));
 
         $this->assertDatabaseHas('offers', [
-            'seller_id' => $this->user->id,
-            'sellable' => false,
-            'tradeable' => true,
+            'seller_id'    => $this->user->id,
+            'sellable'     => false,
+            'tradeable'    => true,
             'is_published' => true,
         ]);
     }
@@ -161,7 +158,7 @@ class AddOfferTest extends TestCase
         $response = $this->actingAs($user)->post(route('offers.store'), [
             'platform' => $offer->platform,
             'language' => $offer->language,
-            'price' => 0
+            'price'    => 0,
         ]);
 
         $response->assertSessionHasErrors('game_id');
@@ -174,9 +171,9 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
+            'game_id'  => $offer->game_id,
             'language' => $offer->language,
-            'price' => 0
+            'price'    => 0,
         ]);
 
         $response->assertSessionHasErrors('platform');
@@ -189,9 +186,9 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
+            'game_id'  => $offer->game_id,
             'platform' => $offer->platform,
-            'price' => 0
+            'price'    => 0,
         ]);
 
         $response->assertSessionHasErrors('language');
@@ -204,10 +201,10 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
+            'game_id'  => $offer->game_id,
             'platform' => $offer->platform,
             'language' => $offer->language,
-            'price' => 0
+            'price'    => 0,
         ]);
 
         $response->assertSessionHasErrors('city_id');
@@ -220,10 +217,10 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
+            'game_id'  => $offer->game_id,
             'platform' => $offer->platform,
             'language' => $offer->language,
-            'price' => 0,
+            'price'    => 0,
             'sellable' => true,
         ]);
 
@@ -238,10 +235,10 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
+            'game_id'  => $offer->game_id,
             'platform' => $offer->platform,
             'language' => $offer->language,
-            'price' => 'not-valid-price',
+            'price'    => 'not-valid-price',
             'sellable' => true,
         ])->assertSessionHasErrors('price');
     }
@@ -253,12 +250,12 @@ class AddOfferTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post(route('offers.store'), [
-            'game_id' => $offer->game_id,
-            'platform' => $offer->platform,
-            'language' => $offer->language,
-            'price' => 10,
-            'sellable' => false,
-            'tradeable' => false,
+            'game_id'      => $offer->game_id,
+            'platform'     => $offer->platform,
+            'language'     => $offer->language,
+            'price'        => 10,
+            'sellable'     => false,
+            'tradeable'    => false,
             'is_published' => true,
         ]);
 

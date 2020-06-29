@@ -4,14 +4,14 @@ namespace Tests\Browser;
 
 use App\City;
 use App\Game;
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class OffersSearchTest extends DuskTestCase
 {
     use DatabaseMigrations;
-    
+
     /** @test */
     public function filters_are_visible()
     {
@@ -22,14 +22,14 @@ class OffersSearchTest extends DuskTestCase
                 ->assertSee(__('common.game'));
         });
     }
-    
+
     /** @test */
     public function game_from_request_is_automatically_selected_in_filter_box()
     {
         $game = factory(Game::class)->create();
 
         $this->browse(function (Browser $browser) use ($game) {
-           $browser->visit(route('offers.index') . '?game_id=' . $game->igdb_id)->assertSee($game->title);
+            $browser->visit(route('offers.index').'?game_id='.$game->igdb_id)->assertSee($game->title);
         });
     }
 
@@ -39,7 +39,7 @@ class OffersSearchTest extends DuskTestCase
         $city = factory(City::class)->create();
 
         $this->browse(function (Browser $browser) use ($city) {
-            $browser->visit(route('offers.index') . '?city=' . $city->id)->assertSee($city->name);
+            $browser->visit(route('offers.index').'?city='.$city->id)->assertSee($city->name);
         });
     }
 }

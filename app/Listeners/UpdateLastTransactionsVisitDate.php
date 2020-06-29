@@ -9,7 +9,8 @@ class UpdateLastTransactionsVisitDate
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param object $event
+     *
      * @return void
      */
     public function handle($event)

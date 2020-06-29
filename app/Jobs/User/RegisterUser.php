@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class RegisterUser implements ShouldBeStored
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -30,7 +31,6 @@ class RegisterUser implements ShouldBeStored
 
     /**
      * Execute the job.
-     *
      */
     public function handle()
     {

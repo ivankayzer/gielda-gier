@@ -30,7 +30,7 @@ class RegistrationTest extends DuskTestCase
                 ->click('button[type="submit"]');
 
             $this->assertDatabaseHas('users', [
-                'email' => $user->email
+                'email' => $user->email,
             ]);
         });
     }
@@ -42,7 +42,7 @@ class RegistrationTest extends DuskTestCase
 
         $this->browse(function (DuskBrowser $browser) use ($user) {
             $browser->loginAs($user);
-            $browser->visit(route('register'))->assertUrlIs(route('home') . '/');
+            $browser->visit(route('register'))->assertUrlIs(route('home').'/');
         });
     }
 }

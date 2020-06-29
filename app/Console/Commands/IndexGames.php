@@ -77,18 +77,19 @@ class IndexGames extends Command
                     if (!isset($item['width'])) {
                         return $carry;
                     }
+
                     return $item['width'] > $carry['width'] ? $item : $carry;
                 });
 
                 $newGame = new Game([
-                    'igdb_id' => data_get($game, 'id'),
-                    'title' => data_get($game, 'name'),
-                    'slug' => data_get($game, 'slug'),
-                    'url' => data_get($game, 'url'),
-                    'cover' => data_get($game, 'cover.cloudinary_id'),
+                    'igdb_id'      => data_get($game, 'id'),
+                    'title'        => data_get($game, 'name'),
+                    'slug'         => data_get($game, 'slug'),
+                    'url'          => data_get($game, 'url'),
+                    'cover'        => data_get($game, 'cover.cloudinary_id'),
                     'release_date' => data_get($game, 'first_release_date'),
-                    'platforms' => data_get($game, 'platforms'),
-                    'background' => collect($screenshots)->get('cloudinary_id')
+                    'platforms'    => data_get($game, 'platforms'),
+                    'background'   => collect($screenshots)->get('cloudinary_id'),
                 ]);
 
                 $newGame->save();

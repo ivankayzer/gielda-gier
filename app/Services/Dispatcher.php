@@ -50,9 +50,9 @@ class Dispatcher extends \Illuminate\Bus\Dispatcher
             $properties = $serializer->serialize($command, 'json');
 
             $storedJob = new StoredJob([
-                'user_id' => auth()->check() ? auth()->user()->id : null,
+                'user_id'    => auth()->check() ? auth()->user()->id : null,
                 'class_name' => get_class($command),
-                'properties' => $properties
+                'properties' => $properties,
             ]);
 
             $storedJob->save();

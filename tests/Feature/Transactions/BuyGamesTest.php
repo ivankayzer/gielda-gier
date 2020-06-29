@@ -43,7 +43,6 @@ class BuyGamesTest extends TestCase
             ->assertSee(__('offers.buy'));
     }
 
-
     /** @test */
     public function can_buy_an_offer()
     {
@@ -52,7 +51,7 @@ class BuyGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::PURCHASE
+            'type'     => TransactionType::PURCHASE,
         ]);
 
         $this->assertDatabaseHas('offers', ['id' => $offer->id, 'sold' => true]);
@@ -67,14 +66,14 @@ class BuyGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::PURCHASE
+            'type'     => TransactionType::PURCHASE,
         ]);
 
         $this->actingAs($user)->get($this->offerRoute($offer))->assertNotFound();
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::PURCHASE
+            'type'     => TransactionType::PURCHASE,
         ])
             ->assertNotFound();
 
@@ -105,7 +104,7 @@ class BuyGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::PURCHASE
+            'type'     => TransactionType::PURCHASE,
         ]);
 
         Notification::assertSentTo($offer->seller, NewTransaction::class);

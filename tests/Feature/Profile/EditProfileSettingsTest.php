@@ -3,12 +3,11 @@
 namespace Tests\Feature\Profile;
 
 use App\City;
-use App\Profile;
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class EditProfileSettingsTest extends TestCase
 {
@@ -121,10 +120,10 @@ class EditProfileSettingsTest extends TestCase
 
         $this->sendSettingsForm(['avatar' => $file]);
 
-        Storage::disk('public')->assertExists('avatars/' . $file->hashName());
+        Storage::disk('public')->assertExists('avatars/'.$file->hashName());
 
         $this->assertDatabaseHas('profiles', [
-            'avatar' => 'avatars/' . $file->hashName(),
+            'avatar' => 'avatars/'.$file->hashName(),
         ]);
 
         Storage::disk('public')->deleteDirectory('avatars');
@@ -151,10 +150,10 @@ class EditProfileSettingsTest extends TestCase
 
         $this->sendSettingsForm(['avatar' => $file]);
 
-        Storage::disk('public')->assertMissing('avatars/' . $file->hashName());
+        Storage::disk('public')->assertMissing('avatars/'.$file->hashName());
 
         $this->assertDatabaseMissing('profiles', [
-            'avatar' => 'avatars/' . $file->hashName(),
+            'avatar' => 'avatars/'.$file->hashName(),
         ]);
 
         Storage::disk('public')->deleteDirectory('avatars');
@@ -222,14 +221,14 @@ class EditProfileSettingsTest extends TestCase
     {
         Storage::fake('avatars');
 
-        $file = UploadedFile::fake()->image('avatar.' . $extension);
+        $file = UploadedFile::fake()->image('avatar.'.$extension);
 
         $this->sendSettingsForm(['avatar' => $file]);
 
-        Storage::disk('public')->assertExists('avatars/' . $file->hashName());
+        Storage::disk('public')->assertExists('avatars/'.$file->hashName());
 
         $this->assertDatabaseHas('profiles', [
-            'avatar' => 'avatars/' . $file->hashName(),
+            'avatar' => 'avatars/'.$file->hashName(),
         ]);
 
         Storage::disk('public')->deleteDirectory('avatars');
@@ -239,14 +238,14 @@ class EditProfileSettingsTest extends TestCase
     {
         Storage::fake('avatars');
 
-        $file = UploadedFile::fake()->image('avatar.' . $extension);
+        $file = UploadedFile::fake()->image('avatar.'.$extension);
 
         $this->sendSettingsForm(['avatar' => $file]);
 
-        Storage::disk('public')->assertMissing('avatars/' . $file->hashName());
+        Storage::disk('public')->assertMissing('avatars/'.$file->hashName());
 
         $this->assertDatabaseMissing('profiles', [
-            'avatar' => 'avatars/' . $file->hashName(),
+            'avatar' => 'avatars/'.$file->hashName(),
         ]);
 
         Storage::disk('public')->deleteDirectory('avatars');

@@ -3,7 +3,6 @@
 namespace Tests\Feature\Offers;
 
 use App\Offer;
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -39,8 +38,10 @@ class DeleteOfferTest extends TestCase
             'seller_id' => $firstUser->id,
         ]);
 
-        $this->actingAs($secondUser)->get(route('offers.delete',
-            ['offer' => $offer->id]))->assertLocation(route('home'));
+        $this->actingAs($secondUser)->get(route(
+            'offers.delete',
+            ['offer' => $offer->id]
+        ))->assertLocation(route('home'));
 
         $this->assertDatabaseHas('offers', [
             'id' => $offer->id,

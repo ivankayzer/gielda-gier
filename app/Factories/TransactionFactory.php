@@ -12,7 +12,7 @@ class TransactionFactory
 {
     public static function fromOffer(Offer $offer, Request $request)
     {
-        $transaction = new Transaction;
+        $transaction = new Transaction();
 
         $type = $request->get('type');
 
@@ -50,9 +50,10 @@ class TransactionFactory
             if (strpos($price, $delimiter) !== false) {
                 $newPrice = explode($delimiter, $price);
 
-                return (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+                return (int) ($newPrice[0].((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1].'0')));
             }
         }
-        return (int)$price * 100;
+
+        return (int) $price * 100;
     }
 }

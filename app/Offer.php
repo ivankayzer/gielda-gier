@@ -18,7 +18,7 @@ class Offer extends Model
     ];
 
     protected $casts = [
-        'sold' => 'boolean'
+        'sold' => 'boolean',
     ];
 
     protected $fillable = [
@@ -125,10 +125,10 @@ class Offer extends Model
             if (strpos($price, $delimiter) !== false) {
                 $newPrice = explode($delimiter, $price);
 
-                return $this->attributes['price'] = (int)($newPrice[0] . ((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1] . '0')));
+                return $this->attributes['price'] = (int) ($newPrice[0].((strlen($newPrice[1]) === 2) ? $newPrice[1] : ($newPrice[1].'0')));
             }
         }
-        $this->attributes['price'] = (int)$price * 100;
+        $this->attributes['price'] = (int) $price * 100;
     }
 
     public function getFloatPrice()
@@ -138,7 +138,7 @@ class Offer extends Model
 
     public function getFormattedPriceAttribute()
     {
-        return $this->getFloatPrice() . ' zł';
+        return $this->getFloatPrice().' zł';
     }
 
     public function buyText()
@@ -159,9 +159,9 @@ class Offer extends Model
     public function flag()
     {
         if ($this->language && isset($this->flags[$this->language])) {
-            $flag = asset('images/flags/' . $this->flags[$this->language] . '.svg');
+            $flag = asset('images/flags/'.$this->flags[$this->language].'.svg');
 
-            return '<img class="flag" src="' . $flag . '">';
+            return '<img class="flag" src="'.$flag.'">';
         }
     }
 
@@ -176,7 +176,7 @@ class Offer extends Model
 
     public function getSimilar($limit)
     {
-        return (new self)
+        return (new self())
             ->where('game_id', $this->game_id)
             ->where('platform', $this->platform)
             ->where('id', '!=', $this->id)

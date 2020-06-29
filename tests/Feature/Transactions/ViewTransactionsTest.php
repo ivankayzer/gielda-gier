@@ -19,13 +19,13 @@ class ViewTransactionsTest extends TestCase
         $user = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => factory(User::class)->create()->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
-            'buyer_id' => $user->id
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'buyer_id'  => $user->id,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.index'))
-            ->assertSee(__('transactions.number') . $transaction->id);
+            ->assertSee(__('transactions.number').$transaction->id);
     }
 
     /** @test */
@@ -34,21 +34,21 @@ class ViewTransactionsTest extends TestCase
         $user = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
             'seller_id' => factory(User::class)->create()->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
-            'buyer_id' => $user->id
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'buyer_id'  => $user->id,
         ]);
 
         $secondUser = factory(User::class)->create();
         $secondTransaction = factory(Transaction::class)->create([
             'seller_id' => factory(User::class)->create()->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
-            'buyer_id' => $secondUser->id
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'buyer_id'  => $secondUser->id,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.index'))
-            ->assertSee(__('transactions.number') . $transaction->id)
-            ->assertDontSee(__('transactions.number') . $secondTransaction->id);
+            ->assertSee(__('transactions.number').$transaction->id)
+            ->assertDontSee(__('transactions.number').$secondTransaction->id);
     }
 
     /** @test */
@@ -57,15 +57,15 @@ class ViewTransactionsTest extends TestCase
         $user = factory(User::class)->create();
         $secondUser = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
-            'buyer_id' => $secondUser->id,
+            'buyer_id'  => $secondUser->id,
             'seller_id' => $user->id,
             'status_id' => TransactionStatus::PENDING,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.index'))
-            ->assertSee(__('transactions.number') . $transaction->id);
+            ->assertSee(__('transactions.number').$transaction->id);
     }
 
     /** @test */
@@ -74,22 +74,22 @@ class ViewTransactionsTest extends TestCase
         $user = factory(User::class)->create();
         $secondUser = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
-            'buyer_id' => $secondUser->id,
+            'buyer_id'  => $secondUser->id,
             'seller_id' => $user->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
-            'status_id' => 1
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'status_id' => 1,
         ]);
         $secondTransaction = factory(Transaction::class)->create([
             'seller_id' => $secondUser->id,
-            'buyer_id' => $user->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
-            'status_id' => 1
+            'buyer_id'  => $user->id,
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'status_id' => 1,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.index'))
-            ->assertSee(__('transactions.number') . $transaction->id)
-            ->assertDontSee(__('transactions.number') . $secondTransaction->id);
+            ->assertSee(__('transactions.number').$transaction->id)
+            ->assertDontSee(__('transactions.number').$secondTransaction->id);
     }
 
     /** @test */
@@ -97,14 +97,14 @@ class ViewTransactionsTest extends TestCase
     {
         $user = factory(User::class)->create();
         $transaction = factory(Transaction::class)->create([
-            'buyer_id' => $user->id,
+            'buyer_id'  => $user->id,
             'status_id' => TransactionStatus::COMPLETED,
             'seller_id' => factory(User::class)->create()->id,
-            'offer_id' => factory(Offer::class)->create(['seller_id' => $user->id])->id,
+            'offer_id'  => factory(Offer::class)->create(['seller_id' => $user->id])->id,
         ]);
 
         $this->actingAs($user)
             ->get(route('transactions.index'))
-            ->assertSee(__('transactions.number') . $transaction->id);
+            ->assertSee(__('transactions.number').$transaction->id);
     }
 }

@@ -10,7 +10,7 @@ class City extends Model
 
     public function getUrlParam()
     {
-        return join(',', [$this->id, $this->slug]);
+        return implode(',', [$this->id, $this->slug]);
     }
 
     public static function getList()

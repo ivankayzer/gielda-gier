@@ -3,7 +3,6 @@
 namespace Tests\Feature\Offers;
 
 use App\Offer;
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;

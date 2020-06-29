@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\OfferImage::class, function (Faker $faker) {
     return [
-        'url' =>  $faker->randomElement([
+        'url' => $faker->randomElement([
             'blog-01a.jpg',
             'blog-02a.jpg',
             'blog-03a.jpg',
