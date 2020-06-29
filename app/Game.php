@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     protected $casts = [
-        'platforms' => 'array'
+        'platforms' => 'array',
     ];
 
     protected $guarded = [];
@@ -30,21 +30,21 @@ class Game extends Model
 
     public function getCoverAttribute()
     {
-        return sprintf("https://images.igdb.com/igdb/image/upload/t_cover_big/%s.jpg", $this->attributes['cover']);
+        return sprintf('https://images.igdb.com/igdb/image/upload/t_cover_big/%s.jpg', $this->attributes['cover']);
     }
 
     public function getBackgroundAttribute()
     {
-        return sprintf("https://images.igdb.com/igdb/image/upload/t_screenshot_huge/%s.jpg", $this->attributes['background']);
+        return sprintf('https://images.igdb.com/igdb/image/upload/t_screenshot_huge/%s.jpg', $this->attributes['background']);
     }
 
     public function thumb()
     {
-        return sprintf("https://images.igdb.com/igdb/image/upload/t_thumb/%s.jpg", $this->cover);
+        return sprintf('https://images.igdb.com/igdb/image/upload/t_thumb/%s.jpg', $this->cover);
     }
 
     public function getUrlParam()
     {
-        return join(',', [$this->igdb_id, $this->slug]);
+        return implode(',', [$this->igdb_id, $this->slug]);
     }
 }

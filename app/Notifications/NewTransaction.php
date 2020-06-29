@@ -4,8 +4,8 @@ namespace App\Notifications;
 
 use App\Transaction;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class NewTransaction extends Notification
 {
@@ -28,7 +28,8 @@ class NewTransaction extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,14 +40,15 @@ class NewTransaction extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(__('notifications.new_transaction_subject'))
             ->line(__('notifications.new_transaction', ['game' => $this->transaction->game()->title]))
-            ->action(__('notifications.view'), url(config('app.url') . route('transactions.index', [], false)));
+            ->action(__('notifications.view'), url(config('app.url').route('transactions.index', [], false)));
     }
 }

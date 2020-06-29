@@ -2,11 +2,10 @@
 
 namespace Tests\Browser;
 
-use App\Profile;
 use App\User;
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class LoginTest extends DuskTestCase
 {
@@ -36,7 +35,7 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user);
-            $browser->visit(route('login'))->assertUrlIs(route('home') . '/');
+            $browser->visit(route('login'))->assertUrlIs(route('home').'/');
         });
     }
 }

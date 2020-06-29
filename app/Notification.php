@@ -15,7 +15,7 @@ class Notification extends Model
             ->where('receiver_id', auth()->user()->id)
             ->where('is_read', false)
             ->update([
-                'is_read' => true
+                'is_read' => true,
             ]);
     }
 

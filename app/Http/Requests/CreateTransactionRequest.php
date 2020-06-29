@@ -18,7 +18,8 @@ class CreateTransactionRequest extends FormRequest
     public function authorize()
     {
         $offer = Offer::active()->findOrFail(request()->get('offer_id'));
-        return (int)$offer->seller_id !== auth()->user()->id;
+
+        return (int) $offer->seller_id !== auth()->user()->id;
     }
 
     /**
@@ -29,8 +30,8 @@ class CreateTransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required',
-            'offer_id' => 'required'
+            'type'     => 'required',
+            'offer_id' => 'required',
         ];
     }
 
@@ -43,7 +44,7 @@ class CreateTransactionRequest extends FormRequest
         $validator->sometimes('platform', [
             'bail',
             'required',
-            Rule::in(array_keys(Platform::availablePlatforms()))
+            Rule::in(array_keys(Platform::availablePlatforms())),
         ], function ($input) {
             return $input->type === TransactionType::TRADE && !$input->money;
         });

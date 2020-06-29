@@ -23,6 +23,7 @@ class TransactionController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return void
      */
     public function index(Request $request)
@@ -39,11 +40,11 @@ class TransactionController extends Controller
         event(new VisitTransactionsPage());
 
         return view('transactions.index', [
-            'active' => $active,
-            'pending' => $pending,
+            'active'    => $active,
+            'pending'   => $pending,
             'completed' => $completed,
-            'toRate' => $toRate,
-            'isEmpty' => !count($active) && !count($pending) && !count($completed) && !count($toRate)
+            'toRate'    => $toRate,
+            'isEmpty'   => !count($active) && !count($pending) && !count($completed) && !count($toRate),
         ]);
     }
 
@@ -51,6 +52,7 @@ class TransactionController extends Controller
      * Show the form for creating a new resource.
      *
      * @param CreateTransactionRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateTransactionRequest $request)
@@ -85,7 +87,7 @@ class TransactionController extends Controller
         }
 
         $transaction->update([
-            'status_id' => TransactionStatus::IN_PROGRESS
+            'status_id' => TransactionStatus::IN_PROGRESS,
         ]);
 
         $transaction->offer->sold = true;
@@ -103,7 +105,7 @@ class TransactionController extends Controller
         }
 
         $transaction->update([
-            'status_id' => TransactionStatus::DECLINED
+            'status_id' => TransactionStatus::DECLINED,
         ]);
 
         event(new TransactionDeclined($transaction->id));
@@ -116,15 +118,15 @@ class TransactionController extends Controller
         $user = $transaction->otherPerson;
 
         return view('chunks.user_info', [
-            'profile' => $user->profile
+            'profile' => $user->profile,
         ]);
     }
 
     public function rate(Request $request)
     {
         $this->validate($request, [
-            'type' => ['required', Rule::in(['positive', 'negative'])],
-            'transaction_id' => 'required'
+            'type'           => ['required', Rule::in(['positive', 'negative'])],
+            'transaction_id' => 'required',
         ]);
 
         /** @var Transaction $transaction */
@@ -133,10 +135,10 @@ class TransactionController extends Controller
         })->firstOrFail();
 
         $comment = new Review([
-            'user_id' => $transaction->id,
+            'user_id'        => $transaction->id,
             'transaction_id' => $transaction->id,
-            'type' => $request->get('type'),
-            'comment' => $request->get('message')
+            'type'           => $request->get('type'),
+            'comment'        => $request->get('message'),
         ]);
 
         $comment->save();
@@ -144,8 +146,8 @@ class TransactionController extends Controller
         event(new CommentCreated($comment));
 
         $attributes = [
-            'status_id' => TransactionStatus::COMPLETED,
-            ($transaction->isBuyer() ? 'buyer_comment' : 'seller_comment') => true
+            'status_id'                                                    => TransactionStatus::COMPLETED,
+            ($transaction->isBuyer() ? 'buyer_comment' : 'seller_comment') => true,
         ];
 
         $transaction->update($attributes);

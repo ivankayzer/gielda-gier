@@ -3,7 +3,6 @@
 namespace Tests\Feature\Offers;
 
 use App\Offer;
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -46,8 +45,8 @@ class ViewOffersListingTest extends TestCase
         $secondUser = factory(User::class)->create();
 
         $offer = factory(Offer::class)->create([
-            'seller_id' => $firstUser->id,
-            'is_published' => false
+            'seller_id'    => $firstUser->id,
+            'is_published' => false,
         ]);
 
         $this->actingAs($secondUser)
@@ -67,8 +66,8 @@ class ViewOffersListingTest extends TestCase
         $user = factory(User::class)->create();
 
         $offer = factory(Offer::class)->create([
-            'seller_id' => $user->id,
-            'is_published' => false
+            'seller_id'    => $user->id,
+            'is_published' => false,
         ]);
 
         $publishedOffer = factory(Offer::class)->state('active')->create([
@@ -114,7 +113,7 @@ class ViewOffersListingTest extends TestCase
 
         $offer = factory(Offer::class)->state('active')->create([
             'seller_id' => $firstUser->id,
-            'sold' => true
+            'sold'      => true,
         ]);
 
         $this->actingAs($secondUser)

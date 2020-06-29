@@ -20,7 +20,7 @@ class Profile extends Model
     ];
 
     protected $casts = [
-        'notify_new_offer' => 'boolean',
+        'notify_new_offer'       => 'boolean',
         'notify_new_transaction' => 'boolean',
     ];
 
@@ -32,7 +32,7 @@ class Profile extends Model
     public function getFullName()
     {
         if ($this->name && $this->surname) {
-            return $this->name . ' ' . $this->surname;
+            return $this->name.' '.$this->surname;
         }
 
         return $this->user->name;
@@ -40,6 +40,6 @@ class Profile extends Model
 
     public function getAvatar()
     {
-        return $this->avatar ? asset('storage/' . $this->avatar) : asset('images/user-avatar-placeholder.png');
+        return $this->avatar ? asset('storage/'.$this->avatar) : asset('images/user-avatar-placeholder.png');
     }
 }

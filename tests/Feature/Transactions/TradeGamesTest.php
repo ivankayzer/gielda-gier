@@ -54,17 +54,17 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'game_id' => $game->igdb_id,
-            'platform' => 9
+            'type'     => TransactionType::TRADE,
+            'game_id'  => $game->igdb_id,
+            'platform' => 9,
         ]);
 
         $this->assertDatabaseHas('offers', ['id' => $offer->id, 'sold' => false]);
         $this->assertDatabaseHas('transactions', [
-            'offer_id' => $offer->id,
-            'status_id' => TransactionStatus::PENDING,
-            'buyer_game_id' => $game->igdb_id,
-            'buyer_game_platform' => 9
+            'offer_id'            => $offer->id,
+            'status_id'           => TransactionStatus::PENDING,
+            'buyer_game_id'       => $game->igdb_id,
+            'buyer_game_platform' => 9,
         ]);
     }
 
@@ -76,7 +76,7 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
+            'type'     => TransactionType::TRADE,
         ])->assertSessionHasErrors('game_id');
     }
 
@@ -88,7 +88,7 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
+            'type'     => TransactionType::TRADE,
         ])->assertSessionHasErrors('platform');
     }
 
@@ -100,8 +100,8 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => 'not-valid-money'
+            'type'     => TransactionType::TRADE,
+            'money'    => 'not-valid-money',
         ])->assertSessionHasErrors('money');
     }
 
@@ -113,35 +113,35 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         $this->assertDatabaseHas('transactions', [
             'status_id' => TransactionStatus::PENDING,
-            'price' => '1000'
+            'price'     => '1000',
         ]);
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '15.00'
+            'type'     => TransactionType::TRADE,
+            'money'    => '15.00',
         ]);
 
         $this->assertDatabaseHas('transactions', [
             'status_id' => TransactionStatus::PENDING,
-            'price' => '1500'
+            'price'     => '1500',
         ]);
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '25,00'
+            'type'     => TransactionType::TRADE,
+            'money'    => '25,00',
         ]);
 
         $this->assertDatabaseHas('transactions', [
             'status_id' => TransactionStatus::PENDING,
-            'price' => '2500'
+            'price'     => '2500',
         ]);
     }
 
@@ -154,15 +154,15 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'game_id' => $game->igdb_id,
+            'game_id'  => $game->igdb_id,
             'platform' => 9,
-            'type' => TransactionType::TRADE
+            'type'     => TransactionType::TRADE,
         ]);
 
         $this->assertDatabaseHas('transactions', [
-            'offer_id' => $offer->id,
-            'status_id' => TransactionStatus::PENDING,
-            'buyer_game_id' => $game->igdb_id,
+            'offer_id'            => $offer->id,
+            'status_id'           => TransactionStatus::PENDING,
+            'buyer_game_id'       => $game->igdb_id,
             'buyer_game_platform' => 9,
         ]);
     }
@@ -175,14 +175,14 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         $this->assertDatabaseHas('transactions', [
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
-            'price' => '1000',
+            'price'     => '1000',
         ]);
     }
 
@@ -194,19 +194,19 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '20'
+            'type'     => TransactionType::TRADE,
+            'money'    => '20',
         ]);
 
         $this->assertEquals(2, Transaction::where([
-            'offer_id' => $offer->id,
-            'status_id' => TransactionStatus::PENDING
+            'offer_id'  => $offer->id,
+            'status_id' => TransactionStatus::PENDING,
         ])->count());
     }
 
@@ -215,17 +215,17 @@ class TradeGamesTest extends TestCase
     {
         $user = factory(User::class)->create();
         $offer = factory(Offer::class)->states(['active'])->create([
-            'seller_id' => $user->id
+            'seller_id' => $user->id,
         ]);
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         $this->assertDatabaseMissing('transactions', [
-            'offer_id' => $offer->id,
+            'offer_id'  => $offer->id,
             'status_id' => TransactionStatus::PENDING,
         ]);
     }
@@ -242,8 +242,8 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         Notification::assertSentTo($offer->seller, NewTradeOffer::class);
@@ -262,8 +262,8 @@ class TradeGamesTest extends TestCase
 
         $this->actingAs($user)->post(route('transactions.create'), [
             'offer_id' => $offer->id,
-            'type' => TransactionType::TRADE,
-            'money' => '10'
+            'type'     => TransactionType::TRADE,
+            'money'    => '10',
         ]);
 
         Notification::assertNothingSent();

@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\Game;
-use App\Http\Requests\DeleteOfferRequest;
-use App\ValueObjects\Language;
-use App\ValueObjects\Platform;
-use App\Services\Price;
 use App\Events\Offers\OfferCreated;
+use App\Game;
 use App\Http\Requests\CreateOfferRequest;
+use App\Http\Requests\DeleteOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
 use App\Offer;
+use App\ValueObjects\Language;
+use App\ValueObjects\Platform;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -36,12 +35,12 @@ class OfferController extends Controller
         }
 
         return view('offers.index', [
-            'offers' => $offers,
-            'cities' => City::getList(),
-            'maxPrice' => Offer::max('price') / 100,
-            'isFiltered' => !empty($request->all()),
+            'offers'       => $offers,
+            'cities'       => City::getList(),
+            'maxPrice'     => Offer::max('price') / 100,
+            'isFiltered'   => !empty($request->all()),
             'selectedCity' => isset($city) ? $city->name : __('settings.select_city'),
-            'selectedGame' => isset($game) ? $game->title : __('settings.select_game')
+            'selectedGame' => isset($game) ? $game->title : __('settings.select_game'),
         ]);
     }
 
@@ -69,12 +68,13 @@ class OfferController extends Controller
      * Edit the form for creating a new resource.
      *
      * @param Offer $offer
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Offer $offer)
     {
         return view('offers.edit', [
-            'model' => $offer,
+            'model'     => $offer,
             'platforms' => Platform::availablePlatforms(),
             'languages' => Language::availableLanguages(),
         ]);
@@ -84,6 +84,7 @@ class OfferController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateOfferRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateOfferRequest $request)
@@ -110,7 +111,8 @@ class OfferController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Offer $offer
+     * @param \App\Offer $offer
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($offer, $slug)
@@ -118,16 +120,17 @@ class OfferController extends Controller
         $offer = Offer::active()->findOrFail($offer);
 
         return view('offers.show', [
-            'offer' => $offer,
-            'similar' => $offer->getSimilar(3),
-            'platforms' => Platform::availablePlatforms()
+            'offer'     => $offer,
+            'similar'   => $offer->getSimilar(3),
+            'platforms' => Platform::availablePlatforms(),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Offer $offer
+     * @param \App\Offer $offer
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateOfferRequest $request, Offer $offer)
@@ -136,12 +139,12 @@ class OfferController extends Controller
 
         $data = collect([
             'payment_bank_transfer' => false,
-            'payment_cash' => false,
-            'delivery_post' => false,
-            'delivery_in_person' => false,
-            'sellable' => false,
-            'tradeable' => false,
-            'is_published' => false
+            'payment_cash'          => false,
+            'delivery_post'         => false,
+            'delivery_in_person'    => false,
+            'sellable'              => false,
+            'tradeable'             => false,
+            'is_published'          => false,
         ])->merge($data)->toArray();
 
         $offer->fill($data);
@@ -155,9 +158,11 @@ class OfferController extends Controller
      * Remove the specified resource from storage.
      *
      * @param DeleteOfferRequest $request
-     * @param  \App\Offer $offer
-     * @return \Illuminate\Http\Response
+     * @param \App\Offer         $offer
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function delete(DeleteOfferRequest $request, Offer $offer)
     {

@@ -17,18 +17,19 @@ class NotifyAboutNewTradeOffer
 
         if (!$transaction->isTrade()) {
             $receiver->sendNewTransactionNotification($transaction);
+
             return;
         }
 
-        $notification = new Notification;
+        $notification = new Notification();
 
         $notification->fill([
-            'url' => route('transactions.index'),
+            'url'  => route('transactions.index'),
             'text' => __('notifications.new_trade_offer', [
                 'username' => auth()->user()->name,
             ]),
             'receiver_id' => $receiver->id,
-            'created_by' => auth()->user()->id
+            'created_by'  => auth()->user()->id,
         ])->save();
 
         $receiver->sendNewOfferNotification($transaction);

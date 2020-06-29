@@ -15,17 +15,17 @@ class NotifyAboutNewComment
             return;
         }
 
-        $notification = new Notification;
+        $notification = new Notification();
 
         $notification->fill([
-            'url' => route('transactions.index'),
+            'url'  => route('transactions.index'),
             'text' => __('notifications.new_comment', [
-                'username' => auth()->user()->name,
+                'username'    => auth()->user()->name,
                 'transaction' => $transaction->id,
-                'comment' => $event->comment->comment
+                'comment'     => $event->comment->comment,
             ]),
             'receiver_id' => $transaction->otherPerson->id,
-            'created_by' => auth()->user()->id
+            'created_by'  => auth()->user()->id,
         ])->save();
     }
 }

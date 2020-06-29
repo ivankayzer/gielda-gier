@@ -3,7 +3,6 @@
 namespace Tests\Feature\Offers;
 
 use App\Offer;
-use App\Profile;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -25,13 +24,13 @@ class SortingOffersTest extends TestCase
     public function can_be_sorted_by_date_from_old_to_new()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->user->id,
-            'publish_at' => '2019-01-01 12:00:00'
+            'seller_id'  => $this->user->id,
+            'publish_at' => '2019-01-01 12:00:00',
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->user->id,
-            'publish_at' => '2019-01-01 13:00:00'
+            'seller_id'  => $this->user->id,
+            'publish_at' => '2019-01-01 13:00:00',
         ]);
 
         $this->get(route('offers.index', ['sort' => 'date_desc']))
@@ -42,13 +41,13 @@ class SortingOffersTest extends TestCase
     public function can_be_sorted_by_date_from_new_to_old()
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->user->id,
-            'publish_at' => '2019-01-01 12:00:00'
+            'seller_id'  => $this->user->id,
+            'publish_at' => '2019-01-01 12:00:00',
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
-            'seller_id' => $this->user->id,
-            'publish_at' => '2019-01-01 13:00:00'
+            'seller_id'  => $this->user->id,
+            'publish_at' => '2019-01-01 13:00:00',
         ]);
 
         $this->get(route('offers.index', ['sort' => 'date_asc']))
@@ -60,12 +59,12 @@ class SortingOffersTest extends TestCase
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'price' => '10'
+            'price'     => '10',
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'price' => '20'
+            'price'     => '20',
         ]);
 
         $this->get(route('offers.index', ['sort' => 'price_desc']))
@@ -77,12 +76,12 @@ class SortingOffersTest extends TestCase
     {
         $firstOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'price' => '10'
+            'price'     => '10',
         ]);
 
         $secondOffer = factory(Offer::class)->state('active')->create([
             'seller_id' => $this->user->id,
-            'price' => '20'
+            'price'     => '20',
         ]);
 
         $this->get(route('offers.index', ['sort' => 'price_asc']))

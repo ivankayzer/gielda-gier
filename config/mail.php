@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'no-reply@ivankayzer.com'),
-        'name' => env('MAIL_FROM_NAME', 'Giełda gier'),
+        'name'    => env('MAIL_FROM_NAME', 'Giełda gier'),
     ],
 
     /*

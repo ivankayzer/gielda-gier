@@ -7,10 +7,10 @@ use App\Events\Notifications\NotificationsPageVisited;
 use App\Events\Transactions\TransactionAccepted;
 use App\Events\Transactions\TransactionCreated;
 use App\Events\Transactions\VisitTransactionsPage;
+use App\Listeners\DeclinePendingTransactionsForOffer;
 use App\Listeners\MarkNotificationsAsRead;
 use App\Listeners\NotifyAboutNewComment;
 use App\Listeners\NotifyAboutNewTradeOffer;
-use App\Listeners\DeclinePendingTransactionsForOffer;
 use App\Listeners\UpdateLastTransactionsVisitDate;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -31,13 +31,13 @@ class EventServiceProvider extends ServiceProvider
             NotifyAboutNewComment::class,
         ],
         TransactionCreated::class => [
-            NotifyAboutNewTradeOffer::class
+            NotifyAboutNewTradeOffer::class,
         ],
         NotificationsPageVisited::class => [
-            MarkNotificationsAsRead::class
+            MarkNotificationsAsRead::class,
         ],
         TransactionAccepted::class => [
-            DeclinePendingTransactionsForOffer::class
+            DeclinePendingTransactionsForOffer::class,
         ],
         VisitTransactionsPage::class => [
             UpdateLastTransactionsVisitDate::class,
