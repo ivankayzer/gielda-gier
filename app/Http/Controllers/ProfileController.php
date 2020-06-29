@@ -75,11 +75,11 @@ class ProfileController extends Controller
             $user = User::where('name', $user)->firstOrFail();
         }
 
-        if (!$user) {
+        if (! $user) {
             $user = $request->user();
         }
 
-        if (!$user) {
+        if (! $user) {
             abort(404);
         }
 

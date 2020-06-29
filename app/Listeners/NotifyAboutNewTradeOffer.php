@@ -15,7 +15,7 @@ class NotifyAboutNewTradeOffer
         /** @var User $receiver */
         $receiver = $transaction->otherPerson;
 
-        if (!$transaction->isTrade()) {
+        if (! $transaction->isTrade()) {
             $receiver->sendNewTransactionNotification($transaction);
 
             return;

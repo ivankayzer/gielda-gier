@@ -29,11 +29,11 @@ class BaseOfferRequest extends FormRequest
         });
 
         $validator->sometimes('sellable', Rule::in([true]), function ($input) {
-            return !$input->tradeable && $input->is_published;
+            return ! $input->tradeable && $input->is_published;
         });
 
         $validator->sometimes('tradeable', Rule::in([true]), function ($input) {
-            return !$input->sellable && $input->is_published;
+            return ! $input->sellable && $input->is_published;
         });
     }
 }

@@ -38,7 +38,7 @@ class OfferController extends Controller
             'offers'       => $offers,
             'cities'       => City::getList(),
             'maxPrice'     => Offer::max('price') / 100,
-            'isFiltered'   => !empty($request->all()),
+            'isFiltered'   => ! empty($request->all()),
             'selectedCity' => isset($city) ? $city->name : __('settings.select_city'),
             'selectedGame' => isset($game) ? $game->title : __('settings.select_game'),
         ]);

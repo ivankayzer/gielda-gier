@@ -38,7 +38,7 @@ class CreateTransactionRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->sometimes('game_id', ['bail', 'required', 'exists:games,igdb_id'], function ($input) {
-            return $input->type === TransactionType::TRADE && !$input->money;
+            return $input->type === TransactionType::TRADE && ! $input->money;
         });
 
         $validator->sometimes('platform', [
@@ -46,7 +46,7 @@ class CreateTransactionRequest extends FormRequest
             'required',
             Rule::in(array_keys(Platform::availablePlatforms())),
         ], function ($input) {
-            return $input->type === TransactionType::TRADE && !$input->money;
+            return $input->type === TransactionType::TRADE && ! $input->money;
         });
 
         $validator->sometimes('money', ['bail', 'sometimes', 'regex:/[0-9],?|.?[0-9]/', 'min:1', Rule::notIn(['0', '0.00', '0,00'])], function ($input) {

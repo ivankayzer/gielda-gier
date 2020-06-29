@@ -41,8 +41,8 @@ class TransactionFactory
 
     private static function formatMoney($value)
     {
-        if (!$value) {
-            return null;
+        if (! $value) {
+            return;
         }
 
         $price = str_replace(' ', '', $value);
