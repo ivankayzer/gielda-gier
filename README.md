@@ -6,7 +6,7 @@
 [![StyleCI](https://styleci.io/repos/164491579/shield)](https://styleci.io/repos/164491579)
 
 <p align="center">
-<img src="https://i.imgur.com/LtbtlnA.png">
+<img src="https://i.imgur.com/ZNcLGLw.png">
 </p>
 
 ## Demo
