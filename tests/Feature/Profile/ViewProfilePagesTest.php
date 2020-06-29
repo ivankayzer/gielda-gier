@@ -82,22 +82,6 @@ class ViewProfilePagesTest extends TestCase
     }
 
     /** @test */
-    public function can_see_random_game_background_on_users_page_from_his_published_offers()
-    {
-        $user = factory(User::class)->create();
-        $unpublishedOffer = factory(Offer::class)->create(['seller_id' => $user->id, 'is_published' => false]);
-        $publishedOffer = factory(Offer::class)->state('active')->create(['seller_id' => $user->id]);
-
-        $this->get(route('profile.show', ['user' => $user->name]))
-            ->assertSee($publishedOffer->game->background)
-            ->assertDontSee($unpublishedOffer->game->background);
-
-        $this->actingAs($user)->get(route('profile.show', ['user' => $user->name]))
-            ->assertSee($publishedOffer->game->background)
-            ->assertDontSee($unpublishedOffer->game->background);
-    }
-
-    /** @test */
     public function can_see_available_offers_section_if_user_has_published_offers()
     {
         $offer = factory(Offer::class)->states(['active', 'user'])->create();
