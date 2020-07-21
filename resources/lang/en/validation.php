@@ -141,6 +141,29 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'password' => 'password',
+        'city' => 'city',
+        'email' => 'e-mail',
+        'password_confirmation' => 'password confirmation',
+        'message' => 'message',
+        'name' => 'username',
+        'title' => 'title',
+        'platform' => 'platform',
+        'comment' => 'comment',
+        'language' => 'language',
+        'price' => 'price',
+        'is_published' => 'published',
+        'publish_at' => 'publication date',
+        'sellable' => 'for sale',
+        'tradeable' => 'for trade',
+        'city_id' => 'city',
+        'surname' => 'surname',
+        'address' => 'address',
+        'zip' => 'zip code',
+        'phone' => 'telephone',
+        'bank_nr' => 'bank account number',
+        'company_name' => 'company name',
+    ],
 
 ];

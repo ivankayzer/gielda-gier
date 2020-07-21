@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'settings' => 'Settings',
+    'my_account' => 'Basic information',
+    'name' => 'Name',
+    'surname' => 'Surname',
+    'address_data' => 'Shipping details',
+    'additional_info' => 'Additional information',
+    'address' => 'Address',
+    'city' => 'City',
+    'zip' => 'Postal code',
+    'select_city' => 'Select city',
+    'select_game' => 'Select game',
+    'phone' => 'Telephone number',
+    'bank_nr' => 'Bank account number',
+    'company_name' => 'Company name',
+    'save' => 'Save changes',
+    'pass_change' => 'Change password',
+    'current_pass' => 'Current password',
+    'new_pass' => 'New password',
+    'new_pass_confirm' => 'New password confirmation',
+    'change_avatar' => 'Change avatar',
+    'notifications' => 'Email notifications',
+    'notifications_new_offer' => 'Notify me when I get a new offer',
+    'notifications_new_transaction' => 'Notify me when I sell the game',
+];

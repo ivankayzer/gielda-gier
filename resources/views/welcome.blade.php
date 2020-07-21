@@ -29,7 +29,7 @@
                                        class="field-title ripple-effect">@lang('welcome.game_title')</label>
                                 <select class="select2 no-border full-container full-height games" name="game_id"
                                         title="Wybierz grę">
-                                    <option value="0">Wybierz grę</option>
+                                    <option value="0">@lang('offers.select_game')</option>
                                 </select>
                             </div>
                             <div class="intro-search-button">
