@@ -64,5 +64,7 @@ return [
     'reset_filter' => 'Reset Filter',
     'empty_notifications' => 'You have no notifications',
     'empty_messages' => 'You don\'t have messages',
-    'copyright' => 'All rights reserved.'
+    'copyright' => 'All rights reserved.',
+    'searching' => 'Searching...',
+    'select' => 'Select',
 ];

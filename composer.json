@@ -19,7 +19,8 @@
         "pusher/pusher-php-server": "^4.1.1",
         "spatie/laravel-backup": "^5.11",
         "symfony/property-access": "^4.2",
-        "symfony/serializer": "^4.2"
+        "symfony/serializer": "^4.2",
+        "andywer/js-localization": "dev-laravel-5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

@@ -163,6 +163,7 @@ return [
         /*
          * Package Service Providers...
          */
+        JsLocalization\JsLocalizationServiceProvider::class,
 
         /*
          * Application Service Providers...

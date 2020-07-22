@@ -1,3 +1,4 @@
+@include('js-localization::head')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -14,6 +15,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <title>@yield('title') - {{ config('app.name', 'Giełda gier') }}</title>
+
+    @yield('js-localization.head')
 
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 

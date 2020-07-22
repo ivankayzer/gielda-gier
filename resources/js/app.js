@@ -3,7 +3,7 @@ require('./bootstrap');
 window.gallery = require('gallery');
 
 $('.select2').select2({
-    placeholder: 'Wybierz',
+    placeholder: Lang.get('common.select'),
 });
 
 $('.select2.games').select2({
